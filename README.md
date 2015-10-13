@@ -1,2 +1,5 @@
 # Together_BCW
-project front/back-end development website om mensen met gemeenschappelijke interesses in contact te brengen
+
+Project front/back-end development 
+-> website om mensen met gemeenschappelijke interesses in contact te brengen
+-> zie Project dossier voor meer informatie

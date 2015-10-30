@@ -11,26 +11,17 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
-    less = require('gulp-less'),
     gutil = require('gulp-util'),
     autoprefixer = require('gulp-autoprefixer'),
-    coffee = require('gulp-coffee');
+    sass = require('gulp-sass');
 
 gulp.task("default",function(){
-    var cssWatcher = gulp.watch('./public/stylesheets/**/*.css',['css-build']);
-    cssWatcher.on('change',function(event){
-        console.log("File: " + event.path + " was " + event.type);
-    });
-    var jsWatcher = gulp.watch('./public/scripts/**/*.js', ['js-build']);
+    var jsWatcher = gulp.watch('./scripts/**/*.js', ['js-build']);
     jsWatcher.on('change', function(event){
         console.log("File: " + event.path + " was " + event.type);
     });
-    var lessWatcher = gulp.watch('./public/less/**/*.less', ['less-build']);
-    lessWatcher.on('change', function(event){
-        console.log("File: " + event.path + " was " + event.type);
-    });
-    var tsWatcher = gulp.watch('./public/typescript/**/*.ts', ['cs-build']);
-    tsWatcher.on('change', function(event){
+    var sassWatcher = gulp.watch('./sass/**/*.scss', ['sass']);
+    sassWatcher.on('change', function(event){
         console.log("File: " + event.path + " was " + event.type);
     });
 });
@@ -47,53 +38,30 @@ gulp.task("js-build", function(){
         .pipe(notify({message: 'js built'}));
 });
 
-
-gulp.task("css-build", function(){
-    gulp.src("./public/stylesheets/*.css")
+gulp.task("sass",function(){
+    gulp.src("./sass/**/*.scss")
+        .pipe(sass({
+            compress: true
+        }).on('error',gutil.log))
         .pipe(csslint({
             'ids': false
         }))
         .pipe(csslint.reporter("junit-xml"))
-        .pipe(csslint.reporter("fail"))
-        .pipe(sourcemaps.init())
-        .pipe(cssMinifier())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest("./public/dist/css"));
-});
-
-gulp.task("less",function(){
-    gulp.src("./public/less/**/*.less")
-        .pipe(less({
-            compress: true
-        }).on('error',gutil.log))
         .pipe(autoprefixer('last 2 versions','ie9'))
         .pipe(sourcemaps.init())
         .pipe(cssMinifier({ keepBreaks: false }))
         .pipe(concat('style.min.css'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest("./public/dist/css/"));
+        .pipe(gulp.dest("./dist/css/"))
 });
 
-//gulp.task("coffee",function(){
-//    gulp.src("./public/scripts/**/*.coffee")
-//        .pipe(coffee({
-//            bare: true
-//        }).on('error', gutil.log))
-//        .pipe(jshint())
-//        .pipe(jshint.reporter(jsStylish))
-//        .pipe(sourcemaps.init())
-//        .pipe(uglify())
-//        .pipe(concat('coffee.min.js'))
-//        .pipe(sourcemaps.write())
-//        .pipe(gulp.dest("./public/dist/js/"))
-//});
 
 gulp.task("copy-externals", function(){
 
     gulp.src("./bower_components/modernizr/modernizr.js")
-        .pipe(gulp.dest("./app/dist/js"));
+        .pipe(gulp.dest("./dist/js"));
 
     gulp.src("./bower_components/angular/angular.min.js")
-        .pipe(gulp.dest("./public/dist/js/"));
+        .pipe(gulp.dest("./dist/js/"));
 
 });

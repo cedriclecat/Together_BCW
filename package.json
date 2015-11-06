@@ -1,0 +1,22 @@
+{
+  "name": "Together",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {},
+  "description": "Project Together",
+  "author": {
+    "name": "Brecht Tourlousse, Cedric Lecat & Wouter Dumon"
+  },
+  "dependencies": {
+    "express": "~4.13.3",
+    "body-parser": "~1.14.1",
+    "cookie-parser": "~1.4.0",
+    "debug": "~2.2.0",
+    "jade": "~1.11.0",
+    "mongoose": "4.2.4"
+  },
+  "repository":{
+    "type":"git",
+    "url":"https://github.com/cedriclecat/Together_BCW"
+  }
+}

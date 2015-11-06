@@ -20,7 +20,7 @@ gulp.task("default",function(){
     jsWatcher.on('change', function(event){
         console.log("File: " + event.path + " was " + event.type);
     });
-    var sassWatcher = gulp.watch('./sass/**/*.scss', ['sass']);
+    var sassWatcher = gulp.watch('./sass/**/*.sass', ['sass']);
     sassWatcher.on('change', function(event){
         console.log("File: " + event.path + " was " + event.type);
     });
@@ -39,14 +39,14 @@ gulp.task("js-build", function(){
 });
 
 gulp.task("sass",function(){
-    gulp.src("./sass/**/*.scss")
+    gulp.src("./sass/**/*.sass")
         .pipe(sass({
             compress: true
         }).on('error',gutil.log))
         .pipe(csslint({
             'ids': false
         }))
-        .pipe(csslint.reporter("junit-xml"))
+        .pipe(csslint.reporter("compact"))
         .pipe(autoprefixer('last 2 versions','ie9'))
         .pipe(sourcemaps.init())
         .pipe(cssMinifier({ keepBreaks: false }))

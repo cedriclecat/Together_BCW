@@ -1,0 +1,66 @@
+@import variables
+
+=default-body
+  font-family: $font-family
+  background-color: $page-err-color
+  margin-top: 90px
+  font-size: 14px
+
+=default-links
+  text-decoration: none
+
+=height-width($height,$width)
+  height: $height
+  width: $width
+
+=positioning
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+
+=weight-transform($weight,$transform)
+  font-weight: $weight
+  text-transform: $transform
+
+=df-bcolor-tcolor()
+  background-color: $color-elements
+  color: $white
+
+
+=df-bcolor-tcolor-hover()
+  background-color: $color-elements-hover
+  color: $white
+
+
+=df-border-elem()
+  border: 1px solid $color-elements
+
+
+=border-radius($rad)
+  -webkit-border-radius: $rad
+  -moz-border-radius: $rad
+  -ms-border-radius: $rad
+  -o-border-radius: $rad
+  border-radius: $rad
+
+
+=menu-hover
+  li
+    a
+      &:hover
+        color: $color-elements
+
+      .navbar-btn
+        background-color: $color-elements
+        color: $white
+        margin-top: -15px
+        margin-bottom: -10px
+        &:hover
+          background-color: $color-elements-hover
+  .active
+    a
+      background-color: $color-elements
+      color: $white
+      &:hover
+        @extend a

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Groups</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link type='text/css' rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link type="text/css" rel="stylesheet" href="dist/css/style.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top ">
+            <div class="container-fluid">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"  data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">TogetheR</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="landing.html">Home</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li class="active"><a href="groups.html">Groups</a></li>
+                        <li><a href="login.html"><button type="button" class="btn btn-default navbar-btn">Sign in</button></a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="user-groups">
+                    <h2>My Groups</h2>
+                    <a href="#"><p>Rock Group</p></a>
+                    <a href="#"><p>Concert Group</p></a>
+                    <a href="#"><p>Travel Group</p></a>
+                    <a href="#"><p>Rap Group</p></a>
+                    <a href="#"><p>Alternate Group</p></a>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="group-contacts">
+                    <h2>{ NAME GROUP }</h2>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Group Events</div>
+                                    <div class="list-group" id="online-users"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Group Chat</div>
+                                    <ul class="list-group" id="chat-output"></ul>
+                                    <div class="panel-body">
+                                        <form id="chat">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="chat-input" />
+                                                <span class="input-group-btn"><button type="submit" class="btn sendm btn-default">Send Message</button></span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Online Users</div>
+                                    <ul class="list-group" id="user-list"></ul>
+                                    <div style="height:670px;" class="panel-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <p class="text-muted">© Copyright BCW Company. All Rights Reserved.</p>
+                <a href="#"><span class="glyphicon glyphicon-menu-up bck-to-top" aria-hidden="true"></span></a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

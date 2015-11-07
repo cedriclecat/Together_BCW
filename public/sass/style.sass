@@ -1,0 +1,843 @@
+/*! style.scss Brecht Tourlousse */
+
+// BASE - Base Variable file along with starting point Mixins and Placeholders.
+// ==========================================================================
+
+@import "variables"
+@import "mixins"
+
+// START - Actual SASS Code
+// ==========================================================================
+
+body
+  +default-body
+
+h2,h3,h4
+  font-weight: bold
+  text-transform: uppercase
+
+a
+  +default-links
+  &:hover
+    @extend a
+
+td
+  height: 25%
+
+
+.btn
+  background-color: $color-elements
+  color: $white
+  +border-radius($rad)
+  &:link
+    background-color: $color-elements
+    color: $white
+
+  &:visited
+    background-color: $color-elements
+    color: $white
+
+  &:hover
+    background-color: $color-elements-hover
+    color: $white
+
+// Header + Navbar
+// ==========================================================================
+.navbar-default
+  padding: 20px
+.navbar-fixed-top
+  .navbar-brand
+    font-size: 30px
+  .navbar-right
+    .glyphicon
+      margin-right: 5px
+      +menu-hover
+    .profile-image
+      margin-top: -5px
+      +height-width(30px,30px)
+    +menu-hover
+
+
+// Landing Page
+// Carousel
+// ==========================================================================
+.slider
+  margin-bottom: 15px
+  .carousel-inner
+    .item
+      .carousel-caption
+        top: 50%
+        margin: -155px 0 0 0
+        color: $white
+        line-height: 40px
+        span
+          +border-radius(4px)
+        >p
+          >.btn
+            border: none
+    .carousel-control
+      >span
+        position: absolute
+        top: 50%
+      >.carousel-control-left
+        left: 25px
+      >.carousel-control-right
+        right: 25px
+
+
+// Content Landing Page
+.trending
+  background-color: $white
+  text-align: center
+  >img
+    margin: 0 auto
+  >h2
+    padding: 15px 0
+    width: 100%
+  .smaller
+    color: #C7C7C7
+    text-transform: uppercase
+    border-bottom: 1px solid #E1E1E1
+  p
+    color: #C7C7C7
+    padding: 15px 0
+  .btn
+    margin-bottom: 15px
+.new
+  @extend .trending
+.promoted
+    background-color: $white
+    padding: 20px 20px 0 20px
+    margin: 15px 0
+    >h2
+      position: absolute
+      margin: -30px 0 0 0
+      padding: 20px 0
+    >img
+      margin-top: 40px
+    >.btn
+      margin-top: -90px
+      margin-left: 10px
+
+// Events Page
+// ==========================================================================
+
+.keywords
+  >h3
+    margin-top: 10px
+  .keyword
+    background-color: $white
+    text-align: center
+    .fa-remove
+      float: left
+      padding: 8px 0 8px 8px
+      color: $color-elements
+      &:hover
+        color: $color-elements-hover
+    >p
+      font-weight: bold
+      padding: 5px
+
+.events
+  .pagination
+    margin-top: 0
+    >li
+      >a
+        color: $color-elements
+        &:hover
+          +df-bcolor-tcolor
+    .active
+      > a
+        +df-border-elem
+        +df-bcolor-tcolor
+        &:hover
+          background-color: $color-elements-hover
+  .panel-heading
+    +df-bcolor-tcolor
+    +df-border-elem
+  .panel-title
+    font-weight: bold
+    text-transform: uppercase
+    >a
+      >img
+        width: 70px
+        height: 40px
+  .panel-body
+    iframe
+      float: left
+      //margin-right: 20px
+      margin: 0 20px -10px -10px
+    .info
+      font-weight: bold
+      text-decoration: underline
+    .btn
+      +df-border-elem
+    .approve
+      background-color: $color-elements
+      color: $white
+      &:hover
+        color: $color-elements
+        background-color: $white
+    .disapprove
+      color: $color-elements
+      background-color: $white
+      &:hover
+        +df-bcolor-tcolor
+
+
+// Groups Page
+// ==========================================================================
+.user-groups
+  +height-width(790px,100%)
+  background-color: $white
+  margin-top: -5px
+  margin-bottom: 15px
+  h2
+    padding: 15px
+  a
+    p
+      background-color: $color-elements
+      padding: 5px
+      margin: 5px 15px
+      color: $white
+      font-weight: bold
+      text-align: center
+      &:link
+        +df-bcolor-tcolor
+      &:hover
+        +df-bcolor-tcolor-hover
+      &:active
+        background-color: $white
+        color: $color-elements
+.group-contacts
+  @extend .user-groups
+  #chat-output
+    height: 595px
+    overflow-y: scroll
+  .panel-heading
+    +df-bcolor-tcolor
+    +df-border-elem
+    +weight-transform(bold,uppercase)
+  .col-md-6
+    .sendm
+      +df-bcolor-tcolor
+      &:hover
+        background-color: $color-elements-hover
+
+
+// Login
+// ==========================================================================
+.cover
+  >.cover-img
+    >img
+      position: fixed
+      background-size: cover
+      z-index: -1
+  >.cover-bg
+    background-color: $black
+    opacity: 0.6
+    position: fixed
+    +positioning
+.login-body
+  .col-md-4
+    margin-top: 20px
+    margin-bottom: 20px
+    background-color: rgba(0,0,0,0.4)
+    padding: 20px
+    color: $white
+    >h2
+      padding-bottom: 10px
+      border-bottom: 1px solid #c0c0c0
+    >a
+      line-height: 42px
+      color: $white
+      &:hover
+        text-decoration: none
+        color: $white
+    >p
+      margin-top: 20px
+      padding-top: 10px
+      border-top: 1px solid #c0c0c0
+    >.button
+      border: none
+      height: 42px
+      cursor: pointer
+      padding: 0 18px
+      text-align: center
+      vertical-align: top
+      -webkit-user-drag: none
+      text-shadow: 0 1px rgba(255, 255, 255, 0.2)
+      +border-radius($rad)
+    >.btn-social
+      position: relative
+      +weight-transform(bold,uppercase)
+      margin-bottom: 5px
+      >span
+        border-radius: $rad 0 0 $rad
+        display: inline-block
+        text-align: center
+        position: absolute
+        width: 45px
+        left: 0
+        >i
+          font-size: 22px
+          font-weight: normal
+          position: relative
+          top: 3px
+    >.facebook
+      background-color: $facebook-color
+      &:hover
+        background-color: $facebook-color-hover
+      >span
+        background-color: $facebook-color-span
+    >.twitter
+      background-color: $twitter-color
+      &:hover
+        background-color: $twitter-color-hover
+      >span
+        background-color: $twitter-color-span
+    >.googleplus
+      background-color: $googleplus-color
+      &:hover
+        background-color: $googleplus-color-hover
+      >span
+        background-color: $googleplus-color-span
+    >.span-left
+      padding-left: 56px
+
+
+// Profile Page
+// ==========================================================================
+
+.panel
+  background: none
+  +border-radius(0)
+  .panel-heading
+    position: relative
+    padding: 0 15px
+    .panel-title
+      .menu-icon
+        margin-right: 5px
+        width: 20px
+        height: 21px
+        line-height: 21px
+        display: inline-block
+        text-align: center
+  .panel-title
+    color: #fff
+.panel .panel-body,.panel .panel-body-list
+  background: #fff
+  position: relative
+
+.panel .panel-body-list .table
+  margin-bottom: 0
+.panel .panel-body
+  padding: 15px 25px 25px
+.panel-group .panel .panel-heading
+  padding-top: 10px
+  padding-bottom: 10px
+.panel-group .panel .panel-heading .panel-title a
+  display: block
+.panel-bd-top
+  border-top: 3px solid $color-elements
+
+/* info + profle pic */
+.info-parent
+  img
+    max-width: 100%
+    vertical-align: middle
+    border: none
+.append-icon
+  margin-right: 7px
+.friends-dv
+  .friends
+    +df-bcolor-tcolor
+    +border-radius(0)
+    padding: 4px 8px
+    &:hover
+      background-color: $color-elements-hover
+      color: $white
+.upload-dv
+  margin-top: 3px
+  .upload
+    +df-bcolor-tcolor
+    +border-radius(0)
+    padding: 4px 8px
+    &:hover
+      background-color: $color-elements-hover
+      color: $white
+    .fa-cloud-upload
+      margin-right: 7px
+
+
+/* Contacts */
+.h-contact
+  margin-bottom: 0
+  padding: 20px
+  i
+    margin-right: 10px
+.panel-body-list
+  background: #FFF none repeat scroll 0 0
+  position: relative
+.content-grid:before,.content-grid:after
+  content: " "
+  display: table
+.content-grid:after
+  clear: both
+.content-grid .list-wrapper>li
+  float: left
+  margin-top: 10px
+  margin-bottom: 5px
+  list-style: none
+  position: relative
+.content-grid .list-wrapper>li:hover
+  padding-left: -10px
+  background: #F5F5F5
+
+.content-grid .list-wrapper>li>a
+  padding: 10px
+  display: block
+.content-grid .menu-icon
+  display: block
+  text-align: center
+  width: 100%
+  margin-left: auto
+  margin-right: auto
+  font-size: 36px
+.content-grid .menu-icon img
+  +border-radius(100px)
+.content-grid .menu-text
+  display: block
+  text-align: center
+.content-grid .menu-text .menu-info
+  font-style: italic
+  color: #939ba2
+  display: block
+.content-grid .menu-text .menu-info .menu-action
+  display: block
+.menu-action-icon
+  text-align: center
+  border: 1px solid #AAA
+  display: inline-block
+  height: 22px
+  width: 22px
+  line-height: 18px
+  margin-left: 10px
+  margin-top: 10px
+  +border-radius(100px)
+.menu-action-icon:first-child
+  margin-left: 0
+  &:hover
+    color: #1fae66
+  background-color: #fff
+  border-color: #1fae66
+
+.progress
+  margin-bottom: 5px
+  margin-top: 5px
+  height: 12px
+.closing
+  color: #F5F5F5
+  padding: 5px 0
+  position: relative
+  text-align: center
+  background-color: $color-elements
+  &:hover
+    background-color: $color-elements-hover
+  >a
+    color: $white
+
+
+
+// Pill Navigation Profile Page
+.panel-header
+  >h2
+    margin-left: 15px
+.tabs
+  .nav-tabs
+    background-color: $color-elements
+    border-bottom: none
+    +weight-transform(bold,uppercase)
+    li
+      margin: 0
+      position: relative
+      a
+        margin: 0
+        color: #FFF
+        border-left: 1px solid rgba(255,255,255,0.2)
+        border-right: 1px solid rgba(0,0,0,0.15)
+        border-top: none
+        border-bottom: none
+        height: 36px
+        +border-radius(0)
+        .menu-icon
+          margin-right: 5px
+        .menu-active
+          width: 100%
+          position: absolute
+          bottom: -8px
+          left: 0
+          text-align: center
+          visibility: hidden
+        &:hover
+          background-color: rgba(255,255,255,0.15)
+      &:last-child
+        border-right: 1px solid rgba(255,255,255,0.2)
+  .tab-content
+    background-color: #fff
+    position: relative
+    .active
+      display: block
+.tabs .nav-tabs>li.active>a,.tabs .nav-tabs>li.active>a:hover,.tabs .nav-tabs>li.active>a:focus
+  border: none
+  background-color: rgba(0,0,0,0.2)
+  color: $white
+.tabs .nav-tabs>li.active>a .menu-active,.tabs .nav-tabs>li.active>a:hover .menu-active,.tabs .nav-tabs>li.active>a:focus .menu-active
+  visibility: visible
+
+// Pill tab Profile
+.profile-tab
+  padding: 1px 20px 20px 20px
+  h3
+    .fa-user
+      margin-right: 7px
+/* Edit Profile */
+.form-group
+  margin-bottom: 20px
+  .btn-icon
+    +df-bcolor-tcolor
+.edit-profile
+  margin-top: 10px
+  border-top: 1px solid #f3f3f3
+  .fa-cog
+    margin-right: 7px
+  .control-label
+    padding: 4px
+  .btn-save
+    margin-top: 5px
+    +df-bcolor-tcolor
+    &:hover
+      background-color: $color-elements-hover
+input[type="file"], input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, select, textarea
+  width: 100%
+  border: 1px solid #D5D5D5
+  padding: 6px 6px 7px
+  margin-bottom: 10px
+.width-40
+  width: 40%
+.btn-birthday
+  margin-top: 5px
+
+// Pill tab Event
+.event-tab
+  padding: 1px 0 0 20px
+  table
+    .rounded-btn
+      background-color: $white
+      .menu-icon
+        .fa-eye
+          background-color: #1FAE66
+          padding: 7px
+          +border-radius(100px)
+          color: $white
+        .fa-pencil
+          @extend .fa-eye
+          background-color: #F89C2C
+        .fa-times
+          @extend .fa-eye
+          background-color: #F85D2C
+
+// Pill Tab Contact
+.contact-tab
+  padding: 1px 0 0 20px
+  .fa-users
+    margin: 0
+  .nav
+    margin: 0
+    +menu-hover()
+    >li
+      > a
+        color: $color-elements
+  .content-grid
+    padding-bottom: 20px
+    .list-wrapper
+      li
+        padding: 10px
+      .menu-text
+        .menu-action-icon
+          +df-bcolor-tcolor
+          .fa-check
+            color: $white
+          .fa-times
+            @extend .fa-check
+
+// Pill Tab Groups
+.groups-tab
+  padding: 1px 0 0 20px
+  .row
+    padding-bottom: 20px
+  .content-list
+    .list-wrapper
+      margin: 0
+      padding: 0
+      > li
+        padding-top: 5px
+        padding-bottom: 5px
+        list-style: outside none none
+        border-bottom: 1px solid #EEE
+        position: relative
+        text-align: left
+        .menu-icon
+          img
+            float: left
+            max-width: 100%
+            border: none
+            vertical-align: middle
+            margin-right: 5px
+        .menu-action
+          position: absolute
+          right: 15px
+          top: 10px
+          .menu-action-icon
+            text-align: center
+            height: 22px
+            width: 22px
+            color: #F85D2C
+            >i
+              &:hover
+                background: #F85D2C none repeat scroll 0 0
+                color: #fff
+                padding: 5px
+
+// Footer
+// ==========================================================================
+.footer
+  position: relative
+  padding: 20px
+  text-align: center
+  background-color: $black
+  p
+    float: left
+  a
+    float: right
+    color: #647764
+    .bck-to-top
+      &:hover
+        color: $color-elements
+
+.f-login
+  z-index: 1
+  position: fixed
+  bottom: 0
+  width: 100%
+  padding-bottom: 10px
+  p
+    float: none
+
+
+// Error Pages
+// ==========================================================================
+.container
+  #content
+    position: absolute
+    +positioning()
+    background-color: $page-err-color
+    overflow: hidden
+    >.page-err
+      +height-width(100%,100%)
+      background-color: $color-elements
+      text-align: center
+      >.err-status
+        background-color: $page-err-color
+        >h1
+          margin: 100px 0 -45px
+          color: $color-elements-hover
+          font-size: 200px
+      >.err-message
+        background-color: $color-elements-hover
+        padding: 24px
+        text-transform: uppercase
+      >.err-body
+        padding: 100px 10px 20px
+        >a
+          border: 1px solid $white
+          &:link
+            color: $white
+            background-color: $color-elements
+          &:visited
+            @extend a:link
+          &:hover
+            color: $color-elements
+            background-color: $white
+        >.btn-goback
+          color: $white
+          background-color: transparent
+        >.btn-lg
+          padding: 10px 16px
+          font-size: 18px
+          line-height: 1.33
+          +border-radius($rad)
+          >.space
+            display: inline
+            padding: 5px
+
+/* MEDIA QUERIES */
+/* Small Devices, Tablets */
+/* Extra Small Devices, Phones */
+// ==========================================================================
+@media only screen and (max-width : 480px)
+  h2,h3
+   font-size: 16px
+  .slider
+    .carousel-inner
+      .item
+        .carousel-caption
+          top: 50%
+          margin: -80px 0 0 0
+          font-size: 10px
+          line-height: 20px
+          >p
+            >.btn-responsive
+              padding: 8px 8px
+              line-height: 1
+              +border-radius($rad)
+  .promoted
+    .btn-responsive
+      padding: 4px 4px
+      margin-top: -55px
+      margin-left: 5px
+      line-height: 1
+      +border-radius($rad)
+  .events
+    .panel-body
+      iframe
+        width: 260px
+        height: 260px
+        margin-bottom: 10px
+      .btn
+        margin-bottom: 5px
+  .f-login
+    position: relative
+
+
+////***************************************** Friends chat *************************************************
+//
+//
+//
+//.chat_box
+//  position: fixed
+//  right: 20px
+//  bottom: 0
+//  width: 250px
+//
+//.chat_body
+//  background: white
+//  height: 400px
+//  padding: 5px 0
+//
+//
+//.chat_head,.msg_head
+//  background: #f39c12
+//  color: white
+//  padding: 15px
+//  font-weight: bold
+//  cursor: pointer
+//  border-radius: 5px 5px 0 0
+//
+//
+//.msg_box
+//  position: fixed
+//  bottom: -5px
+//  width: 250px
+//  background: white
+//  border-radius: 5px 5px 0 0
+//
+//
+//.msg_head
+//  background: #3498db
+//
+//
+//.msg_body
+//  background: white
+//  height: 200px
+//  font-size: 12px
+//  padding: 15px
+//  overflow: auto
+//  overflow-x: hidden
+//
+//.msg_input
+//  width: 100%
+//  border: 1px solid white
+//  border-top: 1px solid #DDDDDD
+//  -webkit-box-sizing: border-box /* Safari/Chrome, other WebKit */
+//  -moz-box-sizing: border-box    /* Firefox, other Gecko */
+//  box-sizing: border-box
+//
+//.close
+//  float: right
+//  cursor: pointer
+//
+//.minimize
+//  float: right
+//  cursor: pointer
+//  padding-right: 5px
+//
+//
+//.user
+//  position: relative
+//  padding: 10px 30px
+//
+//.user:hover
+//  background: #f8f8f8
+//  cursor: pointer
+//
+//
+//.user:before
+//  content: ''
+//  position: absolute
+//  background: #2ecc71
+//  height: 10px
+//  width: 10px
+//  left: 10px
+//  top: 15px
+//  border-radius: 6px
+//
+//
+//.msg_a
+//  position: relative
+//  background: #FDE4CE
+//  padding: 10px
+//  min-height: 10px
+//  margin-bottom: 5px
+//  margin-right: 10px
+//  border-radius: 5px
+//
+//.msg_a:before
+//  content: ""
+//  position: absolute
+//  width: 0
+//  height: 0
+//  border: 10px solid
+//  border-color: transparent #FDE4CE transparent transparent
+//  left: -20px
+//  top: 7px
+//
+//.msg_b
+//  background: #EEF2E7
+//  padding: 10px
+//  min-height: 15px
+//  margin-bottom: 5px
+//  position: relative
+//  margin-left: 10px
+//  border-radius: 5px
+//
+//.msg_b:after
+//  content: ""
+//  position: absolute
+//  width: 0
+//  height: 0
+//  border: 10px solid
+//  border-color: transparent transparent transparent #EEF2E7
+//  right: -20px
+//  top: 7px
+

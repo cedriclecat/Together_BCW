@@ -16,11 +16,11 @@ var gulp = require('gulp'),
     sass = require('gulp-sass');
 
 gulp.task("default",function(){
-    var jsWatcher = gulp.watch('./scripts/**/*.js', ['js-build']);
+    var jsWatcher = gulp.watch('./public/scripts/**/*.js', ['js-build']);
     jsWatcher.on('change', function(event){
         console.log("File: " + event.path + " was " + event.type);
     });
-    var sassWatcher = gulp.watch('./sass/**/*.sass', ['sass']);
+    var sassWatcher = gulp.watch('./public/sass/**/*.sass', ['sass']);
     sassWatcher.on('change', function(event){
         console.log("File: " + event.path + " was " + event.type);
     });
@@ -39,7 +39,7 @@ gulp.task("js-build", function(){
 });
 
 gulp.task("sass",function(){
-    gulp.src("./sass/**/*.sass")
+    gulp.src("./public/sass/**/*.sass")
         .pipe(sass({
             compress: true
         }).on('error',gutil.log))

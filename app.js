@@ -1,22 +1,18 @@
-var express = require('express');
-var path = require('path');
-var port = process.env.PORT || 8080;
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var configDB = require('./config/connectDB.js');
-var passport = require('passport');
-var flash    = require('connect-flash');
-var session  = require('express-session');
-
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
-var app = express();
+var express = require('express'),
+    app = express(),
+    path = require('path'),
+    server = require('http').createServer(app),
+    io = require('socket.io').listen(server),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    passport = require('passport'),
+    session  = require('express-session');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(express.static(__dirname + '/'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,21 +20,27 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // configuration ===============================================================
-mongoose.connect(configDB); // connect to our database
+// var connectDB = require("./config/ConnectDB.js");
+// mongoose.connect(connectDB); // connect to our database
 
-require('./config/passport')(passport); // pass passport for configuration
+// Passport ===============================================================
+require('./config/Passport.js')(passport); // pass passport for configuration
 
-// required for passport ===============================================================
-app.use(session({ secret: 'together' })); // session secret
+app.use(session({
+  secret: 'together',
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
 
-// routes ======================================================================
-app.use('/', routes)(app,passport);
-app.use('/users', users);
+// =================== Routes ===================
 
-// launch ===============================================================
+require('./routes/index.js')(app, passport);
+
+// launch ====================================================================
+var port = process.env.PORT || 3000;
+server.listen(port);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -47,14 +49,14 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlers
+// error handlers =========================================================================
 
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.render('404.jade', {
       message: err.message,
       error: err
     });
@@ -65,7 +67,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.render('500.jade', {
     message: err.message,
     error: {}
   });

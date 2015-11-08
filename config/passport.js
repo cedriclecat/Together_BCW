@@ -8,7 +8,7 @@ var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // load up the user model
-var User       = require('../data/schema/user');
+var User       = require('../data/schema/authSchema');
 
 // load the auth variables
 var configAuth = require('./auth');
@@ -35,7 +35,7 @@ module.exports = function(passport) {
     // =========================================================================
     passport.use(new FacebookStrategy({
 
-            // pull in our app id and secret from our auth.js file
+            // pull in our app id and secret from our authSchema.js file
             clientID        : configAuth.facebookAuth.clientID,
             clientSecret    : configAuth.facebookAuth.clientSecret,
             callbackURL     : configAuth.facebookAuth.callbackURL

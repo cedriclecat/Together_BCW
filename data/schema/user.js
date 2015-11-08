@@ -3,7 +3,7 @@
  */
 var mongoose = require('mongoose');
 var userSchema = new mongoose.Schema({
-    id: { type: Number, required: true },
+    id               : { type: Number, required: true },
     facebook         : {
         id           : String,
         token        : String,
@@ -34,7 +34,6 @@ var userSchema = new mongoose.Schema({
     phone            :{type:Number},
     contacts         :{type:String}
 
-});
 });
 
 module.exports = userSchema;

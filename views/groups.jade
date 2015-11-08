@@ -1,0 +1,73 @@
+//
+   Created by Brecht on 8/11/2015.
+
+extends ./layout
+
+block groups
+    header
+        nav.navbar.navbar-default.navbar-fixed-top
+            .container-fluid
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                .navbar-header
+                    a.navbar-brand(href='#') TogetheR
+                #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                    ul.nav.navbar-nav.navbar-right
+                        li
+                            a(href='/') Home
+                        li
+                            a(href='events') Events
+                        li.active
+                            a(href='groups') Groups
+                        li
+                            a(href='login')
+                                button.btn.btn-default.navbar-btn(type='button') Sign in
+    .container-fluid
+        .row
+            .col-md-2
+                .user-groups
+                    h2 My Groups
+                    a(href='#')
+                        p Rock Group
+                    a(href='#')
+                        p Concert Group
+                    a(href='#')
+                        p Travel Group
+                    a(href='#')
+                        p Rap Group
+                    a(href='#')
+                        p Alternate Group
+            .col-md-10
+                .group-contacts
+                    h2 { NAME GROUP }
+                    .container-fluid
+                        .row
+                            .col-md-6
+                                .panel.panel-default
+                                    .panel-heading Group Events
+                                    #online-users.list-group
+                            .col-md-3
+                                .panel.panel-default
+                                    .panel-heading Group Chat
+                                    ul#chat-output.list-group
+                                    .panel-body
+                                        form#chat
+                                            .input-group
+                                                input#chat-input.form-control(type='text')
+                                                span.input-group-btn
+                                                    button.btn.sendm.btn-default(type='submit') Send Message
+                            .col-md-3
+                                .panel.panel-default
+                                    .panel-heading Online Users
+                                    ul#user-list.list-group
+                                    .panel-body(style='height:670px;')
+    footer.footer
+        .container-fluid
+            .row
+                p.text-muted © Copyright BCW Company. All Rights Reserved.
+                a(href='#')
+                    span.glyphicon.glyphicon-menu-up.bck-to-top(aria-hidden='true')
+

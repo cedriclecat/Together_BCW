@@ -1,0 +1,18 @@
+//
+   Created by Brecht on 8/11/2015.
+
+extends ./layout.jade
+
+block 404
+    .container
+        section#content
+            .page-err
+                .err-status
+                    h1 404
+                .err-message
+                    h2 Page not found.
+                .err-body
+                    a.btn.btn-lg.btn-goback(href='/')
+                        span.glyphicon.glyphicon-home
+                        span.space
+                        |                         Go Back to Home Page

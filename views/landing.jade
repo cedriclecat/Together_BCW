@@ -1,0 +1,112 @@
+//
+   Created by Brecht on 8/11/2015.
+
+extends ./layout
+
+block landing
+    header
+        nav.navbar.navbar-default.navbar-fixed-top
+            .container-fluid
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                .navbar-header
+                    a.navbar-brand(href='#') TogetheR
+                #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                    ul.nav.navbar-nav.navbar-right
+                        li.active
+                            a(href='/') Home
+                        li
+                            a(href='events') Events
+                        li
+                            a(href='groups') Groups
+                        li.dropdown
+                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                img.profile-image.img-circle(src='../img/profile/default-profile-pic.png')
+                                |  Voornaam Familienaam
+                                span.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href='profile')
+                                        span.glyphicon.glyphicon-user(aria-hidden='true')
+                                        |  My Profile
+                                li
+                                    a(href='#')
+                                        span.glyphicon.glyphicon-list-alt(aria-hidden='true')
+                                        |  Events
+                                li
+                                    a(href='#')
+                                        span.glyphicon.glyphicon-cog(aria-hidden='true')
+                                        |  Settings
+                                li.divider(role='separator')
+                                li
+                                    a(href='#')
+                                        span.glyphicon.glyphicon-log-out(aria-hidden='true')
+                                        |  Logout
+                        li
+                            a(href='login')
+                                button.btn.btn-default.navbar-btn(type='button') Sign in
+    .slider
+        #myCarousel.carousel.slide(data-ride='carousel')
+            .carousel-inner
+                .item.active
+                    img(data-src='img/slider/slider1.jpg', alt='first slide', src='../img/slider/slider1.jpg')
+                    .carousel-caption
+                        h2 Vestibulum elementum
+                        p Fringilla placerat.
+                        p
+                            a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Get started
+                .item
+                    img(data-src='img/slider/slider2.jpg', alt='second slide', src='../img/slider/slider2.jpg')
+                    .carousel-caption
+                        h2 Eleifend non neque
+                        p Mauris accumsan posuere mauris non facilisis.
+                        p
+                            a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Get started
+                .item
+                    img(data-src='img/slider/slider3.jpg', alt='third slide', src='../img/slider/slider3.jpg')
+                    .carousel-caption
+                        h2 Suspendisse pellentesque
+                        p Lorem ipsum dolor sit amet
+                        p
+                            a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Get Started
+            // Controls
+            a.left.carousel-control(href='#myCarousel', data-slide='prev')
+                span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+                span.sr-only Previous
+            a.right.carousel-control(href='#myCarousel', data-slide='next')
+                span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+                span.sr-only Next
+    .container-fluid
+        .row
+            .col-md-6
+                .trending
+                    img.img.img-responsive(src='../img/landing-page/pic1.jpg', alt='pic')
+                    h2 Trending
+                    p.smaller Praesent semper mod quis eget mi. Etiam eu ante risus.
+                    p
+                        | Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+                    button.btn.btn-info.btn-lg Learn more
+            .col-md-6
+                .new
+                    img.img.img-responsive(src='../img/landing-page/pic2.jpg', alt='pic')
+                    h2 New
+                    p.smaller Praesent semper mod quis eget mi. Etiam eu ante risus.
+                    p
+                        | Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+                    button.btn.btn-info.btn-lg Learn more
+        .row
+            .col-md-12
+                .promoted
+                    h2 Promoted
+                    img.img.img-responsive(src='../img/landing-page/pic3.jpg', alt='pic')
+                    button.btn.btn-info.btn-responsive.btn-lg Learn more
+    footer.footer
+        .container-fluid
+            .row
+                p.text-muted © Copyright BCW Company. All Rights Reserved.
+                a(href='#')
+                    span.glyphicon.glyphicon-menu-up.bck-to-top(aria-hidden='true')
+

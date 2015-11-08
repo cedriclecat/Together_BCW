@@ -1,0 +1,777 @@
+//
+   Created by Brecht on 8/11/2015.
+
+extends ./layout
+
+block profile
+    header
+        nav.navbar.navbar-default.navbar-fixed-top
+            .container-fluid
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                .navbar-header
+                    a.navbar-brand(href='#') TogetheR
+                #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                    ul.nav.navbar-nav.navbar-right
+                        li
+                            a(href='landing') Home
+                        li
+                            a(href='events') Events
+                        li
+                            a(href='groups') Groups
+                        li.dropdown
+                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                img.profile-image.img-circle(src='../img/profile/default-profile-pic.png')
+                                |  Voornaam Familienaam
+                                span.caret
+                            ul.dropdown-menu
+                                li.active
+                                    a(href='#')
+                                        span.glyphicon.glyphicon-user(aria-hidden='true')
+                                        |  My Profile
+                                li
+                                    a(href='404.html')
+                                        span.glyphicon.glyphicon-list-alt(aria-hidden='true')
+                                        |  Add Event
+                                li
+                                    a(href='404')
+                                        span.glyphicon.glyphicon-cog(aria-hidden='true')
+                                        |  Settings
+                                li.divider(role='separator')
+                                li
+                                    a(href='404')
+                                        span.glyphicon.glyphicon-log-out(aria-hidden='true')
+                                        |  Logout
+                        li
+                            a(href='login')
+                                button.btn.btn-default.navbar-btn(type='button') Sign in
+    .title-section.clearfix
+        .panel-header.no-subtitle
+            h2 User Profile Page
+    .container-fluid
+        .row
+            .col-md-3
+                .panel.widget.light-widget.panel-bd-top
+                    .panel-heading.no-title
+                    .panel-body
+                        .text-center.info-parent
+                            img(alt='example image', src='../img/profile/default-profile-pic.png')
+                        .row
+                            .col-xs-12.friends-dv
+                                a.btn.btn-xs.btn-block.friends
+                                    i.fa.fa-check-circle.append-icon
+                                    | Friends
+                            .col-xs-12.upload-dv
+                                a.btn.btn-xs.btn-block.upload
+                                    i.fa.fa-cloud-upload
+                                    | Upload picture
+                        h2 John Doe
+                        h4 Owner at Our Company, Inc.
+                        p
+                            | Ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                        div
+                            table.table.table-striped.table-hover
+                                tbody
+                                    tr
+                                        td(style='width:60%;') Status
+                                        td
+                                            span.label.label-success Active
+                                    tr
+                                        td Member Since
+                                        td  Jan 07, 2014
+                .panel.widget.light-widget
+                    .panel-body-list
+                        h3.h-contact
+                            i.fa.fa-users.mgr-10
+                            | Contacts
+                        .content-grid
+                            div
+                                ul.list-wrapper.b-contact
+                                    li
+                                        a(href='#')
+                                            span.menu-icon
+                                                img(alt='example image', src='../img/profile/avatar-1.jpg')
+                                    li
+                                        a(href='#')
+                                            span.menu-icon
+                                                img(alt='example image', src='../img/profile/avatar-2.jpg')
+                                    li
+                                        a(href='#')
+                                            span.menu-icon
+                                                img(alt='example image', src='../img/profile/avatar-3.jpg')
+                                    li
+                                        a(href='#')
+                                            span.menu-icon
+                                                img(alt='example image', src='../img/profile/avatar-4.jpg')
+                                    li
+                                        a(href='#')
+                                            span.menu-icon
+                                                img(alt='example image', src='../img/profile/avatar-5.jpg')
+                                    li
+                                        a(href='#')
+                                            span.menu-icon
+                                                img(alt='example image', src='../img/profile/avatar-6.jpg')
+                        .closing(style='')
+                            a(href='#friends-tab')
+                                | See All Friends
+                                i.fa.fa-angle-double-right.prepend-icon
+            .col-md-9
+                .tabs.widget
+                    ul.nav.nav-tabs.widget
+                        li.active
+                            a(data-toggle='tab', href='#profile-tab')
+                                | Profile
+                                span.menu-active
+                                    i.fa.fa-caret-up
+                        li
+                            a(data-toggle='tab', href='#events-tab')
+                                | Events
+                                span.menu-active
+                                    i.fa.fa-caret-up
+                        li
+                            a(data-toggle='tab', href='#contacts-tab')
+                                | Contacts
+                                span.menu-active
+                                    i.fa.fa-caret-up
+                        li
+                            a(data-toggle='tab', href='#groups-tab')
+                                | Groups
+                                span.menu-active
+                                    i.fa.fa-caret-up
+                    .tab-content
+                        #profile-tab.profile-tab.tab-pane.active(role='tabpanel')
+                            h3
+                                i.fa.fa-user
+                                | ABOUT
+                            .row
+                                .col-sm-6
+                                    .row
+                                        label.col-xs-5.control-label First Name:
+                                        .col-xs-7.controls John
+                                .col-sm-6
+                                    .row
+                                        label.col-xs-5.control-label Last Name:
+                                        .col-xs-7.controls Doe
+                                .col-sm-6
+                                    .row
+                                        label.col-xs-5.control-label User Name:
+                                        .col-xs-7.controls John
+                                .col-sm-6
+                                    .row
+                                        label.col-xs-5.control-label Email:
+                                        .col-xs-7.controls mariah@Vendroid.com
+                                .col-sm-6
+                                    .row
+                                        label.col-xs-5.control-label City:
+                                        .col-xs-7.controls Los Angeles
+                                .col-sm-6
+                                    .row
+                                        label.col-xs-5.control-label Country:
+                                        .col-xs-7.controls United States
+                                .col-sm-6
+                                    .row
+                                        label.col-xs-5.control-label Birthday:
+                                        .col-xs-7.controls Jan 22, 1984
+                                .col-sm-6
+                                    .row.mgbt-xs-0
+                                        label.col-xs-5.control-label Interests:
+                                        .col-xs-7.controls Basketball, Web, Design, etc.
+                                .col-sm-6
+                                    .row.mgbt-xs-0
+                                        label.col-xs-5.control-label Website:
+                                        .col-xs-7.controls
+                                            a(href='#') johndoe.com
+                                .col-sm-6
+                                    .row.mgbt-xs-0
+                                        label.col-xs-5.control-label Phone:
+                                        .col-xs-7.controls +1-234-5678
+                            .row.edit-profile
+                                .col-sm-12
+                                    h3
+                                        i.fa.fa-cog
+                                        | Profile Setting
+                                    .form-group
+                                        label.col-sm-3.control-label First Name
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    input(placeholder='first name', type='text')
+                                                // col-xs-9
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle.vd_bg-yellow.vd_white(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-globe.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    .form-group
+                                        label.col-sm-3.control-label Last Name
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    input(placeholder='last name', type='text')
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-lock.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    .form-group
+                                        label.col-sm-3.control-label Gender
+                                        .col-sm-9.controls
+                                            .row.mgbt-xs-0
+                                                .col-xs-9
+                                                    span.vd_radio.radio-info
+                                                        input#optionsRadios3(checked='', value='option3', name='optionsRadios2', type='radio')
+                                                        label(for='optionsRadios3')  Male
+                                                    span.vd_radio.radio-danger
+                                                        input#optionsRadios4(value='option4', name='optionsRadios2', type='radio')
+                                                        label(for='optionsRadios4')  Female
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-lock.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                        .form-group
+                                            label.col-sm-3.control-label Birthday
+                                            .col-sm-9.controls
+                                                .row.mgbt-xs-0
+                                                    .col-xs-9
+                                                        input#datepicker-normal.width-40.hasDatepicker(type='text')
+                                                    .col-xs-2
+                                                        .btn-action
+                                                            button.btn.btn-icon.dropdown-toggle.btn-birthday(data-toggle='dropdown', type='button')
+                                                                i.fa.fa-user.fa-fw
+                                                            ul.dropdown-menu.pull-right
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-globe.fa-fw
+                                                                        |  Public
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-user.fa-fw
+                                                                        |  Friends
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-lock.fa-fw
+                                                                        |  Only Me
+                                        .form-group
+                                            label.col-sm-3.control-label Marital Status
+                                            .col-sm-9.controls
+                                                .row.mgbt-xs-0
+                                                    .col-xs-9
+                                                        select.width-40
+                                                            option Single
+                                                            option Married
+                                                    .col-xs-2
+                                                        .btn-action
+                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                                i.fa.fa-user.fa-fw
+                                                            ul.dropdown-menu.pull-right
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-globe.fa-fw
+                                                                        |  Public
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-user.fa-fw
+                                                                        |  Friends
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-lock.fa-fw
+                                                                        |  Only Me
+                                        .form-group
+                                            label.col-sm-3.control-label Position
+                                            .col-sm-9.controls
+                                                .row.mgbt-xs-0
+                                                    .col-xs-9
+                                                        select.width-40
+                                                            option CEO
+                                                            option Director
+                                                            option Manager
+                                                            option Staff
+                                                            option Office Boy
+                                                    .col-xs-2
+                                                        .btn-action
+                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                                i.fa.fa-user.fa-fw
+                                                            ul.dropdown-menu.pull-right
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-globe.fa-fw
+                                                                        |  Public
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-user.fa-fw
+                                                                        |  Friends
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-lock.fa-fw
+                                                                        |  Only Me
+                                        .form-group
+                                            label.col-sm-3.control-label About
+                                            .col-sm-9.controls
+                                                .row.mgbt-xs-0
+                                                    .col-xs-9
+                                                        textarea(rows='3')
+                                                    .col-xs-2
+                                                        .btn-action
+                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                                i.fa.fa-user.fa-fw
+                                                            ul.dropdown-menu.pull-right
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-globe.fa-fw
+                                                                        |  Public
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-user.fa-fw
+                                                                        |  Friends
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-lock.fa-fw
+                                                                        |  Only Me
+                                        h3.mgbt-xs-15
+                                            i.fa.fa-cog
+                                            | Contact Setting
+                                        .form-group
+                                            label.col-sm-3.control-label Mobile Phone
+                                            .col-sm-9.controls
+                                                .row.mgbt-xs-0
+                                                    .col-xs-9
+                                                        input(placeholder='mobile phone', type='text')
+                                                    .col-xs-2
+                                                        .btn-action
+                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                                i.fa.fa-globe.fa-fw
+                                                            ul.dropdown-menu.pull-right
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-globe.fa-fw
+                                                                        |  Public
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-user.fa-fw
+                                                                        |  Friends
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-lock.fa-fw
+                                                                        |  Only Me
+                                        .form-group
+                                            label.col-sm-3.control-label Website
+                                            .col-sm-9.controls
+                                                .row.mgbt-xs-0
+                                                    .col-xs-9
+                                                        input(placeholder='website', type='text')
+                                                    .col-xs-2
+                                                        .btn-action
+                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                                i.fa.fa-globe.fa-fw
+                                                            ul.dropdown-menu.pull-right
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-globe.fa-fw
+                                                                        |  Public
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-user.fa-fw
+                                                                        |  Friends
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-lock.fa-fw
+                                                                        |  Only Me
+                                        .form-group
+                                            label.col-sm-3.control-label Facebook
+                                            .col-sm-9.controls
+                                                .row.mgbt-xs-0
+                                                    .col-xs-9
+                                                        input(placeholder='facebook', type='text')
+                                                    .col-xs-2
+                                                        .btn-action
+                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                                i.fa.fa-globe.fa-fw
+                                                            ul.dropdown-menu.pull-right
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-globe.fa-fw
+                                                                        |  Public
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-user.fa-fw
+                                                                        |  Friends
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-lock.fa-fw
+                                                                        |  Only Me
+                                        .form-group
+                                            label.col-sm-3.control-label Twitter
+                                            .col-sm-9.controls
+                                                .row.mgbt-xs-0
+                                                    .col-xs-9
+                                                        input(placeholder='twitter', type='text')
+                                                    .col-xs-2
+                                                        .btn-action
+                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                                i.fa.fa-globe.fa-fw
+                                                            ul.dropdown-menu.pull-right
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-globe.fa-fw
+                                                                        |  Public
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-user.fa-fw
+                                                                        |  Friends
+                                                                li
+                                                                    a(href='#')
+                                                                        i.fa.fa-lock.fa-fw
+                                                                        |  Only Me
+                                    button.btn.btn-save.col-md-offset-3
+                                        span.menu-icon
+                                            i.fa.fa-fw.fa-check
+                                        |  Save
+                        #events-tab.event-tab.tab-pane(role='tabpanel')
+                            h3
+                                i.fa.fa-bolt.mgr-10.profile-icon
+                                |  Events
+                            .table-responsive
+                                table.table.table-striped.table-hover
+                                    thead
+                                        tr
+                                            th #
+                                            th Logo / Photos
+                                            th Name
+                                            th Date
+                                            th Time
+                                            th Status
+                                            th Cost
+                                            th Slots
+                                            th Action
+                                    tbody
+                                        tr
+                                            td 1
+                                            td
+                                                img(src='../img/avatar/avatar.jpg', alt='example image', height='80')
+                                            td Zoe Corp
+                                            td.center 2010/02/03
+                                            td.center 20:00
+                                            td.center
+                                                span.label.label-success Finish
+                                            td.center $ 250
+                                            td.center 2
+                                            td.menu-action.rounded-btn
+                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='view')
+                                                    i.fa.fa-eye
+                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit')
+                                                    i.fa.fa-pencil
+                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete')
+                                                    i.fa.fa-times
+                                        tr
+                                            td 2
+                                            td
+                                                img(src='../img/avatar/avatar-2.jpg', alt='example image', height='80')
+                                            td Zoe Corp
+                                            td.center 2010/02/03
+                                            td.center 20:00
+                                            td.center
+                                                span.label.label-success Finish
+                                            td.center $ 250
+                                            td.center 2
+                                            td.menu-action.rounded-btn
+                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='view')
+                                                    i.fa.fa-eye
+                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit')
+                                                    i.fa.fa-pencil
+                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete')
+                                                    i.fa.fa-times
+                                        tr
+                                            td 3
+                                            td
+                                                img(src='../img/avatar/avatar-3.jpg', alt='example image', height='80')
+                                            td Zoe Corp
+                                            td.center 2010/02/03
+                                            td.center 20:00
+                                            td.center
+                                                span.label.label-success Finish
+                                            td.center $ 250
+                                            td.center 2
+                                            td.menu-action.rounded-btn
+                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='view')
+                                                    i.fa.fa-eye
+                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit')
+                                                    i.fa.fa-pencil
+                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete')
+                                                    i.fa.fa-times
+                            .row.edit-profile
+                                .col-sm-12
+                                    h3
+                                        i.fa.fa-cog
+                                        | Create Event
+                                    .form-group
+                                        label.col-sm-3.control-label Picture
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    input(placeholder='first name', type='text')
+                                    .form-group
+                                        label.col-sm-3.control-label Name
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    input(placeholder='last name', type='text')
+                                    .form-group
+                                        label.col-sm-3.control-label Description
+                                        .col-sm-9.controls
+                                            .row.mgbt-xs-0
+                                                .col-xs-9
+                                                    textarea(rows='3')
+                                button.btn.btn-save.col-md-offset-3
+                                    span.menu-icon
+                                        i.fa.fa-fw.fa-check
+                                    |  Save
+                        #contacts-tab.contact-tab.tab-pane(role='tabpanel')
+                            h3
+                                i.fa.fa-users.mgr-10.profile-icon
+                                |  FRIENDS
+                            ul.nav.nav-pills
+                                li.active
+                                    a(href='#', data-toggle='tab') Friends
+                                li
+                                    a(href='#', data-toggle='tab') Pending Request
+                                li
+                                    a(href='#', data-toggle='tab') Blacklisted
+                            .content-grid.column-xs-3.column-sm-4.column-md-4.column-lg-6.height-xs-4
+                                div
+                                    ul.list-wrapper
+                                        li
+                                            a(href='#')
+                                                span.menu-icon
+                                                    img(src='../img/profile/avatar-1.jpg', alt='example image')
+                                            span.menu-text
+                                                | Gabriella Montagna
+                                                span.menu-info
+                                                    span.menu-date San Diego
+                                                    span.menu-action
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                            i.fa.fa-check
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                            i.fa.fa-times
+                                        li.warning
+                                            a(href='#')
+                                                span.menu-icon
+                                                    img(src='../img/profile/avatar-2.jpg', alt='example image')
+                                            span.menu-text
+                                                | Jonathan Fuzzy
+                                                span.menu-info
+                                                    span.menu-date Seattle
+                                                    span.menu-action
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                            i.fa.fa-check
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                            i.fa.fa-times
+                                        li
+                                            a(href='#')
+                                                span.menu-icon
+                                                    img(src='../img/profile/avatar-3.jpg', alt='example image')
+                                            span.menu-text
+                                                | Sakura Hinata
+                                                span.menu-info
+                                                    span.menu-date Hawaii
+                                                    span.menu-action
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                            i.fa.fa-check
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                            i.fa.fa-times
+                                        li
+                                            a(href='#')
+                                                span.menu-icon
+                                                    img(src='../img/profile/avatar-4.jpg', alt='example image')
+                                            span.menu-text
+                                                | Rikudou Sennin
+                                                span.menu-info
+                                                    span.menu-date Las Vegas
+                                                    span.menu-action
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                            i.fa.fa-check
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                            i.fa.fa-times
+                                        li
+                                            a(href='#')
+                                                span.menu-icon
+                                                    img(src='../img/profile/avatar-5.jpg', alt='example image')
+                                            span.menu-text
+                                                | Kim Kardiosun
+                                                span.menu-info
+                                                    span.menu-date New York
+                                                    span.menu-action
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                            i.fa.fa-check
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                            i.fa.fa-times
+                                        li
+                                            a(href='#')
+                                                span.menu-icon
+                                                    img(src='../img/profile/avatar-6.jpg', alt='example image')
+                                            span.menu-text
+                                                | Brad Pita
+                                                span.menu-info
+                                                    span.menu-date Seattle
+                                                    span.menu-action
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                            i.fa.fa-check
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                            i.fa.fa-times
+                                        li
+                                            a(href='#')
+                                                span.menu-icon
+                                                    img(src='../img/profile/avatar-7.jpg', alt='example image')
+                                            span.menu-text
+                                                | Celline Dior
+                                                span.menu-info
+                                                    span.menu-date Los Angeles
+                                                    span.menu-action
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                            i.fa.fa-check
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                            i.fa.fa-times
+                                        li
+                                            a(href='#')
+                                                span.menu-icon
+                                                    img(src='../img/profile/avatar-8.jpg', alt='example image')
+                                            span.menu-text
+                                                | Goerge Bruno Marz
+                                                span.menu-info
+                                                    span.menu-date Las Vegas
+                                                    span.menu-action
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                            i.fa.fa-check
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                            i.fa.fa-times
+                        #groups-tab.groups-tab.tab-pane(role='tabpanel')
+                            h3
+                                i.fa.fa-leaf.mgr-10.profile-icon
+                                |  GROUPS
+                            .row
+                                .col-xs-12.col-sm-6
+                                    .content-list.content-large.menu-action-right
+                                        ul.list-wrapper.pd-lr-15
+                                            li
+                                                .menu-icon
+                                                    a(href='#')
+                                                        img(src='../img/profile/logo-01.jpg', alt='example image')
+                                                .menu-text
+                                                    h4
+                                                        a(href='#') Groupis Group
+                                                    .menu-info
+                                                        span.menu-date  3467 members
+                                                    p
+                                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidtation ullamco...
+                                                .menu-action
+                                                    .menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Leave Group')
+                                                        i.fa.fa-times
+                                .col-xs-12.col-sm-6
+                                    .content-list.content-large.menu-action-right
+                                        ul.list-wrapper.pd-lr-15
+                                            li
+                                                .menu-icon
+                                                    a(href='#')
+                                                        img(src='../img/profile/logo-02.jpg', alt='example image')
+                                                .menu-text
+                                                    h4.mgbt-xs-0
+                                                        a(href='#') Ztormin Community
+                                                    .menu-info
+                                                        span.menu-date  12597 members
+                                                    p
+                                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidtation ullamco...
+                                                .menu-action
+                                                    .menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Leave Group')
+                                                        i.fa.fa-times
+                                        // list-wrapper
+                                    // content-list
+                                // col-xs-12 col-sm-6
+                                .col-xs-12.col-sm-6
+                                    .content-list.content-large.menu-action-right
+                                        ul.list-wrapper.pd-lr-15
+                                            li
+                                                .menu-icon
+                                                    a(href='#')
+                                                        img(src='../img/profile/logo-03.jpg', alt='example image')
+                                                .menu-text
+                                                    h4
+                                                        a(href='#') Book Lovers
+                                                    .menu-info
+                                                        span.menu-date  67 members
+                                                    p
+                                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidtation ullamco...
+                                                .menu-action
+                                                    .menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Leave Group')
+                                                        i.fa.fa-times
+                            .row.edit-profile
+                                .col-sm-12
+                                    h3
+                                        i.fa.fa-cog
+                                        | Create Group
+                                    .form-group
+                                        label.col-sm-3.control-label Picture
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    input(placeholder='first name', type='text')
+                                    .form-group
+                                        label.col-sm-3.control-label Title
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    input(placeholder='last name', type='text')
+                                    .form-group
+                                        label.col-sm-3.control-label Description
+                                        .col-sm-9.controls
+                                            .row.mgbt-xs-0
+                                                .col-xs-9
+                                                    textarea(rows='3')
+                                button.btn.btn-save.col-md-offset-3
+                                    span.menu-icon
+                                        i.fa.fa-fw.fa-check
+                                    |  Save
+    footer.footer
+        .container-fluid
+            .row
+                p.text-muted © Copyright BCW Company. All Rights Reserved.
+                a(href='#')
+                    span.glyphicon.glyphicon-menu-up.bck-to-top(aria-hidden='true')

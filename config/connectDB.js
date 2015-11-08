@@ -7,15 +7,20 @@ var mongoose = require('mongoose');
 var mongodbURL = 'mongodb://localhost/togetherDB';
 
 module.exports = (function(){
-    var db = mongoose.connect(mongodbURL); // connecteer de database
+    mongoose.connect(mongodbURL);
 
-    db.on("open",function(){
-        console.log("connection met mongo server" + mongodbURL);
+    //mongoose.connection.on("connected",function(){
+    //    console.log("connection met mongo server: " + mongodbURL);
+    //});
+
+    mongoose.connection.on("error", function(err){
+        console.log('Mongoose default connection error: ' + err);
     });
 
-    db.on("error", function(error){
-        throw new Error(error);
+    mongoose.disconnect();
+
+    mongoose.connection.on("disconnected",function(){
+        console.log('Mongoose default connection disconnected');
     });
-    db.on("close",function(){});
 
 })();

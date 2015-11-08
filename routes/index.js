@@ -1,9 +1,9 @@
-//var express = require('express');
-//var router = express.Router();
+var express = require('express');
+var router = express.Router();
 
-//module.exports = router;
+module.exports = router;
 
-module.exports = function(app, passport) {
+module.exports = function(app,passport) {
 
     // =====================================
     // HOME PAGE (with login links) ========
@@ -13,13 +13,28 @@ module.exports = function(app, passport) {
     });
 
     // =====================================
+    // EVENTS PAGE =========================
+    // =====================================
+    app.get('/events', function(req, res) {
+        res.render('events');
+    });
+
+    // =====================================
+    // GROUPS PAGE =========================
+    // =====================================
+    app.get('/groups', function(req, res) {
+        res.render('groups');
+    });
+
+
+    // =====================================
     // LOGIN ===============================
     // =====================================
     // show the login form
     app.get('/login', function(req, res) {
 
         // render the page and pass in any flash data if it exists
-        res.render('login', { message: req.flash('loginMessage') });
+        res.render('login');
     });
 
     // =====================================
@@ -28,9 +43,10 @@ module.exports = function(app, passport) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile', {
-            user : req.user // get the user out of session and pass to template
-        });
+        //res.render('profile', {
+        //    user : req.user // get the user out of session and pass to template
+        //});
+        res.render('profile');
     });
 
 // =============================================================================
@@ -51,10 +67,10 @@ module.exports = function(app, passport) {
   // FACEBOOK ROUTES =====================
   // =====================================
   // route for facebook authentication and login
-  app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
   // handle the callback after facebook has authenticated the user
-  app.get('/auth/facebook/callback',
+    app.get('/auth/facebook/callback',
       passport.authenticate('facebook', {
         successRedirect : '/profile',
         failureRedirect : '/'
@@ -64,10 +80,10 @@ module.exports = function(app, passport) {
   // TWITTER ROUTES ======================
   // =====================================
   // route for twitter authentication and login
-  app.get('/auth/twitter', passport.authenticate('twitter'));
+    app.get('/auth/twitter', passport.authenticate('twitter'));
 
   // handle the callback after twitter has authenticated the user
-  app.get('/auth/twitter/callback',
+    app.get('/auth/twitter/callback',
       passport.authenticate('twitter', {
         successRedirect : '/profile',
         failureRedirect : '/'
@@ -80,10 +96,10 @@ module.exports = function(app, passport) {
   // send to google to do the authentication
   // profile gets us their basic information including their name
   // email gets their emails
-  app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
   // the callback after google has authenticated the user
-  app.get('/auth/google/callback',
+    app.get('/auth/google/callback',
       passport.authenticate('google', {
         successRedirect : '/profile',
         failureRedirect : '/'

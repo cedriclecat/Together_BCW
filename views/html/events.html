@@ -7,7 +7,7 @@
     <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link type='text/css' rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link type='text/css' rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="./dist/css/style.min.css">
+    <link type="text/css" rel="stylesheet" href="../dist/css/style.min.css">
 </head>
 <body>
     <header>
@@ -81,7 +81,7 @@
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title accordion-toggle">
                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <img src="./img/events/channelzero.jpg">  Channel Zero
+                                            <img src="../img/events/channelzero.jpg">  Channel Zero
                                     </a>
                                 </h4>
                             </div>
@@ -107,7 +107,7 @@
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        <img src="./img/events/jeugd.jpg"> De Jeugd van Tegenwoordig + DJ Dysfunkshunal
+                                        <img src="../img/events/jeugd.jpg"> De Jeugd van Tegenwoordig + DJ Dysfunkshunal
                                     </a>
                                 </h4>
                             </div>
@@ -133,7 +133,7 @@
                             <div class="panel-heading" role="tab" id="headingThree">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        <img src="./img/events/selah.jpg"> Selah Sue
+                                        <img src="../img/events/selah.jpg"> Selah Sue
                                     </a>
                                 </h4>
                             </div>
@@ -170,5 +170,15 @@
     </footer>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        $('div.panel-body').on('shown', function () {
+            $(this).parent("div").find(".icon-chevron-down").removeClass("icon-chevron-down").addClass("icon-chevron-up");
+
+        });
+
+        $('div.panel-body').on('hidden', function () {
+            $(this).parent("div").find(".icon-chevron-up").removeClass("icon-chevron-up").addClass("icon-chevron-down");
+        });
+    </script>
 </body>
 </html>

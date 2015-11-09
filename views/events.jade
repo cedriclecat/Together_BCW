@@ -1,30 +1,9 @@
 //
    Created by Brecht on 8/11/2015.
 
-extends ./layout
+extends layout
 
 block events
-    header
-        nav.navbar.navbar-default.navbar-fixed-top
-            .container-fluid
-                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
-                    span.sr-only Toggle navigation
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-                .navbar-header
-                    a.navbar-brand(href='#') TogetheR
-                #bs-example-navbar-collapse-1.collapse.navbar-collapse
-                    ul.nav.navbar-nav.navbar-right
-                        li
-                            a(href='/') Home
-                        li.active
-                            a(href='events') Events
-                        li
-                            a(href='groups') Groups
-                        li
-                            a(href='login')
-                                button.btn.btn-default.navbar-btn(type='button') Sign in
     .container-fluid
         .row
             .col-md-10.col-md-offset-1
@@ -169,9 +148,3 @@ block events
                                     button.btn.btn-info.btn-responsive.disapprove
                                         i.fa.fa-remove.fa-lg
                                         |  Ik ga hier niet naar toe
-    footer.footer
-        .container-fluid
-            .row
-                p.text-muted © Copyright BCW Company. All Rights Reserved.
-                a(href='#')
-                    span.glyphicon.glyphicon-menu-up.bck-to-top(aria-hidden='true')

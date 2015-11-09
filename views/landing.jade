@@ -1,7 +1,7 @@
 //
    Created by Brecht on 8/11/2015.
 
-extends ./layout
+extends layout
 
 block landing
     header
@@ -103,10 +103,10 @@ block landing
                     h2 Promoted
                     img.img.img-responsive(src='../img/landing-page/pic3.jpg', alt='pic')
                     button.btn.btn-info.btn-responsive.btn-lg Learn more
-    footer.footer
-        .container-fluid
-            .row
-                p.text-muted © Copyright BCW Company. All Rights Reserved.
-                a(href='#')
-                    span.glyphicon.glyphicon-menu-up.bck-to-top(aria-hidden='true')
 
+
+    script.
+        $('.carousel').carousel({
+            interval: 3500, // in milliseconds
+            pause: 'none' // set to 'true' to pause slider on mouse hover
+        })

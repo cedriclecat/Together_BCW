@@ -2,7 +2,6 @@ doctype html
 html
   head
     meta(charset='UTF-8')
-    title Landing Page
     meta(http-equiv='cache-control', content='private')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(type='text/css', rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
@@ -16,11 +15,10 @@ html
     block events
     block groups
     block profile
-    block login
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
-    script(src='https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')
-    script.
-      $('.carousel').carousel({
-        interval: 3500, // in milliseconds
-        pause: 'none' // set to 'true' to pause slider on mouse hover
-      })
+    footer.footer
+      .container-fluid
+        .row
+          p.text-muted © Copyright BCW Company. All Rights Reserved.
+          a(href='#')
+            span.glyphicon.glyphicon-menu-up.bck-to-top(aria-hidden='true')
+

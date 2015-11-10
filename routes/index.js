@@ -37,6 +37,45 @@ module.exports = function(app,passport) {
         res.render('login');
     });
 
+    // process the login form
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+    }));
+
+    // =====================================
+    // FORGOTPW ============================
+    // =====================================
+    // show the login form
+    app.get('/forgotpw', function(req, res) {
+
+        // render the page and pass in any flash data if it exists
+        res.render('forgotpw.jade');
+    });
+
+    // process the signup form
+    app.post('/forgotpw', passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/forgotpw', // redirect back to the signup page if there is an error
+    }));
+
+    // =====================================
+    // SIGNUP ==============================
+    // =====================================
+    // show the signup form
+    app.get('/register', function (req, res) {
+
+        // render the page and pass in any flash data if it exists
+        res.render('register.jade' );/*, { message: req.flash('signupMessage')}*/
+    });
+
+
+    // process the signup form
+    app.post('/register', passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/register', // redirect back to the signup page if there is an error
+    }));
+
     // =====================================
     // PROFILE SECTION =====================
     // =====================================
@@ -53,15 +92,15 @@ module.exports = function(app,passport) {
 // AUTHENTICATE (FIRST LOGIN) ==================================================
 // =============================================================================
 
-  //// locally --------------------------------
-  //app.get('/connect/local', function(req, res) {
-  //  res.render('connect-local.ejs', { message: req.flash('loginMessage') });
-  //});
-  //app.post('/connect/local', passport.authenticate('local-signup', {
-  //  successRedirect : '/profile', // redirect to the secure profile section
-  //  failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
-  //  failureFlash : true // allow flash messages
-  //}));
+  // locally --------------------------------
+  app.get('/connect/local', function(req, res) {
+    res.render('connect-local.ejs', { message: req.flash('loginMessage') });
+  });
+  app.post('/connect/local', passport.authenticate('local-signup', {
+    successRedirect : '/profile', // redirect to the secure profile section
+    failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+  }));
 
   // =====================================
   // FACEBOOK ROUTES =====================

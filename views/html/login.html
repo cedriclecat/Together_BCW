@@ -10,39 +10,14 @@
     <link type="text/css" rel="stylesheet" href="../dist/css/style.min.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-default navbar-fixed-top ">
-            <div class="container-fluid">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"  data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">TogetheR</a>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="landing.html">Home</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="groups.html">Groups</a></li>
-                        <li><a href="login.html"><button type="button" class="btn btn-default navbar-btn">Sign in</button></a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-    </header>
     <div class="cover">
         <div class="cover-img">
-            <img src="../img/login/bg-2.jpg" alt="uitzicht op landschap">
+            <img src="../img/login/bg-1.jpg" alt="uitzicht op landschap">
         </div>
-        <div class="cover-bg"></div>
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="login-body">
+            <div class="form-body">
                 <div class="col-md-4  col-md-offset-4">
                       <h2>Sign in with </h2>
                       <div class="row">
@@ -51,35 +26,25 @@
                           <div class="col-sm-4"><a href="/auth/google" class="button btn-social googleplus span-left btn-block"><span><i class="fa fa-google-plus"></i></span>Google+</a></div>
                       </div>
                     <div class="section-divider"><span>OR</span></div>
-                    <form action="login.html" method="POST" >
+                    <form class="loginForm" action="login.html" method="POST">
                         <div class="form-group">
                             <label>Email address</label>
-                            <input type="text" class="form-control input-lg" placeholder=" Email Address ">
+                            <input type="email" class="form-control input-lg" placeholder=" Email Address " required>
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control input-lg" placeholder="Password">
+                            <input type="password" class="form-control input-lg"  placeholder=" Password" required>
                         </div>
                         <div class="checkbox"><label><input type="checkbox"> Remember Me</label></div>
                         <div class="login-buttons"><button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button></div>
                         <div class="m-t-20">
-                            <a class="fpw" href="forgotpw.html">Forgot your Password ?</a>
-                            <p>Not a member yet? Click <a class="reg" href="register.html">here</a> to register.</p>
+                            <a class="add-info" href="forgotpw.html">Forgot your Password ?</a> | <a class="add-info" href="register.html"> Go to Sign Up page</a>
                         </div>
                     </form>
-                <p>Wanneer je op de button klikt ga je akkoord met het Privacybeleid van TogetheR.</p>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="footer f-login">
-        <div class="container-fluid">
-            <div class="row">
-                <p class="text-muted">© Copyright BCW Company. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 </body>
 </html>

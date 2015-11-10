@@ -4,59 +4,59 @@
 extends regLayout
 
 block register
-    .cover
-        .cover-img
-            img(src='../img/login/bg-2.jpg', alt='uitzicht op landschap')
-        .cover-bg
-    .container-fluid
-        .row-fluid
-            .login-body
-                .col-md-4.col-md-offset-4
-                    h2 Sign Up
-                    .row
-                        .col-sm-4
-                            a.button.btn-social.facebook.span-left.btn-block(href='#')
-                                span
-                                    i.fa.fa-facebook
-                                | Facebook
-                        .col-sm-4
-                            a.button.btn-social.twitter.span-left.btn-block(href='#')
-                                span
-                                    i.fa.fa-twitter
-                                | Twitter
-                        .col-sm-4
-                            a.button.btn-social.googleplus.span-left.btn-block(href='#')
-                                span
-                                    i.fa.fa-google-plus
-                                | Google+
-                    .section-divider-reg
-                    form(action='register.html', method='POST')
-                        .form-group
-                            label.control-label Name
-                            .row
-                                .col-md-6
-                                    input.form-control.input-lg(type='text', placeholder='First name')
-                                .col-md-6
-                                    input.form-control.input-lg(type='text', placeholder='Last name')
-                        .form-group
-                            label.control-label Email
-                            .row
-                                .col-md-12
-                                    input.form-control.input-lg(type='text', placeholder='Email address')
-                        .form-group
-                            label.control-label  Password
-                            .row
-                                .col-md-12
-                                    input.form-control.input-lg(type='password', placeholder='Password')
-                        .form-group
-                            label.control-label Re-enter Password
-                            .row
-                                .col-md-12
-                                    input.form-control.input-lg(type='password', placeholder='Re-enter password')
-                        button.btn.btn-success.btn-block.btn-lg(type='submit') Sign me Up
-                        .m-t-20
-                            | Already a member? Click
-                            a.reg(href='login') here
-                            |  to login.
-                    p
-                        | By clicking Sign Up, you agree to our Terms and that you have read our Cookie Use.
+    body(ng-app='app', ng-controller='valController')
+        .cover
+            .cover-img
+                img(src='../img/login/bg-1.jpg', alt='uitzicht op landschap')
+        .container-fluid
+            .row-fluid
+                .form-body
+                    .col-md-4.col-md-offset-4
+                        h2 Sign Up with
+                        .row
+                            .col-sm-4
+                                a.button.btn-social.facebook.span-left.btn-block(href='#')
+                                    span
+                                        i.fa.fa-facebook
+                                    | Facebook
+                            .col-sm-4
+                                a.button.btn-social.twitter.span-left.btn-block(href='#')
+                                    span
+                                        i.fa.fa-twitter
+                                    | Twitter
+                            .col-sm-4
+                                a.button.btn-social.googleplus.span-left.btn-block(href='#')
+                                    span
+                                        i.fa.fa-google-plus
+                                    | Google+
+                        .section-divider
+                            span OR
+                        form(name='userForm', novalidate='')
+                            .form-group
+                                label.control-label Name
+                                .row
+                                    .col-md-6
+                                        input.form-control.input-lg(type='text', name='firstName', placeholder=' First name')
+                                    .col-md-6
+                                        input.form-control.input-lg(type='text', name='lastName', placeholder=' Last name')
+                            .form-group(ng-class="{ 'has-error': userForm.email.$touched && userForm.email.$invalid }")
+                                label Email
+                                input.form-control.input-lg(type='email', name='email', placeholder=' Email address', ng-model='val.email', ng-minlength='5', ng-maxlength='20', required='')
+                                .help-block(ng-messages='userForm.email.$error', ng-if='userForm.email.$touched')
+                                    div(ng-messages-include='messages.html')
+                            .form-group
+                                label.control-label  Password
+                                input.form-control.input-lg(type='password', name='password', placeholder=' Password')
+                            .form-group
+                                label.control-label Re-enter Password
+                                input.form-control.input-lg(type='password', name='password', placeholder=' Re-enter password')
+                            button.btn.btn-block.btn-lg(type='submit') Sign me Up
+                            .m-t-20
+                                a.add-info(href='landing') Back to Home page
+                                |
+                                a.add-info(href='login') Back to Sign In
+                        p
+                            | By clicking Sign Up, you agree to our Terms and that you have read our Cookie Use.
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-messages.min.js')
+        script(src='../scripts/angular/app.js')

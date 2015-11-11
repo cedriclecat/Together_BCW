@@ -17,7 +17,6 @@ app.use(express.static(__dirname + '/'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 // configuration ===============================================================
 // var connectDB = require("./config/ConnectDB.js");
@@ -41,6 +40,7 @@ require('./routes/index.js')(app, passport);
 // launch ====================================================================
 var port = process.env.PORT || 3000;
 server.listen(port);
+console.log("hello");
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -55,8 +55,8 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('404.jade', {
+    res.status(err.status || 404);
+    res.render('404', {
       message: err.message,
       error: err
     });
@@ -67,7 +67,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('500.jade', {
+  res.render('500', {
     message: err.message,
     error: {}
   });

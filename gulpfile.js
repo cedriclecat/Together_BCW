@@ -60,8 +60,15 @@ gulp.task("copy-externals", function(){
 
     gulp.src("./bower_components/modernizr/modernizr.js")
         .pipe(gulp.dest("./dist/js"));
-
+    gulp.src("./bower_components/jquery/dist/jquery.min.js")
+        .pipe(gulp.dest("./dist/js/"));
     gulp.src("./bower_components/angular/angular.min.js")
+        .pipe(gulp.dest("./dist/js/"));
+    gulp.src("./bower_components/bootstrap/dist/css/bootstrap.min.css")
+        .pipe(gulp.dest("./dist/css/"));
+    gulp.src("./bower_components/bootstrap/dist/js/bootstrap.min.js")
+        .pipe(gulp.dest("./dist/js/"));
+    gulp.src("./bower_components/angular-bootstrap/ui-bootstrap.min.js")
         .pipe(gulp.dest("./dist/js/"));
 
 });

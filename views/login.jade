@@ -1,12 +1,12 @@
 //
    Created by Brecht on 8/11/2015.
 
-extends regLayout
+extends regLayout.jade
 
 block login
     .cover
         .cover-img
-            img(src='../img/login/bg-1.jpg', alt='uitzicht op landschap')
+            img(src='/img/login/bg-1.jpg', alt='uitzicht op landschap')
     .container-fluid
         .row-fluid
             .form-body
@@ -30,7 +30,7 @@ block login
                                 | Google+
                     .section-divider
                         span OR
-                    form.loginForm(action='login.html', method='POST')
+                    form.loginForm(action='login', method='POST')
                         .form-group
                             label Email address
                             input.form-control.input-lg(type='email', placeholder=' Email Address ', required='')
@@ -44,6 +44,8 @@ block login
                         .login-buttons
                             button.btn.btn-success.btn-block.btn-lg(type='submit') Sign me in
                         .m-t-20
-                            a.add-info(href='forgotpw') Forgot your Password ?
+                            a.add-info(href='/forgotpw') Forgot your Password ?
                             |
-                            a.add-info(href='register')  Go to Sign Up page
+                            a.add-info(href='/register')  Sign Up
+                            |
+                            a.add-info(href='/landing') Home

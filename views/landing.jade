@@ -29,24 +29,16 @@ block landing
                                 span.caret
                             ul.dropdown-menu
                                 li
-                                    a(href='profile')
+                                    a(href='/profile')
                                         span.glyphicon.glyphicon-user(aria-hidden='true')
                                         |  My Profile
-                                li
-                                    a(href='#')
-                                        span.glyphicon.glyphicon-list-alt(aria-hidden='true')
-                                        |  Events
-                                li
-                                    a(href='#')
-                                        span.glyphicon.glyphicon-cog(aria-hidden='true')
-                                        |  Settings
                                 li.divider(role='separator')
                                 li
                                     a(href='#')
                                         span.glyphicon.glyphicon-log-out(aria-hidden='true')
                                         |  Logout
                         li
-                            a(href='login')
+                            a(href='/login')
                                 button.btn.btn-default.navbar-btn(type='button') Sign in
     .slider
         #myCarousel.carousel.slide(data-ride='carousel')
@@ -104,7 +96,8 @@ block landing
                     img.img.img-responsive(src='../img/landing-page/pic3.jpg', alt='pic')
                     button.btn.btn-info.btn-responsive.btn-lg Learn more
 
-
+    script(type='text/javascript', src='/dist/js/jquery.min.js')
+    script(type='text/javascript', src='/dist/js/bootstrap.min.js')
     script.
         $('.carousel').carousel({
             interval: 3500, // in milliseconds

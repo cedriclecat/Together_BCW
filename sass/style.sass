@@ -45,6 +45,9 @@ td
   &:hover
     background-color: $color-elements-hover
     color: $white
+  &:active
+    background-color: $color-elements-hover
+    color: $white
 
 // Header + Navbar
 // ==========================================================================
@@ -54,7 +57,7 @@ td
   .navbar-brand
     font-size: 30px
   .navbar-right
-    .glyphicon
+    .fa
       margin-right: 5px
       +menu-hover
     .profile-image
@@ -99,8 +102,21 @@ td
       >.carousel-control-right
         right: 25px
 
+.fa-chevron-right
+  margin-top: 500px
+  @media screen and (max-width: 1280px)
+    margin-top: 300px
+  @media screen and (max-width: 768px)
+    margin-top: 200px
+  @media screen and (max-width: 480px)
+    margin-top: 90px
+
+.fa-chevron-left
+  @extend .fa-chevron-right
+
 
 // Content Landing Page
+// ==========================================================================
 .trending
   background-color: $white
   text-align: center
@@ -422,6 +438,7 @@ td
   border-top: 3px solid $color-elements
 
 /* info + profle pic */
+// ==========================================================================
 .info-parent
   img
     max-width: 100%
@@ -451,6 +468,7 @@ td
 
 
 /* Contacts */
+// ==========================================================================
 .h-contact
   margin-bottom: 0
   padding: 20px
@@ -527,9 +545,8 @@ td
   >a
     color: $white
 
-
-
 // Pill Navigation Profile Page
+// ==========================================================================
 .panel-header
   >h2
     margin-left: 15px
@@ -577,14 +594,15 @@ td
   visibility: visible
 
 // Pill tab Profile
+// ==========================================================================
 .profile-tab
   padding: 1px 20px 20px 20px
   h3
     .fa-user
       margin-right: 7px
 /* Edit Profile */
+// ==========================================================================
 .form-group
-  //margin-bottom: 20px
   .btn-icon
     +df-bcolor-tcolor
 .edit-profile
@@ -604,12 +622,14 @@ input[type="file"], input[type="text"], input[type="password"], input[type="date
   border: 1px solid #D5D5D5
   padding: 6px 6px 7px
   margin-bottom: 10px
-.width-40
-  width: 40%
+  +border-radius($rad)
+.input-group
+  margin-bottom: 10px
 .btn-birthday
   margin-top: 5px
 
 // Pill tab Event
+// ==========================================================================
 .event-tab
   padding: 1px 0 0 20px
   table
@@ -629,6 +649,7 @@ input[type="file"], input[type="text"], input[type="password"], input[type="date
           background-color: #F85D2C
 
 // Pill Tab Contact
+// ==========================================================================
 .contact-tab
   padding: 1px 0 0 20px
   .fa-users
@@ -653,6 +674,7 @@ input[type="file"], input[type="text"], input[type="password"], input[type="date
             @extend .fa-check
 
 // Pill Tab Groups
+// ==========================================================================
 .groups-tab
   padding: 1px 0 0 20px
   .row
@@ -707,17 +729,6 @@ input[type="file"], input[type="text"], input[type="password"], input[type="date
     .bck-to-top
       &:hover
         color: $color-elements
-
-.f-login
-  z-index: 1
-  position: fixed
-  bottom: 0
-  width: 100%
-  padding-bottom: 10px
-  p
-    float: none
-  @media screen and (max-width : 480px)
-    position: relative
 
 
 // Error Pages

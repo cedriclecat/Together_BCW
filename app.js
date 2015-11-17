@@ -7,7 +7,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     passport = require('passport'),
-    session  = require('express-session');
+    session  = require('express-session'),
+    configDB = require('./config/connectDB.js');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,11 +20,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // configuration ===============================================================
-// var connectDB = require("./config/ConnectDB.js");
-// mongoose.connect(connectDB); // connect to our database
+mongoose.connect(configDB);
 
 // Passport ===============================================================
-require('./config/Passport.js')(passport); // pass passport for configuration
+require('./config/passport.js')(passport); // pass passport for configuration
 
 app.use(session({
   secret: 'together',

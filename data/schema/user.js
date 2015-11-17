@@ -2,13 +2,15 @@
  * Created by CedricLecat on 8/11/15.
  */
 var mongoose = require('mongoose');
-var userSchema = new mongoose.Schema({
+var bcrypt = require('bcrypt-nodejs');
+
+var userSchema = mongoose.Schema({
     id               : { type: Number, required: true },
     local            : {
         firstName    : String,
         lastName     : String,
         email        : String,
-        password     : String,
+        password     : String
     },
     facebook         : {
         id           : String,
@@ -28,18 +30,28 @@ var userSchema = new mongoose.Schema({
         email        : String,
         name         : String
     },
-    displayname      :{type:String},
-    firstname        :{type:String},
-    lastname         :{type:String},
+    displayName      :{type:String},
+    firstName        :{type:String},
+    lastName         :{type:String},
     city             :{type:Number},
     birthday         :{type:Date},
     gender           :{type:String,required:true},
     country          :{type:String,required:true},
-    intrests         :{type:String},
+    interests        :{type:String},
     picture          :{type:String},
     phone            :{type:Number},
     contacts         :{type:String}
 
 });
 
-module.exports = userSchema;
+// generating a hash
+userSchema.methods.generateHash = function (password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+// checking if password is valid
+userSchema.methods.validPassword = function (password) {
+    return bcrypt.compareSync(password, this.local.password);
+};
+
+module.exports = mongoose.model('User', userSchema);

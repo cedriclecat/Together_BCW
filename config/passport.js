@@ -9,12 +9,13 @@ var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // load up the user model
-var User       = require('../data/schema/user.js');
+var User = require('../data/schema/user');
+
 
 // load the auth variables
 var configAuth = require('./auth');
-
 module.exports = function(passport) {
+    console.log(User);
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
@@ -22,8 +23,8 @@ module.exports = function(passport) {
     });
 
     // used to deserialize the user
-    passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
+    passport.deserializeUser(function (id, done) {
+        User.findById(id, function (err, user) {
             done(err, user);
         });
     });

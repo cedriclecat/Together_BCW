@@ -4,23 +4,37 @@
 
 // Connect Database
 var mongoose = require('mongoose');
-var mongodbURL = 'mongodb://localhost/togetherDB';
+var mongodbURL = 'mongodb://localhost:27017/togetherDB';
 
 module.exports = (function(){
-    mongoose.connect(mongodbURL);
+    var db = mongoose.connect;
+    mongoose.connect(mongodbURL, function (error) {
+        if (error) {
+            console.log(error);
+        }
+    });
+    //CONNECTION EVENTS
+    //When successfully connected
+    db.on('open', function () {
+        console.log('Mongoose default connection open to ' + mongodbURL);
+    });
 
-    //mongoose.connection.on("connected",function(){
-    //    console.log("connection met mongo server: " + mongodbURL);
-    //});
-
-    mongoose.connection.on("error", function(err){
+    // If the connection throws an error
+    db.on('error',function (err) {
         console.log('Mongoose default connection error: ' + err);
     });
 
-    mongoose.disconnect();
-
-    mongoose.connection.on("disconnected",function(){
+    // When the connection is disconnected
+    db.on('disconnected', function () {
         console.log('Mongoose default connection disconnected');
+    });
+
+    // If the Node process ends, close the Mongoose connection
+    process.on('SIGINT', function() {
+        mongoose.connection.close(function () {
+            console.log('Mongoose default connection disconnected through app termination');
+            process.exit(0);
+        });
     });
 
 })();

@@ -14,17 +14,17 @@ block register
                     h2 Sign Up with
                     .row
                         .col-sm-4
-                            a.button.btn-social.facebook.span-left.btn-block(href='#')
+                            a.button.btn-social.facebook.span-left.btn-block(href='/auth/facebook')
                                 span
                                     i.fa.fa-facebook
                                 | Facebook
                         .col-sm-4
-                            a.button.btn-social.twitter.span-left.btn-block(href='#')
+                            a.button.btn-social.twitter.span-left.btn-block(href='/auth/twitter')
                                 span
                                     i.fa.fa-twitter
                                 | Twitter
                         .col-sm-4
-                            a.button.btn-social.googleplus.span-left.btn-block(href='#')
+                            a.button.btn-social.googleplus.span-left.btn-block(href='/auth/google')
                                 span
                                     i.fa.fa-google-plus
                                 | Google+
@@ -49,8 +49,9 @@ block register
                             input.form-control.input-lg(type='password', name='password', placeholder=' Re-enter password')
                         button.btn.btn-block.btn-lg(type='submit') Sign me Up
                         .m-t-20
-                            a.add-info(href='landing.html') Home
-                            |
-                            a.add-info(href='login.html') Back to Sign In
+                            a.add-info(href='login') Back to Sign In
+                                i.fa.fa-angle-right
+                            a.add-info(href='landing') Home
+
                     p
                         | By clicking Sign Up, you agree to our Terms and that you have read our Cookie Use.

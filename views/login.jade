@@ -1,7 +1,7 @@
 //
    Created by Brecht on 8/11/2015.
 
-extends regLayout.jade
+extends regLayout
 
 block login
     .cover
@@ -33,10 +33,10 @@ block login
                     form.loginForm(action='login', method='POST')
                         .form-group
                             label Email address
-                            input.form-control.input-lg(type='email', placeholder=' Email Address ', required='')
+                            input.form-control.input-lg(type='email', placeholder=' Email Address ',name='email', required='')
                         .form-group
                             label Password
-                            input.form-control.input-lg(type='password', placeholder=' Password', required='')
+                            input.form-control.input-lg(type='password', placeholder=' Password',name='password' required='')
                         .checkbox
                             label
                                 input(type='checkbox')
@@ -45,7 +45,7 @@ block login
                             button.btn.btn-success.btn-block.btn-lg(type='submit') Sign me in
                         .m-t-20
                             a.add-info(href='/forgotpw') Forgot your Password ?
-                            |
-                            a.add-info(href='/register')  Sign Up
-                            |
-                            a.add-info(href='/landing') Home
+                                i.fa.fa-angle-right
+                            a.add-info(href='/register') Sign Up
+                                i.fa.fa-angle-right
+                            a.add-info(href='/') Home

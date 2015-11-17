@@ -9,21 +9,21 @@ module.exports = function(app,passport) {
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/', function(req, res) {
-        res.render('landing');
+        res.render('landing.jade');
     });
 
     // =====================================
     // EVENTS PAGE =========================
     // =====================================
     app.get('/events', function(req, res) {
-        res.render('events');
+        res.render('events.jade');
     });
 
     // =====================================
     // GROUPS PAGE =========================
     // =====================================
     app.get('/groups', function(req, res) {
-        res.render('groups');
+        res.render('groups.jade');
     });
 
 
@@ -32,15 +32,13 @@ module.exports = function(app,passport) {
     // =====================================
     // show the login form
     app.get('/login', function(req, res) {
-
-        // render the page and pass in any flash data if it exists
-        res.render('login');
+        res.render('login.jade');
     });
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureRedirect : '/login' // redirect back to the signup page if there is an error
     }));
 
     // =====================================
@@ -48,9 +46,7 @@ module.exports = function(app,passport) {
     // =====================================
     // show the login form
     app.get('/forgotpw', function(req, res) {
-
-        // render the page and pass in any flash data if it exists
-        res.render('forgotpw.jade');
+        res.render('forgotpw');
     });
 
     // process the signup form
@@ -64,16 +60,14 @@ module.exports = function(app,passport) {
     // =====================================
     // show the signup form
     app.get('/register', function (req, res) {
-
-        // render the page and pass in any flash data if it exists
-        res.render('register.jade' );/*, { message: req.flash('signupMessage')}*/
+        res.render('register.jade');
     });
 
 
     // process the signup form
     app.post('/register', passport.authenticate('local-signup', {
         successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/register', // redirect back to the signup page if there is an error
+        failureRedirect : '/register' // redirect back to the signup page if there is an error
     }));
 
     // =====================================
@@ -82,25 +76,16 @@ module.exports = function(app,passport) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
-        //res.render('profile', {
-        //    user : req.user // get the user out of session and pass to template
-        //});
-        res.render('profile');
+        var user = req.session.user || {};
+        res.render('profile.jade', {
+            user : req.user // get the user out of session and pass to template
+        });
+        //res.render('profile');
     });
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
 // =============================================================================
-
-  // locally --------------------------------
-  app.get('/connect/local', function(req, res) {
-    res.render('connect-local.ejs', { message: req.flash('loginMessage') });
-  });
-  app.post('/connect/local', passport.authenticate('local-signup', {
-    successRedirect : '/profile', // redirect to the secure profile section
-    failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-  }));
 
   // =====================================
   // FACEBOOK ROUTES =====================

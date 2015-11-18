@@ -5,10 +5,8 @@ var express = require('express'),
     io = require('socket.io').listen(server),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
     passport = require('passport'),
-    session  = require('express-session'),
-    configDB = require('./config/connectDB.js');
+    session  = require('express-session');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // configuration ===============================================================
-mongoose.connect(configDB);
+require('./config/connectDB.js');
 
 // Passport ===============================================================
 require('./config/passport.js')(passport); // pass passport for configuration
@@ -40,7 +38,14 @@ require('./routes/index.js')(app, passport);
 // launch ====================================================================
 var port = process.env.PORT || 3000;
 server.listen(port);
-console.log("hello");
+console.log("**********************************");
+console.log("**                              **");
+console.log("**   HELLO!!! ITS WORKING !!!   **");
+console.log("**                              **");
+console.log("**********************************");
+console.log(" ");
+console.log("     MORE INFORMATION BELOW       ");
+console.log("----------------------------------");
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var mongodbURL = 'mongodb://localhost:27017/togetherDB';
 
 module.exports = (function(){
-    var db = mongoose.connect;
+    var db = mongoose.connection;
     mongoose.connect(mongodbURL, function (error) {
         if (error) {
             console.log(error);

@@ -26,19 +26,31 @@ module.exports = function(app,passport) {
         res.render('groups.jade');
     });
 
+    // =====================================
+    // PROFILE SECTION =====================
+    // =====================================
+    // we will want this protected so you have to be logged in to visit
+    // we will use route middleware to verify this (the isLoggedIn function)
+    app.get('/profile', isLoggedIn, function (req , res) {
+        //var user = req.session.user || {};
+        res.render('profile.jade');
+        //user : req.user // get the user out of session and pass to template
+    });
+
 
     // =====================================
     // LOGIN ===============================
     // =====================================
     // show the login form
     app.get('/login', function(req, res) {
-        res.render('login.jade');
+        res.render('login.jade',{ message: req.flash('loginMessage')});
     });
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/login' // redirect back to the signup page if there is an error
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureFlash : true
     }));
 
     // =====================================
@@ -52,7 +64,7 @@ module.exports = function(app,passport) {
     // process the signup form
     app.post('/forgotpw', passport.authenticate('local-signup', {
         successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/forgotpw', // redirect back to the signup page if there is an error
+        failureRedirect : '/forgotpw' // redirect back to the signup page if there is an error
     }));
 
     // =====================================
@@ -60,26 +72,26 @@ module.exports = function(app,passport) {
     // =====================================
     // show the signup form
     app.get('/register', function (req, res) {
-        res.render('register.jade');
+        res.render('register.jade',{ message: req.flash('registerMessage')});
     });
 
 
     // process the signup form
     app.post('/register', passport.authenticate('local-signup', {
         successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/register' // redirect back to the signup page if there is an error
+        failureRedirect : '/register', // redirect back to the signup page if there is an error
+        failureFlash : true
     }));
 
     // =====================================
-    // PROFILE SECTION =====================
+    // LOGOUT ==============================
     // =====================================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', function (req , res) {
-        //var user = req.session.user || {};
-        res.render('profile.jade');
-        //user : req.user // get the user out of session and pass to template
+
+    app.get('/logout', function(req, res){
+        req.logout();
+        res.redirect('/');
     });
+
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
@@ -124,7 +136,8 @@ module.exports = function(app,passport) {
     app.get('/auth/google/callback',
       passport.authenticate('google', {
         successRedirect : '/profile',
-        failureRedirect : '/login'
+        failureRedirect : '/login',
+          failureFlash: true
       }));
 
 };
@@ -134,5 +147,5 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next();
 
-  res.redirect('/profile');
+  res.redirect('/');
 }

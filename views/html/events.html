@@ -1,13 +1,14 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="appangular">
 <head>
     <meta charset="UTF-8">
     <title>Events</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="text/css" rel="stylesheet" href="../dist/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="../../dist/css/bootstrap.min.css">
     <link type='text/css' rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link type='text/css' rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="../dist/css/style.min.css">
+    <link type="text/css" rel="stylesheet" href="../../dist/css/style.min.css">
+
 </head>
 <body>
     <header>
@@ -77,11 +78,14 @@
                             </li>
                         </ul>
                     </nav>
-                    <div ng-controller="AccordionController" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                   <!-- <div ng-controller="AccordionController" class="panel-group" id="accordion1" role="tablist"
+                         aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title accordion-toggle">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion1"
+                                       href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                             <img src="../img/events/channelzero.jpg">  Channel Zero
                                     </a>
                                 </h4>
@@ -107,7 +111,8 @@
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <a class="collapsed" role="button" data-toggle="collapse"
+                                       data-parent="#accordion1" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         <img src="../img/events/jeugd.jpg"> De Jeugd van Tegenwoordig + DJ Dysfunkshunal
                                     </a>
                                 </h4>
@@ -133,7 +138,8 @@
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingThree">
                                 <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <a class="collapsed" role="button" data-toggle="collapse"
+                                       data-parent="#accordion1" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                         <img src="../img/events/selah.jpg"> Selah Sue
                                     </a>
                                 </h4>
@@ -156,10 +162,38 @@
                                 </div>
                             </div>
                         </div>
+                    </div>-->
+                   <div ng-controller="EventController" class="panel-group" id="accordion" role="tablist"
+                          aria-multiselectable="true" ng-repeat="e in events">
+                       <div class="panel panel-default">
+                           <div class="panel-heading" role="tab" id="h{{e.id}}">
+                               <h4 class="panel-title">
+                                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                      href="#{{e.id}}" aria-expanded="false" aria-controls="collapseThree">
+                                       <img src="{{e.picture}}"> {{e.name}}
+                                   </a>
+                               </h4>
+                           </div>
+                           <div id="{{e.id}}" class="panel-collapse collapse" role="tabpanel"
+                                aria-labelledby="headingThree">
+                               <div class="panel-body">
+                                   <iframe src="{{e.location}}" width="400" height="300" frameborder="0"
+                                           style="border:0" allowfullscreen></iframe>
+                                   <p class="info">Praktische Informatie</p>
+                                   <p><i class="fa fa-calendar"></i>{{e.date}}</p>
+                                   <p><i class="fa fa-clock-o"></i>{{e.time}}</p>
+                                   <p><i class="fa fa-eur"></i>{{e.price}}</p>
+                                   <p><i class="fa fa-map-marker"></i>{{e.name}}</p>
+                                   <p>{{e.description}}</p>
+                                   <button class="btn btn-info btn-responsive approve"><i class="fa fa-check fa-lg"></i> Ik ga hier naar toe</button>
+                                   <button class="btn btn-info btn-responsive active disapprove"><i class="fa fa-remove fa-lg"></i> Ik ga hier niet naar toe</button>
+                               </div>
+                           </div>
+                       </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>s
     </div>
 
     <footer class="footer">
@@ -170,7 +204,15 @@
             </div>
         </div>
     </footer>
+
+
     <script type="text/javascript" src="../dist/js/jquery.min.js"></script>
     <script type="text/javascript" src="../dist/js/bootstrap.min.js"></script>
+
+    <script src="../../dist/Angular/angular.js"></script>
+    <script src="../../src/models/Event.js"></script>
+
+    <script src="../../src/controllers/EventController.js"></script>
+
 </body>
 </html>

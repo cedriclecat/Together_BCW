@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-
-module.exports = router;
+//var express = require('express');
+//var router = express.Router();
+//
+//module.exports = router;
 
 module.exports = function(app,passport) {
 
@@ -75,12 +75,10 @@ module.exports = function(app,passport) {
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, function(req, res) {
-        var user = req.session.user || {};
-        res.render('profile.jade', {
-            user : req.user // get the user out of session and pass to template
-        });
-        //res.render('profile');
+    app.get('/profile', function (req , res) {
+        //var user = req.session.user || {};
+        res.render('profile.jade');
+        //user : req.user // get the user out of session and pass to template
     });
 
 // =============================================================================
@@ -97,7 +95,7 @@ module.exports = function(app,passport) {
     app.get('/auth/facebook/callback',
       passport.authenticate('facebook', {
         successRedirect : '/profile',
-        failureRedirect : '/'
+        failureRedirect : '/login'
       }));
 
   // =====================================
@@ -110,7 +108,7 @@ module.exports = function(app,passport) {
     app.get('/auth/twitter/callback',
       passport.authenticate('twitter', {
         successRedirect : '/profile',
-        failureRedirect : '/'
+        failureRedirect : '/login'
       }));
 
 
@@ -126,7 +124,7 @@ module.exports = function(app,passport) {
     app.get('/auth/google/callback',
       passport.authenticate('google', {
         successRedirect : '/profile',
-        failureRedirect : '/'
+        failureRedirect : '/login'
       }));
 
 };
@@ -136,5 +134,5 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next();
 
-  res.redirect('/');
+  res.redirect('/profile');
 }

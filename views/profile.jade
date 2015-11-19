@@ -17,36 +17,28 @@ block profile
                 #bs-example-navbar-collapse-1.collapse.navbar-collapse
                     ul.nav.navbar-nav.navbar-right
                         li
-                            a(href='landing') Home
+                            a(href='landing.html') Home
                         li
-                            a(href='events') Events
+                            a(href='events.html') Events
                         li
-                            a(href='groups') Groups
+                            a(href='groups.html') Groups
                         li.dropdown
                             a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                                 img.profile-image.img-circle(src='../img/profile/default-profile-pic.png')
                                 |  Voornaam Familienaam
                                 span.caret
                             ul.dropdown-menu
-                                li.active
-                                    a(href='#')
-                                        span.glyphicon.glyphicon-user(aria-hidden='true')
-                                        |  My Profile
                                 li
-                                    a(href='404.html')
-                                        span.glyphicon.glyphicon-list-alt(aria-hidden='true')
-                                        |  Add Event
-                                li
-                                    a(href='404')
-                                        span.glyphicon.glyphicon-cog(aria-hidden='true')
-                                        |  Settings
+                                    a(href='profile.html')
+                                        i.fa.fa-user
+                                        | My Profile
                                 li.divider(role='separator')
                                 li
-                                    a(href='404')
-                                        span.glyphicon.glyphicon-log-out(aria-hidden='true')
-                                        |  Logout
+                                    a(href='#')
+                                        i.fa.fa-cog
+                                        | Logout
                         li
-                            a(href='login')
+                            a(href='login.html')
                                 button.btn.btn-default.navbar-btn(type='button') Sign in
     .title-section.clearfix
         .panel-header.no-subtitle
@@ -157,12 +149,20 @@ block profile
                                         .col-xs-7.controls Doe
                                 .col-sm-6
                                     .row
-                                        label.col-xs-5.control-label User Name:
-                                        .col-xs-7.controls John
-                                .col-sm-6
-                                    .row
                                         label.col-xs-5.control-label Email:
                                         .col-xs-7.controls mariah@Vendroid.com
+                                .col-sm-6
+                                    .row.mgbt-xs-0
+                                        label.col-xs-5.control-label Work:
+                                        .col-xs-7.controls CEO
+                                .col-sm-6
+                                    .row
+                                        label.col-xs-5.control-label Maritial status:
+                                        .col-xs-7.controls Single
+                                .col-sm-6
+                                    .row.mgbt-xs-0
+                                        label.col-xs-5.control-label Gender:
+                                        .col-xs-7.controls Male
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label City:
@@ -181,15 +181,22 @@ block profile
                                         .col-xs-7.controls Basketball, Web, Design, etc.
                                 .col-sm-6
                                     .row.mgbt-xs-0
-                                        label.col-xs-5.control-label Website:
-                                        .col-xs-7.controls
-                                            a(href='#') johndoe.com
-                                .col-sm-6
-                                    .row.mgbt-xs-0
                                         label.col-xs-5.control-label Phone:
                                         .col-xs-7.controls +1-234-5678
+                                .col-sm-6
+                                    .row.mgbt-xs-0
+                                        label.col-xs-5.control-label Facebook:
+                                        .col-xs-7.controls facebook.com/johndoe
+                                .col-sm-6
+                                    .row.mgbt-xs-0
+                                        label.col-xs-5.control-label Twitter:
+                                        .col-xs-7.controls twitter.com/johndoe
+                                .col-sm-6
+                                    .row.mgbt-xs-0
+                                        label.col-xs-5.control-label Google+:
+                                        .col-xs-7.controls plus.google.com/johndoe
                             .row.edit-profile
-                                .col-sm-12
+                                .col-md-12
                                     h3
                                         i.fa.fa-cog
                                         | Profile Setting
@@ -198,11 +205,11 @@ block profile
                                         .col-sm-9.controls
                                             .row
                                                 .col-xs-9
-                                                    input(placeholder='first name', type='text')
+                                                    input(placeholder=' first name', type='text')
                                                 // col-xs-9
                                                 .col-xs-2
                                                     .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle.vd_bg-yellow.vd_white(data-toggle='dropdown', type='button')
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
                                                             i.fa.fa-globe.fa-fw
                                                         ul.dropdown-menu.pull-right
                                                             li
@@ -222,7 +229,30 @@ block profile
                                         .col-sm-9.controls
                                             .row
                                                 .col-xs-9
-                                                    input(placeholder='last name', type='text')
+                                                    input(placeholder=' last name', type='text')
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-lock.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    .form-group
+                                        label.col-sm-3.control-label Email
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    input(placeholder=' email', type='text')
                                                 .col-xs-2
                                                     .btn-action
                                                         button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
@@ -243,7 +273,7 @@ block profile
                                     .form-group
                                         label.col-sm-3.control-label Gender
                                         .col-sm-9.controls
-                                            .row.mgbt-xs-0
+                                            .row
                                                 .col-xs-9
                                                     span.vd_radio.radio-info
                                                         input#optionsRadios3(checked='', value='option3', name='optionsRadios2', type='radio')
@@ -268,204 +298,543 @@ block profile
                                                                 a(href='#')
                                                                     i.fa.fa-lock.fa-fw
                                                                     |  Only Me
-                                        .form-group
-                                            label.col-sm-3.control-label Birthday
-                                            .col-sm-9.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-9
-                                                        input#datepicker-normal.width-40.hasDatepicker(type='text')
-                                                    .col-xs-2
-                                                        .btn-action
-                                                            button.btn.btn-icon.dropdown-toggle.btn-birthday(data-toggle='dropdown', type='button')
-                                                                i.fa.fa-user.fa-fw
-                                                            ul.dropdown-menu.pull-right
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-globe.fa-fw
-                                                                        |  Public
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-user.fa-fw
-                                                                        |  Friends
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-lock.fa-fw
-                                                                        |  Only Me
-                                        .form-group
-                                            label.col-sm-3.control-label Marital Status
-                                            .col-sm-9.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-9
-                                                        select.width-40
-                                                            option Single
-                                                            option Married
-                                                    .col-xs-2
-                                                        .btn-action
-                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                                i.fa.fa-user.fa-fw
-                                                            ul.dropdown-menu.pull-right
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-globe.fa-fw
-                                                                        |  Public
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-user.fa-fw
-                                                                        |  Friends
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-lock.fa-fw
-                                                                        |  Only Me
-                                        .form-group
-                                            label.col-sm-3.control-label Position
-                                            .col-sm-9.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-9
-                                                        select.width-40
-                                                            option CEO
-                                                            option Director
-                                                            option Manager
-                                                            option Staff
-                                                            option Office Boy
-                                                    .col-xs-2
-                                                        .btn-action
-                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                                i.fa.fa-user.fa-fw
-                                                            ul.dropdown-menu.pull-right
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-globe.fa-fw
-                                                                        |  Public
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-user.fa-fw
-                                                                        |  Friends
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-lock.fa-fw
-                                                                        |  Only Me
-                                        .form-group
-                                            label.col-sm-3.control-label About
-                                            .col-sm-9.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-9
-                                                        textarea(rows='3')
-                                                    .col-xs-2
-                                                        .btn-action
-                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                                i.fa.fa-user.fa-fw
-                                                            ul.dropdown-menu.pull-right
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-globe.fa-fw
-                                                                        |  Public
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-user.fa-fw
-                                                                        |  Friends
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-lock.fa-fw
-                                                                        |  Only Me
-                                        h3.mgbt-xs-15
-                                            i.fa.fa-cog
-                                            | Contact Setting
-                                        .form-group
-                                            label.col-sm-3.control-label Mobile Phone
-                                            .col-sm-9.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-9
-                                                        input(placeholder='mobile phone', type='text')
-                                                    .col-xs-2
-                                                        .btn-action
-                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                                i.fa.fa-globe.fa-fw
-                                                            ul.dropdown-menu.pull-right
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-globe.fa-fw
-                                                                        |  Public
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-user.fa-fw
-                                                                        |  Friends
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-lock.fa-fw
-                                                                        |  Only Me
-                                        .form-group
-                                            label.col-sm-3.control-label Website
-                                            .col-sm-9.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-9
-                                                        input(placeholder='website', type='text')
-                                                    .col-xs-2
-                                                        .btn-action
-                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                                i.fa.fa-globe.fa-fw
-                                                            ul.dropdown-menu.pull-right
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-globe.fa-fw
-                                                                        |  Public
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-user.fa-fw
-                                                                        |  Friends
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-lock.fa-fw
-                                                                        |  Only Me
-                                        .form-group
-                                            label.col-sm-3.control-label Facebook
-                                            .col-sm-9.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-9
-                                                        input(placeholder='facebook', type='text')
-                                                    .col-xs-2
-                                                        .btn-action
-                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                                i.fa.fa-globe.fa-fw
-                                                            ul.dropdown-menu.pull-right
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-globe.fa-fw
-                                                                        |  Public
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-user.fa-fw
-                                                                        |  Friends
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-lock.fa-fw
-                                                                        |  Only Me
-                                        .form-group
-                                            label.col-sm-3.control-label Twitter
-                                            .col-sm-9.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-9
-                                                        input(placeholder='twitter', type='text')
-                                                    .col-xs-2
-                                                        .btn-action
-                                                            button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                                i.fa.fa-globe.fa-fw
-                                                            ul.dropdown-menu.pull-right
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-globe.fa-fw
-                                                                        |  Public
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-user.fa-fw
-                                                                        |  Friends
-                                                                li
-                                                                    a(href='#')
-                                                                        i.fa.fa-lock.fa-fw
-                                                                        |  Only Me
-                                    button.btn.btn-save.col-md-offset-3
-                                        span.menu-icon
-                                            i.fa.fa-fw.fa-check
-                                        |  Save
+                                    .form-group
+                                        label.col-md-3.control-label Birthday
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    input#datepicker-normal.hasDatepicker(type='datetime-local')
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle.btn-birthday(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-user.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    .form-group
+                                        label.col-sm-3.control-label Marital Status
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    select
+                                                        option Single
+                                                        option Married
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-user.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    .form-group
+                                        label.col-sm-3.control-label Work
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    select
+                                                        option CEO
+                                                        option Director
+                                                        option Manager
+                                                        option Staff
+                                                        option Office Boy
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-user.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    .form-group
+                                        label.col-sm-3.control-label Country
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    select
+                                                        option(value='AF') Afghanistan
+                                                        option(value='AX') Åland Islands
+                                                        option(value='AL') Albania
+                                                        option(value='DZ') Algeria
+                                                        option(value='AS') American Samoa
+                                                        option(value='AD') Andorra
+                                                        option(value='AO') Angola
+                                                        option(value='AI') Anguilla
+                                                        option(value='AQ') Antarctica
+                                                        option(value='AG') Antigua and Barbuda
+                                                        option(value='AR') Argentina
+                                                        option(value='AM') Armenia
+                                                        option(value='AW') Aruba
+                                                        option(value='AU') Australia
+                                                        option(value='AT') Austria
+                                                        option(value='AZ') Azerbaijan
+                                                        option(value='BS') Bahamas
+                                                        option(value='BH') Bahrain
+                                                        option(value='BD') Bangladesh
+                                                        option(value='BB') Barbados
+                                                        option(value='BY') Belarus
+                                                        option(value='BE') Belgium
+                                                        option(value='BZ') Belize
+                                                        option(value='BJ') Benin
+                                                        option(value='BM') Bermuda
+                                                        option(value='BT') Bhutan
+                                                        option(value='BO') Bolivia, Plurinational State of
+                                                        option(value='BQ') Bonaire, Sint Eustatius and Saba
+                                                        option(value='BA') Bosnia and Herzegovina
+                                                        option(value='BW') Botswana
+                                                        option(value='BV') Bouvet Island
+                                                        option(value='BR') Brazil
+                                                        option(value='IO') British Indian Ocean Territory
+                                                        option(value='BN') Brunei Darussalam
+                                                        option(value='BG') Bulgaria
+                                                        option(value='BF') Burkina Faso
+                                                        option(value='BI') Burundi
+                                                        option(value='KH') Cambodia
+                                                        option(value='CM') Cameroon
+                                                        option(value='CA') Canada
+                                                        option(value='CV') Cape Verde
+                                                        option(value='KY') Cayman Islands
+                                                        option(value='CF') Central African Republic
+                                                        option(value='TD') Chad
+                                                        option(value='CL') Chile
+                                                        option(value='CN') China
+                                                        option(value='CX') Christmas Island
+                                                        option(value='CC') Cocos (Keeling) Islands
+                                                        option(value='CO') Colombia
+                                                        option(value='KM') Comoros
+                                                        option(value='CG') Congo
+                                                        option(value='CD') Congo, the Democratic Republic of the
+                                                        option(value='CK') Cook Islands
+                                                        option(value='CR') Costa Rica
+                                                        option(value='CI') Côte d'Ivoire
+                                                        option(value='HR') Croatia
+                                                        option(value='CU') Cuba
+                                                        option(value='CW') Curaçao
+                                                        option(value='CY') Cyprus
+                                                        option(value='CZ') Czech Republic
+                                                        option(value='DK') Denmark
+                                                        option(value='DJ') Djibouti
+                                                        option(value='DM') Dominica
+                                                        option(value='DO') Dominican Republic
+                                                        option(value='EC') Ecuador
+                                                        option(value='EG') Egypt
+                                                        option(value='SV') El Salvador
+                                                        option(value='GQ') Equatorial Guinea
+                                                        option(value='ER') Eritrea
+                                                        option(value='EE') Estonia
+                                                        option(value='ET') Ethiopia
+                                                        option(value='FK') Falkland Islands (Malvinas)
+                                                        option(value='FO') Faroe Islands
+                                                        option(value='FJ') Fiji
+                                                        option(value='FI') Finland
+                                                        option(value='FR') France
+                                                        option(value='GF') French Guiana
+                                                        option(value='PF') French Polynesia
+                                                        option(value='TF') French Southern Territories
+                                                        option(value='GA') Gabon
+                                                        option(value='GM') Gambia
+                                                        option(value='GE') Georgia
+                                                        option(value='DE') Germany
+                                                        option(value='GH') Ghana
+                                                        option(value='GI') Gibraltar
+                                                        option(value='GR') Greece
+                                                        option(value='GL') Greenland
+                                                        option(value='GD') Grenada
+                                                        option(value='GP') Guadeloupe
+                                                        option(value='GU') Guam
+                                                        option(value='GT') Guatemala
+                                                        option(value='GG') Guernsey
+                                                        option(value='GN') Guinea
+                                                        option(value='GW') Guinea-Bissau
+                                                        option(value='GY') Guyana
+                                                        option(value='HT') Haiti
+                                                        option(value='HM') Heard Island and McDonald Islands
+                                                        option(value='VA') Holy See (Vatican City State)
+                                                        option(value='HN') Honduras
+                                                        option(value='HK') Hong Kong
+                                                        option(value='HU') Hungary
+                                                        option(value='IS') Iceland
+                                                        option(value='IN') India
+                                                        option(value='ID') Indonesia
+                                                        option(value='IR') Iran, Islamic Republic of
+                                                        option(value='IQ') Iraq
+                                                        option(value='IE') Ireland
+                                                        option(value='IM') Isle of Man
+                                                        option(value='IL') Israel
+                                                        option(value='IT') Italy
+                                                        option(value='JM') Jamaica
+                                                        option(value='JP') Japan
+                                                        option(value='JE') Jersey
+                                                        option(value='JO') Jordan
+                                                        option(value='KZ') Kazakhstan
+                                                        option(value='KE') Kenya
+                                                        option(value='KI') Kiribati
+                                                        option(value='KP') Korea, Democratic People's Republic of
+                                                        option(value='KR') Korea, Republic of
+                                                        option(value='KW') Kuwait
+                                                        option(value='KG') Kyrgyzstan
+                                                        option(value='LA') Lao People's Democratic Republic
+                                                        option(value='LV') Latvia
+                                                        option(value='LB') Lebanon
+                                                        option(value='LS') Lesotho
+                                                        option(value='LR') Liberia
+                                                        option(value='LY') Libya
+                                                        option(value='LI') Liechtenstein
+                                                        option(value='LT') Lithuania
+                                                        option(value='LU') Luxembourg
+                                                        option(value='MO') Macao
+                                                        option(value='MK') Macedonia, the former Yugoslav Republic of
+                                                        option(value='MG') Madagascar
+                                                        option(value='MW') Malawi
+                                                        option(value='MY') Malaysia
+                                                        option(value='MV') Maldives
+                                                        option(value='ML') Mali
+                                                        option(value='MT') Malta
+                                                        option(value='MH') Marshall Islands
+                                                        option(value='MQ') Martinique
+                                                        option(value='MR') Mauritania
+                                                        option(value='MU') Mauritius
+                                                        option(value='YT') Mayotte
+                                                        option(value='MX') Mexico
+                                                        option(value='FM') Micronesia, Federated States of
+                                                        option(value='MD') Moldova, Republic of
+                                                        option(value='MC') Monaco
+                                                        option(value='MN') Mongolia
+                                                        option(value='ME') Montenegro
+                                                        option(value='MS') Montserrat
+                                                        option(value='MA') Morocco
+                                                        option(value='MZ') Mozambique
+                                                        option(value='MM') Myanmar
+                                                        option(value='NA') Namibia
+                                                        option(value='NR') Nauru
+                                                        option(value='NP') Nepal
+                                                        option(value='NL') Netherlands
+                                                        option(value='NC') New Caledonia
+                                                        option(value='NZ') New Zealand
+                                                        option(value='NI') Nicaragua
+                                                        option(value='NE') Niger
+                                                        option(value='NG') Nigeria
+                                                        option(value='NU') Niue
+                                                        option(value='NF') Norfolk Island
+                                                        option(value='MP') Northern Mariana Islands
+                                                        option(value='NO') Norway
+                                                        option(value='OM') Oman
+                                                        option(value='PK') Pakistan
+                                                        option(value='PW') Palau
+                                                        option(value='PS') Palestinian Territory, Occupied
+                                                        option(value='PA') Panama
+                                                        option(value='PG') Papua New Guinea
+                                                        option(value='PY') Paraguay
+                                                        option(value='PE') Peru
+                                                        option(value='PH') Philippines
+                                                        option(value='PN') Pitcairn
+                                                        option(value='PL') Poland
+                                                        option(value='PT') Portugal
+                                                        option(value='PR') Puerto Rico
+                                                        option(value='QA') Qatar
+                                                        option(value='RE') Réunion
+                                                        option(value='RO') Romania
+                                                        option(value='RU') Russian Federation
+                                                        option(value='RW') Rwanda
+                                                        option(value='BL') Saint Barthélemy
+                                                        option(value='SH') Saint Helena, Ascension and Tristan da Cunha
+                                                        option(value='KN') Saint Kitts and Nevis
+                                                        option(value='LC') Saint Lucia
+                                                        option(value='MF') Saint Martin (French part)
+                                                        option(value='PM') Saint Pierre and Miquelon
+                                                        option(value='VC') Saint Vincent and the Grenadines
+                                                        option(value='WS') Samoa
+                                                        option(value='SM') San Marino
+                                                        option(value='ST') Sao Tome and Principe
+                                                        option(value='SA') Saudi Arabia
+                                                        option(value='SN') Senegal
+                                                        option(value='RS') Serbia
+                                                        option(value='SC') Seychelles
+                                                        option(value='SL') Sierra Leone
+                                                        option(value='SG') Singapore
+                                                        option(value='SX') Sint Maarten (Dutch part)
+                                                        option(value='SK') Slovakia
+                                                        option(value='SI') Slovenia
+                                                        option(value='SB') Solomon Islands
+                                                        option(value='SO') Somalia
+                                                        option(value='ZA') South Africa
+                                                        option(value='GS') South Georgia and the South Sandwich Islands
+                                                        option(value='SS') South Sudan
+                                                        option(value='ES') Spain
+                                                        option(value='LK') Sri Lanka
+                                                        option(value='SD') Sudan
+                                                        option(value='SR') Suriname
+                                                        option(value='SJ') Svalbard and Jan Mayen
+                                                        option(value='SZ') Swaziland
+                                                        option(value='SE') Sweden
+                                                        option(value='CH') Switzerland
+                                                        option(value='SY') Syrian Arab Republic
+                                                        option(value='TW') Taiwan, Province of China
+                                                        option(value='TJ') Tajikistan
+                                                        option(value='TZ') Tanzania, United Republic of
+                                                        option(value='TH') Thailand
+                                                        option(value='TL') Timor-Leste
+                                                        option(value='TG') Togo
+                                                        option(value='TK') Tokelau
+                                                        option(value='TO') Tonga
+                                                        option(value='TT') Trinidad and Tobago
+                                                        option(value='TN') Tunisia
+                                                        option(value='TR') Turkey
+                                                        option(value='TM') Turkmenistan
+                                                        option(value='TC') Turks and Caicos Islands
+                                                        option(value='TV') Tuvalu
+                                                        option(value='UG') Uganda
+                                                        option(value='UA') Ukraine
+                                                        option(value='AE') United Arab Emirates
+                                                        option(value='GB') United Kingdom
+                                                        option(value='US') United States
+                                                        option(value='UM') United States Minor Outlying Islands
+                                                        option(value='UY') Uruguay
+                                                        option(value='UZ') Uzbekistan
+                                                        option(value='VU') Vanuatu
+                                                        option(value='VE') Venezuela, Bolivarian Republic of
+                                                        option(value='VN') Viet Nam
+                                                        option(value='VG') Virgin Islands, British
+                                                        option(value='VI') Virgin Islands, U.S.
+                                                        option(value='WF') Wallis and Futuna
+                                                        option(value='EH') Western Sahara
+                                                        option(value='YE') Yemen
+                                                        option(value='ZM') Zambia
+                                                        option(value='ZW') Zimbabwe
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-user.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    .form-group
+                                        label.col-sm-3.control-label City
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    select#select-1
+                                                        option Amsterdam
+                                                        option Atlanta
+                                                        option Baltimore
+                                                        option Boston
+                                                        option Buenos Aires
+                                                        option Calgary
+                                                        option Chicago
+                                                        option Denver
+                                                        option Dubai
+                                                        option Frankfurt
+                                                        option Hong Kong
+                                                        option Honolulu
+                                                        option Houston
+                                                        option Kuala Lumpur
+                                                        option London
+                                                        option Los Angeles
+                                                        option Melbourne
+                                                        option Mexico City
+                                                        option Miami
+                                                        option Minneapolis
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-user.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    .form-group
+                                        label.col-sm-3.control-label Interests
+                                        .col-sm-9.controls
+                                            .row
+                                                .col-xs-9
+                                                    input(type='text')
+                                                // col-xs-9
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-globe.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    .form-group
+                                        label.col-sm-3.control-label About
+                                        .col-sm-9.controls
+                                            .row.mgbt-xs-0
+                                                .col-xs-9
+                                                    textarea(rows='3')
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-user.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    h3.mgbt-xs-15
+                                        i.fa.fa-cog
+                                        | Contact Setting
+                                    .form-group
+                                        label.col-sm-3.control-label Mobile Phone
+                                        .col-sm-9.controls
+                                            .row.mgbt-xs-0
+                                                .col-xs-9
+                                                    input(placeholder='mobile phone', type='text')
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-globe.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    .form-group
+                                        label.col-sm-3.control-label Facebook
+                                        .col-sm-9.controls
+                                            .row.mgbt-xs-0
+                                                .col-xs-9
+                                                    input(placeholder=' facebook', type='text')
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-globe.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    .form-group
+                                        label.col-sm-3.control-label Twitter
+                                        .col-sm-9.controls
+                                            .row.mgbt-xs-0
+                                                .col-xs-9
+                                                    input(placeholder=' twitter', type='text')
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-globe.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                    .form-group
+                                        label.col-sm-3.control-label Google+
+                                        .col-sm-9.controls
+                                            .row.mgbt-xs-0
+                                                .col-xs-9
+                                                    input(placeholder=' google+', type='text')
+                                                .col-xs-2
+                                                    .btn-action
+                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
+                                                            i.fa.fa-globe.fa-fw
+                                                        ul.dropdown-menu.pull-right
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-globe.fa-fw
+                                                                    |  Public
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-user.fa-fw
+                                                                    |  Friends
+                                                            li
+                                                                a(href='#')
+                                                                    i.fa.fa-lock.fa-fw
+                                                                    |  Only Me
+                                button.btn.btn-save.col-md-offset-3
+                                    span.menu-icon
+                                        i.fa.fa-fw.fa-check
+                                    |  Save
                         #events-tab.event-tab.tab-pane(role='tabpanel')
                             h3
                                 i.fa.fa-bolt.mgr-10.profile-icon
@@ -476,7 +845,7 @@ block profile
                                         tr
                                             th #
                                             th Logo / Photos
-                                            th Name
+                                            th Title
                                             th Date
                                             th Time
                                             th Status
@@ -487,7 +856,7 @@ block profile
                                         tr
                                             td 1
                                             td
-                                                img(src='../img/avatar/avatar.jpg', alt='example image', height='80')
+                                                img(src='../img/profile/avatar.jpg', alt='example image', height='80')
                                             td Zoe Corp
                                             td.center 2010/02/03
                                             td.center 20:00
@@ -505,7 +874,7 @@ block profile
                                         tr
                                             td 2
                                             td
-                                                img(src='../img/avatar/avatar-2.jpg', alt='example image', height='80')
+                                                img(src='../img/profile/avatar-2.jpg', alt='example image', height='80')
                                             td Zoe Corp
                                             td.center 2010/02/03
                                             td.center 20:00
@@ -523,7 +892,7 @@ block profile
                                         tr
                                             td 3
                                             td
-                                                img(src='../img/avatar/avatar-3.jpg', alt='example image', height='80')
+                                                img(src='../img/profile/avatar-3.jpg', alt='example image', height='80')
                                             td Zoe Corp
                                             td.center 2010/02/03
                                             td.center 20:00
@@ -544,22 +913,48 @@ block profile
                                         i.fa.fa-cog
                                         | Create Event
                                     .form-group
-                                        label.col-sm-3.control-label Picture
-                                        .col-sm-9.controls
+                                        label.col-md-3.control-label Picture
+                                        .col-md-9.controls
                                             .row
-                                                .col-xs-9
-                                                    input(placeholder='first name', type='text')
+                                                .col-md-12
+                                                    input#exampleInputFile1.btn.btn-default(type='file')
                                     .form-group
-                                        label.col-sm-3.control-label Name
-                                        .col-sm-9.controls
+                                        label.col-md-3.control-label Title
+                                        .col-md-9.controls
                                             .row
-                                                .col-xs-9
-                                                    input(placeholder='last name', type='text')
+                                                .col-md-12
+                                                    input(placeholder=' title', type='text')
                                     .form-group
-                                        label.col-sm-3.control-label Description
-                                        .col-sm-9.controls
-                                            .row.mgbt-xs-0
-                                                .col-xs-9
+                                        label.col-md-3.control-label Date
+                                        .col-md-9.controls
+                                            .row
+                                                .col-md-12
+                                                    input(placeholder=' add datepicker here', type='date')
+                                    .form-group
+                                        label.col-md-3.control-label Time
+                                        .col-md-9.controls
+                                            .row
+                                                .col-md-12
+                                                    input(placeholder=' add timepicker here', type='time')
+                                    .form-group
+                                        label.col-md-3.control-label Cost
+                                        .col-md-9.controls
+                                            .row
+                                                .col-md-12
+                                                    .input-group
+                                                        span.input-group-addon $
+                                                        input.form-control(type='text')
+                                    .form-group
+                                        label.col-md-3.control-label Slots
+                                        .col-md-9.controls
+                                            .row
+                                                .col-md-12
+                                                    input(type='number', name='quantity', min='1', max='5')
+                                    .form-group
+                                        label.col-md-3.control-label Description
+                                        .col-md-9.controls
+                                            .row
+                                                .col-md-12
                                                     textarea(rows='3')
                                 button.btn.btn-save.col-md-offset-3
                                     span.menu-icon
@@ -618,71 +1013,6 @@ block profile
                                                             i.fa.fa-check
                                                         span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
                                                             i.fa.fa-times
-                                        li
-                                            a(href='#')
-                                                span.menu-icon
-                                                    img(src='../img/profile/avatar-4.jpg', alt='example image')
-                                            span.menu-text
-                                                | Rikudou Sennin
-                                                span.menu-info
-                                                    span.menu-date Las Vegas
-                                                    span.menu-action
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
-                                                            i.fa.fa-check
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
-                                                            i.fa.fa-times
-                                        li
-                                            a(href='#')
-                                                span.menu-icon
-                                                    img(src='../img/profile/avatar-5.jpg', alt='example image')
-                                            span.menu-text
-                                                | Kim Kardiosun
-                                                span.menu-info
-                                                    span.menu-date New York
-                                                    span.menu-action
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
-                                                            i.fa.fa-check
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
-                                                            i.fa.fa-times
-                                        li
-                                            a(href='#')
-                                                span.menu-icon
-                                                    img(src='../img/profile/avatar-6.jpg', alt='example image')
-                                            span.menu-text
-                                                | Brad Pita
-                                                span.menu-info
-                                                    span.menu-date Seattle
-                                                    span.menu-action
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
-                                                            i.fa.fa-check
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
-                                                            i.fa.fa-times
-                                        li
-                                            a(href='#')
-                                                span.menu-icon
-                                                    img(src='../img/profile/avatar-7.jpg', alt='example image')
-                                            span.menu-text
-                                                | Celline Dior
-                                                span.menu-info
-                                                    span.menu-date Los Angeles
-                                                    span.menu-action
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
-                                                            i.fa.fa-check
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
-                                                            i.fa.fa-times
-                                        li
-                                            a(href='#')
-                                                span.menu-icon
-                                                    img(src='../img/profile/avatar-8.jpg', alt='example image')
-                                            span.menu-text
-                                                | Goerge Bruno Marz
-                                                span.menu-info
-                                                    span.menu-date Las Vegas
-                                                    span.menu-action
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
-                                                            i.fa.fa-check
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
-                                                            i.fa.fa-times
                         #groups-tab.groups-tab.tab-pane(role='tabpanel')
                             h3
                                 i.fa.fa-leaf.mgr-10.profile-icon
@@ -722,6 +1052,9 @@ block profile
                                                 .menu-action
                                                     .menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Leave Group')
                                                         i.fa.fa-times
+                                        // list-wrapper
+                                    // content-list
+                                // col-xs-12 col-sm-6
                                 .col-xs-12.col-sm-6
                                     .content-list.content-large.menu-action-right
                                         ul.list-wrapper.pd-lr-15
@@ -745,22 +1078,22 @@ block profile
                                         i.fa.fa-cog
                                         | Create Group
                                     .form-group
-                                        label.col-sm-3.control-label Picture
-                                        .col-sm-9.controls
+                                        label.col-md-3.control-label Picture
+                                        .col-md-9.controls
                                             .row
-                                                .col-xs-9
-                                                    input(placeholder='first name', type='text')
+                                                .col-md-12
+                                                    input.btn.btn-default(type='file')
                                     .form-group
-                                        label.col-sm-3.control-label Title
-                                        .col-sm-9.controls
+                                        label.col-md-3.control-label Title
+                                        .col-md-9.controls
                                             .row
-                                                .col-xs-9
-                                                    input(placeholder='last name', type='text')
+                                                .col-md-12
+                                                    input(placeholder=' title', type='text')
                                     .form-group
-                                        label.col-sm-3.control-label Description
-                                        .col-sm-9.controls
-                                            .row.mgbt-xs-0
-                                                .col-xs-9
+                                        label.col-md-3.control-label Description
+                                        .col-md-9.controls
+                                            .row
+                                                .col-md-12
                                                     textarea(rows='3')
                                 button.btn.btn-save.col-md-offset-3
                                     span.menu-icon
@@ -771,4 +1104,6 @@ block profile
             .row
                 p.text-muted © Copyright BCW Company. All Rights Reserved.
                 a(href='#')
-                    span.glyphicon.glyphicon-menu-up.bck-to-top(aria-hidden='true')
+                    i.bck-to-top.fa.fa-chevron-up
+    script(type='text/javascript', src='../dist/js/jquery.min.js')
+    script(type='text/javascript', src='../dist/js/bootstrap.min.js')

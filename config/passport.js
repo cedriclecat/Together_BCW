@@ -41,7 +41,7 @@ module.exports = function(passport) {
             passwordField : 'password',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function (req, email, password, done) {
+        function (req, firstName, lastName, email, password, done) {
 
             // asynchronous
             // User.findOne wont fire unless data is sent back
@@ -64,6 +64,8 @@ module.exports = function(passport) {
                         var newUser = new User();
 
                         // set the user's local credentials
+                        newUser.local.lastName = lastName;
+                        newUser.local.firstName = firstName;
                         newUser.local.email = email;
                         newUser.local.password = newUser.generateHash(password);
 
@@ -243,7 +245,6 @@ module.exports = function(passport) {
                         return done(err);
 
                     if (user) {
-
                         // if a user is found, log them in
                         return done(null, user);
                     } else {

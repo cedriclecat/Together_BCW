@@ -4,7 +4,8 @@
 
 // Connect Database
 var mongoose = require('mongoose');
-var mongodbURL = 'mongodb://localhost:27017/togetherDB';
+//var mongodbURL = 'mongodb://localhost:27017/togetherDB';
+var mongodbURL = 'mongodb://sokol:sokol@ds057234.mongolab.com:57234/togetherdb';
 
 module.exports = (function(){
     var db = mongoose.connection;
@@ -16,7 +17,7 @@ module.exports = (function(){
     //CONNECTION EVENTS
     //When successfully connected
     db.on('open', function () {
-        console.log('Mongoose default connection open to ' + mongodbURL);
+        console.log('Mongoose default connection open to ' + "+++MongoLab Togetherdb server+++");
     });
 
     // If the connection throws an error

@@ -1,7 +1,7 @@
-//var express = require('express');
-//var router = express.Router();
-//
-//module.exports = router;
+var express = require('express');
+var router = express.Router();
+
+var Events = require('../data/schema/events.js');
 
 module.exports = function(app,passport) {
 
@@ -31,7 +31,7 @@ module.exports = function(app,passport) {
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, function (req , res) {
+    app.get('/profile', /*isLoggedIn,*/ function (req , res) {
         //var user = req.session.user || {};
         res.render('profile.jade');
         //user : req.user // get the user out of session and pass to template
@@ -140,6 +140,18 @@ module.exports = function(app,passport) {
           failureFlash: true
       }));
 
+    // =====================================
+    // API EVENTS ROUTES ===================
+    // =====================================
+
+    app.get('/api/events', function (req, res) {
+        Events.find(function (err, events) {
+            if (err)
+                res.send(err);
+            res.json(events);
+        });
+    });
+
 };
 
 // route middleware to ensure user is logged in
@@ -149,3 +161,4 @@ function isLoggedIn(req, res, next) {
 
   res.redirect('/');
 }
+

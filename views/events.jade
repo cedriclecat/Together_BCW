@@ -17,7 +17,7 @@ block events
                 #bs-example-navbar-collapse-1.collapse.navbar-collapse
                     ul.nav.navbar-nav.navbar-right
                         li
-                            a(href='/') Home
+                            a(href='landing') Home
                         li.active
                             a(href='events') Events
                         li
@@ -66,106 +66,131 @@ block events
                             li
                                 a(href='#', aria-label='Next')
                                     span(aria-hidden='true') »
-                    #accordion.panel-group(role='tablist', aria-multiselectable='true')
-                        .panel.panel-default
-                            #headingOne.panel-heading(role='tab')
-                                h4.panel-title.accordion-toggle
-                                    a(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapseOne', aria-expanded='true', aria-controls='collapseOne')
-                                        img(src='../img/events/channelzero.jpg')
-                                        |   Channel Zero
-                            #collapseOne.panel-collapse.collapse.in(role='tabpanel', aria-labelledby='headingOne')
-                                .panel-body
-                                    iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.8708728284314!2d174.3216058!3d-35.72939409999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0b7efa8bf6609b%3A0x26cea25ad82b1210!2s2+Woods+Rd%2C+Whangarei%2C+0110!5e0!3m2!1sen!2snz!4v1409280975515', width='400', height='300', frameborder='0', style='border:0')
-                                    p.info Praktische Informatie
-                                    p
-                                        i.fa.fa-calendar
-                                        |  03/11/2015
-                                    p
-                                        i.fa.fa-clock-o
-                                        |  20:00
-                                    p
-                                        i.fa.fa-eur
-                                        |  18.00
-                                    p
-                                        i.fa.fa-map-marker
-                                        |  Cultuurcentrum De Fabriek - Sint-Lievens-Houtem
-                                    p
-                                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                                        | 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                        | Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-                                        | Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                        | Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    button.btn.btn-info.btn-responsive.approve
-                                        i.fa.fa-check.fa-lg
-                                        |  Ik ga hier naar toe
-                                    button.btn.btn-info.btn-responsive.disapprove
-                                        i.fa.fa-remove.fa-lg
-                                        |  Ik ga hier niet naar toe
-                        .panel.panel-default
-                            #headingTwo.panel-heading(role='tab')
-                                h4.panel-title
-                                    a.collapsed(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
-                                        img(src='../img/events/jeugd.jpg')
-                                        |  De Jeugd van Tegenwoordig + DJ Dysfunkshunal
-                            #collapseTwo.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingTwo')
-                                .panel-body
-                                    iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2501.703217746505!2d4.139664715962859!3d51.169260643190526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c38ebd60f3c64f%3A0xd95f2b6450890892!2sDe+Casino!5e0!3m2!1snl!2sbe!4v1446294324853', width='400', height='300', frameborder='0', style='border:0', allowfullscreen='')
-                                    p.info Praktische Informatie
-                                    p
-                                        i.fa.fa-calendar
-                                        |  21/11/2015
-                                    p
-                                        i.fa.fa-clock-o
-                                        |  20:00
-                                    p
-                                        i.fa.fa-eur
-                                        |  20.00
-                                    p
-                                        i.fa.fa-map-marker
-                                        |  Concertzaal De Casino Stationsstraat 104 9100 Sint-Niklaas
-                                    p
-                                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                                        | 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                        | Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-                                        | Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                        | Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    button.btn.btn-info.btn-responsive.approve
-                                        i.fa.fa-check.fa-lg
-                                        |  Ik ga hier naar toe
-                                    button.btn.btn-info.btn-responsive.disapprove
-                                        i.fa.fa-remove.fa-lg
-                                        |  Ik ga hier niet naar toe
-                        .panel.panel-default
-                            #headingThree.panel-heading(role='tab')
-                                h4.panel-title
-                                    a.collapsed(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
-                                        img(src='../img/events/selah.jpg')
-                                        |  Selah Sue
-                            #collapseThree.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingThree')
-                                .panel-body
-                                    iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.1340900314353!2d4.323853515953409!3d50.81015426926153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c435a0532f61%3A0xcbb3c668016ca0ce!2sVorst+Nationaal!5e0!3m2!1snl!2sbe!4v1446294408876', width='400', height='300', frameborder='0', style='border:0', allowfullscreen='')
-                                    p.info Praktische Informatie
-                                    p
-                                        i.fa.fa-calendar
-                                        |  5/12/2015
-                                    p
-                                        i.fa.fa-clock-o
-                                        |  21:00
-                                    p
-                                        i.fa.fa-eur
-                                        |  30.00
-                                    p
-                                        i.fa.fa-map-marker
-                                        |  Vorst Nationaal Victor Rousseaulaan 208 1190 Vorst
-                                    p
-                                        | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                                        | 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                        | Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-                                        | Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                        | Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    button.btn.btn-info.btn-responsive.approve
-                                        i.fa.fa-check.fa-lg
-                                        |  Ik ga hier naar toe
-                                    button.btn.btn-info.btn-responsive.disapprove
-                                        i.fa.fa-remove.fa-lg
-                                        |  Ik ga hier niet naar toe
+                    //
+                      <div ng-controller="AccordionController" class="panel-group" id="accordion1" role="tablist"
+                      aria-multiselectable="true">
+                      <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingOne">
+                      <h4 class="panel-title accordion-toggle">
+                      <a role="button" data-toggle="collapse" data-parent="#accordion1"
+                      href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <img src="../img/events/channelzero.jpg">  Channel Zero
+                      </a>
+                      </h4>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.8708728284314!2d174.3216058!3d-35.72939409999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0b7efa8bf6609b%3A0x26cea25ad82b1210!2s2+Woods+Rd%2C+Whangarei%2C+0110!5e0!3m2!1sen!2snz!4v1409280975515" width="400" height="300" frameborder="0" style="border:0"></iframe>
+                      <p class="info">Praktische Informatie</p>
+                      <p><i class="fa fa-calendar"></i> 03/11/2015</p>
+                      <p><i class="fa fa-clock-o"></i> 20:00</p>
+                      <p><i class="fa fa-eur"></i> 18.00</p>
+                      <p><i class="fa fa-map-marker"></i> Cultuurcentrum De Fabriek - Sint-Lievens-Houtem</p>
+                      <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                      3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                      Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                      Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+                      Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+                      <button class="btn btn-info btn-responsive approve"><i class="fa fa-check fa-lg"></i> Ik ga hier naar toe</button>
+                      <button class="btn btn-info btn-responsive active disapprove"><i class="fa fa-remove fa-lg"></i> Ik ga hier niet naar toe</button>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingTwo">
+                      <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse"
+                      data-parent="#accordion1" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <img src="../img/events/jeugd.jpg"> De Jeugd van Tegenwoordig + DJ Dysfunkshunal
+                      </a>
+                      </h4>
+                      </div>
+                      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2501.703217746505!2d4.139664715962859!3d51.169260643190526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c38ebd60f3c64f%3A0xd95f2b6450890892!2sDe+Casino!5e0!3m2!1snl!2sbe!4v1446294324853" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                      <p class="info">Praktische Informatie</p>
+                      <p><i class="fa fa-calendar"></i> 21/11/2015</p>
+                      <p><i class="fa fa-clock-o"></i> 20:00</p>
+                      <p><i class="fa fa-eur"></i> 20.00</p>
+                      <p><i class="fa fa-map-marker"></i> Concertzaal De Casino Stationsstraat 104 9100 Sint-Niklaas </p>
+                      <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                      3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                      Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                      Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+                      Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+                      <button class="btn btn-info btn-responsive approve"><i class="fa fa-check fa-lg"></i> Ik ga hier naar toe</button>
+                      <button class="btn btn-info btn-responsive active disapprove"><i class="fa fa-remove fa-lg"></i> Ik ga hier niet naar toe</button>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingThree">
+                      <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse"
+                      data-parent="#accordion1" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      <img src="../img/events/selah.jpg"> Selah Sue
+                      </a>
+                      </h4>
+                      </div>
+                      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                      <div class="panel-body">
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.1340900314353!2d4.323853515953409!3d50.81015426926153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c435a0532f61%3A0xcbb3c668016ca0ce!2sVorst+Nationaal!5e0!3m2!1snl!2sbe!4v1446294408876" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                      <p class="info">Praktische Informatie</p>
+                      <p><i class="fa fa-calendar"></i> 5/12/2015</p>
+                      <p><i class="fa fa-clock-o"></i> 21:00</p>
+                      <p><i class="fa fa-eur"></i> 30.00</p>
+                      <p><i class="fa fa-map-marker"></i> Vorst Nationaal Victor Rousseaulaan 208 1190 Vorst </p>
+                      <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                      3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                      Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                      Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+                      Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+                      <button class="btn btn-info btn-responsive approve"><i class="fa fa-check fa-lg"></i> Ik ga hier naar toe</button>
+                      <button class="btn btn-info btn-responsive active disapprove"><i class="fa fa-remove fa-lg"></i> Ik ga hier niet naar toe</button>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                    #accordion.panel-group(ng-controller='EventController as events', role='tablist', aria-multiselectable='true')
+                        div(ng-repeat='something in events.eventStuff')
+                            .panel.panel-default
+                                .panel-heading(role='tab', id='headingOne')
+                                    h4.panel-title
+                                        a.collapsed(role='button', data-toggle='collapse', data-parent='#accordion1', href='#collapseOne', aria-expanded='false', aria-controls='collapseOne')
+                                            img(ng-src='{{something.pictureUrl}}')
+                                            |  {{something.name}}
+                                .panel-collapse.collapse(id='collapseOne', role='tabpanel', aria-labelledby='headingOne')
+                                    .panel-body
+                                        iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2501.703217746505!2d4.139664715962859!3d51.169260643190526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c38ebd60f3c64f%3A0xd95f2b6450890892!2sDe+Casino!5e0!3m2!1snl!2sbe!4v1446294324853', width='400', height='300', frameborder='0', style='border:0', allowfullscreen='')
+                                        p.info Praktische Informatie
+                                        p
+                                            i.fa.fa-calendar
+                                            | {{something.date}}
+                                        p
+                                            i.fa.fa-clock-o
+                                            | {{something.time}}
+                                        p
+                                            i.fa.fa-eur
+                                            | {{something.price}}
+                                        p
+                                            i.fa.fa-map-marker
+                                            | {{something.location}}
+                                        p {{something.description}}
+                                        button.btn.btn-info.btn-responsive.approve
+                                            i.fa.fa-check.fa-lg
+                                            |  Ik ga hier naar toe
+                                        button.btn.btn-info.btn-responsive.active.disapprove
+                                            i.fa.fa-remove.fa-lg
+                                            |  Ik ga hier niet naar toe
+    footer.footer
+        .container-fluid
+            .row
+                p.text-muted © Copyright BCW Company. All Rights Reserved.
+                a(href='#')
+                    i.bck-to-top.fa.fa-chevron-up
+    script(type='text/javascript', src='/dist/js/jquery.min.js')
+    script(type='text/javascript', src='/dist/js/bootstrap.min.js')
+    script(type='text/javascript', src='/dist/Angular/angular.js')
+    script(type='text/javascript', src='/src/app.js')
+    script(type='text/javascript', src='/src/services/eventsService.js')
+    script(type='text/javascript', src='/src/controllers/EventController.js')

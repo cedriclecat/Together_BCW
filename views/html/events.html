@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="appangular">
+<html lang="en" ng-app="event">
 <head>
     <meta charset="UTF-8">
     <title>Events</title>
@@ -163,37 +163,35 @@
                             </div>
                         </div>
                     </div>-->
-                   <div ng-controller="EventController" class="panel-group" id="accordion" role="tablist"
-                          aria-multiselectable="true" ng-repeat="e in events">
-                       <div class="panel panel-default">
-                           <div class="panel-heading" role="tab" id="h{{e.id}}">
+                   <div ng-controller="EventController as events" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ><div ng-repeat="something in events.eventStuff">
+                       <div class="panel panel-default" >
+                           <div class="panel-heading" role="tab" id="heading{{something.id}}">
                                <h4 class="panel-title">
-                                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                                      href="#{{e.id}}" aria-expanded="false" aria-controls="collapseThree">
-                                       <img src="{{e.picture}}"> {{e.name}}
+                                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1"
+                                      href="#collapse{{something.id}}" aria-expanded="false" aria-controls="collapse{{something.id}}">
+                                       <img ng-src="{{something.pictureUrl}}"> {{something.name}}
                                    </a>
                                </h4>
                            </div>
-                           <div id="{{e.id}}" class="panel-collapse collapse" role="tabpanel"
-                                aria-labelledby="headingThree">
+                           <div id="collapse{{something.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{something.id}}">
                                <div class="panel-body">
-                                   <iframe src="{{e.location}}" width="400" height="300" frameborder="0"
-                                           style="border:0" allowfullscreen></iframe>
+                                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2501.703217746505!2d4.139664715962859!3d51.169260643190526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c38ebd60f3c64f%3A0xd95f2b6450890892!2sDe+Casino!5e0!3m2!1snl!2sbe!4v1446294324853" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
                                    <p class="info">Praktische Informatie</p>
-                                   <p><i class="fa fa-calendar"></i>{{e.date}}</p>
-                                   <p><i class="fa fa-clock-o"></i>{{e.time}}</p>
-                                   <p><i class="fa fa-eur"></i>{{e.price}}</p>
-                                   <p><i class="fa fa-map-marker"></i>{{e.name}}</p>
-                                   <p>{{e.description}}</p>
+                                   <p><i class="fa fa-calendar"></i>{{something.date}}</p>
+                                   <p><i class="fa fa-clock-o"></i>{{something.time}}</p>
+                                   <p><i class="fa fa-eur"></i>{{something.price}}</p>
+                                   <p><i class="fa fa-map-marker"></i>{{something.location}}</p>
+                                   <p>{{something.description}}</p>
                                    <button class="btn btn-info btn-responsive approve"><i class="fa fa-check fa-lg"></i> Ik ga hier naar toe</button>
                                    <button class="btn btn-info btn-responsive active disapprove"><i class="fa fa-remove fa-lg"></i> Ik ga hier niet naar toe</button>
                                </div>
                            </div>
                        </div>
+                   </div>
                     </div>
                 </div>
             </div>
-        </div>s
+        </div>
     </div>
 
     <footer class="footer">
@@ -206,13 +204,14 @@
     </footer>
 
 
-    <script type="text/javascript" src="../dist/js/jquery.min.js"></script>
-    <script type="text/javascript" src="../dist/js/bootstrap.min.js"></script>
 
-    <script src="../../dist/Angular/angular.js"></script>
-    <script src="../../src/models/Event.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/bootstrap.min.js"></script>
 
-    <script src="../../src/controllers/EventController.js"></script>
+    <script type="text/javascript" src="../../dist/Angular/angular.js"></script>
+    <script type="text/javascript" src="../../src/app.js"></script>
+    <script type="text/javascript" src="../../src/controllers/EventController.js"></script>
+    <script type="text/javascript" src="../../src/services/eventsService.js.js"></script>
 
 </body>
 </html>

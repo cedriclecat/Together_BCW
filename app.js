@@ -76,7 +76,3 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-(function(){
-    "use strict"
-    var appangular = angular.module("app",[]);
-})();

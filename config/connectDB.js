@@ -17,7 +17,7 @@ module.exports = (function(){
     //CONNECTION EVENTS
     //When successfully connected
     db.on('open', function () {
-        console.log('Mongoose default connection open to ' + "+++MongoLab Togetherdb server+++");
+        console.log('Mongoose default connection open to ' + "+++ MongoLab Togetherdb server +++");
     });
 
     // If the connection throws an error

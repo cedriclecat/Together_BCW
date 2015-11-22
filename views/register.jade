@@ -10,7 +10,7 @@ block register
     .container-fluid
         .row-fluid
             .form-body
-                .col-md-4.col-md-offset-4(ng-controller='valController')
+                .col-md-4.col-md-offset-4
                     h2 Sign Up with
                     .row
                         .col-sm-4
@@ -30,23 +30,19 @@ block register
                                 | Google+
                     .section-divider
                         span OR
-                    form(name='registerForm' method='post' action='profile')
+                    form(name='registerForm', method='post',data-toggle="validator", role='form')
                         .form-group
-                            label.control-label Name
-                            .row
-                                .col-md-6
-                                    input.form-control.input-lg(type='text', name='firstName', placeholder=' First name')
-                                .col-md-6
-                                    input.form-control.input-lg(type='text', name='lastName', placeholder=' Last name')
+                            label(for="inputEmail") Email
+                            input.form-control.input-lg(type='email',id='inputEmail', name='email',data-error="Bruh, that email address is invalid",placeholder='example@domain.com',required)
+                            .help-block.with-errors
                         .form-group
-                            label Email
-                            input.form-control.input-lg(type='email', name='email', placeholder='mail@example.com', required='')
+                            label.control-label(for="inputPassword")  Password
+                            input.form-control.input-lg(type='password',id='inputPassword',name='password',data-minlength="6",placeholder='Enter your password',required)
+                            .help-block.with-errors
                         .form-group
-                            label.control-label  Password
-                            input.form-control.input-lg(type='password', name='password', placeholder=' Password')
-                        .form-group
-                            label.control-label Re-enter Password
-                            input.form-control.input-lg(type='password', name='password', placeholder=' Re-enter password')
+                            label.control-label(for="inputPasswordConfirm") Re-enter Password
+                            input.form-control.input-lg(type='password',id='inputPasswordConfirm', name='confirmPassword',data-match="#inputPassword" data-match-error="Whoops, Passwords don't match",placeholder='Enter your password',required)
+                            .help-block.with-errors
                         button.btn.btn-block.btn-lg(type='submit') Sign me Up
                         .m-t-20
                             a.add-info(href='login') Back to Sign In

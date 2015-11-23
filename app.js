@@ -1,5 +1,6 @@
 var express = require('express'),
     path = require('path'),
+    http = require('http'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
@@ -31,6 +32,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+app.set('port', 3000);
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // connect flash to display messages
@@ -48,6 +50,7 @@ app.use(function(req, res, next) {
 });
 
 // error handlers =========================================================================
+
 
 // development error handler
 // will print stacktrace
@@ -71,5 +74,36 @@ app.use(function(err, req, res, next) {
   });
 });
 
+//app.get('port') gets the port number that is defined earlier in the configuration of the express server
+var server = http.createServer(app).listen(app.get('port'), function(){
+    console.log("Express server listening on port " + app.get('port'));
+});
+
+// Set up socket.io
+var io = require('socket.io').listen(server);
+
+// Handle socket traffic
+io.sockets.on('connection', function (socket) {
+
+    // Set the name property for a given client
+    socket.on('nick', function(nick) {
+      //  socket.set('name', nick);
+    });
+
+    // This should initiate rock group chat
+    socket.on('rockgroup', function(data) {
+       // socket.get('name', function(err, nick) {
+            var nickname ='Anonymous' ; //normally this won't be possible
+
+            var payload = {
+                message: data.message,
+                nick: 'test'
+            };
+
+            socket.emit('rockgroup',payload); // show it on your own browser
+            socket.broadcast.emit('rockgroup', payload); // broadcast to others
+       // });
+    });
+});
 
 module.exports = app;

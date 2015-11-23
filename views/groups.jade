@@ -2,6 +2,30 @@
    Created by Brecht on 8/11/2015.
 
 extends layout
+block customme
+    script(src='/socket.io/socket.io.js')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script.
+      var socket = io.connect("http://localhost:3000");
+      socket.on('rockgroup', function (data) {
+      var msg = data.nick+': '+data.message;
+      $('#Texthere').val($('#Texthere').val()+msg+'<br\\>');
+      });
+      // Handle UI
+      $(function() {
+      // Set nickname
+      // $('#nick').on('click', function() {
+
+      //});
+      // Send chat message
+      $('#btnchat').on('click', function() {
+        socket.emit('nick', "Testingpurpose"); //this needs to change to your nickname
+      console.log('hh');
+      socket.emit('rockgroup', {
+      message:$('#chat-input').val()
+      });
+      });
+      });
 
 block groups
     header
@@ -46,19 +70,23 @@ block groups
                     .container-fluid
                         .row
                             .col-md-6
-                                .panel.panel-default
-                                    .panel-heading Group Events
-                                    #online-users.list-group
+                              .panel.panel-default
+                                .panel-heading Group Events
+                                div
+                                  textarea#Texthere(style='height:300px;width:500px;')
+                                #online-users.list-group
+
                             .col-md-3
                                 .panel.panel-default
                                     .panel-heading Group Chat
                                     ul#chat-output.list-group
                                     .panel-body
-                                        form#chat
-                                            .input-group
-                                                input#chat-input.form-control(type='text')
-                                                span.input-group-btn
-                                                    button.btn.sendm.btn-default(type='submit') Send Message
+
+                                             .input-group
+                                                                    input#chat-input.form-control(type='text')
+                                                                    span.input-group-btn
+                                                                      button#btnchat.btn.sendm.btn-default(type='submit') Send Message
+
                             .col-md-3
                                 .panel.panel-default
                                     .panel-heading Online Users

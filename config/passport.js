@@ -2,6 +2,7 @@
  * Created by Brecht on 7/11/2015.
  */
 
+
 // load all the things we need
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -9,25 +10,76 @@ var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // load up the user model
-var User = require('../data/schema/user');
+var User = require('../data/models/User');
 
 // load the auth variables
 var configAuth = require('./auth');
 
-module.exports = function(passport) {
-
+module.exports = function (passport) {
 
     // used to serialize the user for the session
-    passport.serializeUser(function(user, done) {
+    passport.serializeUser(function (user, done) {
         done(null, user.id);
     });
 
     // used to deserialize the user
-    passport.deserializeUser(function (user, done) {
+    passport.deserializeUser(function (id, done) {
         User.findById(id, function (err, user) {
-            done(null, user);
+            done(err, user);
         });
     });
+
+    // =========================================================================
+    // LOCAL SIGNUP ============================================================
+    // =========================================================================
+    // we are using named strategies since we have one for login and one for signup
+    // by default, if there was no name, it would just be called 'local'
+
+    passport.use('local-signup', new LocalStrategy({
+            // by default, local strategy uses username and password, we will override with email
+            usernameField : 'email',
+            passwordField : 'password',
+            passReqToCallback : true // allows us to pass back the entire request to the callback
+        },
+        function (req, email, password, done) {
+
+            // asynchronous
+            // User.findOne wont fire unless data is sent back
+            process.nextTick(function () {
+
+                // find a user whose email is the same as the forms email
+                // we are checking to see if the user trying to login already exists
+                User.findOne({ 'local.email' : email }, function (err, user) {
+                    // if there are any errors, return the error
+                    if (err)
+                        return done(err);
+
+                    // check to see if theres already a user with that email
+                    if (user) {
+                        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                    } else {
+
+                        // if there is no user with that email
+                        // create the user
+                        var newUser = new User();
+
+                        // set the user's local credentials
+                        newUser.local.email = email;
+                        newUser.local.password = newUser.generateHash(password);
+
+                        // save the user
+                        newUser.save(function (err) {
+                            if (err)
+                                throw err;
+                            return done(null, newUser);
+                        });
+                    }
+
+                });
+
+            });
+
+        }));
 
     // =========================================================================
     // LOCAL LOGIN =============================================================
@@ -67,66 +119,9 @@ module.exports = function(passport) {
         }));
 
     // =========================================================================
-    // LOCAL SIGNUP ============================================================
-    // =========================================================================
-    // we are using named strategies since we have one for login and one for signup
-    // by default, if there was no name, it would just be called 'local'
-
-    passport.use('local-signup', new LocalStrategy({
-            // by default, local strategy uses username and password, we will override with email
-            usernameField : 'email',
-            passwordField : 'password',
-            passReqToCallback : true // allows us to pass back the entire request to the callback
-        },
-        function(req, email, password, done) {
-
-            // asynchronous
-            // User.findOne wont fire unless data is sent back
-
-            process.nextTick(function() {
-
-                // find a user whose email is the same as the forms email
-                // we are checking to see if the user trying to login already exists
-                User.findOne({ 'local.email' :  email }, function(err, user) {
-                    // if there are any errors, return the error
-                    if (err)
-                        return done(err);
-
-                    // check to see if theres already a user with that email
-                    if (user) {
-                        return done(null);
-                    } else {
-
-                        // if there is no user with that email
-                        // create the user
-                        var newUser            = new User();
-
-                        // set the user's local credentials
-                        newUser.local.email    = email;
-                        newUser.local.password = newUser.generateHash(password);
-
-                        // save the user
-                        newUser.save(function(err) {
-                            if (err)
-                                throw err;
-                            return done(null, newUser);
-                            console.log("hello i'm a console thingy");
-                        });
-
-                    }
-
-                });
-
-            });
-
-        }));
-
-
-
-    // =========================================================================
     // FACEBOOK ================================================================
     // =========================================================================
-    passport.use(new FacebookStrategy({
+    passport.use('facebook',new FacebookStrategy({
 
             // pull in our app id and secret from our authSchema.js file
             clientID        : configAuth.facebookAuth.clientID,
@@ -185,15 +180,14 @@ module.exports = function(passport) {
             consumerKey     : configAuth.twitterAuth.consumerKey,
             consumerSecret  : configAuth.twitterAuth.consumerSecret,
             callbackURL     : configAuth.twitterAuth.callbackURL
-
         },
-        function(token, tokenSecret, profile, done) {
+        function (token, tokenSecret, profile, done) {
 
             // make the code asynchronous
             // User.findOne won't fire until we have all our data back from Twitter
-            process.nextTick(function() {
+            process.nextTick(function () {
 
-                User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
+                User.findOne({ 'twitter.id' : profile.id }, function (err, user) {
 
                     // if there is an error, stop everything and return that
                     // ie an error connecting to the database
@@ -205,16 +199,16 @@ module.exports = function(passport) {
                         return done(null, user); // user found, return that user
                     } else {
                         // if there is no user, create them
-                        var newUser                 = new User();
+                        var newUser = new User();
 
                         // set all of the user data that we need
-                        newUser.twitter.id          = profile.id;
-                        newUser.twitter.token       = token;
-                        newUser.twitter.username    = profile.username;
+                        newUser.twitter.id = profile.id;
+                        newUser.twitter.token = token;
+                        newUser.twitter.username = profile.username;
                         newUser.twitter.displayName = profile.displayName;
 
                         // save our user into the database
-                        newUser.save(function(err) {
+                        newUser.save(function (err) {
                             if (err)
                                 throw err;
                             return done(null, newUser);
@@ -229,7 +223,7 @@ module.exports = function(passport) {
     // =========================================================================
     // GOOGLE ==================================================================
     // =========================================================================
-    passport.use(new GoogleStrategy({
+    passport.use('google',new GoogleStrategy({
 
             clientID        : configAuth.googleAuth.clientID,
             clientSecret    : configAuth.googleAuth.clientSecret,

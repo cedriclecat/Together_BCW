@@ -1,0 +1,53 @@
+//
+   Created by Brecht on 9/11/2015.
+
+extends LayoutAuth
+
+block signup
+    .cover
+        .cover-img
+            img(src='../img/login/bg-1.jpg', alt='uitzicht op landschap')
+    .container-fluid
+        .row-fluid
+            .form-body
+                .col-md-4.col-md-offset-4
+                    h2 Sign Up with
+                    .row
+                        .col-sm-4
+                            a.button.btn-social.facebook.span-left.btn-block(href='/auth/facebook')
+                                span
+                                    i.fa.fa-facebook
+                                | Facebook
+                        .col-sm-4
+                            a.button.btn-social.twitter.span-left.btn-block(href='/auth/twitter')
+                                span
+                                    i.fa.fa-twitter
+                                | Twitter
+                        .col-sm-4
+                            a.button.btn-social.googleplus.span-left.btn-block(href='/auth/google')
+                                span
+                                    i.fa.fa-google-plus
+                                | Google+
+                    .section-divider
+                        span OR
+                    form(action='/signup',method='post',name='registerForm', ,data-toggle="validator", role='form')
+                        .form-group
+                            label(for="inputEmail") Email
+                            input.form-control.input-lg(type='email',id='inputEmail', name='email',data-error="Bruh, that email address is invalid",placeholder='example@domain.com',required)
+                            .help-block.with-errors
+                        .form-group
+                            label.control-label(for="inputPassword")  Password
+                            input.form-control.input-lg(type='password',id='inputPassword',name='password',data-minlength="6",placeholder='Enter your password',required)
+                            .help-block.with-errors
+                        .form-group
+                            label.control-label(for="inputPasswordConfirm") Re-enter Password
+                            input.form-control.input-lg(type='password',id='inputPasswordConfirm', name='confirmPassword',data-match="#inputPassword" data-match-error="Whoops, Passwords don't match",placeholder='Enter your password',required)
+                            .help-block.with-errors
+                        button.btn.btn-block.btn-lg(type='submit') Sign me Up
+                        .m-t-20
+                            a.add-info(href='login') Back to Sign In
+                                i.fa.fa-angle-right
+                            a.add-info(href='landing') Home
+
+                    p
+                        | By clicking Sign Up, you agree to our Terms and that you have read our Cookie Use.

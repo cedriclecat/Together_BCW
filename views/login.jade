@@ -1,7 +1,7 @@
 //
    Created by Brecht on 8/11/2015.
 
-extends regLayout
+extends LayoutAuth
 
 block login
     .cover
@@ -30,7 +30,7 @@ block login
                                 | Google+
                     .section-divider
                         span OR
-                    form.loginForm(action='profile' method='post')
+                    form.loginForm(action='/login', method='post')
                         .form-group
                             label Email address
                             input.form-control.input-lg(type='email', placeholder=' Email Address ',name='email', required='')
@@ -46,6 +46,6 @@ block login
                         .m-t-20
                             a.add-info(href='/forgotpw') Forgot your Password ?
                                 i.fa.fa-angle-right
-                            a.add-info(href='/register') Sign Up
+                            a.add-info(href='/signup') Sign Up
                                 i.fa.fa-angle-right
                             a.add-info(href='/') Home

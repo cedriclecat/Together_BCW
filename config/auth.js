@@ -12,7 +12,7 @@ module.exports = {
     'twitterAuth' : {
         'consumerKey': 'GWRQhrD2X2zS7LYwKA3NlEbly', // your App ID
         'consumerSecret': 'rQU4BaOGiyqAQsVMiNYHpIXUFNmAmEIDSyXFMqhGXTP49dn8cM', // your App Secret
-        'callbackURL'       : 'http://127.0.0.1:3000/auth/twitter/callback'
+        'callbackURL'       : 'http://localhost:3000/auth/twitter/callback'
     },
 
     'googleAuth' : {

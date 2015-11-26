@@ -48,6 +48,11 @@ function normalizePort(val) {
   return false;
 }
 
+var io = require('socket.io')(server);
+var sockets = io.listen(server);
+console.log('io luistert naar de express server op port ' + app.get('port'));
+require('../sockets.js')(io); // all sockets are in here
+
 /**
  * Event listener for HTTP server "error" event.
  */

@@ -19,7 +19,7 @@ module.exports = function (passport) {
 
     // used to serialize the user for the session
     passport.serializeUser(function (user, done) {
-        done(null, user.id);
+        done(null, user/*.id*/);
     });
 
     // used to deserialize the user
@@ -154,8 +154,8 @@ module.exports = function (passport) {
                         // set all of the facebook information in our user model
                         newUser.facebook.id    = profile.id; // set the users facebook id
                         newUser.facebook.token = token; // we will save the token that facebook provides to the user
-                        newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                        newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+                        newUser.facebook.name  = profile.displayName; //.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
+                        newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first ==> does not work anymore
 
                         // save our user to the database
                         newUser.save(function(err) {

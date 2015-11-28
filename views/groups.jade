@@ -4,25 +4,35 @@
 extends layout
 block customme
     script(src='/socket.io/socket.io.js')
-        script(src='../docready.js')
-
-script(type='text/javascript').
-    var socket = io.connect("http://localhost:3000");
-    socket.on('rockgroup', function (data) {
-        var msg = data.nick + ': ' + data.message;
-        document.getElementById("Texthere").value(document.getElementById("Texthere").value()+msg+'\\n');
-
-    });
-    docReady(function () {
-        document.getElementById("btnchat").onclick = function(){
-            socket.emit('nick', "Testingpurpose"); //this needs to change to your nickname
+    script.
+        document.addEventListener("DOMContentLoaded", function(){
             console.log('hh');
-            socket.emit('rockgroup', {
-                message: $('#chat-input').val()
-            });
-        };
+            var socket = io.connect();
 
-    });
+            socket.on('nick', function (data) {
+                console.log("h");
+                document.getElementById("clientshere").value ="";
+                        data.forEach(function (entry) {
+                    console.log(entry);
+                    document.getElementById("clientshere").value = document.getElementById("clientshere").value + entry + '\n';
+                });
+
+            });
+            socket.on('rockgroup', function (data) {
+                var msg = data.nick + ': ' + data.message;
+                document.getElementById("Texthere").value = document.getElementById("Texthere").value + msg + '\n';
+            });
+            socket.emit('nick', "Testingpurpose"); //this needs to change to your nickname
+
+            document.getElementById("btnchat").addEventListener("click",function(){
+
+                socket.emit('rockgroup', {
+                    message: document.getElementById("chat-input").value
+                });
+            },false);
+
+        }, false);
+
 
 block groups
     header
@@ -75,20 +85,18 @@ block groups
                                     .panel-heading Group Chat
                                     ul#chat-output.list-group
                                 .panel-body
-                                    // <form id="chat">
                                     .input-group
                                         input#chat-input.form-control(type='text')
                                         span.input-group-btn
                                             button#btnchat.btn.sendm.btn-default(type='submit') Send Message
-                                        div
-                                            textarea#Texthere(style='height:300px;width:500px;')
-                                    // </form>
+                                    textarea#Texthere
 
                             .col-md-3
                                 .panel.panel-default
                                     .panel-heading Online Users
                                     ul#user-list.list-group
                                     .panel-body(style='height:670px;')
+                                        textarea#clientshere
     footer.footer
         .container-fluid
             .row

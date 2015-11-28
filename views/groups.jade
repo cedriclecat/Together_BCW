@@ -2,6 +2,27 @@
    Created by Brecht on 8/11/2015.
 
 extends layout
+block customme
+    script(src='/socket.io/socket.io.js')
+        script(src='../docready.js')
+
+script(type='text/javascript').
+    var socket = io.connect("http://localhost:3000");
+    socket.on('rockgroup', function (data) {
+        var msg = data.nick + ': ' + data.message;
+        document.getElementById("Texthere").value(document.getElementById("Texthere").value()+msg+'\\n');
+
+    });
+    docReady(function () {
+        document.getElementById("btnchat").onclick = function(){
+            socket.emit('nick', "Testingpurpose"); //this needs to change to your nickname
+            console.log('hh');
+            socket.emit('rockgroup', {
+                message: $('#chat-input').val()
+            });
+        };
+
+    });
 
 block groups
     header
@@ -53,12 +74,16 @@ block groups
                                 .panel.panel-default
                                     .panel-heading Group Chat
                                     ul#chat-output.list-group
-                                    .panel-body
-                                        form#chat
-                                            .input-group
-                                                input#chat-input.form-control(type='text')
-                                                span.input-group-btn
-                                                    button.btn.sendm.btn-default(type='submit') Send Message
+                                .panel-body
+                                    // <form id="chat">
+                                    .input-group
+                                        input#chat-input.form-control(type='text')
+                                        span.input-group-btn
+                                            button#btnchat.btn.sendm.btn-default(type='submit') Send Message
+                                        div
+                                            textarea#Texthere(style='height:300px;width:500px;')
+                                    // </form>
+
                             .col-md-3
                                 .panel.panel-default
                                     .panel-heading Online Users

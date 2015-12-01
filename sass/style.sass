@@ -359,6 +359,9 @@ td
         text-transform: uppercase
         margin-bottom: 5px
         text-align: center
+        @media screen and (max-width: 1366px)
+          font-size: 10px
+          text-align: right
         >span
           border-radius: $rad 0 0 $rad
           display: inline-block
@@ -366,11 +369,14 @@ td
           position: absolute
           width: 45px
           left: 0
+
           >i
             font-size: 22px
             font-weight: normal
             position: relative
             top: 3px
+
+
       .facebook
           background-color: $facebook-color
           &:hover

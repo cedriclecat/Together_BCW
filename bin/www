@@ -6,20 +6,32 @@
 
 var app = require('../app');
 var debug = require('debug')('Together:server');
+var config = require('../config/config.js');
+
+//--------- 1. server en sockets variabelen (orig: app) --------
 var http = require('http');
-
-/**
- * Get port from environment and store in Express.
- */
-
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-
 var server = http.createServer(app);
+var io = require('socket.io')(server);
+
+//--------- 2. initialisaties ----------------------------------
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', process.env.PORT || 3000);
+
+//2.1. (self) executing database connectie
+var DBService = require("../data/connectDBService.js");
+var connectDB =  DBService (config.OTHER,require('mongoose') ); //connected mongoose
+
+//--------- 3. listeners voor server en io --------------------
+server.listen(app.get('port'), function () {
+  console.log('Express server listening on port ' + app.get('port'));
+});
+
+var sockets = io.listen(server);
+console.log('io luistert naar de express server op port ' + app.get('port'));
+
+//--------- 4. Socket handling initialiseren (server en DB dependency) ----
+require('../sockets.js')(io);
+
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -47,11 +59,6 @@ function normalizePort(val) {
 
   return false;
 }
-
-var io = require('socket.io')(server);
-var sockets = io.listen(server);
-console.log('io luistert naar de express server op port ' + app.get('port'));
-require('../sockets.js')(io); // all sockets are in here
 
 /**
  * Event listener for HTTP server "error" event.
@@ -92,3 +99,5 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+module.exports = app;

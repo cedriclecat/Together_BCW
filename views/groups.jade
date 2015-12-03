@@ -2,7 +2,7 @@
    Created by Brecht on 8/11/2015.
 
 extends layout
-block customme
+block socket
     script(src='/socket.io/socket.io.js')
     script.
         document.addEventListener("DOMContentLoaded", function () {
@@ -76,13 +76,13 @@ block groups
                             .col-md-3
                                 .panel.panel-default
                                     .panel-heading Group Chat
-                                    ul#chat-output.list-group
-                                .panel-body
-                                    .input-group
-                                        input#chat-input.form-control(type='text')
-                                        span.input-group-btn
-                                            button#btnchat.btn.sendm.btn-default(type='submit') Send Message
-                                    textarea#Texthere
+                                    .panel-body
+                                        textarea#Texthere
+                                        .input-group
+                                            input#chat-input.form-control(type='text')
+                                            span.input-group-btn
+                                                button#btnchat.btn.sendm.btn-default(type='submit') Send Message
+
                             .col-md-3
                                 .panel.panel-default
                                     .panel-heading Online Users

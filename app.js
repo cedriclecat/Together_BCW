@@ -21,8 +21,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride());
 app.use(cookieParser());
 
-// configuration ===============================================================
-require('./config/connectDB.js');
 
 // Passport ===============================================================
 app.use(session({

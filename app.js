@@ -24,6 +24,11 @@ app.use(cookieParser());
 // configuration ===============================================================
 require('./config/connectDB.js');
 
+
+var test = require("./TestDatabase.js");
+var test1 = test.getEvents();
+
+
 // Passport ===============================================================
 app.use(session({
   secret: 'together',

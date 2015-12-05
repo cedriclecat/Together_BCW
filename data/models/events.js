@@ -6,18 +6,18 @@
 var mongoose = require('mongoose');
 
 var eventSchema = new mongoose.Schema({
-    id                : String,
-    name              : String,
-    description       : String,
-    date              : String,
-    time              : String,
-    maxMember         : Number,
-    membersId         : Number,
-    location          : String,
-    price             : Number,
-    pictureUrl        : String,
-    tags              : String
+   // id                :{type:String,unique:true},
+    name              :{type:String, required:true},
+    description       :{type:String},
+    date              :{type:String, required:true},
+    time              :{type:String},
+    maxMember         : {type:Number},
+    membersId         : {type:Array},
+    location          : {type:String},
+    price             : {type:Number},
+    pictureUrl        : {type:String},
+    tags              : {type:String}
 
 });
 
-module.exports = mongoose.model('Event', eventSchema);
+module.exports =  mongoose.model('events',eventSchema,"events");

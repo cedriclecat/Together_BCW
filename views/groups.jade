@@ -2,38 +2,31 @@
    Created by Brecht on 8/11/2015.
 
 extends layout
-block customme
+block socket
     script(src='/socket.io/socket.io.js')
     script.
-        document.addEventListener("DOMContentLoaded", function(){
+        document.addEventListener("DOMContentLoaded", function () {
             console.log('hh');
             var socket = io.connect();
-
             socket.on('nick', function (data) {
                 console.log("h");
-                document.getElementById("clientshere").value ="";
-                        data.forEach(function (entry) {
+                document.getElementById("clientshere").value = "";
+                data.forEach(function (entry) {
                     console.log(entry);
                     document.getElementById("clientshere").value = document.getElementById("clientshere").value + entry + '\n';
                 });
-
             });
             socket.on('rockgroup', function (data) {
                 var msg = data.nick + ': ' + data.message;
                 document.getElementById("Texthere").value = document.getElementById("Texthere").value + msg + '\n';
             });
             socket.emit('nick', "Testingpurpose"); //this needs to change to your nickname
-
-            document.getElementById("btnchat").addEventListener("click",function(){
-
+            document.getElementById("btnchat").addEventListener("click", function () {
                 socket.emit('rockgroup', {
                     message: document.getElementById("chat-input").value
                 });
-            },false);
-
+            }, false);
         }, false);
-
-
 block groups
     header
         nav.navbar.navbar-default.navbar-fixed-top
@@ -83,13 +76,12 @@ block groups
                             .col-md-3
                                 .panel.panel-default
                                     .panel-heading Group Chat
-                                    ul#chat-output.list-group
-                                .panel-body
-                                    .input-group
-                                        input#chat-input.form-control(type='text')
-                                        span.input-group-btn
-                                            button#btnchat.btn.sendm.btn-default(type='submit') Send Message
-                                    textarea#Texthere
+                                    .panel-body
+                                        textarea#Texthere
+                                        .input-group
+                                            input#chat-input.form-control(type='text')
+                                            span.input-group-btn
+                                                button#btnchat.btn.sendm.btn-default(type='submit') Send Message
 
                             .col-md-3
                                 .panel.panel-default
@@ -103,4 +95,3 @@ block groups
                 p.text-muted © Copyright BCW Company. All Rights Reserved.
                 a(href='#')
                     span.glyphicon.glyphicon-menu-up.bck-to-top(aria-hidden='true')
-

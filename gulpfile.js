@@ -52,21 +52,25 @@ gulp.task("sass",function(){
         .pipe(cssMinifier({ keepBreaks: false }))
         .pipe(concat('style.min.css'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest("./dist/css/"))
+        .pipe(gulp.dest("./public/dist/css/"))
 });
 
 
 gulp.task("copy-externals", function(){
 
     gulp.src("./bower_components/modernizr/modernizr.js")
-        .pipe(gulp.dest("./dist/js"));
+        .pipe(gulp.dest("./public/dist/js"));
     gulp.src("./bower_components/jquery/dist/jquery.min.js")
-        .pipe(gulp.dest("./dist/js/"));
+        .pipe(gulp.dest("./public/dist/js/"));
     gulp.src("./bower_components/angular/angular.min.js")
-        .pipe(gulp.dest("./dist/js/"));
+        .pipe(gulp.dest("./public/dist/js/"));
     gulp.src("./bower_components/bootstrap/dist/css/bootstrap.min.css")
-        .pipe(gulp.dest("./dist/css/"));
+        .pipe(gulp.dest("./public/dist/css/"));
     gulp.src("./bower_components/bootstrap/dist/js/bootstrap.min.js")
-        .pipe(gulp.dest("./dist/js/"));
+        .pipe(gulp.dest("./public/dist/js/"));
+    gulp.src("./bower_components/bootstrap-fileinput/js/fileinput.min.js")
+        .pipe(gulp.dest("./public/dist/js/"));
+    gulp.src("./bower_components/bootstrap-fileinput/css/fileinput.min.css")
+        .pipe(gulp.dest("./public/dist/css/"));
 
 });

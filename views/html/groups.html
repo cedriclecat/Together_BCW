@@ -7,30 +7,6 @@
     <link type="text/css" rel="stylesheet" href="../dist/css/bootstrap.min.css">
     <link type='text/css' rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link type="text/css" rel="stylesheet" href="../dist/css/style.min.css">
-
-<script src="/socket.io/socket.io.js"/>
-
-    <script>
-
-
-            var socket = io.connect("http://localhost:3000");
-            socket.on('rockgroup', function (data) {
-                var msg = data.nick + ': ' + data.message;
-                document.getElementById("Texthere").value(document.getElementById("Texthere").value() + msg + '\\n');
-
-            });
-            docReady(function () {
-                document.getElementById("btnchat").onclick = function () {
-                    socket.emit('nick', "Testingpurpose"); //this needs to change to your nickname
-                    console.log('hh');
-                    socket.emit('rockgroup', {
-                        message: $('#chat-input').val()
-                    });
-                };
-
-            });
-
-    </script>
 </head>
 <body>
     <header>
@@ -77,7 +53,9 @@
                             <div class="col-md-6">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Group Events</div>
-
+                                    <div>
+                                    <textarea id="Texthere" style="height:300px;width:500px;"></textarea>
+                                    </div>
                                     <div class="list-group" id="online-users"></div>
                                 </div>
                             </div>
@@ -86,15 +64,12 @@
                                     <div class="panel-heading">Group Chat</div>
                                     <ul class="list-group" id="chat-output"></ul>
                                     <div class="panel-body">
-                                        <div>
+                                       <!-- <form id="chat">-->
                                             <div class="input-group">
                                                 <input type="text" class="form-control" id="chat-input" />
                                                 <span class="input-group-btn"><button id="btnchat" type="submit" class="btn sendm btn-default">Send Message</button></span>
-                                                </div>
-                                            <div>
-                                                <textarea id="Texthere"></textarea>
                                             </div>
-                                        </div>
+                                     <!--   </form>-->
                                     </div>
                                 </div>
                             </div>

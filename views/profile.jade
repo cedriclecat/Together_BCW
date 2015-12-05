@@ -17,7 +17,7 @@ block profile
                 #bs-example-navbar-collapse-1.collapse.navbar-collapse
                     ul.nav.navbar-nav.navbar-right
                         li
-                            a(href='landing') Home
+                            a(href='/') Home
                         li
                             a(href='events') Events
                         li
@@ -204,181 +204,86 @@ block profile
                                         label.col-sm-3.control-label First Name
                                         .col-sm-9.controls
                                             .row
-                                                .col-xs-9
+                                                .col-xs-12
                                                     input(placeholder=' first name', type='text')
-                                                // col-xs-9
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-globe.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
                                     .form-group
                                         label.col-sm-3.control-label Last Name
                                         .col-sm-9.controls
                                             .row
-                                                .col-xs-9
+                                                .col-xs-12
                                                     input(placeholder=' last name', type='text')
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-lock.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
                                     .form-group
                                         label.col-sm-3.control-label Email
                                         .col-sm-9.controls
                                             .row
-                                                .col-xs-9
+                                                .col-xs-12
                                                     input(placeholder=' email', type='text')
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-lock.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
                                     .form-group
                                         label.col-sm-3.control-label Gender
                                         .col-sm-9.controls
                                             .row
-                                                .col-xs-9
-                                                    span.vd_radio.radio-info
+                                                .col-xs-12
+                                                    span.radio-off
                                                         input#optionsRadios3(checked='', value='option3', name='optionsRadios2', type='radio')
                                                         label(for='optionsRadios3')  Male
-                                                    span.vd_radio.radio-danger
+
+                                                    span.radio-off1
                                                         input#optionsRadios4(value='option4', name='optionsRadios2', type='radio')
                                                         label(for='optionsRadios4')  Female
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-lock.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
                                     .form-group
                                         label.col-md-3.control-label Birthday
                                         .col-sm-9.controls
                                             .row
-                                                .col-xs-9
-                                                    input#datepicker-normal.hasDatepicker(type='datetime-local')
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle.btn-birthday(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-user.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
+                                                .col-xs-12
+                                                    .bfh-datepicker(data-format='y-m-d', data-date='2000-01-01')
+                                                        .input-prepend.bfh-datepicker-toggle(data-toggle='bfh-datepicker')
+                                                            span.add-on
+                                                                i.icon-calendar
+                                                            input.input-medium(type='text', readonly='')
+                                                        .bfh-datepicker-calendar
+                                                            table.calendar.table.table-bordered
+                                                                thead
+                                                                    tr.months-header
+                                                                        th.month(colspan='4')
+                                                                            a.previous(href='#')
+                                                                                i.icon-chevron-left
+                                                                            span
+                                                                            a.next(href='#')
+                                                                                i.icon-chevron-right
+                                                                        th.year(colspan='3')
+                                                                            a.previous(href='#')
+                                                                                i.icon-chevron-left
+                                                                            span
+                                                                            a.next(href='#')
+                                                                                i.icon-chevron-right
+                                                                    tr.days-header
+                                                                tbody
+
                                     .form-group
                                         label.col-sm-3.control-label Marital Status
                                         .col-sm-9.controls
                                             .row
-                                                .col-xs-9
+                                                .col-xs-12
                                                     select
                                                         option Single
                                                         option Married
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-user.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
                                     .form-group
                                         label.col-sm-3.control-label Work
                                         .col-sm-9.controls
                                             .row
-                                                .col-xs-9
+                                                .col-xs-12
                                                     select
                                                         option CEO
                                                         option Director
                                                         option Manager
                                                         option Staff
                                                         option Office Boy
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-user.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
+
                                     .form-group
                                         label.col-sm-3.control-label Country
                                         .col-sm-9.controls
                                             .row
-                                                .col-xs-9
+                                                .col-xs-12
                                                     select
                                                         option(value='AF') Afghanistan
                                                         option(value='AX') Åland Islands
@@ -629,28 +534,11 @@ block profile
                                                         option(value='YE') Yemen
                                                         option(value='ZM') Zambia
                                                         option(value='ZW') Zimbabwe
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-user.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
                                     .form-group
                                         label.col-sm-3.control-label City
                                         .col-sm-9.controls
                                             .row
-                                                .col-xs-9
+                                                .col-xs-12
                                                     select#select-1
                                                         option Amsterdam
                                                         option Atlanta
@@ -672,70 +560,19 @@ block profile
                                                         option Mexico City
                                                         option Miami
                                                         option Minneapolis
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-user.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
                                     .form-group
                                         label.col-sm-3.control-label Interests
                                         .col-sm-9.controls
                                             .row
-                                                .col-xs-9
+                                                .col-xs-12
                                                     input(type='text')
-                                                // col-xs-9
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-globe.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
                                     .form-group
                                         label.col-sm-3.control-label About
                                         .col-sm-9.controls
                                             .row.mgbt-xs-0
-                                                .col-xs-9
+                                                .col-xs-12
                                                     textarea(rows='3')
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-user.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
+
                                     h3.mgbt-xs-15
                                         i.fa.fa-cog
                                         | Contact Setting
@@ -743,98 +580,36 @@ block profile
                                         label.col-sm-3.control-label Mobile Phone
                                         .col-sm-9.controls
                                             .row.mgbt-xs-0
-                                                .col-xs-9
+                                                .col-xs-12
                                                     input(placeholder='mobile phone', type='text')
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-globe.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
+
                                     .form-group
                                         label.col-sm-3.control-label Facebook
                                         .col-sm-9.controls
                                             .row.mgbt-xs-0
-                                                .col-xs-9
+                                                .col-xs-12
                                                     input(placeholder=' facebook', type='text')
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-globe.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
+
                                     .form-group
                                         label.col-sm-3.control-label Twitter
                                         .col-sm-9.controls
                                             .row.mgbt-xs-0
-                                                .col-xs-9
+                                                .col-xs-12
                                                     input(placeholder=' twitter', type='text')
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-globe.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
+
                                     .form-group
                                         label.col-sm-3.control-label Google+
                                         .col-sm-9.controls
                                             .row.mgbt-xs-0
-                                                .col-xs-9
+                                                .col-xs-12
                                                     input(placeholder=' google+', type='text')
-                                                .col-xs-2
-                                                    .btn-action
-                                                        button.btn.btn-icon.dropdown-toggle(data-toggle='dropdown', type='button')
-                                                            i.fa.fa-globe.fa-fw
-                                                        ul.dropdown-menu.pull-right
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-globe.fa-fw
-                                                                    |  Public
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-user.fa-fw
-                                                                    |  Friends
-                                                            li
-                                                                a(href='#')
-                                                                    i.fa.fa-lock.fa-fw
-                                                                    |  Only Me
-                                button.btn.btn-save.col-md-offset-3
-                                    span.menu-icon
-                                        i.fa.fa-fw.fa-check
-                                    |  Save
+                                    .form-group
+                                        label.col-md-3.control-label
+                                        .col-md-9.controls
+                                            button.btn.btn-save
+                                                span.menu-icon
+                                                    i.fa.fa-fw.fa-check
+                                                |  Save
                         #events-tab.event-tab.tab-pane(role='tabpanel')
                             h3
                                 i.fa.fa-bolt.mgr-10.profile-icon
@@ -917,7 +692,7 @@ block profile
                                         .col-md-9.controls
                                             .row
                                                 .col-md-12
-                                                    input#exampleInputFile1.btn.btn-default(type='file')
+                                                    input#input-1.file(type='file')
                                     .form-group
                                         label.col-md-3.control-label Title
                                         .col-md-9.controls
@@ -929,13 +704,60 @@ block profile
                                         .col-md-9.controls
                                             .row
                                                 .col-md-12
-                                                    input(placeholder=' add datepicker here', type='date')
+                                                    .bfh-datepicker(data-format='y-m-d', data-date='2000-01-01')
+                                                        .input-prepend.bfh-datepicker-toggle(data-toggle='bfh-datepicker')
+                                                            span.add-on
+                                                                i.icon-calendar
+                                                            input.input-medium(type='text', readonly='')
+                                                        .bfh-datepicker-calendar
+                                                            table.calendar.table.table-bordered
+                                                                thead
+                                                                    tr.months-header
+                                                                        th.month(colspan='4')
+                                                                            a.previous(href='#')
+                                                                                i.icon-chevron-left
+                                                                            span
+                                                                            a.next(href='#')
+                                                                                i.icon-chevron-right
+                                                                        th.year(colspan='3')
+                                                                            a.previous(href='#')
+                                                                                i.icon-chevron-left
+                                                                            span
+                                                                            a.next(href='#')
+                                                                                i.icon-chevron-right
+                                                                    tr.days-header
+                                                                tbody
                                     .form-group
                                         label.col-md-3.control-label Time
                                         .col-md-9.controls
                                             .row
                                                 .col-md-12
-                                                    input(placeholder=' add timepicker here', type='time')
+                                                    .bfh-timepicker(data-time='08:00')
+                                                        .input-prepend.bfh-timepicker-toggle(data-toggle='bfh-timepicker')
+                                                            span.add-on
+                                                                i.icon-time
+                                                            input.input-medium(type='text', readonly='')
+                                                        .bfh-timepicker-popover
+                                                            table.table
+                                                                tbody
+                                                                    tr
+                                                                        td.hour
+                                                                            a.next(href='#')
+                                                                                i.icon-chevron-up
+                                                                            br
+                                                                            input.input-mini(type='text', readonly='')
+                                                                            br
+                                                                            a.previous(href='#')
+                                                                                i.icon-chevron-down
+                                                                        td.separator :
+                                                                        td.minute
+                                                                            a.next(href='#')
+                                                                                i.icon-chevron-up
+                                                                            br
+                                                                            input.input-mini(type='text', readonly='')
+                                                                            br
+                                                                            a.previous(href='#')
+                                                                                i.icon-chevron-down
                                     .form-group
                                         label.col-md-3.control-label Cost
                                         .col-md-9.controls
@@ -956,10 +778,13 @@ block profile
                                             .row
                                                 .col-md-12
                                                     textarea(rows='3')
-                                button.btn.btn-save.col-md-offset-3
-                                    span.menu-icon
-                                        i.fa.fa-fw.fa-check
-                                    |  Save
+                                    .form-group
+                                        label.col-md-3.control-label
+                                        .col-md-9.controls
+                                            button.btn.btn-save
+                                                span.menu-icon
+                                                    i.fa.fa-fw.fa-check
+                                                |  Save
                         #contacts-tab.contact-tab.tab-pane(role='tabpanel')
                             h3
                                 i.fa.fa-users.mgr-10.profile-icon
@@ -1052,9 +877,6 @@ block profile
                                                 .menu-action
                                                     .menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Leave Group')
                                                         i.fa.fa-times
-                                        // list-wrapper
-                                    // content-list
-                                // col-xs-12 col-sm-6
                                 .col-xs-12.col-sm-6
                                     .content-list.content-large.menu-action-right
                                         ul.list-wrapper.pd-lr-15
@@ -1082,7 +904,7 @@ block profile
                                         .col-md-9.controls
                                             .row
                                                 .col-md-12
-                                                    input.btn.btn-default(type='file')
+                                                    input#input-1.file(type='file')
                                     .form-group
                                         label.col-md-3.control-label Title
                                         .col-md-9.controls
@@ -1095,15 +917,24 @@ block profile
                                             .row
                                                 .col-md-12
                                                     textarea(rows='3')
-                                button.btn.btn-save.col-md-offset-3
-                                    span.menu-icon
-                                        i.fa.fa-fw.fa-check
-                                    |  Save
+                                     .form-group
+                                        label.col-md-3.control-label
+                                        .col-md-9.controls
+                                            button.btn.btn-save
+                                                span.menu-icon
+                                                    i.fa.fa-fw.fa-check
+                                                |  Save
     footer.footer
         .container-fluid
             .row
                 p.text-muted © Copyright BCW Company. All Rights Reserved.
                 a(href='#')
                     i.bck-to-top.fa.fa-chevron-up
+
+
     script(type='text/javascript', src='../dist/js/jquery.min.js')
     script(type='text/javascript', src='../dist/js/bootstrap.min.js')
+    script(type='text/javascript', src='../dist/js/bootstrap-formhelpers.min.js')
+    script(type='text/javascript', src='../dist/js/fileinput.min.js')
+
+

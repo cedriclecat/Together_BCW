@@ -12,4 +12,4 @@ var groupSchema = new mongoose.Schema({
     picture           :{ type:String }
 });
 
-module.exports = mongoose.model('groups',groupSchema,'groups');
+module.exports = mongoose.model('groups',groupSchema,"groups");

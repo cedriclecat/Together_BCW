@@ -3,8 +3,8 @@ var router = express.Router();
 var passport = require('passport');
 
 var Events = require('../data/models/events');
-var Groups = require('../data/models/groups');
-var Users = require('../data/models/user');
+//var Groups = require('../data/models/groups');
+//var Users = require('../data/models/user');
 
 //module.exports = function (app,passport) {
 
@@ -26,7 +26,8 @@ var Users = require('../data/models/user');
     // GROUPS PAGE =========================
     // =====================================
     router.get('/groups', function(req, res) {
-        res.render('groups');
+        var username = req.user.local.email;
+        res.render('groups', {data:req.user.local.email});
     });
 
     // =====================================
@@ -34,7 +35,8 @@ var Users = require('../data/models/user');
     // =====================================
 
     router.get('/profile',isLoggedIn, function (req , res) {
-        res.render('profile', { title: 'Tweets' });
+
+        res.render('profile',{data:req.user.local.email, test:"h"});
     });
 
     // =====================================
@@ -78,8 +80,12 @@ var Users = require('../data/models/user');
     // LOGOUT ==============================
     // =====================================
     router.get('/logout', function (req, res) {
+        var name = req.user.username;
+
+        console.log("LOGGIN OUT " + req.user);
         req.logout();
         res.redirect('/');
+        req.session.notice = "You have successfully been logged out " + name + "!";
     });
 
     // =====================================

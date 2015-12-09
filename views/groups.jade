@@ -69,25 +69,20 @@ block groups
             .col-md-2
                 .user-groups
                     h2 My Groups
-                    a(href='#')
-                        p Rock Group
-                    a(href='#')
-                        p Concert Group
-                    a(href='#')
-                        p Travel Group
-                    a(href='#')
-                        p Rap Group
-                    a(href='#')
-                        p Alternate Group
+                    for result in mijndat
+                        a(href='#{path}?groupss=#{result.id}')
+                            p #{result.name}
             .col-md-10
                 .group-contacts
-                    h2 { NAME GROUP }
+                    h2 #{titel}
                     .container-fluid
                         .row
                             .col-md-6
-                                .panel.panel-default
-                                    .panel-heading Group Events
-                                    #online-users.list-group
+                                for res in mev
+                                    .panel.panel-default(id=res.id)
+                                        .panel-heading #{res.name}
+                                        #online-users.list-group
+                                            p #{res.description}
                             .col-md-3
                                 .panel.panel-default
                                     .panel-heading Group Chat

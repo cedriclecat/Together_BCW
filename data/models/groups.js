@@ -9,7 +9,8 @@ var groupSchema = new mongoose.Schema({
     memberids         :{ type:String, required:true },
     interests         :{ type:String, required:true },
     eventids          :{ type:String },
-    picture           :{ type:String }
+    picture           :{ type:String },
+    chat              :{ type:String }
 });
 
 module.exports = mongoose.model('groups',groupSchema,"groups");

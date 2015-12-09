@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 
 var Events = require('../data/models/events');
-//var Groups = require('../data/models/groups');
+var Groups = require('../data/models/groups');
 //var Users = require('../data/models/user');
 
 //module.exports = function (app,passport) {
@@ -26,8 +26,63 @@ var Events = require('../data/models/events');
     // GROUPS PAGE =========================
     // =====================================
     router.get('/groups', function(req, res) {
+        var grps = req.query.groupss;
+        var evt = req.query.event;
+        var mijnevents = "";
+        var grtitel ="";
         var username = req.user.local.email;
-        res.render('groups', {data:req.user.local.email});
+        var mijndata = "";
+        if(grps!=undefined){
+            //console.log(grps);
+            Groups.find(function (err, events) {
+                if (err) {
+                    res.send(err);
+                }
+                mijndata = events;
+
+
+
+            Groups.findOne({'id':grps},function (err, eventss) {
+                if (err) {
+                    res.send(err);
+                }
+                grtitel = eventss.name;
+                var id = eventss.eventids;
+                //console.log(eventss);
+               // console.log(id);
+                var arr = id.toString().split(",");
+//console.log(arr);
+                var mx = [];
+                arr.forEach(function(x){
+mx.push(parseInt(x));
+
+                });
+                Events.find({'id': {$in: mx}},function(err,even){
+                    mijnevents=even;
+                    console.log(even);
+                    res.render('groups', {data:username, mijndat:mijndata, path:req.path, mev:mijnevents, titel:grtitel});
+
+                });
+            });
+            });
+
+            //Code hier dat de events laad en toont
+        }else if(evt!=undefined){
+            console.log(evt);
+            //Code hier dat de chat maakt
+        }else {
+            Groups.find(function (err, events) {
+                if (err) {
+                    res.send(err);
+                }
+                mijndata = events;
+                res.render('groups', {data: username, mijndat: mijndata, path: req.path, mev: mijnevents});
+
+            });
+        }
+
+
+
     });
 
     // =====================================

@@ -12,6 +12,7 @@ module.exports = (function (configURL, database) {
 
         //collection (=table) names met data als test (obj heeft geen lengte)
         var collections = database.connection.collections;
+        console.log(database);
         msg += "\n \t with known collections/models: ";
         for (var property in collections) {
             msg += collections[property].name + ", ";

@@ -46,6 +46,21 @@ block groups
                             a(href='events') Events
                         li.active
                             a(href='groups') Groups
+                        li.dropdown
+                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                img.profile-image.img-circle(src='../img/profile/default-profile-pic.png')
+                                |  #{data}
+                                span.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href='profile')
+                                        i.fa.fa-user
+                                        | My Profile
+                                li.divider(role='separator')
+                                li
+                                    a(href='#')
+                                        i.fa.fa-cog
+                                        | Logout
                         li
                             a(href='/login')
                                 button.btn.btn-default.navbar-btn(type='button') Sign in
@@ -95,3 +110,6 @@ block groups
                 p.text-muted © Copyright BCW Company. All Rights Reserved.
                 a(href='#')
                     span.glyphicon.glyphicon-menu-up.bck-to-top(aria-hidden='true')
+
+    script(type='text/javascript', src='../dist/js/jquery.min.js')
+    script(type='text/javascript', src='../dist/js/bootstrap.min.js')

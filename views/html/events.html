@@ -163,7 +163,9 @@
                             </div>
                         </div>
                     </div>-->
-                   <div ng-controller="EventController as events" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ><div ng-repeat="something in events.eventStuff">
+
+
+                   <div ng-controller="eventController as events" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ><div ng-repeat="something in events.eventStuff">
                        <div class="panel panel-default" >
                            <div class="panel-heading" role="tab" id="heading{{something.id}}">
                                <h4 class="panel-title">
@@ -209,13 +211,14 @@
     <script type="text/javascript" src="../../public/dist/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="../../public/dist/js/angular.min.js"></script>
-    <script type="text/javascript" src="../../public/dist/js/angular-route.min.js"></script>
+
 
 
     <script type="text/javascript" src="../../public/src/app.js"></script>
-    <script type="text/javascript" src="../../public/src/build/app.bundle.js"></script>
+
     <script type="text/javascript" src="../../public/src/services/eventsService.js"></script>
-    <script type="text/javascript" src="../../public/src/controllers/EventController.js"></script>
+  <!--  <script type="text/javascript" src="../../public/src/controllers/EventController.js"></script>-->
+
 
 
 </body>

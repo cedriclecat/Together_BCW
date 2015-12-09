@@ -6,6 +6,7 @@ var Events = require('../data/models/events');
 var Groups = require('../data/models/groups');
 //var Users = require('../data/models/user');
 
+
 //module.exports = function (app,passport) {
 
     // =====================================
@@ -80,9 +81,6 @@ mx.push(parseInt(x));
 
             });
         }
-
-
-
     });
 
     // =====================================
@@ -90,8 +88,7 @@ mx.push(parseInt(x));
     // =====================================
 
     router.get('/profile',isLoggedIn, function (req , res) {
-
-        res.render('profile',{data:req.user.local.email, test:"h"});
+        res.render('profile', {data:req.user.local.email, title: 'Tweets' });
     });
 
     // =====================================
@@ -135,12 +132,8 @@ mx.push(parseInt(x));
     // LOGOUT ==============================
     // =====================================
     router.get('/logout', function (req, res) {
-        var name = req.user.username;
-
-        console.log("LOGGIN OUT " + req.user);
         req.logout();
         res.redirect('/');
-        req.session.notice = "You have successfully been logged out " + name + "!";
     });
 
     // =====================================

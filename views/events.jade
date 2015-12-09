@@ -133,8 +133,8 @@ block events
                       </div>
                       </div>
                       </div>
-                    #accordion.panel-group(ng-controller='EventController', role='tablist', aria-multiselectable='true')
-                        div(ng-repeat='something in data')
+                    #accordion.panel-group(ng-controller='EventsController', role='tablist', aria-multiselectable='true')
+                        div(ng-repeat='something in events')
                             .panel.panel-default
                                 .panel-heading(role='tab', id='headingOne')
                                     h4.panel-title
@@ -173,6 +173,13 @@ block events
     script(type='text/javascript', src='/dist/js/jquery.min.js')
     script(type='text/javascript', src='/dist/js/bootstrap.min.js')
     script(type='text/javascript', src='/dist/js/angular.min.js')
+
     script(type='text/javascript', src='/src/app.js')
+
+    //test script
+
+    script(type='text/javascript', src='/src/models/Event.js')
+    script(type='text/javascript', src='/src/controllers/testController/EventController.js')
+
     //script(type='text/javascript', src='/src/services/eventsService.js')
     //script(type='text/javascript', src='/src/controllers/EventController.js')

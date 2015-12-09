@@ -4,6 +4,7 @@
 
 (function(){
     "use strict";
+/*
 
     var EventController = function($scope,eventService){
         $scope.eventStuff = {};
@@ -15,6 +16,8 @@
             });
     };
 
-    angular.module('event').controller("EventController",['eventService','$scope',EventController]);
+    angular.module('event').controller("EventController",['eventService','$scope',EventController]);*/
+
+
 })();
 

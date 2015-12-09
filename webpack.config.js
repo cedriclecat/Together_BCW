@@ -5,7 +5,7 @@
 
 //mogelijkse fouten
 module.exports = {
-    entry:'./app',
+    entry:'./webpack_entrys',
     output:{
         path: __dirname + '/public/src/build',
         filename:'app.bundle.js'

@@ -23,8 +23,7 @@ app.use(cookieParser());
 
 
 
-var test = require("./TestDatabase.js");
-var test1 = test.getEvents();
+
 
 
 // Passport ===============================================================

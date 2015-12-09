@@ -3,6 +3,8 @@ var router = express.Router();
 var passport = require('passport');
 
 var Events = require('../data/models/events');
+var Groups = require('../data/models/groups');
+var Users = require('../data/models/user');
 
 //module.exports = function (app,passport) {
 

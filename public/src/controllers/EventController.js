@@ -2,6 +2,7 @@
  * Created by CedricLecat on 18/11/15.
  */
 
+
 (function(){
     "use strict"
 
@@ -40,13 +41,13 @@
             }
             console.log(events);
             $scope.events = events;
-         }
+        }
 
 
     }
     var event = angular.module("event",[]);
 
-   angular.module("event").controller('EventsController',['$scope',EventsController]);
+    angular.module("event").controller('EventsController',['$scope',EventsController]);
 
 })();
 

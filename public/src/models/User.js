@@ -18,6 +18,6 @@ function Event(id,local,facebook,twitter,google,displayName,firstName,lastName,c
     this.interests = interests;
     this.picture = picture;
     this.phone = phone;
-    this.contacts = contacts
+    this.contacts = contacts;
 
-};
+}

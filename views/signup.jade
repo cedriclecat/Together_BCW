@@ -7,7 +7,7 @@ block signup
     .cover
         .cover-img
             img(src='../img/login/bg-1.jpg', alt='uitzicht op landschap')
-    .container-fluid
+    .container-fluid(ng-app='together', ng-controller='ValController')
         .row-fluid
             .form-body
                 .col-md-4.col-md-offset-4
@@ -30,20 +30,27 @@ block signup
                                 | Google+
                     .section-divider
                         span OR
-                    form(action='/signup',method='post',name='registerForm', ,data-toggle="validator", role='form')
-                        .form-group
-                            label(for="inputEmail") Email
-                            input.form-control.input-lg(type='email',id='inputEmail', name='email',data-error="Bruh, that email address is invalid",placeholder='example@domain.com',required)
-                            .help-block.with-errors
-                        .form-group
-                            label.control-label(for="inputPassword")  Password
-                            input.form-control.input-lg(type='password',id='inputPassword',name='password',data-minlength="6",placeholder='Enter your password',required)
-                            .help-block.with-errors
-                        .form-group
-                            label.control-label(for="inputPasswordConfirm") Re-enter Password
-                            input.form-control.input-lg(type='password',id='inputPasswordConfirm', name='confirmPassword',data-match="#inputPassword" data-match-error="Whoops, Passwords don't match",placeholder='Enter your password',required)
-                            .help-block.with-errors
-                        button.btn.btn-block.btn-lg(type='submit') Sign me Up
+                    form(action='/signup',method='post',name='signupForm',ng-submit='submitForm()', novalidate='')
+                        .form-group(ng-class="{ 'has-error' : signupForm.email.$invalid && (signupForm.email.$touched || submitted)}")
+                            label.control-label Email address
+                            input.form-control.input-lg(type='email', name='email', ng-model='user.email', placeholder='Your Email Address', ng-required='true')
+                            .help-block(ng-messages='signupForm.email.$error', ng-if='signupForm.email.$touched')
+                                p(ng-message='required') Your email is required.
+                                p(ng-message='email') Enter a valid email
+                        .form-group(ng-class="{ 'has-error' : signupForm.password.$invalid && (signupForm.password.$touched || submitted)}")
+                            label.control-label Password
+                            input.form-control.input-lg(type='Password', name='password', ng-model='user.password', placeholder='Your Password', ng-required='true', ng-minlength='6')
+                            .help-block(ng-messages='signupForm.password.$error', ng-if='signupForm.password.$touched')
+                                p(ng-message='required') Your password is required.
+                                p(ng-message='minlength') Your password length must be min 6 characters
+                        .form-group(ng-class="{ 'has-error' : signupForm.confirmPassword.$invalid && (signupForm.confirmPassword.$touched || submitted)}")
+                            label.control-label Confirm Password
+                            input.form-control.input-lg(type='Password', name='confirmPassword', ng-model='user.confirmPassword', placeholder='Confirm Your Password', ng-compare='password', ng-required='true')
+                            .help-block(ng-messages='signupForm.confirmPassword.$error', ng-if='signupForm.confirmPassword.$touched')
+                                p(ng-message='required') Your confirm password is required.
+                            p.help-block(ng-show='signupForm.confirmPassword.$error.compare  && (signupForm.confirmPassword.$touched || submitted)') Confirm password doesnot match.
+
+                        button.btn.btn-success.btn-block.btn-lg(type='submit', ng-disabled='signupForm.$invalid') Sign me Up
                         .m-t-20
                             a.add-info(href='login') Back to Sign In
                                 i.fa.fa-angle-right

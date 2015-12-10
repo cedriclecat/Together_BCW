@@ -1,7 +1,7 @@
 /**
  * Created by CedricLecat on 18/11/15.
  */
-function Event(id,name,memberids,interests,eventids,picture,chat)
+function Group(id,name,memberids,interests,eventids,picture,chat)
 {
     this.id = id;
     this.name = name;
@@ -9,5 +9,5 @@ function Event(id,name,memberids,interests,eventids,picture,chat)
     this.interests = interests;
     this.eventids = eventids;
     this.picture = picture;
-    this.chat = chat;
-};
+    this.chat=chat;
+}

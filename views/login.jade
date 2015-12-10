@@ -7,7 +7,7 @@ block login
     .cover
         .cover-img
             img(src='/img/login/bg-1.jpg', alt='uitzicht op landschap')
-    .container-fluid
+    .container-fluid(ng-app='together', ng-controller='ValController')
         .row-fluid
             .form-body
                 .col-md-4.col-md-offset-4
@@ -30,19 +30,24 @@ block login
                                 | Google+
                     .section-divider
                         span OR
-                    form.loginForm(action='/login', method='post')
-                        .form-group
-                            label Email address
-                            input.form-control.input-lg(type='email', placeholder=' Email Address ',name='email', required='')
-                        .form-group
-                            label Password
-                            input.form-control.input-lg(type='password', placeholder=' Password',name='password' required='')
+                    form.loginForm(name='loginForm',action='/login', method='post',ng-submit='submitForm()', novalidate='')
+                        .form-group(ng-class="{ 'has-error' : loginForm.email.$invalid && (loginForm.email.$touched || submitted)}")
+                            label.control-label Email address
+                            input.form-control.input-lg(type='email', name='email', ng-model='user.email', placeholder='Your Email Address', ng-required='true')
+                            .help-block(ng-messages='loginForm.email.$error', ng-if='loginForm.email.$touched')
+                                p(ng-message='required') Your email is required.
+                                p(ng-message='email') Enter a valid email
+                        .form-group(ng-class="{ 'has-error' : loginForm.password.$invalid && (loginForm.password.$touched || submitted)}")
+                            label.control-label Password
+                            input.form-control.input-lg(type='Password', name='password', ng-model='user.password', placeholder='Your Password', ng-required='true')
+                            .help-block(ng-messages='loginForm.password.$error', ng-if='loginForm.password.$touched')
+                                p(ng-message='required') Your password is required.
                         .checkbox
                             label
                                 input(type='checkbox')
                                 |  Remember Me
                         .login-buttons
-                            button.btn.btn-success.btn-block.btn-lg(type='submit') Sign me in
+                            button.btn.btn-success.btn-block.btn-lg(type='submit', ng-disabled='loginForm.$invalid') Sign me In
                         .m-t-20
                             a.add-info(href='/signup') Sign Up
                                 i.fa.fa-angle-right

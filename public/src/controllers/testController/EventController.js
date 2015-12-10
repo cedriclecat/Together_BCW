@@ -42,7 +42,7 @@
 
 
     }
-    var event = angular.module("event",[]);
+
 
    angular.module("event").controller('EventsController',['$scope',EventsController]);
 

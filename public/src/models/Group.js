@@ -1,13 +1,12 @@
 /**
  * Created by CedricLecat on 18/11/15.
  */
-function Event(id,name,memberids,interests,eventids,picture,chat)
+function Group(id,name,memberids,internets,eventids,picture)
 {
     this.id = id;
     this.name = name;
     this.memberids = memberids;
-    this.interests = interests;
+    this.internets = internets;
     this.eventids = eventids;
     this.picture = picture;
-    this.chat = chat;
-};
+}

@@ -13,4 +13,4 @@ function Event(id,name,description,date,time,maxmember,membersid,location,price,
     this.price = price;
     this.picture = picture;
     this.tags = tags;
-};
+}

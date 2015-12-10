@@ -16,27 +16,27 @@ var gulp = require('gulp'),
     sass = require('gulp-sass');
 
 gulp.task("default",function(){
-    //var jsWatcher = gulp.watch('./scripts/**/*.js', ['js-build']);
-    //jsWatcher.on('change', function(event){
-    //    console.log("File: " + event.path + " was " + event.type);
-    //});
+    var jsWatcher = gulp.watch('./public/scripts/**/*.js', ['js-build']);
+    jsWatcher.on('change', function(event){
+        console.log("File: " + event.path + " was " + event.type);
+    });
     var sassWatcher = gulp.watch('./sass/**/*.sass', ['sass']);
     sassWatcher.on('change', function(event){
         console.log("File: " + event.path + " was " + event.type);
     });
 });
 
-//gulp.task("js-build", function(){
-//    gulp.src("./scripts/**/*.js")
-//        .pipe(jshint())
-//        .pipe(jshint.reporter(jsStylish))
-//        .pipe(sourcemaps.init())
-//        .pipe(concat("app.min.js"))
-//        .pipe(uglify())
-//        .pipe(sourcemaps.write())
-//        .pipe(gulp.dest('.//dist/js/'))
-//        .pipe(notify({message: 'js built'}));
-//});
+gulp.task("js-build", function(){
+    gulp.src("./public/src/**/*.js")
+        .pipe(jshint())
+        .pipe(jshint.reporter(jsStylish))
+        .pipe(sourcemaps.init())
+        .pipe(concat("together.min.js"))
+        .pipe(uglify())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./public/dist/js/'))
+        .pipe(notify({message: 'js built'}));
+});
 
 gulp.task("sass",function(){
     gulp.src("./sass/**/*.sass")
@@ -63,6 +63,8 @@ gulp.task("copy-externals", function(){
     gulp.src("./bower_components/jquery/dist/jquery.min.js")
         .pipe(gulp.dest("./public/dist/js/"));
     gulp.src("./bower_components/angular/angular.min.js")
+        .pipe(gulp.dest("./public/dist/js/"));
+    gulp.src("./bower_components/angular-messages/angular-messages.min.js")
         .pipe(gulp.dest("./public/dist/js/"));
     gulp.src("./bower_components/bootstrap/dist/css/bootstrap.min.css")
         .pipe(gulp.dest("./public/dist/css/"));

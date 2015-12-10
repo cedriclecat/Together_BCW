@@ -49,6 +49,10 @@ td
     background-color: $color-elements-hover
     color: $white
 
+.btn[DISABLED],.btn[DISABLED]:hover
+  background-color: $color-elements
+  color: $white
+
 // Header + Navbar
 // ==========================================================================
 .navbar-default
@@ -359,9 +363,19 @@ td
         text-transform: uppercase
         margin-bottom: 5px
         text-align: center
-        @media screen and (max-width: 1366px)
-          font-size: 10px
-          text-align: right
+        p
+          @media screen and (max-width: 1774px)
+            text-align: right
+          @media screen and (max-width: 1534px)
+            font-size: 12px
+          @media screen and (max-width: 1534px)
+            font-size: 10px
+          @media screen and (max-width: 1330px)
+            visibility: hidden
+          @media screen and (max-width: 992px)
+            visibility: visible
+            font-size: 16px
+            text-align: center
         >span
           border-radius: $rad 0 0 $rad
           display: inline-block
@@ -369,7 +383,6 @@ td
           position: absolute
           width: 45px
           left: 0
-
           >i
             font-size: 22px
             font-weight: normal

@@ -4,7 +4,7 @@ var passport = require('passport');
 
 var Events = require('../data/models/events');
 var Groups = require('../data/models/groups');
-//var Users = require('../data/models/user');
+var User = require('../data/models/user');
 
 
 //module.exports = function (app,passport) {
@@ -26,7 +26,8 @@ var Groups = require('../data/models/groups');
     // =====================================
     // GROUPS PAGE =========================
     // =====================================
-    router.get('/groups', function(req, res) {
+    router.get('/groups',isLoggedIn, function(req, res) {
+        console.log(req.user._id);
         var grps = req.query.groupss;
         var evt = req.query.event;
         var mijnevents = "";
@@ -84,11 +85,15 @@ mx.push(parseInt(x));
     });
 
     // =====================================
-    // Tweet + Geo ========================
+    // Profile =============================
     // =====================================
 
     router.get('/profile',isLoggedIn, function (req , res) {
-        res.render('profile', {data:req.user.local.email, title: 'Tweets' });
+        res.render('profile', {data:req.user.local.email, title: 'Profile' });
+    });
+
+    router.post('/profile',function(req,res){
+        console.log(req.user._id);
     });
 
     // =====================================
@@ -186,6 +191,32 @@ mx.push(parseInt(x));
         });
     });
 
+    router.get('/api/events/:id',function(req,res){
+        //console.log(req.params.id);
+        var eid = req.params.id;
+        console.log(eid);
+        //"id":1
+       Events.findOne({'id':parseInt(eid)},function(err, event){
+            if(err) res.send(err);
+           res.json(event);
+       })
+    });
+
+    router.get('/api/profile',function(req,res){
+        User.find(function(err, user){
+            if (err)
+                res.send(err);
+            res.json(user);
+        })
+    });
+
+    router.get('/api/groups',function(req,res){
+        Groups.find(function(err, group){
+            if (err)
+                res.send(err);
+            res.json(group);
+        })
+    });
 
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
@@ -195,7 +226,7 @@ mx.push(parseInt(x));
             return next();
 
         // if they aren't redirect them to the home page
-        res.redirect('/');
-    };
+        res.redirect('/login');
+    }
 
 module.exports = router;

@@ -1,0 +1,98 @@
+//
+   Created by Brecht on 12/12/2015.
+
+extends layout
+
+block help
+    header
+        nav.navbar.navbar-default.navbar-fixed-top
+            .container-fluid
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                .navbar-header
+                    a.navbar-brand(href='#') TogetheR
+                #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                    ul.nav.navbar-nav.navbar-right
+                        li
+                            a(href='/') Home
+                        li
+                            a(href='events') Events
+                        li
+                            a(href='groups') Groups
+                        li
+                            a(href='admin') Admin
+                        li.dropdown
+                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                img.profile-image.img-circle(src='../img/profile/default-profile-pic.png')
+                                |  Voornaam Familienaam
+                                span.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href='/profile')
+                                        span.glyphicon.glyphicon-user(aria-hidden='true')
+                                        |  My Profile
+                                li.active
+                                    a(href='/help')
+                                        i.fa.fa-commenting
+                                        | Help
+                                li.divider(role='separator')
+                                li
+                                    a(href='/logout')
+                                        span.glyphicon.glyphicon-log-out(aria-hidden='true')
+                                        |  Logout
+                        li
+                            a(href='login')
+                                button.btn.btn-default.navbar-btn(type='button') Sign in
+    .container-fluid
+        .row
+            .col-md-10.col-md-offset-1.help-section
+                .about-intro
+                    h2 Welcome to TogetheR
+                    i.fa.fa-users.fa-5x
+                    p.ai-content
+                            span
+                                |  TogetheR
+                            |  is a site where people can meet people with the same interests.
+                            |  With your help, we're working together to build a network of connections for you.
+
+                    p.helper-text
+                        | We're a little bit different from other sites. Here's how:
+                    .section-divider
+                .about-profile
+                    h3 Setup your profile, create events & groups
+                    
+
+                    .section-divider
+                .about-events
+                    h3 Look for events that fit your interests
+                    
+                    .section-divider
+                .about-groups
+                    h3 Look for groups, chat with people with same interests
+                    
+                    .section-divider
+                .about-newuser
+                    h3 Sign up to get started
+                    a(href='/signup')
+                        button.btn.btn-default.btn-lg(type='button') Sign Up
+                    p.su Signing up allows you to:
+                    p Create your own personalized profile
+                    p Create your own events & groups
+                    p Chat with people that have the same interests
+
+
+
+
+
+    footer.footer
+        .container-fluid
+            .row
+                p.text-muted © Copyright BCW Company. All Rights Reserved.
+                a(href='#')
+                    i.bck-to-top.fa.fa-chevron-up
+    script(type='text/javascript', src='/dist/js/jquery.min.js')
+    script(type='text/javascript', src='/dist/js/bootstrap.min.js')
+    

@@ -97,6 +97,22 @@ mx.push(parseInt(x));
     });
 
     // =====================================
+    // ADMIN ===============================
+    // =====================================
+
+    router.get('/admin',isLoggedIn, function (req , res) {
+        res.render('admin', { title: 'Admin' });
+    });
+
+    // =====================================
+    // HELP ================================
+    // =====================================
+
+    router.get('/help', function (req , res) {
+        res.render('help', { title: 'Help' });
+    });
+
+    // =====================================
     // LOGIN ===============================
     // =====================================
     // show the login form
@@ -207,6 +223,17 @@ mx.push(parseInt(x));
             if (err)
                 res.send(err);
             res.json(user);
+        })
+    });
+
+    router.get('/api/profile/:id',function(req,res){
+        //console.log(req.params.id);
+        var eid = req.params.id;
+        console.log(eid);
+        //"id":1
+        Events.findOne({'id':parseInt(eid)},function(err, event){
+            if(err) res.send(err);
+            res.json(event);
         })
     });
 

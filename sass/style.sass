@@ -142,26 +142,26 @@ td
   @extend .trending
 
 .promoted
-    background-color: $white
-    padding: 20px 20px 0 20px
-    margin: 15px 0
-    >h2
-      position: absolute
-      margin: -30px 0 0 0
-      padding: 20px 0
-    >img
-      margin-top: 40px
-    >.btn
-      margin-top: -90px
-      margin-left: 10px
-    .btn-responsive
-      @media screen and (max-width : 480px)
-        .btn-responsive
-          padding: 4px 4px
-          margin-top: -55px
-          margin-left: 5px
-          line-height: 1
-          +border-radius($rad)
+  background-color: $white
+  padding: 20px 20px 0 20px
+  margin: 15px 0
+  >h2
+    position: absolute
+    margin: -30px 0 0 0
+    padding: 20px 0
+  >img
+    margin-top: 40px
+  >.btn
+    margin-top: -90px
+    margin-left: 10px
+  .btn-responsive
+    @media screen and (max-width : 480px)
+      .btn-responsive
+        padding: 4px 4px
+        margin-top: -55px
+        margin-left: 5px
+        line-height: 1
+        +border-radius($rad)
 
 // Events Page
 // ==========================================================================
@@ -230,6 +230,7 @@ td
     .disapprove
       color: $color-elements
       background-color: $white
+      margin-left: 10px
       &:hover
         +df-bcolor-tcolor
 
@@ -333,15 +334,15 @@ td
         top: -14px
         font-size: 17px
     .form-group
-        label
-          font-size: 14px
-        input.form-control
-          background: rgba(0,0,0,.1)
-          border: none
-          color: $white
-          font-size: 12px
-          +border-radius($rad)
-          margin-bottom: -5px
+      label
+        font-size: 14px
+      input.form-control
+        background: rgba(0,0,0,.1)
+        border: none
+        color: $white
+        font-size: 12px
+        +border-radius($rad)
+        margin-bottom: -5px
     .checkbox
       margin-top: -10px
       label
@@ -391,23 +392,23 @@ td
 
 
       .facebook
-          background-color: $facebook-color
-          &:hover
-            background-color: $facebook-color-hover
-          >span
-            background-color: $facebook-color-span
+        background-color: $facebook-color
+        &:hover
+          background-color: $facebook-color-hover
+        >span
+          background-color: $facebook-color-span
       .twitter
-          background-color: $twitter-color
-          &:hover
-            background-color: $twitter-color-hover
-          >span
-            background-color: $twitter-color-span
+        background-color: $twitter-color
+        &:hover
+          background-color: $twitter-color-hover
+        >span
+          background-color: $twitter-color-span
       .googleplus
-          background-color: $googleplus-color
-          &:hover
-            background-color: $googleplus-color-hover
-          >span
-            background-color: $googleplus-color-span
+        background-color: $googleplus-color
+        &:hover
+          background-color: $googleplus-color-hover
+        >span
+          background-color: $googleplus-color-span
 
 // Forgot Password
 // ==========================================================================
@@ -758,6 +759,170 @@ input[type="file"], input[type="text"], input[type="password"], input[type="date
                 background: #F85D2C none repeat scroll 0 0
                 color: #fff
                 padding: 5px
+
+// Admin Page
+// ==========================================================================
+
+// Help Page
+// ==========================================================================
+.help-section
+  h3
+    text-align: center
+  .section-divider
+    height: 10px
+    border-top: 1px solid rgba(0,0,0,0.1)
+    text-align: center
+    margin-top: 20px
+    margin-bottom: 10px
+.about-intro
+  text-align: center
+  i
+    margin-top: 20px
+    margin-bottom: 20px
+  .ai-content
+    span
+      font-weight: bold
+  .helper-text
+    font-style: italic
+
+.about-newuser
+  text-align: center
+  margin-bottom: 20px
+  .btn-lg
+    margin-top: 10px
+    margin-bottom: 20px
+  .su
+    font-size: 16px
+    font-weight: bold
+    text-transform: uppercase
+    text-decoration: underline
+
+///*animation element*/
+//.animation-element
+//  opacity: 0
+//  position: relative
+//
+//
+///*animation element sliding left*/
+//.animation-element.slide-left
+//      opacity: 0
+//      -moz-transition: all 500ms linear
+//      -webkit-transition: all 500ms linear
+//      -o-transition: all 500ms linear
+//      transition: all 500ms linear
+//      -moz-transform: translate3d(-100px, 0px, 0px)
+//      -webkit-transform: translate3d(-100px, 0px, 0px)
+//      -o-transform: translate(-100px, 0px)
+//      -ms-transform: translate(-100px, 0px)
+//      transform: translate3d(-100px, 0px, 0px)
+//
+//
+//.animation-element.slide-left.in-view
+//      opacity: 1
+//      -moz-transform: translate3d(0, 0, 0)
+//      -webkit-transform: translate3d(0, 0, 0)
+//      -o-transform: translate(0, 0)
+//      -ms-transform: translate(0, 0)
+//      transform: translate3d(0, 0, 0)
+//
+//
+///*animation slide left styled for testimonials*/
+//.animation-element.slide-left.testimonial
+//      float: left
+//      width: 47%
+//      margin: 0 1.5% 3% 1.5%
+//      background: #F5F5F5
+//      padding: 15px
+//      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2)
+//      border: solid 1px #EAEAEA
+//
+//
+//.animation-element.slide-left.testimonial:hover,
+//.animation-element.slide-left.testimonial:active
+//      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25)
+//
+//
+//.animation-element.slide-left.testimonial:nth-of-type(odd)
+//      width: 48.5%
+//      margin: 0 1.5% 3.0% 0
+//
+//
+//.animation-element.slide-left.testimonial:nth-of-type(even)
+//      width: 48.5%
+//      margin: 0 0 3.0% 1.5%
+//
+//
+//.animation-element.slide-left.testimonial .header
+//      float: left
+//      width: 100%
+//      margin-bottom: 10px
+//
+//
+//.animation-element.slide-left.testimonial .left
+//      float: left
+//      margin-right: 15px
+//
+//
+//.animation-element.slide-left.testimonial .right
+//      float: left
+//
+//
+//.animation-element.slide-left.testimonial
+//  img
+//      width: 65px
+//      height: 65px
+//      border-radius: 50%
+//      box-shadow: 0 1px 3px rgba(51, 51, 51, 0.5)
+//
+//
+//.animation-element.slide-left.testimonial
+//  h3
+//      margin: 0 0 5px 0
+//
+//
+//.animation-element.slide-left.testimonial
+//  h4
+//      margin: 0 0 5px 0
+//
+//
+//.animation-element.slide-left.testimonial .content
+//      float: left
+//      width: 100%
+//      margin-bottom: 10px
+//
+//.animation-element.slide-left.testimonial
+//  i
+//      color: #aaa
+//      margin-right: 5px
+//
+///*media queries for small devices*/
+//
+///*testimonials*/
+//.animation-element.slide-left.testimonial,
+//.animation-element.slide-left.testimonial:nth-of-type(odd),
+//.animation-element.slide-left.testimonial:nth-of-type(even)
+//    @media screen and (max-width: 678px)
+//      width: 100%
+//      margin: 0 0 20px 0
+//
+//
+//.animation-element.slide-left.testimonial .right,
+//.animation-element.slide-left.testimonial .left,
+//.animation-element.slide-left.testimonial .content,
+//.animation-element.slide-left.testimonial .rating
+//  @media screen and (max-width: 678px)
+//      text-align: center
+//      float: none
+//
+//
+//.animation-element.slide-left.testimonial img
+//  @media screen and (max-width: 678px)
+//      width: 85px
+//      height: 85px
+//      margin-bottom: 5px
+
+
+
 
 // Footer
 // ==========================================================================

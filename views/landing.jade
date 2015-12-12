@@ -19,9 +19,11 @@ block landing
                         li.active
                             a(href='/') Home
                         li
-                            a(href='events') Events
+                            a(href='/events') Events
                         li
-                            a(href='groups') Groups
+                            a(href='/groups') Groups
+                        li
+                            a(href='/admin') Admin
                         li.dropdown
                             a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                                 img.profile-image.img-circle(src='../img/profile/default-profile-pic.png')
@@ -32,9 +34,13 @@ block landing
                                     a(href='/profile')
                                         span.glyphicon.glyphicon-user(aria-hidden='true')
                                         |  My Profile
+                                li
+                                    a(href='/help')
+                                        i.fa.fa-commenting
+                                        | Help
                                 li.divider(role='separator')
                                 li
-                                    a(href='#')
+                                    a(href='/logout')
                                         span.glyphicon.glyphicon-log-out(aria-hidden='true')
                                         |  Logout
                         li

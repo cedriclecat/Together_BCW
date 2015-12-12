@@ -28,10 +28,14 @@ block profile
                                 |  Voornaam Familienaam
                                 span.caret
                             ul.dropdown-menu
-                                li
+                                li.active
                                     a(href='profile')
                                         i.fa.fa-user
                                         | My Profile
+                                li
+                                    a(href='/help')
+                                        i.fa.fa-commenting
+                                        | Help
                                 li.divider(role='separator')
                                 li
                                     a(href='#')
@@ -133,6 +137,7 @@ block profile
                                 | Groups
                                 span.menu-active
                                     i.fa.fa-caret-up
+
                     .tab-content
                         #profile-tab.profile-tab.tab-pane.active(role='tabpanel')
                             h3
@@ -141,60 +146,60 @@ block profile
                             .row
                                 .col-sm-6
                                     .row
-                                        label.col-xs-5.control-label First Name:
-                                        .col-xs-7.controls John
+                                        label.col-xs-5.control-label Firstname:
+                                        .col-xs-7.controls {{ setting.firstname }}
                                 .col-sm-6
                                     .row
-                                        label.col-xs-5.control-label Last Name:
-                                        .col-xs-7.controls Doe
+                                        label.col-xs-5.control-label Lastname:
+                                        .col-xs-7.controls {{ setting.lastname }}
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Email:
-                                        .col-xs-7.controls mariah@Vendroid.com
+                                        .col-xs-7.controls {{ setting.email }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Work:
-                                        .col-xs-7.controls CEO
+                                        .col-xs-7.controls {{ setting.work }}
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Maritial status:
-                                        .col-xs-7.controls Single
+                                        .col-xs-7.controls {{ setting.marital }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Gender:
-                                        .col-xs-7.controls Male
+                                        .col-xs-7.controls {{ setting.gender }}
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label City:
-                                        .col-xs-7.controls Los Angeles
+                                        .col-xs-7.controls {{ setting.city }}
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Country:
-                                        .col-xs-7.controls United States
+                                        .col-xs-7.controls {{ setting.country }}
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Birthday:
-                                        .col-xs-7.controls Jan 22, 1984
+                                        .col-xs-7.controls {{ setting.birthday }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Interests:
-                                        .col-xs-7.controls Basketball, Web, Design, etc.
+                                        .col-xs-7.controls {{ setting.interests }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Phone:
-                                        .col-xs-7.controls +1-234-5678
+                                        .col-xs-7.controls {{ setting.phone }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Facebook:
-                                        .col-xs-7.controls facebook.com/johndoe
+                                        .col-xs-7.controls {{ setting.facebook }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Twitter:
-                                        .col-xs-7.controls twitter.com/johndoe
+                                        .col-xs-7.controls {{ setting.twitter }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Google+:
-                                        .col-xs-7.controls plus.google.com/johndoe
+                                        .col-xs-7.controls {{ setting.google }}
                             .row.edit-profile
                                 .col-md-12
                                     h3
@@ -238,11 +243,11 @@ block profile
                                                 .row
                                                     .col-xs-12
                                                         span.radio-off
-                                                            input#optionsRadios3(checked='', value='option3', name='optionsRadios2', type='radio')
+                                                            input#optionsRadios3(checked='',value='Male', name='optionsRadios2', type='radio', ng-model='setting.gender')
                                                             label(for='optionsRadios3')  Male
 
                                                         span.radio-off1
-                                                            input#optionsRadios4(value='option4', name='optionsRadios2', type='radio')
+                                                            input#optionsRadios4(value='Female', name='optionsRadios2', type='radio', ng-model='setting.gender')
                                                             label(for='optionsRadios4')  Female
 
                                         .form-group
@@ -254,7 +259,7 @@ block profile
                                                             .input-prepend.bfh-datepicker-toggle(data-toggle='bfh-datepicker')
                                                                 span.add-on
                                                                     i.icon-calendar
-                                                                input.input-medium(type='text', readonly='')
+                                                                input.input-medium(type='text', readonly='',ng-model='setting.birthday')
                                                             .bfh-datepicker-calendar
                                                                 table.calendar.table.table-bordered
                                                                     thead
@@ -279,7 +284,7 @@ block profile
                                             .col-sm-10.controls
                                                 .row
                                                     .col-xs-12
-                                                        select.form-control(name='marital', ng-required='true')
+                                                        select.form-control(name='marital', ng-required='true', ng-model='setting.marital')
                                                             option Single
                                                             option Married
 
@@ -291,7 +296,7 @@ block profile
                                             .col-sm-10.controls
                                                 .row
                                                     .col-xs-12
-                                                        select.form-control(name='work', ng-required='true')
+                                                        select.form-control(name='work', ng-required='true', ng-model='setting.work')
                                                             option CEO
                                                             option Director
                                                             option Manager
@@ -305,7 +310,7 @@ block profile
                                             .col-sm-10.controls
                                                 .row
                                                     .col-xs-12
-                                                        select.form-control(name='country', ng-required='true')
+                                                        select.form-control(name='country', ng-required='true',ng-model='setting.country')
                                                             option(value='AF') Afghanistan
                                                             option(value='AX') Åland Islands
                                                             option(value='AL') Albania
@@ -562,7 +567,7 @@ block profile
                                             .col-sm-10.controls
                                                 .row
                                                     .col-xs-12
-                                                        select.form-control(name='city', ng-required='true')
+                                                        select.form-control(name='city', ng-required='true',ng-model='setting.city')
                                                             option Amsterdam
                                                             option Atlanta
                                                             option Baltimore
@@ -615,32 +620,32 @@ block profile
                                             .col-sm-10.controls
                                                 .row.mgbt-xs-0
                                                     .col-xs-12
-                                                        input(placeholder='mobile phone', type='text')
+                                                        input(placeholder='mobile phone', type='text', ng-model='setting.phone')
 
                                         .form-group
                                             label.col-sm-2.control-label Facebook
                                             .col-sm-10.controls
                                                 .row.mgbt-xs-0
                                                     .col-xs-12
-                                                        input(placeholder=' facebook', type='text')
+                                                        input(placeholder=' facebook', type='text', ng-model='setting.facebook')
 
                                         .form-group
                                             label.col-sm-2.control-label Twitter
                                             .col-sm-10.controls
                                                 .row.mgbt-xs-0
                                                     .col-xs-12
-                                                        input(placeholder=' twitter', type='text')
+                                                        input(placeholder=' twitter', type='text', ng-model='setting.twitter')
 
                                         .form-group
                                             label.col-sm-2.control-label Google+
                                             .col-sm-10.controls
                                                 .row.mgbt-xs-0
                                                     .col-xs-12
-                                                        input(placeholder=' google+', type='text')
+                                                        input(placeholder=' google+', type='text', ng-model='setting.google')
                                         .form-group
                                             label.col-md-2.control-label
                                             .col-md-10.controls
-                                                button.btn.btn-save(type='submit', ng-disabled='settingsForm.$invalid')
+                                                button.btn.btn-save#submit(type='submit', ng-disabled='settingsForm.$invalid')
                                                     span.menu-icon
                                                         i.fa.fa-fw.fa-check
                                                     |  Save

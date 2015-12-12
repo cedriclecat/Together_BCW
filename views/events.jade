@@ -23,6 +23,27 @@ block events
                         li
                             a(href='groups') Groups
                         li
+                            a(href='admin') Admin
+                        li.dropdown
+                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                img.profile-image.img-circle(src='../img/profile/default-profile-pic.png')
+                                |  Voornaam Familienaam
+                                span.caret
+                            ul.dropdown-menu
+                                li
+                                    a(href='/profile')
+                                        span.glyphicon.glyphicon-user(aria-hidden='true')
+                                        |  My Profile
+                                li
+                                    a(href='/help')
+                                        i.fa.fa-commenting
+                                        | Help
+                                li.divider(role='separator')
+                                li
+                                    a(href='/logout')
+                                        span.glyphicon.glyphicon-log-out(aria-hidden='true')
+                                        |  Logout
+                        li
                             a(href='login')
                                 button.btn.btn-default.navbar-btn(type='button') Sign in
     .container-fluid(ng-app='event')
@@ -48,37 +69,37 @@ block events
                                 p Travel
                 .events
                     h3 Events
-                        #accordion1.panel-group(ng-controller='EventsController', role='tablist', aria-multiselectable='true')
-                            div(ng-repeat='something in events')
-                                .panel.panel-default
-                                    #headingOne.panel-heading(role='tab')
-                                        h4.panel-title.accordion-toggle
-                                            a.collapsed(role='button', data-toggle='collapse', data-parent='#accordion1', href='#collapse{{something.id}}', aria-expanded='false', aria-controls='collapse{{something.id}}')
-                                                img(ng-src="{{something.picture}}")
-                                                |  {{' ' +  something.name}}
-                                    .panel-collapse.collapse(id='collapse{{something.id}}', role='tabpanel', aria-labelledby='heading{{something.id}}')
-                                        .panel-body
-                                            iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2501.703217746505!2d4.139664715962859!3d51.169260643190526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c38ebd60f3c64f%3A0xd95f2b6450890892!2sDe+Casino!5e0!3m2!1snl!2sbe!4v1446294324853', width='400', height='300', frameborder='0', style='border:0', allowfullscreen='')
-                                            p.info Praktische Informatie
-                                            p
-                                                i.fa.fa-calendar
-                                                | {{ ' ' +  something.date}}
-                                            p
-                                                i.fa.fa-clock-o
-                                                | {{ ' ' +  something.time}}
-                                            p
-                                                i.fa.fa-eur
-                                                | {{ ' ' +  something.price}}
-                                            p
-                                                i.fa.fa-map-marker
-                                                | {{ ' ' +  something.location}}
-                                            p {{something.description}}
-                                            button.btn.btn-info.btn-responsive.approve
-                                                i.fa.fa-check.fa-lg
-                                                |  Ik ga hier naar toe
-                                            button.btn.btn-info.btn-responsive.active.disapprove
-                                                i.fa.fa-remove.fa-lg
-                                                |  Ik ga hier niet naar toe
+                    #accordion1.panel-group(ng-controller='EventsController', role='tablist', aria-multiselectable='true')
+                        div(ng-repeat='something in events')
+                            .panel.panel-default
+                                #headingOne.panel-heading(role='tab')
+                                    h4.panel-title.accordion-toggle
+                                        a.collapsed(role='button', data-toggle='collapse', data-parent='#accordion1', href='#collapse{{something.id}}', aria-expanded='false', aria-controls='collapse{{something.id}}')
+                                            img(ng-src="{{something.picture}}")
+                                            |  {{' ' +  something.name}}
+                                .panel-collapse.collapse(id='collapse{{something.id}}', role='tabpanel', aria-labelledby='heading{{something.id}}')
+                                    .panel-body
+                                        iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2501.703217746505!2d4.139664715962859!3d51.169260643190526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c38ebd60f3c64f%3A0xd95f2b6450890892!2sDe+Casino!5e0!3m2!1snl!2sbe!4v1446294324853', width='400', height='300', frameborder='0', style='border:0', allowfullscreen='')
+                                        p.info Praktische Informatie
+                                        p
+                                            i.fa.fa-calendar
+                                            | {{ ' ' +  something.date}}
+                                        p
+                                            i.fa.fa-clock-o
+                                            | {{ ' ' +  something.time}}
+                                        p
+                                            i.fa.fa-eur
+                                            | {{ ' ' +  something.price}}
+                                        p
+                                            i.fa.fa-map-marker
+                                            | {{ ' ' +  something.location}}
+                                        p {{something.description}}
+                                        button.btn.btn-info.btn-responsive.approve
+                                            i.fa.fa-check.fa-lg
+                                            |  Ik ga hier naar toe
+                                        button.btn.btn-info.btn-responsive.active.disapprove
+                                            i.fa.fa-remove.fa-lg
+                                            |  Ik ga hier niet naar toe
     footer.footer
         .container-fluid
             .row

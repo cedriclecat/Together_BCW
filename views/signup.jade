@@ -7,7 +7,7 @@ block signup
     .cover
         .cover-img
             img(src='../img/login/bg-1.jpg', alt='uitzicht op landschap')
-    .container-fluid(ng-app='together', ng-controller='ValController')
+    .container-fluid(ng-app='validation', ng-controller='ValController')
         .row-fluid
             .form-body
                 .col-md-4.col-md-offset-4
@@ -17,17 +17,17 @@ block signup
                             a.button.btn-social.facebook.span-left.btn-block(href='/auth/facebook')
                                 span
                                     i.fa.fa-facebook
-                                p Facebook
+                                | Facebook
                         .col-sm-4
                             a.button.btn-social.twitter.span-left.btn-block(href='/auth/twitter')
                                 span
                                     i.fa.fa-twitter
-                                p Twitter
+                                | Twitter
                         .col-sm-4
                             a.button.btn-social.googleplus.span-left.btn-block(href='/auth/google')
                                 span
                                     i.fa.fa-google-plus
-                                p Google+
+                                | Google+
                     .section-divider
                         span OR
                     form(action='/signup',method='post',name='signupForm',ng-submit='submitForm()', novalidate='')
@@ -54,7 +54,7 @@ block signup
                         .m-t-20
                             a.add-info(href='login') Back to Sign In
                                 i.fa.fa-angle-right
-                            a.add-info(href='landing') Home
+                            a.add-info(href='/') Home
 
                     p
                         | By clicking Sign Up, you agree to our Terms and that you have read our Cookie Use.

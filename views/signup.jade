@@ -17,17 +17,17 @@ block signup
                             a.button.btn-social.facebook.span-left.btn-block(href='/auth/facebook')
                                 span
                                     i.fa.fa-facebook
-                                | Facebook
+                                p Facebook
                         .col-sm-4
                             a.button.btn-social.twitter.span-left.btn-block(href='/auth/twitter')
                                 span
                                     i.fa.fa-twitter
-                                | Twitter
+                                p Twitter
                         .col-sm-4
                             a.button.btn-social.googleplus.span-left.btn-block(href='/auth/google')
                                 span
                                     i.fa.fa-google-plus
-                                | Google+
+                                p Google+
                     .section-divider
                         span OR
                     form(action='/signup',method='post',name='signupForm',ng-submit='submitForm()', novalidate='')

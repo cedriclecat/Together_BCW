@@ -2,7 +2,13 @@
    Created by Brecht on 8/11/2015.
 
 extends layout
+block socket
+    script.
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("myCarousel").style.height="525px";
+            document.getElementById("myCarousel").style.overflow="hidden";
 
+        }, false);
 block landing
     header
         nav.navbar.navbar-default.navbar-fixed-top
@@ -22,54 +28,52 @@ block landing
                             a(href='/events') Events
                         li
                             a(href='/groups') Groups
-                        li
-                            a(href='/admin') Admin
+                        if(admin!=0)
+                            li
+                                a(href='/admin') Admin
                         li.dropdown
-                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                                img.profile-image.img-circle(src='../img/profile/default-profile-pic.png')
-                                |  Voornaam Familienaam
-                                span.caret
-                            ul.dropdown-menu
-                                li
-                                    a(href='/profile')
-                                        span.glyphicon.glyphicon-user(aria-hidden='true')
-                                        |  My Profile
-                                li
-                                    a(href='/help')
-                                        i.fa.fa-commenting
-                                        | Help
-                                li.divider(role='separator')
-                                li
-                                    a(href='/logout')
-                                        span.glyphicon.glyphicon-log-out(aria-hidden='true')
-                                        |  Logout
+                             if (name != 'N')
+                                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                    img.profile-image.img-circle(src='../img/profile/default-profile-pic.png')
+                                    |  #{name}
+                                    span.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(href='/profile')
+                                            span.glyphicon.glyphicon-user(aria-hidden='true')
+                                            |  My Profile
+                                    li
+                                        a(href='/help')
+                                            i.fa.fa-commenting
+                                            | Help
+                                    li.divider(role='separator')
+                                    li
+                                        a(href='/logout')
+                                            span.glyphicon.glyphicon-log-out(aria-hidden='true')
+                                            |  Logout
                         li
                             a(href='/login')
                                 button.btn.btn-default.navbar-btn(type='button') Sign in
     .slider
         #myCarousel.carousel.slide(data-ride='carousel')
             .carousel-inner
-                .item.active
-                    img(data-src='img/slider/slider1.jpg', alt='first slide', src='../img/slider/slider1.jpg')
-                    .carousel-caption
-                        h2 Vestibulum elementum
-                        p Fringilla placerat.
-                        p
-                            a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Get started
-                .item
-                    img(data-src='img/slider/slider2.jpg', alt='second slide', src='../img/slider/slider2.jpg')
-                    .carousel-caption
-                        h2 Eleifend non neque
-                        p Mauris accumsan posuere mauris non facilisis.
-                        p
-                            a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Get started
-                .item
-                    img(data-src='img/slider/slider3.jpg', alt='third slide', src='../img/slider/slider3.jpg')
-                    .carousel-caption
-                        h2 Suspendisse pellentesque
-                        p Lorem ipsum dolor sit amet
-                        p
-                            a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Get Started
+                for result in data
+                    if(result.id==data[0].id)
+                        .item.active
+                            img(data-src='#{result.pictureUrl}', alt='first slide', src='#{result.pictureUrl}')
+                            .carousel-caption
+                                h2 #{result.name}
+                                p #{result.description}
+                                p
+                                    a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Werkt nog niet
+                    else
+                        .item
+                            img(data-src='#{result.pictureUrl}', alt='first slide', src='#{result.pictureUrl}')
+                            .carousel-caption
+                                h2 #{result.name}
+                                p #{result.description}
+                                p
+                                    a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Werkt nog niet
             // Controls
             a.left.carousel-control(href='#myCarousel', data-slide='prev')
                 span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
@@ -81,26 +85,26 @@ block landing
         .row
             .col-md-6
                 .trending
-                    img.img.img-responsive(src='../img/landing-page/pic1.jpg', alt='pic')
-                    h2 Trending
-                    p.smaller Praesent semper mod quis eget mi. Etiam eu ante risus.
+                    img.img.img-responsive(src='#{trend.pictureUrl}', alt='pic')
+                    h2 #{trend.name}
+                    p.smaller #{trend.tags}
                     p
-                        | Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+                        | #{trend.description}
                     button.btn.btn-info.btn-lg Learn more
             .col-md-6
                 .new
-                    img.img.img-responsive(src='../img/landing-page/pic2.jpg', alt='pic')
-                    h2 New
-                    p.smaller Praesent semper mod quis eget mi. Etiam eu ante risus.
+                    img.img.img-responsive(src='#{newe.pictureUrl}', alt='pic')
+                    h2 #{newe.name}
+                    p.smaller #{newe.tags}
                     p
-                        | Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+                        | #{newe.description}
                     button.btn.btn-info.btn-lg Learn more
         .row
             .col-md-12
                 .promoted
                     h2 Promoted
-                    img.img.img-responsive(src='../img/landing-page/pic3.jpg', alt='pic')
-                    button.btn.btn-info.btn-responsive.btn-lg Learn more
+                    img.img.img-responsive(src='#{prom.pictureUrl}', alt='pic')
+                    button.btn.btn-info.btn-responsive.btn-lg #{prom.name}
     footer.footer
         .container-fluid
             .row

@@ -4,7 +4,7 @@ var passport = require('passport');
 
 var Events = require('../data/models/events');
 var Groups = require('../data/models/groups');
-var User = require('../data/models/user');
+//var User = require('../data/models/user');
 
 
 //module.exports = function (app,passport) {
@@ -13,7 +13,76 @@ var User = require('../data/models/user');
     // HOME PAGE (with login links) ========
     // =====================================
     router.get('/', function(req, res) {
-        res.render('landing');
+console.log("h");
+        var user;
+        var isadmin;
+        var newest;
+        var trending;
+        var promoted
+        try{
+
+             user=req.user.local.email;
+            isadmin = req.user.local.ADMIN;
+        }catch(err){
+            user="N";
+            isadmin=0;
+        }
+
+        console.log("h");
+        Events.find({},function(err,even){
+            mijnevents=even;
+
+            mijnevents.forEach(function(e){
+
+if(e.promoted==1){
+    promoted=e;
+}
+                if(trending===undefined){
+                    trending = e;
+                }else{
+                    var mijndatum = e.date + " " + e.time;
+                    var mijndatum2 = trending.date + " " + trending.time;
+                    var dat1 = new Date(mijndatum);
+                    var dat2 = new Date(mijndatum2);
+                    var now = new Date();
+                    console.log(dat1);
+                    console.log(dat2);
+                    console.log(now);
+                    if(dat1<now){
+                        if(dat1>dat2){
+                            trending=e;
+                        }
+                    }
+
+
+                }
+
+
+
+                if(newest===undefined){
+                    newest= e;
+                }else {
+
+                    var datum1 = new Date(newest.TIMESTAMP);
+                    var datum2 = new Date(e.TIMESTAMP);
+                    if (datum1 < datum2) {
+                        newest = e;
+                    }
+                }
+
+
+
+            });
+
+console.log(newest);
+console.log(trending);
+            //console.log(even);
+           // console.log(req.user.local.email);
+            res.render('landing', {data:mijnevents, path:req.path, name:user, admin:isadmin, newe:newest, trend:trending,prom:promoted});
+
+        });
+
+
     });
 
     // =====================================
@@ -27,7 +96,7 @@ var User = require('../data/models/user');
     // GROUPS PAGE =========================
     // =====================================
     router.get('/groups',isLoggedIn, function(req, res) {
-        console.log(req.user._id);
+      //  console.log(req.user._id);
         var grps = req.query.groupss;
         var evt = req.query.event;
         var mijnevents = "";

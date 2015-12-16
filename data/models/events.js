@@ -16,7 +16,9 @@ var eventSchema = new mongoose.Schema({
     location          : {type:String},
     price             : {type:Number},
     pictureUrl        : {type:String},
-    tags              : {type:String}
+    tags              : {type:String},
+    promoted          : {type:Number},
+    TIMESTAMP         : {type:Date}
 
 });
 

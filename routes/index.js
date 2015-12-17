@@ -18,7 +18,7 @@ console.log("h");
         var isadmin;
         var newest;
         var trending;
-        var promoted
+        var promoted;
         try{
 
              user=req.user.local.email;
@@ -89,6 +89,7 @@ console.log(trending);
     // EVENTS PAGE =========================
     // =====================================
     router.get('/events', function(req, res) {
+        //img/slider/slider1.jpg
         res.render('events');
     });
 

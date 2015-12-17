@@ -3,7 +3,7 @@
  */
 
 angular.module('event',[]);
-angular.module('validation',['ngMessages']);
+var val = angular.module('validation',['ngMessages']);
 
 
 

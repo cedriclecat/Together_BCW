@@ -1,7 +1,7 @@
 /**
  * Created by Brecht on 8/12/2015.
  */
-myApp.directive('ngCompare', function () {
+val.module('validation').directive('ngCompare', function () {
     return {
         require: 'ngModel',
         link: function (scope, currentEl, attrs, ctrl) {

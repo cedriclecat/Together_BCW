@@ -13,7 +13,7 @@ block landing
                     span.icon-bar
                     span.icon-bar
                 .navbar-header
-                    a.navbar-brand(href='#') TogetheR
+                    h1.navbar-brand TogetheR
                 #bs-example-navbar-collapse-1.collapse.navbar-collapse
                     ul.nav.navbar-nav.navbar-right
                         li.active
@@ -51,23 +51,27 @@ block landing
     .slider
         #myCarousel.carousel.slide(data-ride='carousel')
             .carousel-inner
-                for result in data
-                    if(result.id==data[0].id)
-                        .item.active
-                            img(data-src='#{result.pictureSlider}', alt='first slide', src='#{result.pictureSlider}')
-                            .carousel-caption
-                                h2 #{result.name}
-                                p #{result.description}
-                                p
-                                    a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Werkt nog niet
-                    else
-                        .item
-                            img(data-src='#{result.pictureSlider}', alt='first slide', src='#{result.pictureSlider}')
-                            .carousel-caption
-                                h2 #{result.name}
-                                p #{result.description}
-                                p
-                                    a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Werkt nog niet
+                .item.active
+                    img(data-src='img/slider/slider1.jpg', alt='first slide', src='../img/slider/slider1.jpg')
+                    .carousel-caption
+                        h2 Vestibulum elementum
+                        p Fringilla placerat.
+                        p
+                            a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Get started
+                .item
+                    img(data-src='img/slider/slider2.jpg', alt='second slide', src='../img/slider/slider2.jpg')
+                    .carousel-caption
+                        h2 Eleifend non neque
+                        p Mauris accumsan posuere mauris non facilisis.
+                        p
+                            a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Get started
+                .item
+                    img(data-src='img/slider/slider3.jpg', alt='third slide', src='../img/slider/slider3.jpg')
+                    .carousel-caption
+                        h2 Suspendisse pellentesque
+                        p Lorem ipsum dolor sit amet
+                        p
+                            a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Get Started
             // Controls
             a.left.carousel-control(href='#myCarousel', data-slide='prev')
                 span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
@@ -99,12 +103,7 @@ block landing
                     h2 Promoted
                     img.img.img-responsive(src='#{prom.pictureUrl}', alt='pic')
                     button.btn.btn-info.btn-responsive.btn-lg #{prom.name}
-    footer.footer
-        .container-fluid
-            .row
-                p.text-muted © Copyright BCW Company. All Rights Reserved.
-                a(href='#')
-                    span.glyphicon.glyphicon-menu-up.bck-to-top(aria-hidden='true')
+
     script(type='text/javascript', src='/dist/js/jquery.min.js')
     script(type='text/javascript', src='/dist/js/bootstrap.min.js')
     script.

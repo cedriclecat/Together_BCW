@@ -22,10 +22,6 @@ app.use(methodOverride());
 app.use(cookieParser());
 
 
-
-
-
-
 // Passport ===============================================================
 app.use(session({
   secret: 'together',

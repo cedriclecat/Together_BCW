@@ -4,10 +4,10 @@ var passport = require('passport');
 
 var Events = require('../data/models/events');
 var Groups = require('../data/models/groups');
-//var User = require('../data/models/user');
+var Countries = require('../data/DataRepositorys/countryRepo');
+var Marital = require('../data/DataRepositorys/mStatusRepo');
+var Jobs = require('../data/DataRepositorys/jobsRepo');
 
-
-//module.exports = function (app,passport) {
 
     // =====================================
     // HOME PAGE (with login links) ========
@@ -234,9 +234,10 @@ mx.push(parseInt(x));
     router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
     // handle the callback after facebook has authenticated the user
-    router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),function(req,res){
-        res.redirect('profile');
-    });
+    router.get('/auth/facebook/callback', passport.authenticate('facebook', {
+        successRedirect : '/profile',
+        failureRedirect : '/login'
+    }));
 
     // =====================================
     // TWITTER ROUTES ======================
@@ -248,15 +249,13 @@ mx.push(parseInt(x));
     router.get('/auth/twitter/callback',
         passport.authenticate('twitter', {
             successRedirect : '/profile',
-            failureRedirect : '/'
+            failureRedirect : '/login'
         }));
 
     // =====================================
     // GOOGLE ROUTES =======================
     // =====================================
-    // send to google to do the authentication
-    // profile gets us their basic information including their name
-    // email gets their emails
+    // route for google authentication and login
     router.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
     //the callback after google has authenticated the user
@@ -266,7 +265,7 @@ mx.push(parseInt(x));
 
 
     // =====================================
-    // API EVENTS ROUTES ===================
+    // API ROUTES ==========================
     // =====================================
 
     router.get('/api/events', function (req, res) {
@@ -307,15 +306,22 @@ mx.push(parseInt(x));
         })
     });
 
-    router.get('/api/groups',function(req,res){
-        Groups.find(function(err, group){
-            if (err)
-                res.send(err);
-            res.json(group);
-        })
+
+    router.get('/api/countries',function(req,res){
+        Countries.getCountries(req,res)
+    });
+
+    router.get('/api/status',function(req,res){
+        Marital.getStatus(req,res)
+    });
+
+    router.get('/api/jobs',function(req,res){
+        Jobs.getJobs(req,res);
     });
 
     // route middleware to make sure a user is logged in
+    // =================================================
+
     function isLoggedIn(req, res, next) {
 
         // if user is authenticated in the session, carry on

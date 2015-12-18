@@ -47,7 +47,7 @@ block profile
     .title-section.clearfix
         .panel-header.no-subtitle
             h2 User Profile Page
-    .container-fluid(ng-app='validation', ng-controller='ValController')
+    .container-fluid(ng-app='profile', ng-controller='ProfileController')
         .row
             .col-md-3
                 .panel.widget.light-widget.panel-bd-top
@@ -147,59 +147,59 @@ block profile
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Firstname:
-                                        .col-xs-7.controls {{ setting.firstname }}
+                                        .col-xs-7.controls {{ firstname }}
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Lastname:
-                                        .col-xs-7.controls {{ setting.lastname }}
+                                        .col-xs-7.controls {{ lastname }}
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Email:
-                                        .col-xs-7.controls {{ setting.email }}
+                                        .col-xs-7.controls {{ email }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Work:
-                                        .col-xs-7.controls {{ setting.work }}
+                                        .col-xs-7.controls {{ work.name }}
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Maritial status:
-                                        .col-xs-7.controls {{ setting.marital }}
+                                        .col-xs-7.controls {{ marital.name }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Gender:
-                                        .col-xs-7.controls {{ setting.gender }}
+                                        .col-xs-7.controls {{ gender }}
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label City:
-                                        .col-xs-7.controls {{ setting.city }}
+                                        .col-xs-7.controls {{ city }}
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Country:
-                                        .col-xs-7.controls {{ setting.country }}
+                                        .col-xs-7.controls {{ country.name }}
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Birthday:
-                                        .col-xs-7.controls {{ setting.birthday }}
+                                        .col-xs-7.controls {{ parent.birthday }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Interests:
-                                        .col-xs-7.controls {{ setting.interests }}
+                                        .col-xs-7.controls {{ interests }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Phone:
-                                        .col-xs-7.controls {{ setting.phone }}
+                                        .col-xs-7.controls {{ phone }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Facebook:
-                                        .col-xs-7.controls {{ setting.facebook }}
+                                        .col-xs-7.controls {{ facebook }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Twitter:
-                                        .col-xs-7.controls {{ setting.twitter }}
+                                        .col-xs-7.controls {{ twitter }}
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Google+:
-                                        .col-xs-7.controls {{ setting.google }}
+                                        .col-xs-7.controls {{ google }}
                             .row.edit-profile
                                 .col-md-12
                                     h3
@@ -211,7 +211,7 @@ block profile
                                             .col-sm-10.controls
                                                 .row
                                                     .col-xs-12
-                                                        input.form-control(type='text', name='firstname', ng-model='setting.firstname', placeholder='Your Firstname', ng-minlength='2', ng-maxlength='15', ng-required='true')
+                                                        input.form-control(type='text', name='firstname', ng-model='firstname', placeholder='Your Firstname', ng-minlength='2', ng-maxlength='15', ng-required='true')
                                                         .help-block(ng-messages='settingsForm.firstname.$error', ng-if='settingsForm.firstname.$touched')
                                                             p(ng-message='minlength') Your firstname is too short.
                                                             p(ng-message='maxlength') Your firstname is too long.
@@ -222,7 +222,7 @@ block profile
                                             .col-sm-10.controls
                                                 .row
                                                     .col-xs-12
-                                                        input.form-control(type='text', name='lastname', ng-model='setting.lastname', placeholder='Your Lastname', ng-minlength='2', ng-maxlength='15', ng-required='true')
+                                                        input.form-control(type='text', name='lastname', ng-model='lastname', placeholder='Your Lastname', ng-minlength='2', ng-maxlength='15', ng-required='true')
                                                         .help-block(ng-messages='settingsForm.lastname.$error', ng-if='settingsForm.lastname.$touched')
                                                             p(ng-message='minlength') Your lastname is too short.
                                                             p(ng-message='maxlength') Your lastname is too long.
@@ -233,7 +233,7 @@ block profile
                                             .col-sm-10.controls
                                                 .row
                                                     .col-xs-12
-                                                        input.form-control(type='email', name='email', ng-model='setting.email', placeholder='Your Email Address', ng-required='true')
+                                                        input.form-control(type='email', name='email', ng-model='email', placeholder='Your Email Address', ng-required='true')
                                                         .help-block(ng-messages='settingsForm.email.$error', ng-if='settingsForm.email.$touched')
                                                             p(ng-message='required') Your email is required.
                                                             p(ng-message='email') Enter a valid email
@@ -243,12 +243,13 @@ block profile
                                                 .row
                                                     .col-xs-12
                                                         span.radio-off
-                                                            input#optionsRadios3(checked='',value='Male', name='optionsRadios2', type='radio', ng-model='setting.gender')
+                                                            input#optionsRadios3(checked='checked',value='Male', name='optionsRadios2', type='radio', ng-model='gender')
                                                             label(for='optionsRadios3')  Male
 
                                                         span.radio-off1
-                                                            input#optionsRadios4(value='Female', name='optionsRadios2', type='radio', ng-model='setting.gender')
+                                                            input#optionsRadios4(value='Female', name='optionsRadios2', type='radio', ng-model='gender')
                                                             label(for='optionsRadios4')  Female
+
 
                                         .form-group
                                             label.col-sm-2.control-label Birthday
@@ -259,7 +260,7 @@ block profile
                                                             .input-prepend.bfh-datepicker-toggle(data-toggle='bfh-datepicker')
                                                                 span.add-on
                                                                     i.icon-calendar
-                                                                input.input-medium(type='text', readonly='',ng-model='setting.birthday')
+                                                                input.input-medium(type='text',ng-model='parent.birthday')
                                                             .bfh-datepicker-calendar
                                                                 table.calendar.table.table-bordered
                                                                     thead
@@ -284,9 +285,8 @@ block profile
                                             .col-sm-10.controls
                                                 .row
                                                     .col-xs-12
-                                                        select.form-control(name='marital', ng-required='true', ng-model='setting.marital')
-                                                            option Single
-                                                            option Married
+                                                        select.form-control(name='marital', ng-required='true', ng-model='marital',ng-options='marital.name for marital in status')
+                                                            option(value='') Select your marital status
 
                                                         .help-block(ng-messages='settingsForm.marital.$error', ng-if='settingsForm.marital.$touched')
                                                             p(ng-message='required') Select a marital status
@@ -296,12 +296,8 @@ block profile
                                             .col-sm-10.controls
                                                 .row
                                                     .col-xs-12
-                                                        select.form-control(name='work', ng-required='true', ng-model='setting.work')
-                                                            option CEO
-                                                            option Director
-                                                            option Manager
-                                                            option Staff
-                                                            option Office Boy
+                                                        select.form-control(name='work', ng-required='true', ng-model='work',ng-options='work.name for work in jobs')
+                                                            option(value='') Select your work
                                                         .help-block(ng-messages='settingsForm.work.$error', ng-if='settingsForm.work.$touched')
                                                             p(ng-message='required') Select your job
 
@@ -310,256 +306,8 @@ block profile
                                             .col-sm-10.controls
                                                 .row
                                                     .col-xs-12
-                                                        select.form-control(name='country', ng-required='true',ng-model='setting.country')
-                                                            option(value='AF') Afghanistan
-                                                            option(value='AX') Åland Islands
-                                                            option(value='AL') Albania
-                                                            option(value='DZ') Algeria
-                                                            option(value='AS') American Samoa
-                                                            option(value='AD') Andorra
-                                                            option(value='AO') Angola
-                                                            option(value='AI') Anguilla
-                                                            option(value='AQ') Antarctica
-                                                            option(value='AG') Antigua and Barbuda
-                                                            option(value='AR') Argentina
-                                                            option(value='AM') Armenia
-                                                            option(value='AW') Aruba
-                                                            option(value='AU') Australia
-                                                            option(value='AT') Austria
-                                                            option(value='AZ') Azerbaijan
-                                                            option(value='BS') Bahamas
-                                                            option(value='BH') Bahrain
-                                                            option(value='BD') Bangladesh
-                                                            option(value='BB') Barbados
-                                                            option(value='BY') Belarus
-                                                            option(value='BE') Belgium
-                                                            option(value='BZ') Belize
-                                                            option(value='BJ') Benin
-                                                            option(value='BM') Bermuda
-                                                            option(value='BT') Bhutan
-                                                            option(value='BO') Bolivia, Plurinational State of
-                                                            option(value='BQ') Bonaire, Sint Eustatius and Saba
-                                                            option(value='BA') Bosnia and Herzegovina
-                                                            option(value='BW') Botswana
-                                                            option(value='BV') Bouvet Island
-                                                            option(value='BR') Brazil
-                                                            option(value='IO') British Indian Ocean Territory
-                                                            option(value='BN') Brunei Darussalam
-                                                            option(value='BG') Bulgaria
-                                                            option(value='BF') Burkina Faso
-                                                            option(value='BI') Burundi
-                                                            option(value='KH') Cambodia
-                                                            option(value='CM') Cameroon
-                                                            option(value='CA') Canada
-                                                            option(value='CV') Cape Verde
-                                                            option(value='KY') Cayman Islands
-                                                            option(value='CF') Central African Republic
-                                                            option(value='TD') Chad
-                                                            option(value='CL') Chile
-                                                            option(value='CN') China
-                                                            option(value='CX') Christmas Island
-                                                            option(value='CC') Cocos (Keeling) Islands
-                                                            option(value='CO') Colombia
-                                                            option(value='KM') Comoros
-                                                            option(value='CG') Congo
-                                                            option(value='CD') Congo, the Democratic Republic of the
-                                                            option(value='CK') Cook Islands
-                                                            option(value='CR') Costa Rica
-                                                            option(value='CI') Côte d'Ivoire
-                                                            option(value='HR') Croatia
-                                                            option(value='CU') Cuba
-                                                            option(value='CW') Curaçao
-                                                            option(value='CY') Cyprus
-                                                            option(value='CZ') Czech Republic
-                                                            option(value='DK') Denmark
-                                                            option(value='DJ') Djibouti
-                                                            option(value='DM') Dominica
-                                                            option(value='DO') Dominican Republic
-                                                            option(value='EC') Ecuador
-                                                            option(value='EG') Egypt
-                                                            option(value='SV') El Salvador
-                                                            option(value='GQ') Equatorial Guinea
-                                                            option(value='ER') Eritrea
-                                                            option(value='EE') Estonia
-                                                            option(value='ET') Ethiopia
-                                                            option(value='FK') Falkland Islands (Malvinas)
-                                                            option(value='FO') Faroe Islands
-                                                            option(value='FJ') Fiji
-                                                            option(value='FI') Finland
-                                                            option(value='FR') France
-                                                            option(value='GF') French Guiana
-                                                            option(value='PF') French Polynesia
-                                                            option(value='TF') French Southern Territories
-                                                            option(value='GA') Gabon
-                                                            option(value='GM') Gambia
-                                                            option(value='GE') Georgia
-                                                            option(value='DE') Germany
-                                                            option(value='GH') Ghana
-                                                            option(value='GI') Gibraltar
-                                                            option(value='GR') Greece
-                                                            option(value='GL') Greenland
-                                                            option(value='GD') Grenada
-                                                            option(value='GP') Guadeloupe
-                                                            option(value='GU') Guam
-                                                            option(value='GT') Guatemala
-                                                            option(value='GG') Guernsey
-                                                            option(value='GN') Guinea
-                                                            option(value='GW') Guinea-Bissau
-                                                            option(value='GY') Guyana
-                                                            option(value='HT') Haiti
-                                                            option(value='HM') Heard Island and McDonald Islands
-                                                            option(value='VA') Holy See (Vatican City State)
-                                                            option(value='HN') Honduras
-                                                            option(value='HK') Hong Kong
-                                                            option(value='HU') Hungary
-                                                            option(value='IS') Iceland
-                                                            option(value='IN') India
-                                                            option(value='ID') Indonesia
-                                                            option(value='IR') Iran, Islamic Republic of
-                                                            option(value='IQ') Iraq
-                                                            option(value='IE') Ireland
-                                                            option(value='IM') Isle of Man
-                                                            option(value='IL') Israel
-                                                            option(value='IT') Italy
-                                                            option(value='JM') Jamaica
-                                                            option(value='JP') Japan
-                                                            option(value='JE') Jersey
-                                                            option(value='JO') Jordan
-                                                            option(value='KZ') Kazakhstan
-                                                            option(value='KE') Kenya
-                                                            option(value='KI') Kiribati
-                                                            option(value='KP') Korea, Democratic People's Republic of
-                                                            option(value='KR') Korea, Republic of
-                                                            option(value='KW') Kuwait
-                                                            option(value='KG') Kyrgyzstan
-                                                            option(value='LA') Lao People's Democratic Republic
-                                                            option(value='LV') Latvia
-                                                            option(value='LB') Lebanon
-                                                            option(value='LS') Lesotho
-                                                            option(value='LR') Liberia
-                                                            option(value='LY') Libya
-                                                            option(value='LI') Liechtenstein
-                                                            option(value='LT') Lithuania
-                                                            option(value='LU') Luxembourg
-                                                            option(value='MO') Macao
-                                                            option(value='MK') Macedonia, the former Yugoslav Republic of
-                                                            option(value='MG') Madagascar
-                                                            option(value='MW') Malawi
-                                                            option(value='MY') Malaysia
-                                                            option(value='MV') Maldives
-                                                            option(value='ML') Mali
-                                                            option(value='MT') Malta
-                                                            option(value='MH') Marshall Islands
-                                                            option(value='MQ') Martinique
-                                                            option(value='MR') Mauritania
-                                                            option(value='MU') Mauritius
-                                                            option(value='YT') Mayotte
-                                                            option(value='MX') Mexico
-                                                            option(value='FM') Micronesia, Federated States of
-                                                            option(value='MD') Moldova, Republic of
-                                                            option(value='MC') Monaco
-                                                            option(value='MN') Mongolia
-                                                            option(value='ME') Montenegro
-                                                            option(value='MS') Montserrat
-                                                            option(value='MA') Morocco
-                                                            option(value='MZ') Mozambique
-                                                            option(value='MM') Myanmar
-                                                            option(value='NA') Namibia
-                                                            option(value='NR') Nauru
-                                                            option(value='NP') Nepal
-                                                            option(value='NL') Netherlands
-                                                            option(value='NC') New Caledonia
-                                                            option(value='NZ') New Zealand
-                                                            option(value='NI') Nicaragua
-                                                            option(value='NE') Niger
-                                                            option(value='NG') Nigeria
-                                                            option(value='NU') Niue
-                                                            option(value='NF') Norfolk Island
-                                                            option(value='MP') Northern Mariana Islands
-                                                            option(value='NO') Norway
-                                                            option(value='OM') Oman
-                                                            option(value='PK') Pakistan
-                                                            option(value='PW') Palau
-                                                            option(value='PS') Palestinian Territory, Occupied
-                                                            option(value='PA') Panama
-                                                            option(value='PG') Papua New Guinea
-                                                            option(value='PY') Paraguay
-                                                            option(value='PE') Peru
-                                                            option(value='PH') Philippines
-                                                            option(value='PN') Pitcairn
-                                                            option(value='PL') Poland
-                                                            option(value='PT') Portugal
-                                                            option(value='PR') Puerto Rico
-                                                            option(value='QA') Qatar
-                                                            option(value='RE') Réunion
-                                                            option(value='RO') Romania
-                                                            option(value='RU') Russian Federation
-                                                            option(value='RW') Rwanda
-                                                            option(value='BL') Saint Barthélemy
-                                                            option(value='SH') Saint Helena, Ascension and Tristan da Cunha
-                                                            option(value='KN') Saint Kitts and Nevis
-                                                            option(value='LC') Saint Lucia
-                                                            option(value='MF') Saint Martin (French part)
-                                                            option(value='PM') Saint Pierre and Miquelon
-                                                            option(value='VC') Saint Vincent and the Grenadines
-                                                            option(value='WS') Samoa
-                                                            option(value='SM') San Marino
-                                                            option(value='ST') Sao Tome and Principe
-                                                            option(value='SA') Saudi Arabia
-                                                            option(value='SN') Senegal
-                                                            option(value='RS') Serbia
-                                                            option(value='SC') Seychelles
-                                                            option(value='SL') Sierra Leone
-                                                            option(value='SG') Singapore
-                                                            option(value='SX') Sint Maarten (Dutch part)
-                                                            option(value='SK') Slovakia
-                                                            option(value='SI') Slovenia
-                                                            option(value='SB') Solomon Islands
-                                                            option(value='SO') Somalia
-                                                            option(value='ZA') South Africa
-                                                            option(value='GS') South Georgia and the South Sandwich Islands
-                                                            option(value='SS') South Sudan
-                                                            option(value='ES') Spain
-                                                            option(value='LK') Sri Lanka
-                                                            option(value='SD') Sudan
-                                                            option(value='SR') Suriname
-                                                            option(value='SJ') Svalbard and Jan Mayen
-                                                            option(value='SZ') Swaziland
-                                                            option(value='SE') Sweden
-                                                            option(value='CH') Switzerland
-                                                            option(value='SY') Syrian Arab Republic
-                                                            option(value='TW') Taiwan, Province of China
-                                                            option(value='TJ') Tajikistan
-                                                            option(value='TZ') Tanzania, United Republic of
-                                                            option(value='TH') Thailand
-                                                            option(value='TL') Timor-Leste
-                                                            option(value='TG') Togo
-                                                            option(value='TK') Tokelau
-                                                            option(value='TO') Tonga
-                                                            option(value='TT') Trinidad and Tobago
-                                                            option(value='TN') Tunisia
-                                                            option(value='TR') Turkey
-                                                            option(value='TM') Turkmenistan
-                                                            option(value='TC') Turks and Caicos Islands
-                                                            option(value='TV') Tuvalu
-                                                            option(value='UG') Uganda
-                                                            option(value='UA') Ukraine
-                                                            option(value='AE') United Arab Emirates
-                                                            option(value='GB') United Kingdom
-                                                            option(value='US') United States
-                                                            option(value='UM') United States Minor Outlying Islands
-                                                            option(value='UY') Uruguay
-                                                            option(value='UZ') Uzbekistan
-                                                            option(value='VU') Vanuatu
-                                                            option(value='VE') Venezuela, Bolivarian Republic of
-                                                            option(value='VN') Viet Nam
-                                                            option(value='VG') Virgin Islands, British
-                                                            option(value='VI') Virgin Islands, U.S.
-                                                            option(value='WF') Wallis and Futuna
-                                                            option(value='EH') Western Sahara
-                                                            option(value='YE') Yemen
-                                                            option(value='ZM') Zambia
-                                                            option(value='ZW') Zimbabwe
+                                                        select.form-control(name='country', ng-required='true',ng-model='country', ng-options='country.name for country in countries')
+                                                            option(value='') Select your country
                                                         .help-block(ng-messages='settingsForm.country.$error', ng-if='settingsForm.country.$touched')
                                                             p(ng-message='required') Select your country
                                         .form-group(ng-class="{ 'has-error' : settingsForm.city.$invalid  && (settingsForm.city.$touched || submitted)}")
@@ -567,27 +315,8 @@ block profile
                                             .col-sm-10.controls
                                                 .row
                                                     .col-xs-12
-                                                        select.form-control(name='city', ng-required='true',ng-model='setting.city')
-                                                            option Amsterdam
-                                                            option Atlanta
-                                                            option Baltimore
-                                                            option Boston
-                                                            option Buenos Aires
-                                                            option Calgary
-                                                            option Chicago
-                                                            option Denver
-                                                            option Dubai
-                                                            option Frankfurt
-                                                            option Hong Kong
-                                                            option Honolulu
-                                                            option Houston
-                                                            option Kuala Lumpur
-                                                            option London
-                                                            option Los Angeles
-                                                            option Melbourne
-                                                            option Mexico City
-                                                            option Miami
-                                                            option Minneapolis
+                                                        select.form-control(name='city',ng-disabled='!country', ng-required='true', ng-model='city', ng-options='city for city in country.cities')
+                                                            option(value='') Select your city
                                                         .help-block(ng-messages='settingsForm.city.$error', ng-if='settingsForm.city.$touched')
                                                             p(ng-message='required') Select your city
 
@@ -596,7 +325,7 @@ block profile
                                             .col-sm-10.controls
                                                 .row
                                                     .col-xs-12
-                                                        input.form-control(type='text',name='interests', ng-model='setting.interests',ng-minlength='3', ng-maxlength='50', ng-required='true')
+                                                        input.form-control(type='text',name='interests', ng-model='interests',ng-minlength='3', ng-maxlength='50', ng-required='true')
                                                         .help-block(ng-messages='settingsForm.interests.$error', ng-if='settingsForm.interests.$touched')
                                                             p(ng-message='minlength') Your interest is too short.
                                                             p(ng-message='maxlength') Your interest is too long.
@@ -607,7 +336,7 @@ block profile
                                             .col-sm-10.controls
                                                 .row.mgbt-xs-0
                                                     .col-xs-12
-                                                        textarea.form-control(rows='3',name='about', ng-model='setting.about',ng-minlength='20', ng-maxlength='100', ng-required='true')
+                                                        textarea.form-control(rows='3',name='about', ng-model='about',ng-minlength='20', ng-maxlength='100', ng-required='true')
                                                         .help-block(ng-messages='settingsForm.about.$error', ng-if='settingsForm.about.$touched')
                                                             p(ng-message='minlength') Your description is too short ( 20 ).
                                                             p(ng-message='maxlength') Your description is too long ( 100 ).
@@ -620,28 +349,28 @@ block profile
                                             .col-sm-10.controls
                                                 .row.mgbt-xs-0
                                                     .col-xs-12
-                                                        input(placeholder='mobile phone', type='text', ng-model='setting.phone')
+                                                        input(placeholder='mobile phone', type='text', ng-model='phone')
 
                                         .form-group
                                             label.col-sm-2.control-label Facebook
                                             .col-sm-10.controls
                                                 .row.mgbt-xs-0
                                                     .col-xs-12
-                                                        input(placeholder=' facebook', type='text', ng-model='setting.facebook')
+                                                        input(placeholder=' facebook', type='text', ng-model='facebook')
 
                                         .form-group
                                             label.col-sm-2.control-label Twitter
                                             .col-sm-10.controls
                                                 .row.mgbt-xs-0
                                                     .col-xs-12
-                                                        input(placeholder=' twitter', type='text', ng-model='setting.twitter')
+                                                        input(placeholder=' twitter', type='text', ng-model='twitter')
 
                                         .form-group
                                             label.col-sm-2.control-label Google+
                                             .col-sm-10.controls
                                                 .row.mgbt-xs-0
                                                     .col-xs-12
-                                                        input(placeholder=' google+', type='text', ng-model='setting.google')
+                                                        input(placeholder=' google+', type='text', ng-model='google')
                                         .form-group
                                             label.col-md-2.control-label
                                             .col-md-10.controls
@@ -999,7 +728,10 @@ block profile
     script(src='/dist/js/angular-messages.min.js')
     script(src='/src/app.js')
     script(src='/src/directives/ngCompare.js')
-    script(src='/src/controllers/ValController.js')
+    script(src='/src/services/mStatusService.js')
+    script(src='/src/services/jobService.js')
+    script(src='/src/services/countryService.js')
+    script(src='/src/controllers/ProfileController.js')
     script(type='text/javascript', src='/dist/js/bootstrap-formhelpers.min.js')
     script(type='text/javascript', src='/dist/js/fileinput.min.js')
 

@@ -128,6 +128,7 @@ td
   text-align: center
   >img
     margin: 0 auto
+    width: 100%
   >h2
     padding: 15px 0
     width: 100%
@@ -185,19 +186,6 @@ td
       padding: 5px
 
 .events
-  .pagination
-    margin-top: 0
-    >li
-      >a
-        color: $color-elements
-        &:hover
-          +df-bcolor-tcolor
-    .active
-      > a
-        +df-border-elem
-        +df-bcolor-tcolor
-        &:hover
-          background-color: $color-elements-hover
   .panel-heading
     +df-bcolor-tcolor
     +df-border-elem
@@ -211,17 +199,22 @@ td
   .panel-body
     iframe
       float: left
-      margin: 0 20px -10px -10px
-      @media screen and (max-width : 480px)
-        width: 260px
-        height: 260px
+      margin: 0 20px 5px -10px
+      width: 400px
+      height: 300px
+      @media screen and (max-width : 450px)
+        width: 390px
+        height: 300px
         margin-bottom: 10px
+      @media screen and (max-width : 450px)
+        width: 260px
+        height: 200px
     .info
       font-weight: bold
       text-decoration: underline
     .btn
       +df-border-elem
-      @media screen and (max-width : 480px)
+      @media screen and (max-width : 440px)
         margin-bottom: 5px
     .approve
       background-color: $color-elements
@@ -262,8 +255,10 @@ td
         color: $color-elements
 .group-contacts
   @extend .user-groups
+  .list-group
+    p
+      padding: 10px
   #chat-output
-    height: 100%
     overflow-y: scroll
   .panel-heading
     +df-bcolor-tcolor

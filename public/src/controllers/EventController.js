@@ -6,10 +6,10 @@
 (function(){
     "use strict"
 
-    var EventsController = function($scope)
+    var EventsController = function($scope,$http)
     {
         var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("GET","http://localhost:3000/api/events", false);
+        xmlHttp.open("GET","/api/events", false);
         xmlHttp.send(null);
 
         if(xmlHttp.status ===200)
@@ -41,6 +41,19 @@
             }
             console.log(events);
             $scope.events = events;
+
+
+            $scope.ikGa = function(){
+                console.log($scope);
+                var xmlHttp = new XMLHttpRequest();
+
+                xmlHttp.open("POST","/api/events", true);
+                //xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlHttp.send($scope.id);
+            };
+            $scope.ikGaNiet = function(){
+
+            }
         }
 
 

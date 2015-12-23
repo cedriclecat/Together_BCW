@@ -93,6 +93,8 @@ console.log(trending);
         res.render('events');
     });
 
+
+
     // =====================================
     // GROUPS PAGE =========================
     // =====================================
@@ -274,6 +276,11 @@ mx.push(parseInt(x));
                 res.send(err);
             res.json(events);
         });
+    });
+
+    router.post('/api/events',function(req,res)
+    {
+        console.log(req);
     });
 
     router.get('/api/events/:id',function(req,res){

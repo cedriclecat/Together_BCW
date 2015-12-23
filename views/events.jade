@@ -94,9 +94,11 @@ block events
                                             i.fa.fa-map-marker
                                             | {{ ' ' +  something.location}}
                                         p {{something.description}}
-                                        button.btn.btn-info.btn-responsive.approve
+                                        button(ng-click="ikGa()")
+                                            .btn.btn-info.btn-responsive.approve
                                             i.fa.fa-check.fa-lg
                                             |  Ik ga hier naar toe
+
                                         button.btn.btn-info.btn-responsive.active.disapprove
                                             i.fa.fa-remove.fa-lg
                                             |  Ik ga hier niet naar toe

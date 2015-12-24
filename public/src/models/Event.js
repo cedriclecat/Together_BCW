@@ -1,8 +1,9 @@
 /**
  * Created by CedricLecat on 18/11/15.
  */
-function Event(id,name,description,date,time,maxmember,membersid,location,price,picture,tags){
+function Event(id,collapseId,name,description,date,time,maxmember,membersid,location,price,picture,tags){
     this.id = id;
+    this.collapseId = collapseId;
     this.name = name;
     this.description = description;
     this.date = date;

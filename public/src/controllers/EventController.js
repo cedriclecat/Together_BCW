@@ -22,7 +22,9 @@
             {
 
                 var event = new Event(
+                    data[i-1].id,
                     inWords(i+1),
+
                     data[i-1].name,
                     data[i-1].description,
                     data[i-1].date,
@@ -45,7 +47,8 @@
 
             $scope.ikGa = function($event){
                 //console.log($scope.$id);
-                var params = ""+$event.currentTarget.parentNode.parentNode.id;
+               //var params = ""+$event.currentTarget.parentNode.parentNode.id;
+                var params = ""+$event.currentTarget.id;
                 console.log(params);
                 var xmlHttp = new XMLHttpRequest();
 

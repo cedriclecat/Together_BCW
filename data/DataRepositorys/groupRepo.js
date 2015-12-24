@@ -7,7 +7,7 @@ GroupSchema.getGroups = function(){
 
 
     GroupSchema.find({}).exec(function(err,docs){
-        console.log(docs);
+      // console.log(docs);
     })
 };
 

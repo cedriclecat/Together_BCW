@@ -5,7 +5,7 @@ var UserSchema = require("../models/groups");
 
 UserSchema.getUsers = function(){
     UserSchema.find({}).exec(function(err,docs){
-        console.log(docs);
+        //console.log(docs);
     })
 };
 

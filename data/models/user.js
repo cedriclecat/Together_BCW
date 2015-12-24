@@ -39,7 +39,9 @@ var userSchema = mongoose.Schema({
     //interests        :{type:String},
     //picture          :{type:String},
     //phone            :{type:Number},
-    //contacts         :{type:String}
+    //contacts         :{type:String},
+    //events           :{type:Array},
+    //groups           :{type:Array}
 
 });
 

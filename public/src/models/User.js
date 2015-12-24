@@ -1,7 +1,7 @@
 /**
  * Created by CedricLecat on 18/11/15.
  */
-function Event(id,local,facebook,twitter,google,displayName,firstName,lastName,city,birthday,gender,country,interests,picture,phone,contacts)
+function Event(id,local,facebook,twitter,google,displayName,firstName,lastName,city,birthday,gender,country,interests,picture,phone,contacts,events,groups)
 {
     this.id = id;
     this.local = local;
@@ -19,5 +19,9 @@ function Event(id,local,facebook,twitter,google,displayName,firstName,lastName,c
     this.picture = picture;
     this.phone = phone;
     this.contacts = contacts;
+
+    //nieuw
+    this.events = events;
+    this.groups = groups;
 
 }

@@ -2,9 +2,9 @@ var mongoose = require("mongoose");
 var Eventschema = require("../models/events");
 
 Eventschema.getEvents = function(){
-    console.log("lel");
+    //console.log("lel");
     Eventschema.find({}).exec(function(err,docs){
-        console.log(docs);
+       // console.log(docs);
     })
 };
 

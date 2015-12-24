@@ -280,7 +280,10 @@ mx.push(parseInt(x));
 
     router.post('/api/events',function(req,res)
     {
-        console.log(req);
+        console.log(req.body);
+      //  console.log(req.params);
+
+        res.send("goed verstuurd");
     });
 
     router.get('/api/events/:id',function(req,res){

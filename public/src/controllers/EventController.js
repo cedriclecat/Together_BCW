@@ -43,13 +43,16 @@
             $scope.events = events;
 
 
-            $scope.ikGa = function(){
-                console.log($scope);
+            $scope.ikGa = function($event){
+                //console.log($scope.$id);
+                var params = ""+$event.currentTarget.parentNode.parentNode.id;
+                console.log(params);
                 var xmlHttp = new XMLHttpRequest();
 
                 xmlHttp.open("POST","/api/events", true);
-                //xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlHttp.send($scope.id);
+                xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              //  xmlHttp.setRequestHeader("Content-length",params.length);
+                xmlHttp.send(params);
             };
             $scope.ikGaNiet = function(){
 

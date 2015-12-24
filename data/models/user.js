@@ -28,20 +28,20 @@ var userSchema = mongoose.Schema({
         token        : String,
         email        : String,
         name         : String
-    }
-    //displayName      :{type:String},
-    //firstName        :{type:String},
-    //lastName         :{type:String},
-    //city             :{type:Number},
-    //birthday         :{type:Date},
-    //gender           :{type:String,required:true},
-    //country          :{type:String,required:true},
-    //interests        :{type:String},
-    //picture          :{type:String},
-    //phone            :{type:Number},
-    //contacts         :{type:String},
-    //events           :{type:Array},
-    //groups           :{type:Array}
+    },
+    displayName      :{type:String},
+    firstName        :{type:String},
+    lastName         :{type:String},
+    city             :{type:Number},
+    birthday         :{type:Date},
+    gender           :{type:String,required:true},
+    country          :{type:String,required:true},
+    interests        :{type:String},
+    picture          :{type:String},
+    phone            :{type:Number},
+    contacts         :{type:String},
+    events           :{type:Array},
+    groups           :{type:Array}
 
 });
 

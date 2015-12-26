@@ -171,7 +171,6 @@ mx.push(parseInt(x));
 //insert event
 router.post('/profileevent',function(req,res, next){
     console.log("hh");
-
     //console.log(req.user._id);
     ProfileRepo.createaevent(req.body,function(next){
         console.log("Klaar");
@@ -291,8 +290,18 @@ router.post('/profileevent',function(req,res, next){
 
     router.post('/api/events',function(req,res)
     {
-        console.log(req.body);
-        console.log(req.user._id)
+       var bodyz = req.body;
+    //    console.log(req.user._id);
+      /*  bodyz.forEach(function(x){
+            bodyz = x;
+        });*/
+        console.log(bodyz);
+
+        Events.find({'id':parseInt(bodyz)},function(err,events){
+
+            console.log(err);
+            console.log(events)
+        });
       //  console.log(req.params);
 
         res.send("goed verstuurd");

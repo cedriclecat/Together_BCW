@@ -48,7 +48,7 @@
             $scope.ikGa = function($event){
                 //console.log($scope.$id);
                //var params = ""+$event.currentTarget.parentNode.parentNode.id;
-                var params = ""+$event.currentTarget.id;
+                var params = $event.currentTarget.id;
                 console.log(params);
                 var xmlHttp = new XMLHttpRequest();
 

@@ -484,11 +484,31 @@ block profile
                                             .col-md-9.controls
                                                 .row
                                                     .col-md-12
-                                                        .bfh-datepicker(data-format='y-m-d', data-date='2016-01-01', name='date',ng-model='event.date')
+                                                        input.form-control(type='text',name='date',ng-model='event.date',placeholder='Write date here')
+                                        .form-group
+                                            label.col-md-3.control-label Time
+                                            .col-md-9.controls
+                                                .row
+                                                    .col-md-12
+                                                        input.form-control(type='text',name='time',ng-model='event.time',placeholder='Write time here')
+                                        .form-group
+                                            label.col-md-3.control-label Location
+                                            .col-md-9.controls
+                                                .row
+                                                    .col-md-12
+                                                        input.form-control(type='text',name='Location',ng-model='event.Location',placeholder='Write Location here')
+
+
+                                         // .form-group
+                                            label.col-md-3.control-label Date
+                                            .col-md-9.controls
+                                                .row
+                                                    .col-md-12
+                                                        .bfh-datepicker(data-format='y-m-d', data-date='2016-01-01')
                                                             .input-prepend.bfh-datepicker-toggle(data-toggle='bfh-datepicker')
                                                                 span.add-on
                                                                     i.icon-calendar
-                                                                input.input-medium(type='text', readonly='')
+                                                                input.input-medium(type='text', readonly='', name='date',ng-model='event.date')
                                                             .bfh-datepicker-calendar
                                                                 table.calendar.table.table-bordered
                                                                     thead
@@ -507,13 +527,13 @@ block profile
                                                                                     i.icon-chevron-right
                                                                         tr.days-header
                                                                     tbody
-                                        .form-group
+                                        // .form-group
                                             label.col-md-3.control-label Time
                                             .col-md-9.controls
                                                 .row
                                                     .col-md-12
-                                                        .bfh-timepicker(data-time='08:00', name='time',ng-model='event.time')
-                                                            .input-prepend.bfh-timepicker-toggle(data-toggle='bfh-timepicker')
+                                                        .bfh-timepicker(data-time='08:00')
+                                                            .input-prepend.bfh-timepicker-toggle(data-toggle='bfh-timepicker', name='time',ng-model='event.time')
                                                                 span.add-on
                                                                     i.icon-time
                                                                 input.input-medium(type='text', readonly='')

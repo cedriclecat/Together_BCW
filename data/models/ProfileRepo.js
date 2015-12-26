@@ -6,6 +6,9 @@ var Events = require('./events');
 profilerepo = (function () {
     createevent = function(data,next){
 
+        var user = data.user._id;
+
+        data = data.body;
         Events.find({},function(err,even) {
             var mijngetal = 1;
             even.forEach(function(e){
@@ -30,6 +33,7 @@ profilerepo = (function () {
             mijnevent.promoted= 0;
             mijnevent.TIMESTAMP = new Date();
             mijnevent.pictureSlider = data.pictureSlider;
+            mijnevent.createdby = user;
             console.log(mijnevent);        console.log(data);
             Events.create(mijnevent, function (err) {
                 if (err) { return next(err); }

@@ -461,7 +461,13 @@ block profile
                                             .col-md-9.controls
                                                 .row
                                                     .col-md-12
-                                                        input#input-1.file(type='file')
+                                                        input#input-1.file(type='file',name='pictureUrl',ng-model='event.pictureUrl')
+                                        .form-group
+                                            label.col-md-3.control-label Picture for slider
+                                            .col-md-9.controls
+                                                .row
+                                                    .col-md-12
+                                                        input#input-1.file(type='file',name='pictureSlider',ng-model='event.pictureSlider')
 
                                         .form-group(ng-class="{ 'has-error' : eventsForm.etitle.$invalid  && (eventsForm.etitle.$touched || submitted)}")
                                             label.col-md-3.control-label Title
@@ -478,7 +484,7 @@ block profile
                                             .col-md-9.controls
                                                 .row
                                                     .col-md-12
-                                                        .bfh-datepicker(data-format='y-m-d', data-date='2000-01-01')
+                                                        .bfh-datepicker(data-format='y-m-d', data-date='2016-01-01', name='date',ng-model='event.date')
                                                             .input-prepend.bfh-datepicker-toggle(data-toggle='bfh-datepicker')
                                                                 span.add-on
                                                                     i.icon-calendar
@@ -506,7 +512,7 @@ block profile
                                             .col-md-9.controls
                                                 .row
                                                     .col-md-12
-                                                        .bfh-timepicker(data-time='08:00')
+                                                        .bfh-timepicker(data-time='08:00', name='time',ng-model='event.time')
                                                             .input-prepend.bfh-timepicker-toggle(data-toggle='bfh-timepicker')
                                                                 span.add-on
                                                                     i.icon-time

@@ -297,11 +297,11 @@ router.post('/profileevent',function(req,res, next){
         });*/
         console.log(bodyz);
 
-        Events.find({'id':bodyz},function(err,events){
+        Events.find({'id':parseInt(bodyz)},function(err,events){
 
             console.log(err);
             console.log(events)
-        })
+        });
       //  console.log(req.params);
 
         res.send("goed verstuurd");

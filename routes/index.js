@@ -7,6 +7,7 @@ var Groups = require('../data/models/groups');
 var Countries = require('../data/DataRepositorys/countryRepo');
 var Marital = require('../data/DataRepositorys/mStatusRepo');
 var Jobs = require('../data/DataRepositorys/jobsRepo');
+var ProfileRepo = require("../data/models/ProfileRepo");
 
 
     // =====================================
@@ -167,7 +168,16 @@ mx.push(parseInt(x));
     router.post('/profile',function(req,res){
         console.log(req.user._id);
     });
+//insert event
+router.post('/profileevent',function(req,res, next){
+    console.log("hh");
+    //console.log(req.user._id);
+    ProfileRepo.createaevent(req.body,function(next){
+        console.log("Klaar");
+        res.render('profile');
 
+    });
+});
     // =====================================
     // ADMIN ===============================
     // =====================================

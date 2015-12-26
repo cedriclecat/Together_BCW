@@ -171,6 +171,7 @@ mx.push(parseInt(x));
 //insert event
 router.post('/profileevent',function(req,res, next){
     console.log("hh");
+    console.log(req);
     //console.log(req.user._id);
     ProfileRepo.createaevent(req.body,function(next){
         console.log("Klaar");

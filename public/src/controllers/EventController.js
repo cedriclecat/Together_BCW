@@ -49,13 +49,19 @@
                 //console.log($scope.$id);
                //var params = ""+$event.currentTarget.parentNode.parentNode.id;
                 var params = $event.currentTarget.id;
-                console.log(params);
+                console.log($event.currentTarget.id);
+
+                var mijnobjectje = {
+                    'id' : params
+                };
+
+
                 var xmlHttp = new XMLHttpRequest();
 
                 xmlHttp.open("POST","/api/events", true);
-                xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlHttp.setRequestHeader("Content-type", "application/json");
               //  xmlHttp.setRequestHeader("Content-length",params.length);
-                xmlHttp.send(params);
+                xmlHttp.send(JSON.stringify(mijnobjectje));
             };
             $scope.ikGaNiet = function(){
 

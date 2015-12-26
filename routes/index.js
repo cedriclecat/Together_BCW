@@ -291,13 +291,16 @@ router.post('/profileevent',function(req,res, next){
     router.post('/api/events',function(req,res)
     {
        var bodyz = req.body;
+
+       // console.log(object);
+        //console.log(object.id);
     //    console.log(req.user._id);
       /*  bodyz.forEach(function(x){
             bodyz = x;
         });*/
-        console.log(bodyz);
+        console.log(bodyz.id);
 //     Events.find({'id': {$in: mx}},function(err,even){
-        Events.find({'id':bodyz},function (err, events) {
+        Events.find({'id':bodyz.id},function (err, events) {
 
             console.log(err);
             console.log(events)

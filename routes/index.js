@@ -281,6 +281,7 @@ mx.push(parseInt(x));
     router.post('/api/events',function(req,res)
     {
         console.log(req.body);
+        console.log(req.user._id)
       //  console.log(req.params);
 
         res.send("goed verstuurd");

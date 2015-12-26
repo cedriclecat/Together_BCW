@@ -296,8 +296,8 @@ router.post('/profileevent',function(req,res, next){
             bodyz = x;
         });*/
         console.log(bodyz);
-
-        Events.find({'id':parseInt(bodyz)},function(err,events){
+//     Events.find({'id': {$in: mx}},function(err,even){
+        Events.find({'id':bodyz},function (err, events) {
 
             console.log(err);
             console.log(events)

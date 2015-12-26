@@ -19,7 +19,8 @@ var eventSchema = new mongoose.Schema({
     tags              : {type:String},
     promoted          : {type:Number},
     TIMESTAMP         : {type:Date},
-    pictureSlider     : {type:String}
+    pictureSlider     : {type:String},
+    createdby         : {type:String, required:true}
 
 });
 

@@ -292,20 +292,12 @@ router.post('/profileevent',function(req,res, next){
     {
        var bodyz = req.body;
 
-       // console.log(object);
-        //console.log(object.id);
-    //    console.log(req.user._id);
-      /*  bodyz.forEach(function(x){
-            bodyz = x;
-        });*/
         console.log(bodyz.id);
-//     Events.find({'id': {$in: mx}},function(err,even){
-        Events.find({'id':bodyz.id},function (err, events) {
+        console.log(req.user._id);
 
-            console.log(err);
-            console.log(events)
-        });
-      //  console.log(req.params);
+         Events.update({id:bodyz.id},{$addToSet:{members:req.user._id}},function(err){console.log(err);});
+         User.update({_id:req.user._id},{$addToSet:{events:bodyz.id}},function(err){console.log(err);})
+
 
         res.send("goed verstuurd");
     });

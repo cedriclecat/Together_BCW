@@ -24,7 +24,6 @@
                 var event = new Event(
                     data[i-1].id,
                     inWords(i+1),
-
                     data[i-1].name,
                     data[i-1].description,
                     data[i-1].date,
@@ -34,7 +33,11 @@
                     data[i-1].location,
                     data[i-1].price,
                     data[i-1].pictureUrl,
-                    data[i-1].tags);
+                    data[i-1].tags,
+                    data[i-1].promoted,
+                    data[i-1].TIMESTAMP,
+                    data[i-1].pictureSlider,
+                    data[i-1].createdby);
 
 
                 events.push(event);

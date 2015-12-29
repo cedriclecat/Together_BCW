@@ -284,9 +284,23 @@ router.post('/profileevent',function(req,res, next){
         Events.find(function (err, events) {
             if (err)
                 res.send(err);
-            res.json(events);
+            res.json(events);//,req.user_id
         });
     });
+
+    router.get('/api/getuserid', function (req, res) {
+        if(req.user._id !=null)
+        {
+            res.send(req.user._id);
+        }
+        else
+        {
+            res.json("");
+        }
+    });
+    /*router.get('/api/getuserid',function(req,res){
+
+    });*/
 
     router.post('/api/events',function(req,res)
     {
@@ -296,7 +310,7 @@ router.post('/profileevent',function(req,res, next){
         console.log(req.user._id);
 
          Events.update({id:bodyz.id},{$addToSet:{members:req.user._id}},function(err){console.log(err);});
-         User.update({_id:req.user._id},{$addToSet:{events:bodyz.id}},function(err){console.log(err);})
+
 
 
         res.send("goed verstuurd");

@@ -32,16 +32,17 @@ var userSchema = mongoose.Schema({
     firstName        :{type:String},
     lastName         :{type:String},
     email        : String,
+    Description        : String,
     city             :{type:String},
     birthday         :{type:Date},
-    gender           :{type:String,required:true},
-    country          :{type:String,required:true},
+    gender           :{type:String},
+    country          :{type:String},
     interests        :{type:String},
     picture          :{type:String},
     phone            :{type:Number},
     contacts         :{type:String},
     pendingcontacts  :{type:String},
-    MemberSince      :{type:String},
+    MemberSince      :{type:Date},
     blacklisted      :{type:String}
 
 });

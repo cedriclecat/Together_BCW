@@ -1,9 +1,30 @@
 /**
  * Created by wouter on 12/26/2015.
  */
-var Events = require('./events');
+var Events = require('../models/events');
 
 profilerepo = (function () {
+    getevents = function(data,next){
+        var user = data.user._id;
+        Events.find({createdby:user},function(err,even) {
+
+            if (err) { return next(err);}
+            else {
+            even.forEach(function(e){
+                e.done=1;
+
+
+                });
+
+             data.mijnevents = even;
+                console.log(data);
+                next();
+            }
+        });
+
+
+
+    };
     createevent = function(data,next){
 
         var user = data.user._id;
@@ -44,7 +65,8 @@ profilerepo = (function () {
 
     };
     return {
-        createaevent: createevent
+        createaevent: createevent,
+        getevents : getevents
     };
 })();
 

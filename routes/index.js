@@ -7,7 +7,7 @@ var Groups = require('../data/models/groups');
 var Countries = require('../data/DataRepositorys/countryRepo');
 var Marital = require('../data/DataRepositorys/mStatusRepo');
 var Jobs = require('../data/DataRepositorys/jobsRepo');
-var ProfileRepo = require("../data/models/ProfileRepo");
+var ProfileRepo = require("../data/DataRepositorys/ProfileRepo");
 
 
     // =====================================
@@ -162,8 +162,17 @@ mx.push(parseInt(x));
     // =====================================
 
     router.get('/profile',isLoggedIn, function (req , res) {
-        res.render('profile', {data:req.user.local.email, title: 'Profile' });
-    });
+
+        ProfileRepo.getevents(req,function(next){
+
+            console.log(req.mijnevents);
+            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents });
+
+        });
+
+        });
+
+
 
     router.post('/profile',function(req,res){
         console.log(req.user._id);
@@ -174,7 +183,12 @@ router.post('/profileevent',function(req,res, next){
     //console.log(req.user._id);
     ProfileRepo.createaevent(req,function(next){
         console.log("Klaar");
-        res.render('profile');
+        ProfileRepo.getevents(req,function(next){
+
+            console.log(req.mijnevents);
+            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents });
+
+        });
 
     });
 });

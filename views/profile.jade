@@ -386,7 +386,7 @@ block profile
                                 table.table.table-striped.table-hover
                                     thead
                                         tr
-                                            th #
+
                                             th Logo / Photos
                                             th Title
                                             th Date
@@ -396,60 +396,27 @@ block profile
                                             th Slots
                                             th Action
                                     tbody
-                                        tr
-                                            td 1
-                                            td
-                                                img(src='../img/profile/avatar.jpg', alt='example image', height='80')
-                                            td Zoe Corp
-                                            td.center 2010/02/03
-                                            td.center 20:00
-                                            td.center
-                                                span.label.label-success Finish
-                                            td.center $ 250
-                                            td.center 2
-                                            td.menu-action.rounded-btn
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='view')
-                                                    i.fa.fa-eye
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit')
-                                                    i.fa.fa-pencil
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete')
-                                                    i.fa.fa-times
-                                        tr
-                                            td 2
-                                            td
-                                                img(src='../img/profile/avatar-2.jpg', alt='example image', height='80')
-                                            td Zoe Corp
-                                            td.center 2010/02/03
-                                            td.center 20:00
-                                            td.center
-                                                span.label.label-success Finish
-                                            td.center $ 250
-                                            td.center 2
-                                            td.menu-action.rounded-btn
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='view')
-                                                    i.fa.fa-eye
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit')
-                                                    i.fa.fa-pencil
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete')
-                                                    i.fa.fa-times
-                                        tr
-                                            td 3
-                                            td
-                                                img(src='../img/profile/avatar-3.jpg', alt='example image', height='80')
-                                            td Zoe Corp
-                                            td.center 2010/02/03
-                                            td.center 20:00
-                                            td.center
-                                                span.label.label-success Finish
-                                            td.center $ 250
-                                            td.center 2
-                                            td.menu-action.rounded-btn
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='view')
-                                                    i.fa.fa-eye
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit')
-                                                    i.fa.fa-pencil
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete')
-                                                    i.fa.fa-times
+                                        for events in evs
+                                            tr
+
+                                                td
+                                                    img(src='../img/profile/avatar.jpg', alt='example image', height='80')
+                                                td #{events.name}
+                                                td.center #{events.date}
+                                                td.center #{events.time}
+                                                td.center
+                                                    if events.done == 1
+                                                        span.label.label-success Finish
+                                                    else
+                                                        span.label.label-info Soon
+                                                td.center #{events.price}
+                                                td.center #{events.maxMember}
+                                                td.menu-action.rounded-btn
+                                                    a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit', id='#{events.id}')
+                                                        i.fa.fa-pencil
+                                                    a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete', id = "#{events.id}")
+                                                        i.fa.fa-times
+
                             .row.edit-profile
                                 .col-sm-12
                                     h3

@@ -1,89 +1,22 @@
+var User = require('../data/models/User');
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-
 var Events = require('../data/models/events');
 var Groups = require('../data/models/groups');
 var Countries = require('../data/DataRepositorys/countryRepo');
 var Marital = require('../data/DataRepositorys/mStatusRepo');
 var Jobs = require('../data/DataRepositorys/jobsRepo');
 var ProfileRepo = require("../data/DataRepositorys/ProfileRepo");
-
-
+var HomeRepo = require("../data/DataRepositorys/HomeRepo");
+var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
     router.get('/', function(req, res) {
-console.log("h");
-        var user;
-        var isadmin;
-        var newest;
-        var trending;
-        var promoted;
-        try{
-
-             user=req.user.local.email;
-            isadmin = req.user.local.ADMIN;
-        }catch(err){
-            user="N";
-            isadmin=0;
-        }
-
-        console.log("h");
-        Events.find({},function(err,even){
-            mijnevents=even;
-
-            mijnevents.forEach(function(e){
-
-if(e.promoted==1){
-    promoted=e;
-}
-                if(trending===undefined){
-                    trending = e;
-                }else{
-                    var mijndatum = e.date + " " + e.time;
-                    var mijndatum2 = trending.date + " " + trending.time;
-                    var dat1 = new Date(mijndatum);
-                    var dat2 = new Date(mijndatum2);
-                    var now = new Date();
-                    console.log(dat1);
-                    console.log(dat2);
-                    console.log(now);
-                    if(dat1<now){
-                        if(dat1>dat2){
-                            trending=e;
-                        }
-                    }
-
-
-                }
-
-
-
-                if(newest===undefined){
-                    newest= e;
-                }else {
-
-                    var datum1 = new Date(newest.TIMESTAMP);
-                    var datum2 = new Date(e.TIMESTAMP);
-                    if (datum1 < datum2) {
-                        newest = e;
-                    }
-                }
-
-
-
-            });
-
-console.log(newest);
-console.log(trending);
-            //console.log(even);
-           // console.log(req.user.local.email);
-            res.render('landing', {data:mijnevents, path:req.path, name:user, admin:isadmin, newe:newest, trend:trending,prom:promoted});
-
+        HomeRepo.inithome(req,function(next){
+            res.render('landing', {data:next.data, path:next.path, name:next.name, admin:next.admin, newe:next.newe, trend:next.trend,prom:next.prom});
         });
-
-
     });
 
     // =====================================
@@ -93,70 +26,15 @@ console.log(trending);
         //img/slider/slider1.jpg
         res.render('events');
     });
-
-
-
     // =====================================
     // GROUPS PAGE =========================
     // =====================================
     router.get('/groups',isLoggedIn, function(req, res) {
-      //  console.log(req.user._id);
-        var grps = req.query.groupss;
-        var evt = req.query.event;
-        var mijnevents = "";
-        var grtitel ="";
-        var username = req.user.local.email;
-        var mijndata = "";
-        if(grps!=undefined){
-            //console.log(grps);
-            Groups.find(function (err, events) {
-                if (err) {
-                    res.send(err);
-                }
-                mijndata = events;
 
-
-
-            Groups.findOne({'id':grps},function (err, eventss) {
-                if (err) {
-                    res.send(err);
-                }
-                grtitel = eventss.name;
-                var id = eventss.eventids;
-                //console.log(eventss);
-               // console.log(id);
-                var arr = id.toString().split(",");
-//console.log(arr);
-                var mx = [];
-                arr.forEach(function(x){
-mx.push(parseInt(x));
-
-                });
-                Events.find({'id': {$in: mx}},function(err,even){
-                    mijnevents=even;
-                    console.log(even);
-                    res.render('groups', {data:username, mijndat:mijndata, path:req.path, mev:mijnevents, titel:grtitel});
-
-                });
-            });
-            });
-
-            //Code hier dat de events laad en toont
-        }else if(evt!=undefined){
-            console.log(evt);
-            //Code hier dat de chat maakt
-        }else {
-            Groups.find(function (err, events) {
-                if (err) {
-                    res.send(err);
-                }
-                mijndata = events;
-                res.render('groups', {data: username, mijndat: mijndata, path: req.path, mev: mijnevents});
-
-            });
-        }
+        GroupsRepo.initGroup(req,function(next){
+            res.render('groups', {data:next.data, mijndat:next.mijndat, path:next.path, mev:next.mev, titel:next.titel});
+        });
     });
-
     // =====================================
     // Profile =============================
     // =====================================
@@ -164,34 +42,20 @@ mx.push(parseInt(x));
     router.get('/profile',isLoggedIn, function (req , res) {
 
         ProfileRepo.getevents(req,function(next){
-
-            console.log(req.mijnevents);
-            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents });
-
+            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN,UD:req.UserData });
         });
-
-        });
-
-
-
+    });
     router.post('/profile',function(req,res){
         console.log(req.user._id);
     });
 //insert event
-router.post('/profileevent',function(req,res, next){
-    console.log("hh");
-    //console.log(req.user._id);
-    ProfileRepo.createaevent(req,function(next){
-        console.log("Klaar");
-        ProfileRepo.getevents(req,function(next){
-
-            console.log(req.mijnevents);
-            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents });
-
+    router.post('/profileevent',function(req,res, next){
+        ProfileRepo.createaevent(req,function(next){
+            ProfileRepo.getevents(req,function(next){
+                res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents });
+            });
         });
-
     });
-});
     // =====================================
     // ADMIN ===============================
     // =====================================

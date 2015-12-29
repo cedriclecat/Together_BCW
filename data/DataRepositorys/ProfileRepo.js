@@ -1,32 +1,43 @@
 /**
  * Created by wouter on 12/26/2015.
  */
-var Events = require('../models/events');
 
 profilerepo = (function () {
     getevents = function(data,next){
+        var mongoose = require('mongoose');
+        User = mongoose.model('User');
+        Events = mongoose.model('events');
+
+        var grps = data.query.id;
         var user = data.user._id;
-        Events.find({createdby:user},function(err,even) {
-
-            if (err) { return next(err);}
-            else {
-            even.forEach(function(e){
-                e.done=1;
-
-
+        var zoek = "";
+        if(grps == undefined || grps==user){
+            //U eigen profiel
+            data.OWN = 1;
+            zoek = user;
+        }else{
+            data.OWN=0;
+ zoek = grps;
+        }
+        User.find({_id:zoek},function(err,even) {
+            if (err) { return next(err);}else{
+                data.UserData = even;
+                Events.find({createdby:user},function(err,even) {
+                    if (err) { return next(err);}
+                    else {
+                        even.forEach(function(e){
+                            e.done=1;
+                        });
+                        data.mijnevents = even;
+                        next();
+                    }
                 });
-
-             data.mijnevents = even;
-                console.log(data);
-                next();
             }
         });
-
-
-
     };
     createevent = function(data,next){
-
+        var mongoose = require('mongoose');
+        Events = mongoose.model('events');
         var user = data.user._id;
 
         data = data.body;

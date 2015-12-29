@@ -120,10 +120,29 @@
 
                 xmlHttp.open("POST","/api/events", true);
                 xmlHttp.setRequestHeader("Content-type", "application/json");
-              //  xmlHttp.setRequestHeader("Content-length",params.length);
+
                 xmlHttp.send(JSON.stringify(mijnobjectje));
             };
-            $scope.ikGaNiet = function(){
+            $scope.ikGaNiet = function($event){
+
+                var params = $event.currentTarget.previousSibling.id;
+                var mijnobjectje = {
+                    'id' : params
+                };
+                xmlHttp.open("POST","/api/events/ikganiet", true);
+                xmlHttp.setRequestHeader("Content-type", "application/json");
+                xmlHttp.send(JSON.stringify(mijnobjectje));
+
+                  ;
+                    var button = document.getElementById(params);
+
+                     button.disabled = true;
+                     button.className = "btn btn-info btn-responsive active disapprove";
+                     button.firstChild.className = "fa fa-remove fa-lg";
+                     button.nextSibling.className = "btn btn-info btn-responsive approve";
+                     button.nextSibling.firstChild.className = "fa fa-check fa-lg";
+                     console.log("gelukt")
+
 
             }
         }

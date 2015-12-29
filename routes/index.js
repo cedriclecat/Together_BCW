@@ -316,6 +316,20 @@ router.post('/profileevent',function(req,res, next){
         res.send("goed verstuurd");
     });
 
+    router.post("/api/events/ikganiet",function(req,res)
+    {
+        var bodyz = req.body;
+
+        console.log(bodyz.id);
+        console.log(req.user._id);
+
+        Events.update({id:bodyz.id},{$pull:{members:req.user._id}},function(err){console.log(err);});
+
+
+
+        res.send("goed verstuurd");
+    })
+
     router.get('/api/events/:id',function(req,res){
         //console.log(req.params.id);
         var eid = req.params.id;

@@ -29,10 +29,10 @@ var userSchema = mongoose.Schema({
         email        : String,
         name         : String
     },
-    displayName      :{type:String},
     firstName        :{type:String},
     lastName         :{type:String},
-    city             :{type:Number},
+    email        : String,
+    city             :{type:String},
     birthday         :{type:Date},
     gender           :{type:String,required:true},
     country          :{type:String,required:true},
@@ -40,8 +40,9 @@ var userSchema = mongoose.Schema({
     picture          :{type:String},
     phone            :{type:Number},
     contacts         :{type:String},
-    events           :{type:Array},
-    groups           :{type:Array}
+    pendingcontacts  :{type:String},
+    MemberSince      :{type:String},
+    blacklisted      :{type:String}
 
 });
 

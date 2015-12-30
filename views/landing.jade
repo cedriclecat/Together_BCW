@@ -51,27 +51,23 @@ block landing
     .slider
         #myCarousel.carousel.slide(data-ride='carousel')
             .carousel-inner
-                .item.active
-                    img(data-src='img/slider/slider1.jpg', alt='first slide', src='../img/slider/slider1.jpg')
-                    .carousel-caption
-                        h2 Vestibulum elementum
-                        p Fringilla placerat.
-                        p
-                            a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Get started
-                .item
-                    img(data-src='img/slider/slider2.jpg', alt='second slide', src='../img/slider/slider2.jpg')
-                    .carousel-caption
-                        h2 Eleifend non neque
-                        p Mauris accumsan posuere mauris non facilisis.
-                        p
-                            a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Get started
-                .item
-                    img(data-src='img/slider/slider3.jpg', alt='third slide', src='../img/slider/slider3.jpg')
-                    .carousel-caption
-                        h2 Suspendisse pellentesque
-                        p Lorem ipsum dolor sit amet
-                        p
-                            a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Get Started
+                for result in data
+                    if(result.id == data[0].id)
+                        .item.active
+                            img(data-src='#{result.pictureSlider}', alt='first slide', src='#{result.pictureSlider}')
+                            .carousel-caption
+                                h2 #{result.name}
+                                p #{result.description}
+                                p
+                                    a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Werkt nog niet
+                    else
+                        .item
+                            img(data-src='#{result.pictureSlider}', alt='first slide', src='#{result.pictureSlider}')
+                            .carousel-caption
+                                h2 #{result.name}
+                                p #{result.description}
+                                p
+                                    a.btn.btn-default.btn-responsive.btn-lg(href='html/404.html', role='button') Werkt nog niet
             // Controls
             a.left.carousel-control(href='#myCarousel', data-slide='prev')
                 span.glyphicon.glyphicon-chevron-left(aria-hidden='true')

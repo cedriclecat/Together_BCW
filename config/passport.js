@@ -9,13 +9,33 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-// load up the user model
-var User = require('../data/models/User');
 
 // load the auth variables
 var configAuth = require('./auth');
 
 module.exports = function (passport) {
+    // load up the user model
+    var mongoose = require('mongoose');
+    User = mongoose.model('User');
+
+    var profilerepo = UserRepoPasport = (function () {
+
+        createuser = function(data,next){
+
+
+            User.create(data, function (err) {
+                if (err) {
+                    console.log(err);
+                    return next(err); }
+                next(data);
+            });
+
+        };
+        return {
+            createuser: createuser
+        };
+    })();
+
 
     // used to serialize the user for the session
     passport.serializeUser(function (user, done) {
@@ -67,13 +87,16 @@ module.exports = function (passport) {
                         newUser.local.email = email;
                         newUser.local.password = newUser.generateHash(password);
                         newUser.local.ADMIN=0;
+                        doiets(newUser,email,function(next){
+                            console.log(next);
+                        newUser = next;
+                            profilerepo.createuser(newUser,function(next){
+                                console.log(next);
+                                return done(null,next);
 
-                        // save the user
-                        newUser.save(function (err) {
-                            if (err)
-                                throw err;
-                            return done(null, newUser);
+                            });
                         });
+
                     }
 
                 });
@@ -81,6 +104,27 @@ module.exports = function (passport) {
             });
 
         }));
+
+
+    function doiets(User,email,next){
+        User.blacklisted="";
+        User.MemberSince=new Date();
+        User.pendingcontacts="";
+        User.contacts="";
+        User.firstName="";
+        User.lastName="";
+        User.email=email;
+        User.city="";
+        User.birthday=new Date();
+        User.gender="";
+        User.country="";
+        User.interests="";
+        User.picture="../img/profile/default-profile-pic.png";
+        User.phone=0;
+        User.Description="";
+return next(User);
+
+    };
 
     // =========================================================================
     // LOCAL LOGIN =============================================================
@@ -158,13 +202,15 @@ module.exports = function (passport) {
                         newUser.facebook.name  = profile.displayName; //.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
                         newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first ==> does not work anymore
                         newUser.local.ADMIN=0;
-                        // save our user to the database
-                        newUser.save(function(err) {
-                            if (err)
-                                throw err;
 
-                            // if successful, return the new user
-                            return done(null, newUser);
+                        doiets(newUser,profile.emails[0].value,function(next){
+                            console.log(next);
+                            newUser = next;
+                            profilerepo.createuser(newUser,function(next){
+                                console.log(next);
+                                return done(null,next);
+
+                            });
                         });
                     }
 
@@ -208,11 +254,14 @@ module.exports = function (passport) {
                         newUser.twitter.username = profile.username;
                         newUser.twitter.displayName = profile.displayName;
                         newUser.local.ADMIN=0;
-                        // save our user into the database
-                        newUser.save(function (err) {
-                            if (err)
-                                throw err;
-                            return done(null, newUser);
+                        doiets(newUser,profile.username,function(next){
+                            console.log(next);
+                            newUser = next;
+                            profilerepo.createuser(newUser,function(next){
+                                console.log(next);
+                                return done(null,next);
+
+                            });
                         });
                     }
                 });
@@ -255,12 +304,14 @@ module.exports = function (passport) {
                         newUser.google.name  = profile.displayName;
                         newUser.google.email = profile.emails[0].value; // pull the first email
                         newUser.local.ADMIN=0;
+                        doiets(newUser,profile.emails[0].value,function(next){
+                            console.log(next);
+                            newUser = next;
+                            profilerepo.createuser(newUser,function(next){
+                                console.log(next);
+                                return done(null,next);
 
-                        // save the user
-                        newUser.save(function(err) {
-                            // if successful, return the new user
-                            if (err) throw err;
-                            return done(null, newUser);
+                            });
                         });
                     }
                 });

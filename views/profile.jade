@@ -54,30 +54,27 @@ block profile
                     .panel-heading.no-title
                     .panel-body
                         .text-center.info-parent
-                            img(alt='example image', src='../img/profile/default-profile-pic.png')
+                            img(alt='example image', src='#{UD.picture}')
                         .row
-                            .col-xs-12.friends-dv
-                                a.btn.btn-xs.btn-block.friends
-                                    i.fa.fa-check-circle.append-icon
-                                    | Friends
-                            .col-xs-12.upload-dv
-                                a.btn.btn-xs.btn-block.upload
-                                    i.fa.fa-cloud-upload
-                                    | Upload picture
-                        h2 John Doe
-                        h4 Owner at Our Company, Inc.
+                            if eigen == 0
+                                .col-xs-12.friends-dv
+                                    a.btn.btn-xs.btn-block.friends
+                                        i.fa.fa-check-circle.append-icon
+                                        | Add as friend
+                            if eigen == 1
+                                .col-xs-12.upload-dv
+                                    a.btn.btn-xs.btn-block.upload
+                                        i.fa.fa-cloud-upload
+                                        | Upload picture
+                        h2 #{naam}
                         p
-                            | Ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                            | #{UD.Description}
                         div
                             table.table.table-striped.table-hover
                                 tbody
                                     tr
-                                        td(style='width:60%;') Status
-                                        td
-                                            span.label.label-success Active
-                                    tr
                                         td Member Since
-                                        td  Jan 07, 2014
+                                        td  #{UD.MemberSince}
                 .panel.widget.light-widget
                     .panel-body-list
                         h3.h-contact
@@ -200,184 +197,185 @@ block profile
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Google+:
                                         .col-xs-7.controls(ng-bind="google")
-                            .row.edit-profile
-                                .col-md-12
-                                    h3
-                                        i.fa.fa-cog
-                                        | Profile Setting
-                                    form(name='settingsForm',action='/profile', method='post',ng-submit='submitForm()', novalidate='')
-                                        .form-group(ng-class="{ 'has-error' : settingsForm.firstname.$invalid && (settingsForm.firstname.$touched || submitted)}")
-                                            label.col-sm-2.control-label Firstname
-                                            .col-sm-10.controls
-                                                .row
-                                                    .col-xs-12
-                                                        input.form-control(type='text', name='firstname', ng-model='firstname', placeholder='Your Firstname', ng-minlength='2', ng-maxlength='15', ng-required='true')
-                                                        .help-block(ng-messages='settingsForm.firstname.$error', ng-if='settingsForm.firstname.$touched')
-                                                            p(ng-message='minlength') Your firstname is too short.
-                                                            p(ng-message='maxlength') Your firstname is too long.
-                                                            p(ng-message='required') Your firstname is required.
-
-                                        .form-group(ng-class="{ 'has-error' : settingsForm.lastname.$invalid && (settingsForm.lastname.$touched || submitted)}")
-                                            label.col-sm-2.control-label Lastname
-                                            .col-sm-10.controls
-                                                .row
-                                                    .col-xs-12
-                                                        input.form-control(type='text', name='lastname', ng-model='lastname', placeholder='Your Lastname', ng-minlength='2', ng-maxlength='15', ng-required='true')
-                                                        .help-block(ng-messages='settingsForm.lastname.$error', ng-if='settingsForm.lastname.$touched')
-                                                            p(ng-message='minlength') Your lastname is too short.
-                                                            p(ng-message='maxlength') Your lastname is too long.
-                                                            p(ng-message='required') Your lastname is required.
-
-                                        .form-group(ng-class="{ 'has-error' : settingsForm.email.$invalid && (settingsForm.email.$touched || submitted)}")
-                                            label.col-sm-2.control-label Email
-                                            .col-sm-10.controls
-                                                .row
-                                                    .col-xs-12
-                                                        input.form-control(type='email', name='email', ng-model='email', placeholder='Your Email Address', ng-required='true')
-                                                        .help-block(ng-messages='settingsForm.email.$error', ng-if='settingsForm.email.$touched')
-                                                            p(ng-message='required') Your email is required.
-                                                            p(ng-message='email') Enter a valid email
-                                        .form-group
-                                            label.col-sm-2.control-label Gender
-                                            .col-sm-10.controls
-                                                .row
-                                                    .col-xs-12
-                                                        span.radio-off
-                                                            input#optionsRadios3(checked='checked',value='Male', name='optionsRadios2', type='radio', ng-model='gender')
-                                                            label(for='optionsRadios3')  Male
-
-                                                        span.radio-off1
-                                                            input#optionsRadios4(value='Female', name='optionsRadios2', type='radio', ng-model='gender')
-                                                            label(for='optionsRadios4')  Female
-
-
-                                        .form-group
-                                            label.col-sm-2.control-label Birthday
-                                            .col-sm-10.controls
-                                                .row
-                                                    .col-xs-12
-                                                        .bfh-datepicker(data-format='y-m-d', data-date='2000-01-01')
-                                                            .input-prepend.bfh-datepicker-toggle(data-toggle='bfh-datepicker')
-                                                                span.add-on
-                                                                    i.icon-calendar
-                                                                input.input-medium(type='text',ng-model='parent.birthday')
-                                                            .bfh-datepicker-calendar
-                                                                table.calendar.table.table-bordered
-                                                                    thead
-                                                                        tr.months-header
-                                                                            th.month(colspan='4')
-                                                                                a.previous(href='#')
-                                                                                    i.icon-chevron-left
-                                                                                span
-                                                                                a.next(href='#')
-                                                                                    i.icon-chevron-right
-                                                                            th.year(colspan='3')
-                                                                                a.previous(href='#')
-                                                                                    i.icon-chevron-left
-                                                                                span
-                                                                                a.next(href='#')
-                                                                                    i.icon-chevron-right
-                                                                        tr.days-header
-                                                                    tbody
-
-                                        .form-group(ng-class="{ 'has-error' : settingsForm.marital.$invalid  && (settingsForm.marital.$touched || submitted)}")
-                                            label.col-sm-2.control-label Marital Status
-                                            .col-sm-10.controls
-                                                .row
-                                                    .col-xs-12
-                                                        select.form-control(name='marital', ng-required='true', ng-model='marital',ng-options='marital.name for marital in status')
-                                                            option(value='') Select your marital status
-
-                                                        .help-block(ng-messages='settingsForm.marital.$error', ng-if='settingsForm.marital.$touched')
-                                                            p(ng-message='required') Select a marital status
-
-                                        .form-group(ng-class="{ 'has-error' : settingsForm.work.$invalid  && (settingsForm.work.$touched || submitted)}")
-                                            label.col-sm-2.control-label Work
-                                            .col-sm-10.controls
-                                                .row
-                                                    .col-xs-12
-                                                        select.form-control(name='work', ng-required='true', ng-model='work',ng-options='work.name for work in jobs')
-                                                            option(value='') Select your work
-                                                        .help-block(ng-messages='settingsForm.work.$error', ng-if='settingsForm.work.$touched')
-                                                            p(ng-message='required') Select your job
-
-                                        .form-group(ng-class="{ 'has-error' : settingsForm.country.$invalid  && (settingsForm.country.$touched || submitted)}")
-                                            label.col-sm-2.control-label Country
-                                            .col-sm-10.controls
-                                                .row
-                                                    .col-xs-12
-                                                        select.form-control(name='country', ng-required='true',ng-model='country', ng-options='country.name for country in countries')
-                                                            option(value='') Select your country
-                                                        .help-block(ng-messages='settingsForm.country.$error', ng-if='settingsForm.country.$touched')
-                                                            p(ng-message='required') Select your country
-                                        .form-group(ng-class="{ 'has-error' : settingsForm.city.$invalid  && (settingsForm.city.$touched || submitted)}")
-                                            label.col-sm-2.control-label City
-                                            .col-sm-10.controls
-                                                .row
-                                                    .col-xs-12
-                                                        select.form-control(name='city',ng-disabled='!country', ng-required='true', ng-model='city', ng-options='city for city in country.cities')
-                                                            option(value='') Select your city
-                                                        .help-block(ng-messages='settingsForm.city.$error', ng-if='settingsForm.city.$touched')
-                                                            p(ng-message='required') Select your city
-
-                                        .form-group(ng-class="{ 'has-error' : settingsForm.interests.$invalid  && (settingsForm.interests.$touched || submitted)}")
-                                            label.col-sm-2.control-label Interests
-                                            .col-sm-10.controls
-                                                .row
-                                                    .col-xs-12
-                                                        input.form-control(type='text',name='interests', ng-model='interests',ng-minlength='3', ng-maxlength='50', ng-required='true')
-                                                        .help-block(ng-messages='settingsForm.interests.$error', ng-if='settingsForm.interests.$touched')
-                                                            p(ng-message='minlength') Your interest is too short.
-                                                            p(ng-message='maxlength') Your interest is too long.
-                                                            p(ng-message='required') Your interests are required.
-
-                                        .form-group(ng-class="{ 'has-error' : settingsForm.about.$invalid  && (settingsForm.about.$touched || submitted)}")
-                                            label.col-sm-2.control-label About
-                                            .col-sm-10.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-12
-                                                        textarea.form-control(rows='3',name='about', ng-model='about',ng-minlength='20', ng-maxlength='100', ng-required='true')
-                                                        .help-block(ng-messages='settingsForm.about.$error', ng-if='settingsForm.about.$touched')
-                                                            p(ng-message='minlength') Your description is too short ( 20 ).
-                                                            p(ng-message='maxlength') Your description is too long ( 100 ).
-                                                            p(ng-message='required') Your description is required.
-                                        h3.mgbt-xs-15
+                            if eigen==1
+                                .row.edit-profile
+                                    .col-md-12
+                                        h3
                                             i.fa.fa-cog
-                                            | Contact Setting
-                                        .form-group
-                                            label.col-sm-2.control-label Mobile Phone
-                                            .col-sm-10.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-12
-                                                        input(placeholder='mobile phone', type='text', ng-model='phone')
+                                            | Profile Setting
+                                        form(name='settingsForm',action='/profile', method='post',ng-submit='submitForm()', novalidate='')
+                                            .form-group(ng-class="{ 'has-error' : settingsForm.firstname.$invalid && (settingsForm.firstname.$touched || submitted)}")
+                                                label.col-sm-2.control-label Firstname
+                                                .col-sm-10.controls
+                                                    .row
+                                                        .col-xs-12
+                                                            input.form-control(type='text', name='firstname', ng-model='firstname', placeholder='Your Firstname', ng-minlength='2', ng-maxlength='15', ng-required='true')
+                                                            .help-block(ng-messages='settingsForm.firstname.$error', ng-if='settingsForm.firstname.$touched')
+                                                                p(ng-message='minlength') Your firstname is too short.
+                                                                p(ng-message='maxlength') Your firstname is too long.
+                                                                p(ng-message='required') Your firstname is required.
 
-                                        .form-group
-                                            label.col-sm-2.control-label Facebook
-                                            .col-sm-10.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-12
-                                                        input(placeholder=' facebook', type='text', ng-model='facebook')
+                                            .form-group(ng-class="{ 'has-error' : settingsForm.lastname.$invalid && (settingsForm.lastname.$touched || submitted)}")
+                                                label.col-sm-2.control-label Lastname
+                                                .col-sm-10.controls
+                                                    .row
+                                                        .col-xs-12
+                                                            input.form-control(type='text', name='lastname', ng-model='lastname', placeholder='Your Lastname', ng-minlength='2', ng-maxlength='15', ng-required='true')
+                                                            .help-block(ng-messages='settingsForm.lastname.$error', ng-if='settingsForm.lastname.$touched')
+                                                                p(ng-message='minlength') Your lastname is too short.
+                                                                p(ng-message='maxlength') Your lastname is too long.
+                                                                p(ng-message='required') Your lastname is required.
 
-                                        .form-group
-                                            label.col-sm-2.control-label Twitter
-                                            .col-sm-10.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-12
-                                                        input(placeholder=' twitter', type='text', ng-model='twitter')
+                                            .form-group(ng-class="{ 'has-error' : settingsForm.email.$invalid && (settingsForm.email.$touched || submitted)}")
+                                                label.col-sm-2.control-label Email
+                                                .col-sm-10.controls
+                                                    .row
+                                                        .col-xs-12
+                                                            input.form-control(type='email', name='email', ng-model='email', placeholder='Your Email Address', ng-required='true')
+                                                            .help-block(ng-messages='settingsForm.email.$error', ng-if='settingsForm.email.$touched')
+                                                                p(ng-message='required') Your email is required.
+                                                                p(ng-message='email') Enter a valid email
+                                            .form-group
+                                                label.col-sm-2.control-label Gender
+                                                .col-sm-10.controls
+                                                    .row
+                                                        .col-xs-12
+                                                            span.radio-off
+                                                                input#optionsRadios3(checked='checked',value='Male', name='optionsRadios2', type='radio', ng-model='gender')
+                                                                label(for='optionsRadios3')  Male
 
-                                        .form-group
-                                            label.col-sm-2.control-label Google+
-                                            .col-sm-10.controls
-                                                .row.mgbt-xs-0
-                                                    .col-xs-12
-                                                        input(placeholder=' google+', type='text', ng-model='google')
-                                        .form-group
-                                            label.col-md-2.control-label
-                                            .col-md-10.controls
-                                                button.btn.btn-save#submit(type='submit', ng-disabled='settingsForm.$invalid')
-                                                    span.menu-icon
-                                                        i.fa.fa-fw.fa-check
-                                                    |  Save
+                                                            span.radio-off1
+                                                                input#optionsRadios4(value='Female', name='optionsRadios2', type='radio', ng-model='gender')
+                                                                label(for='optionsRadios4')  Female
+
+
+                                            .form-group
+                                                label.col-sm-2.control-label Birthday
+                                                .col-sm-10.controls
+                                                    .row
+                                                        .col-xs-12
+                                                            .bfh-datepicker(data-format='y-m-d', data-date='2000-01-01')
+                                                                .input-prepend.bfh-datepicker-toggle(data-toggle='bfh-datepicker')
+                                                                    span.add-on
+                                                                        i.icon-calendar
+                                                                    input.input-medium(type='text',ng-model='parent.birthday')
+                                                                .bfh-datepicker-calendar
+                                                                    table.calendar.table.table-bordered
+                                                                        thead
+                                                                            tr.months-header
+                                                                                th.month(colspan='4')
+                                                                                    a.previous(href='#')
+                                                                                        i.icon-chevron-left
+                                                                                    span
+                                                                                    a.next(href='#')
+                                                                                        i.icon-chevron-right
+                                                                                th.year(colspan='3')
+                                                                                    a.previous(href='#')
+                                                                                        i.icon-chevron-left
+                                                                                    span
+                                                                                    a.next(href='#')
+                                                                                        i.icon-chevron-right
+                                                                            tr.days-header
+                                                                        tbody
+
+                                            .form-group(ng-class="{ 'has-error' : settingsForm.marital.$invalid  && (settingsForm.marital.$touched || submitted)}")
+                                                label.col-sm-2.control-label Marital Status
+                                                .col-sm-10.controls
+                                                    .row
+                                                        .col-xs-12
+                                                            select.form-control(name='marital', ng-required='true', ng-model='marital',ng-options='marital.name for marital in status')
+                                                                option(value='') Select your marital status
+
+                                                            .help-block(ng-messages='settingsForm.marital.$error', ng-if='settingsForm.marital.$touched')
+                                                                p(ng-message='required') Select a marital status
+
+                                            .form-group(ng-class="{ 'has-error' : settingsForm.work.$invalid  && (settingsForm.work.$touched || submitted)}")
+                                                label.col-sm-2.control-label Work
+                                                .col-sm-10.controls
+                                                    .row
+                                                        .col-xs-12
+                                                            select.form-control(name='work', ng-required='true', ng-model='work',ng-options='work.name for work in jobs')
+                                                                option(value='') Select your work
+                                                            .help-block(ng-messages='settingsForm.work.$error', ng-if='settingsForm.work.$touched')
+                                                                p(ng-message='required') Select your job
+
+                                            .form-group(ng-class="{ 'has-error' : settingsForm.country.$invalid  && (settingsForm.country.$touched || submitted)}")
+                                                label.col-sm-2.control-label Country
+                                                .col-sm-10.controls
+                                                    .row
+                                                        .col-xs-12
+                                                            select.form-control(name='country', ng-required='true',ng-model='country', ng-options='country.name for country in countries')
+                                                                option(value='') Select your country
+                                                            .help-block(ng-messages='settingsForm.country.$error', ng-if='settingsForm.country.$touched')
+                                                                p(ng-message='required') Select your country
+                                            .form-group(ng-class="{ 'has-error' : settingsForm.city.$invalid  && (settingsForm.city.$touched || submitted)}")
+                                                label.col-sm-2.control-label City
+                                                .col-sm-10.controls
+                                                    .row
+                                                        .col-xs-12
+                                                            select.form-control(name='city',ng-disabled='!country', ng-required='true', ng-model='city', ng-options='city for city in country.cities')
+                                                                option(value='') Select your city
+                                                            .help-block(ng-messages='settingsForm.city.$error', ng-if='settingsForm.city.$touched')
+                                                                p(ng-message='required') Select your city
+
+                                            .form-group(ng-class="{ 'has-error' : settingsForm.interests.$invalid  && (settingsForm.interests.$touched || submitted)}")
+                                                label.col-sm-2.control-label Interests
+                                                .col-sm-10.controls
+                                                    .row
+                                                        .col-xs-12
+                                                            input.form-control(type='text',name='interests', ng-model='interests',ng-minlength='3', ng-maxlength='50', ng-required='true')
+                                                            .help-block(ng-messages='settingsForm.interests.$error', ng-if='settingsForm.interests.$touched')
+                                                                p(ng-message='minlength') Your interest is too short.
+                                                                p(ng-message='maxlength') Your interest is too long.
+                                                                p(ng-message='required') Your interests are required.
+
+                                            .form-group(ng-class="{ 'has-error' : settingsForm.about.$invalid  && (settingsForm.about.$touched || submitted)}")
+                                                label.col-sm-2.control-label About
+                                                .col-sm-10.controls
+                                                    .row.mgbt-xs-0
+                                                        .col-xs-12
+                                                            textarea.form-control(rows='3',name='about', ng-model='about',ng-minlength='20', ng-maxlength='100', ng-required='true')
+                                                            .help-block(ng-messages='settingsForm.about.$error', ng-if='settingsForm.about.$touched')
+                                                                p(ng-message='minlength') Your description is too short ( 20 ).
+                                                                p(ng-message='maxlength') Your description is too long ( 100 ).
+                                                                p(ng-message='required') Your description is required.
+                                            h3.mgbt-xs-15
+                                                i.fa.fa-cog
+                                                | Contact Setting
+                                            .form-group
+                                                label.col-sm-2.control-label Mobile Phone
+                                                .col-sm-10.controls
+                                                    .row.mgbt-xs-0
+                                                        .col-xs-12
+                                                            input(placeholder='mobile phone', type='text', ng-model='phone')
+
+                                            .form-group
+                                                label.col-sm-2.control-label Facebook
+                                                .col-sm-10.controls
+                                                    .row.mgbt-xs-0
+                                                        .col-xs-12
+                                                            input(placeholder=' facebook', type='text', ng-model='facebook')
+
+                                            .form-group
+                                                label.col-sm-2.control-label Twitter
+                                                .col-sm-10.controls
+                                                    .row.mgbt-xs-0
+                                                        .col-xs-12
+                                                            input(placeholder=' twitter', type='text', ng-model='twitter')
+
+                                            .form-group
+                                                label.col-sm-2.control-label Google+
+                                                .col-sm-10.controls
+                                                    .row.mgbt-xs-0
+                                                        .col-xs-12
+                                                            input(placeholder=' google+', type='text', ng-model='google')
+                                            .form-group
+                                                label.col-md-2.control-label
+                                                .col-md-10.controls
+                                                    button.btn.btn-save#submit(type='submit', ng-disabled='settingsForm.$invalid')
+                                                        span.menu-icon
+                                                            i.fa.fa-fw.fa-check
+                                                        |  Save
                         #events-tab.event-tab.tab-pane(role='tabpanel')
                             h3
                                 i.fa.fa-bolt.mgr-10.profile-icon
@@ -386,7 +384,7 @@ block profile
                                 table.table.table-striped.table-hover
                                     thead
                                         tr
-                                            th #
+
                                             th Logo / Photos
                                             th Title
                                             th Date
@@ -394,209 +392,184 @@ block profile
                                             th Status
                                             th Cost
                                             th Slots
-                                            th Action
+                                            if eigen == 1
+                                                th Action
                                     tbody
-                                        tr
-                                            td 1
-                                            td
-                                                img(src='../img/profile/avatar.jpg', alt='example image', height='80')
-                                            td Zoe Corp
-                                            td.center 2010/02/03
-                                            td.center 20:00
-                                            td.center
-                                                span.label.label-success Finish
-                                            td.center $ 250
-                                            td.center 2
-                                            td.menu-action.rounded-btn
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='view')
-                                                    i.fa.fa-eye
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit')
-                                                    i.fa.fa-pencil
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete')
-                                                    i.fa.fa-times
-                                        tr
-                                            td 2
-                                            td
-                                                img(src='../img/profile/avatar-2.jpg', alt='example image', height='80')
-                                            td Zoe Corp
-                                            td.center 2010/02/03
-                                            td.center 20:00
-                                            td.center
-                                                span.label.label-success Finish
-                                            td.center $ 250
-                                            td.center 2
-                                            td.menu-action.rounded-btn
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='view')
-                                                    i.fa.fa-eye
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit')
-                                                    i.fa.fa-pencil
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete')
-                                                    i.fa.fa-times
-                                        tr
-                                            td 3
-                                            td
-                                                img(src='../img/profile/avatar-3.jpg', alt='example image', height='80')
-                                            td Zoe Corp
-                                            td.center 2010/02/03
-                                            td.center 20:00
-                                            td.center
-                                                span.label.label-success Finish
-                                            td.center $ 250
-                                            td.center 2
-                                            td.menu-action.rounded-btn
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='view')
-                                                    i.fa.fa-eye
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit')
-                                                    i.fa.fa-pencil
-                                                a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete')
-                                                    i.fa.fa-times
-                            .row.edit-profile
-                                .col-sm-12
-                                    h3
-                                        i.fa.fa-cog
-                                        | Create Event
-                                    form(name='eventsForm',action='/profileevent', method='post',ng-submit='submitForm()', novalidate='')
-                                        .form-group
-                                            label.col-md-3.control-label Picture
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        input#input-1.file(type='file',name='pictureUrl',ng-model='event.pictureUrl')
-                                        .form-group
-                                            label.col-md-3.control-label Picture for slider
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        input#input-1.file(type='file',name='pictureSlider',ng-model='event.pictureSlider')
+                                        for events in evs
+                                            tr
 
-                                        .form-group(ng-class="{ 'has-error' : eventsForm.etitle.$invalid  && (eventsForm.etitle.$touched || submitted)}")
-                                            label.col-md-3.control-label Title
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        input.form-control(type='text',name='etitle',ng-model='event.etitle',placeholder='Write title here', ng-minlength='2', ng-maxlength='20', ng-required='true')
-                                                        .help-block(ng-messages='eventsForm.etitle.$error', ng-if='eventsForm.etitle.$touched')
-                                                            p(ng-message='minlength') Event title is too short.
-                                                            p(ng-message='maxlength') Event title is too long.
-                                                            p(ng-message='required') Event title is required.
-                                        .form-group
-                                            label.col-md-3.control-label Date
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        input.form-control(type='text',name='date',ng-model='event.date',placeholder='Write date here')
-                                        .form-group
-                                            label.col-md-3.control-label Time
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        input.form-control(type='text',name='time',ng-model='event.time',placeholder='Write time here')
-                                        .form-group
-                                            label.col-md-3.control-label Location
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        input.form-control(type='text',name='Location',ng-model='event.Location',placeholder='Write Location here')
+                                                td
+                                                    img(src='../img/profile/avatar.jpg', alt='example image', height='80')
+                                                td #{events.name}
+                                                td.center #{events.date}
+                                                td.center #{events.time}
+                                                td.center
+                                                    if events.done == 1
+                                                        span.label.label-success Finish
+                                                    else
+                                                        span.label.label-info Soon
+                                                td.center #{events.price}
+                                                td.center #{events.maxMember}
+                                                if eigen == 1
+                                                    td.menu-action.rounded-btn
+                                                        a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit', id='#{events.id}')
+                                                            i.fa.fa-pencil
+                                                        a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete', id = "#{events.id}")
+                                                            i.fa.fa-times
+                            if eigen==1
+                                .row.edit-profile
+                                    .col-sm-12
+                                        h3
+                                            i.fa.fa-cog
+                                            | Create Event
+                                        form(name='eventsForm',action='/profileevent', method='post',ng-submit='submitForm()', novalidate='')
+                                            .form-group
+                                                label.col-md-3.control-label Picture
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            input#input-1.file(type='file',name='pictureUrl',ng-model='event.pictureUrl')
+                                            .form-group
+                                                label.col-md-3.control-label Picture for slider
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            input#input-1.file(type='file',name='pictureSlider',ng-model='event.pictureSlider')
 
+                                            .form-group(ng-class="{ 'has-error' : eventsForm.etitle.$invalid  && (eventsForm.etitle.$touched || submitted)}")
+                                                label.col-md-3.control-label Title
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            input.form-control(type='text',name='etitle',ng-model='event.etitle',placeholder='Write title here', ng-minlength='2', ng-maxlength='20', ng-required='true')
+                                                            .help-block(ng-messages='eventsForm.etitle.$error', ng-if='eventsForm.etitle.$touched')
+                                                                p(ng-message='minlength') Event title is too short.
+                                                                p(ng-message='maxlength') Event title is too long.
+                                                                p(ng-message='required') Event title is required.
+                                            .form-group
+                                                label.col-md-3.control-label Date
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            input.form-control(type='text',name='date',ng-model='event.date',placeholder='Write date here')
+                                            .form-group
+                                                label.col-md-3.control-label Time
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            input.form-control(type='text',name='time',ng-model='event.time',placeholder='Write time here')
+                                            .form-group
+                                                label.col-md-3.control-label Location
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            input.form-control(type='text',name='Location',ng-model='event.Location',placeholder='Write Location here')
+                                            .form-group
+                                                label.col-md-3.control-label Group
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            select.form-control(name='Group')
+                                                                for gr in allgroups
+                                                                    option(value='#{gr.id}') #{gr.name}
+                                             // .form-group
+                                                label.col-md-3.control-label Date
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            .bfh-datepicker(data-format='y-m-d', data-date='2016-01-01')
+                                                                .input-prepend.bfh-datepicker-toggle(data-toggle='bfh-datepicker')
+                                                                    span.add-on
+                                                                        i.icon-calendar
+                                                                    input.input-medium(type='text', readonly='', name='date',ng-model='event.date')
+                                                                .bfh-datepicker-calendar
+                                                                    table.calendar.table.table-bordered
+                                                                        thead
+                                                                            tr.months-header
+                                                                                th.month(colspan='4')
+                                                                                    a.previous(href='#')
+                                                                                        i.icon-chevron-left
+                                                                                    span
+                                                                                    a.next(href='#')
+                                                                                        i.icon-chevron-right
+                                                                                th.year(colspan='3')
+                                                                                    a.previous(href='#')
+                                                                                        i.icon-chevron-left
+                                                                                    span
+                                                                                    a.next(href='#')
+                                                                                        i.icon-chevron-right
+                                                                            tr.days-header
+                                                                        tbody
+                                            // .form-group
+                                                label.col-md-3.control-label Time
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            .bfh-timepicker(data-time='08:00')
+                                                                .input-prepend.bfh-timepicker-toggle(data-toggle='bfh-timepicker', name='time',ng-model='event.time')
+                                                                    span.add-on
+                                                                        i.icon-time
+                                                                    input.input-medium(type='text', readonly='')
+                                                                .bfh-timepicker-popover
+                                                                    table.table
+                                                                        tbody
+                                                                            tr
+                                                                                td.hour
+                                                                                    a.next(href='#')
+                                                                                        i.icon-chevron-up
+                                                                                    br
+                                                                                    input.input-mini(type='text', readonly='')
+                                                                                    br
+                                                                                    a.previous(href='#')
+                                                                                        i.icon-chevron-down
+                                                                                td.separator :
+                                                                                td.minute
+                                                                                    a.next(href='#')
+                                                                                        i.icon-chevron-up
+                                                                                    br
+                                                                                    input.input-mini(type='text', readonly='')
+                                                                                    br
+                                                                                    a.previous(href='#')
+                                                                                        i.icon-chevron-down
+                                            .form-group(ng-class="{ 'has-error' : eventsForm.cost.$invalid  && (eventsForm.cost.$touched || submitted)}")
+                                                label.col-md-3.control-label Cost
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            .input-group
+                                                                span.input-group-addon $
+                                                                input.form-control(type='number',name='cost' ng-model='event.cost', ng-required='true')
+                                                                .help-block(ng-messages='eventsForm.cost.$error', ng-if='eventsForm.cost.$touched')
+                                                                    p(ng-message='required') The cost is required.
+                                                                    p(ng-message='number') The cost must be a number.
 
-                                         // .form-group
-                                            label.col-md-3.control-label Date
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        .bfh-datepicker(data-format='y-m-d', data-date='2016-01-01')
-                                                            .input-prepend.bfh-datepicker-toggle(data-toggle='bfh-datepicker')
-                                                                span.add-on
-                                                                    i.icon-calendar
-                                                                input.input-medium(type='text', readonly='', name='date',ng-model='event.date')
-                                                            .bfh-datepicker-calendar
-                                                                table.calendar.table.table-bordered
-                                                                    thead
-                                                                        tr.months-header
-                                                                            th.month(colspan='4')
-                                                                                a.previous(href='#')
-                                                                                    i.icon-chevron-left
-                                                                                span
-                                                                                a.next(href='#')
-                                                                                    i.icon-chevron-right
-                                                                            th.year(colspan='3')
-                                                                                a.previous(href='#')
-                                                                                    i.icon-chevron-left
-                                                                                span
-                                                                                a.next(href='#')
-                                                                                    i.icon-chevron-right
-                                                                        tr.days-header
-                                                                    tbody
-                                        // .form-group
-                                            label.col-md-3.control-label Time
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        .bfh-timepicker(data-time='08:00')
-                                                            .input-prepend.bfh-timepicker-toggle(data-toggle='bfh-timepicker', name='time',ng-model='event.time')
-                                                                span.add-on
-                                                                    i.icon-time
-                                                                input.input-medium(type='text', readonly='')
-                                                            .bfh-timepicker-popover
-                                                                table.table
-                                                                    tbody
-                                                                        tr
-                                                                            td.hour
-                                                                                a.next(href='#')
-                                                                                    i.icon-chevron-up
-                                                                                br
-                                                                                input.input-mini(type='text', readonly='')
-                                                                                br
-                                                                                a.previous(href='#')
-                                                                                    i.icon-chevron-down
-                                                                            td.separator :
-                                                                            td.minute
-                                                                                a.next(href='#')
-                                                                                    i.icon-chevron-up
-                                                                                br
-                                                                                input.input-mini(type='text', readonly='')
-                                                                                br
-                                                                                a.previous(href='#')
-                                                                                    i.icon-chevron-down
-                                        .form-group(ng-class="{ 'has-error' : eventsForm.cost.$invalid  && (eventsForm.cost.$touched || submitted)}")
-                                            label.col-md-3.control-label Cost
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        .input-group
-                                                            span.input-group-addon $
-                                                            input.form-control(type='number',name='cost' ng-model='event.cost', ng-required='true')
-                                                            .help-block(ng-messages='eventsForm.cost.$error', ng-if='eventsForm.cost.$touched')
-                                                                p(ng-message='required') The cost is required.
-                                                                p(ng-message='number') The cost must be a number.
+                                            .form-group(ng-class="{ 'has-error' : eventsForm.slots.$invalid  && (eventsForm.slots.$touched || submitted)}")
+                                                label.col-md-3.control-label Slots
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            input(type='number', name='slots', min='1', max='5', ng-model='event.slots',ng-required='true')
+                                                            .help-block(ng-messages='eventsForm.slots.$error', ng-if='eventsForm.slots.$touched')
+                                                                p(ng-message='required') Amount of slots is required.
+                                                                p(ng-message='number') Amount of slots must be a number.
 
-                                        .form-group(ng-class="{ 'has-error' : eventsForm.slots.$invalid  && (eventsForm.slots.$touched || submitted)}")
-                                            label.col-md-3.control-label Slots
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        input(type='number', name='slots', min='1', max='5', ng-model='event.slots',ng-required='true')
-                                                        .help-block(ng-messages='eventsForm.slots.$error', ng-if='eventsForm.slots.$touched')
-                                                            p(ng-message='required') Amount of slots is required.
-                                                            p(ng-message='number') Amount of slots must be a number.
-
-                                        .form-group(ng-class="{ 'has-error' : eventsForm.edescription.$invalid  && (eventsForm.edescription.$touched || submitted)}")
-                                            label.col-md-3.control-label Description
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        textarea.form-control(rows='3',name='edescription', ng-model='event.edescription',ng-minlength='20', ng-maxlength='100', ng-required='true')
-                                                        .help-block(ng-messages='eventsForm.edescription.$error', ng-if='eventsForm.edescription.$touched')
-                                                            p(ng-message='minlength') Event description is too short ( 20 ).
-                                                            p(ng-message='maxlength') Event description is too long ( 100 ).
-                                                            p(ng-message='required') Event description is required.
-                                        .form-group
-                                            label.col-md-3.control-label
-                                            .col-md-9.controls
-                                                button.btn.btn-save(type='submit', ng-disabled='eventsForm.$invalid')
-                                                    span.menu-icon
-                                                        i.fa.fa-fw.fa-check
-                                                    |  Save
+                                            .form-group(ng-class="{ 'has-error' : eventsForm.edescription.$invalid  && (eventsForm.edescription.$touched || submitted)}")
+                                                label.col-md-3.control-label Description
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            textarea.form-control(rows='3',name='edescription' ,ng-model='event.edescription',ng-minlength='20', ng-maxlength='100', ng-required='true')
+                                                            .help-block(ng-messages='eventsForm.edescription.$error', ng-if='eventsForm.edescription.$touched')
+                                                                p(ng-message='minlength') Event description is too short ( 20 ).
+                                                                p(ng-message='maxlength') Event description is too long ( 100 ).
+                                                                p(ng-message='required') Event description is required.
+                                            .form-group
+                                                label.col-md-3.control-label
+                                                .col-md-9.controls
+                                                    button.btn.btn-save(type='submit', ng-disabled='eventsForm.$invalid')
+                                                        span.menu-icon
+                                                            i.fa.fa-fw.fa-check
+                                                        |  Save
                         #contacts-tab.contact-tab.tab-pane(role='tabpanel')
                             h3
                                 i.fa.fa-users.mgr-10.profile-icon
@@ -604,10 +577,11 @@ block profile
                             ul.nav.nav-pills
                                 li.active
                                     a(href='#', data-toggle='tab') Friends
-                                li
-                                    a(href='#', data-toggle='tab') Pending Request
-                                li
-                                    a(href='#', data-toggle='tab') Blacklisted
+                                if eigen==1
+                                    li
+                                        a(href='#', data-toggle='tab') Pending Request
+                                    li
+                                        a(href='#', data-toggle='tab') Blacklisted
                             .content-grid.column-xs-3.column-sm-4.column-md-4.column-lg-6.height-xs-4
                                 div
                                     ul.list-wrapper
@@ -655,98 +629,66 @@ block profile
                                 i.fa.fa-leaf.mgr-10.profile-icon
                                 |  GROUPS
                             .row
-                                .col-xs-12.col-sm-6
-                                    .content-list.content-large.menu-action-right
-                                        ul.list-wrapper.pd-lr-15
-                                            li
-                                                .menu-icon
-                                                    a(href='#')
-                                                        img(src='../img/profile/logo-01.jpg', alt='example image')
-                                                .menu-text
-                                                    h4
-                                                        a(href='#') Groupis Group
-                                                    .menu-info
-                                                        span.menu-date  3467 members
-                                                    p
-                                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidtation ullamco...
-                                                .menu-action
-                                                    .menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Leave Group')
-                                                        i.fa.fa-times
-                                .col-xs-12.col-sm-6
-                                    .content-list.content-large.menu-action-right
-                                        ul.list-wrapper.pd-lr-15
-                                            li
-                                                .menu-icon
-                                                    a(href='#')
-                                                        img(src='../img/profile/logo-02.jpg', alt='example image')
-                                                .menu-text
-                                                    h4.mgbt-xs-0
-                                                        a(href='#') Ztormin Community
-                                                    .menu-info
-                                                        span.menu-date  12597 members
-                                                    p
-                                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidtation ullamco...
-                                                .menu-action
-                                                    .menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Leave Group')
-                                                        i.fa.fa-times
-                                .col-xs-12.col-sm-6
-                                    .content-list.content-large.menu-action-right
-                                        ul.list-wrapper.pd-lr-15
-                                            li
-                                                .menu-icon
-                                                    a(href='#')
-                                                        img(src='../img/profile/logo-03.jpg', alt='example image')
-                                                .menu-text
-                                                    h4
-                                                        a(href='#') Book Lovers
-                                                    .menu-info
-                                                        span.menu-date  67 members
-                                                    p
-                                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidtation ullamco...
-                                                .menu-action
-                                                    .menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Leave Group')
-                                                        i.fa.fa-times
-                            .row.edit-profile
-                                .col-sm-12
-                                    h3
-                                        i.fa.fa-cog
-                                        | Create Group
-                                    form(name='groupsForm',action='/profile', method='post',ng-submit='submitForm()', novalidate='')
-                                        .form-group
-                                            label.col-md-3.control-label Picture
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        input#input-1.file(type='file')
+                                for gr in groups
+                                    .col-xs-12.col-sm-6
+                                        .content-list.content-large.menu-action-right
+                                            ul.list-wrapper.pd-lr-15
+                                                li
+                                                    .menu-icon
+                                                        a(href='#')
+                                                            img(src='#{gr.picture}', alt='example image')
+                                                    .menu-text
+                                                        h4
+                                                            a(href='#') #{gr.name}
+                                                        .menu-info
+                                                            span.menu-date #{gr.memberids.length} members
+                                                        p
+                                                            | #{gr.description}
+                                                    .menu-action
+                                                        .menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Leave Group')
+                                                            i.fa.fa-times
+                            if eigen==1
+                                .row.edit-profile
+                                    .col-sm-12
+                                        h3
+                                            i.fa.fa-cog
+                                            | Create Group
+                                        form(name='groupsForm',action='/profilegroups', method='post',ng-submit='submitForm()', novalidate='')
+                                            .form-group
+                                                label.col-md-3.control-label Picture
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            input#input-1.file(type='file',name="Foto")
 
-                                        .form-group(ng-class="{ 'has-error' : groupsForm.gtitle.$invalid  && (groupsForm.gtitle.$touched || submitted)}")
-                                            label.col-md-3.control-label Title
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        input.form-control(type='text',name='gtitle',ng-model='group.gtitle',placeholder='Write title here',  ng-minlength='2', ng-maxlength='20', ng-required='true')
-                                                        .help-block(ng-messages='groupsForm.gtitle.$error', ng-if='groupsForm.gtitle.$touched')
-                                                            p(ng-message='minlength') Group title is too short.
-                                                            p(ng-message='maxlength') Group title is too long.
-                                                            p(ng-message='required') Group title is required.
+                                            .form-group(ng-class="{ 'has-error' : groupsForm.gtitle.$invalid  && (groupsForm.gtitle.$touched || submitted)}")
+                                                label.col-md-3.control-label Title
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            input.form-control(type='text',name='gtitle',ng-model='group.gtitle',placeholder='Write title here',  ng-minlength='2', ng-maxlength='20', ng-required='true')
+                                                            .help-block(ng-messages='groupsForm.gtitle.$error', ng-if='groupsForm.gtitle.$touched')
+                                                                p(ng-message='minlength') Group title is too short.
+                                                                p(ng-message='maxlength') Group title is too long.
+                                                                p(ng-message='required') Group title is required.
 
-                                        .form-group(ng-class="{ 'has-error' : groupsForm.gdescription.$invalid  && (groupsForm.gdescription.$touched || submitted)}")
-                                            label.col-md-3.control-label Description
-                                            .col-md-9.controls
-                                                .row
-                                                    .col-md-12
-                                                        textarea.form-control(rows='3',name='gdescription', ng-model='group.gdescription',ng-minlength='20', ng-maxlength='100', ng-required='true')
-                                                        .help-block(ng-messages='groupsForm.gdescription.$error', ng-if='groupsForm.gdescription.$touched')
-                                                            p(ng-message='minlength') Group description is too short ( 20 ).
-                                                            p(ng-message='maxlength') Group description is too long ( 100 ).
-                                                            p(ng-message='required') Group description is required.
-                                        .form-group
-                                            label.col-md-3.control-label
-                                            .col-md-9.controls
-                                                button.btn.btn-save(type='submit', ng-disabled='groupsForm.$invalid')
-                                                    span.menu-icon
-                                                        i.fa.fa-fw.fa-check
-                                                    |  Save
+                                            .form-group(ng-class="{ 'has-error' : groupsForm.gdescription.$invalid  && (groupsForm.gdescription.$touched || submitted)}")
+                                                label.col-md-3.control-label Description
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            textarea.form-control(rows='3',name='gdescription', ng-model='group.gdescription',ng-minlength='20', ng-maxlength='100', ng-required='true')
+                                                            .help-block(ng-messages='groupsForm.gdescription.$error', ng-if='groupsForm.gdescription.$touched')
+                                                                p(ng-message='minlength') Group description is too short ( 20 ).
+                                                                p(ng-message='maxlength') Group description is too long ( 100 ).
+                                                                p(ng-message='required') Group description is required.
+                                            .form-group
+                                                label.col-md-3.control-label
+                                                .col-md-9.controls
+                                                    button.btn.btn-save(type='submit', ng-disabled='groupsForm.$invalid')
+                                                        span.menu-icon
+                                                            i.fa.fa-fw.fa-check
+                                                        |  Save
 
     script(type='text/javascript', src='/dist/js/jquery.min.js')
     script(type='text/javascript', src='/dist/js/bootstrap.min.js')

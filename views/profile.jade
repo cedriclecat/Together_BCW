@@ -464,8 +464,14 @@ block profile
                                                     .row
                                                         .col-md-12
                                                             input.form-control(type='text',name='Location',ng-model='event.Location',placeholder='Write Location here')
-
-
+                                            .form-group
+                                                label.col-md-3.control-label Group
+                                                .col-md-9.controls
+                                                    .row
+                                                        .col-md-12
+                                                            select.form-control(name='Group')
+                                                                for gr in allgroups
+                                                                    option(value='#{gr.id}') #{gr.name}
                                              // .form-group
                                                 label.col-md-3.control-label Date
                                                 .col-md-9.controls
@@ -552,7 +558,7 @@ block profile
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            textarea.form-control(rows='3',name='edescription', ng-model='event.edescription',ng-minlength='20', ng-maxlength='100', ng-required='true')
+                                                            textarea.form-control(rows='3',name='edescription' ,ng-model='event.edescription',ng-minlength='20', ng-maxlength='100', ng-required='true')
                                                             .help-block(ng-messages='eventsForm.edescription.$error', ng-if='eventsForm.edescription.$touched')
                                                                 p(ng-message='minlength') Event description is too short ( 20 ).
                                                                 p(ng-message='maxlength') Event description is too long ( 100 ).

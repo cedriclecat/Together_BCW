@@ -50,9 +50,9 @@ console.log(stukjes);
                             console.log(vandaag);
                             console.log(eventdatum);
                             if(eventdatum <= vandaag){
-                                e.done=0;
-                            }else{
                                 e.done=1;
+                            }else{
+                                e.done=0;
                             }
 
                         });
@@ -63,7 +63,15 @@ console.log(stukjes);
                                 return next(err);
                             }
                         data.groups = even;
-                            next();
+
+                            Groups.find({},function(err,even) {
+
+                                if (err) {
+                                    return next(err);
+                                }
+                                data.allgroups = even;
+                                next();
+                            });
                         });
 
 
@@ -75,6 +83,7 @@ console.log(stukjes);
     createevent = function(data,next){
         var mongoose = require('mongoose');
         Events = mongoose.model('events');
+        Groups = mongoose.model('groups');
         var user = data.user._id;
 
         data = data.body;
@@ -88,7 +97,7 @@ console.log(stukjes);
             var mijnevent ={};
             mijnevent.id= ''+mijngetal;
             mijnevent.name = data.etitle;
-            mijnevent.description = data.ediscription;
+            mijnevent.description = data.edescription;
             mijnevent.date = data.date;
             mijnevent.time = data.time;
             mijnevent.maxMember = data.slots;
@@ -104,8 +113,22 @@ console.log(stukjes);
             mijnevent.createdby = user;
             Events.create(mijnevent, function (err) {
                 if (err) { return next(err); }
-                 next(mijnevent);
+                Groups.findOne({id:data.Group},function(err,even){
+                    if(even.eventids==""){
+
+                        even.eventids = mijngetal;
+                    }else{
+                        even.eventids = even.eventids + "," + mijngetal;
+                    }
+var options = { multi: true };
+                    console.log(even);
+                    Groups.update({id:data.Group},{eventids:even.eventids},options,function(err){
+                        next(mijnevent);
+                    });
+                });
             });
+
+
         });
 
 

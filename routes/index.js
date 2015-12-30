@@ -42,7 +42,7 @@ var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
     router.get('/profile',isLoggedIn, function (req , res) {
 
         ProfileRepo.getevents(req,function(next){
-            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN,UD:req.UserData, naam:req.naam });
+            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN,UD:req.UserData, naam:req.naam ,groups:req.groups});
         });
     });
     router.post('/profile',function(req,res){
@@ -52,10 +52,17 @@ var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
     router.post('/profileevent',function(req,res, next){
         ProfileRepo.createaevent(req,function(next){
             ProfileRepo.getevents(req,function(next){
-                res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN,UD:req.UserData, naam:req.naam });
+                res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN,UD:req.UserData, naam:req.naam, groups:req.groups});
             });
         });
     });
+router.post('/profilegroups',function(req,res, next){
+    GroupsRepo.creategroup(req,function(next){
+        ProfileRepo.getevents(req,function(next){
+            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN,UD:req.UserData, naam:req.naam, groups:req.groups });
+        });
+    });
+});
     // =====================================
     // ADMIN ===============================
     // =====================================

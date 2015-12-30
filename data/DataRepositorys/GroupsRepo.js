@@ -2,6 +2,40 @@
  * Created by wouter on 12/29/2015.
  */
 GroupsRepo = (function () {
+    creategroup = function(data,next){
+
+        var mongoose = require('mongoose');
+        Groups = mongoose.model('groups');
+        var user = data.user._id;
+        data = data.body;
+        Groups.find({},function(err,even) {
+            var mijngetal = 1;
+            even.forEach(function(e){
+                mijngetal = mijngetal +1;
+
+            });
+            data.TIMESTAMP = new Date();
+            var mijngroup ={};
+            mijngroup.id= ''+mijngetal;
+            mijngroup.TIMESTAMP =  new Date();
+            mijngroup.name=data.gtitle;
+            mijngroup.description = data.gdescription;
+            var members = {};
+            members.id=user;
+            mijngroup.memberids = members;
+            mijngroup.interests = "";
+            mijngroup.createdby=user;
+            mijngroup.eventids="";
+            mijngroup.picture="https://s-media-cache-ak0.pinimg.com/236x/a3/80/7e/a3807e09afab6d37ff5352a270a467b4.jpg";
+            mijngroup.chat="";
+            Groups.create(mijngroup, function (err) {
+                console.log(err);
+                if (err) { return next(err); }
+                next(mijngroup);
+            });
+        });
+    };
+
     initGroup = function (req, next) {
         var mongoose = require('mongoose');
         Events = mongoose.model('events');
@@ -65,7 +99,8 @@ GroupsRepo = (function () {
     };
 
     return{
-        initGroup:initGroup
+        initGroup:initGroup,
+        creategroup:creategroup
     }
 })();
 module.exports = GroupsRepo;

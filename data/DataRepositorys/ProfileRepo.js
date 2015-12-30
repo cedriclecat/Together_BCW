@@ -7,6 +7,7 @@ profilerepo = (function () {
         var mongoose = require('mongoose');
         User = mongoose.model('User');
         Events = mongoose.model('events');
+        Groups = mongoose.model('groups');
 
         var grps = data.query.id;
         var user = data.user._id;
@@ -34,7 +35,7 @@ profilerepo = (function () {
                 }
                 data.naam=naam;
 
-                Events.find({createdby:user},function(err,even) {
+                Events.find({createdby:zoek},function(err,even) {
                     if (err) { return next(err);}
                     else {
                         even.forEach(function(e){
@@ -56,7 +57,16 @@ console.log(stukjes);
 
                         });
                         data.mijnevents = even;
-next();
+                        Groups.find({createdby:zoek},function(err,even) {
+
+                            if (err) {
+                                return next(err);
+                            }
+                        data.groups = even;
+                            next();
+                        });
+
+
                     }
                 });
             }
@@ -75,7 +85,6 @@ next();
 
             });
             data.TIMESTAMP = new Date();
-            console.log(data);
             var mijnevent ={};
             mijnevent.id= ''+mijngetal;
             mijnevent.name = data.etitle;
@@ -87,13 +96,12 @@ next();
             mijnevent.members = members;
             mijnevent.location = data.Location;
             mijnevent.price = data.cost;
-            mijnevent.pictureUrl = data.pictureUrl;
+            mijnevent.pictureUrl = "https://s-media-cache-ak0.pinimg.com/236x/a3/80/7e/a3807e09afab6d37ff5352a270a467b4.jpg";
             mijnevent.tags = '';
             mijnevent.promoted= 0;
             mijnevent.TIMESTAMP = new Date();
-            mijnevent.pictureSlider = data.pictureSlider;
+            mijnevent.pictureSlider = "https://s-media-cache-ak0.pinimg.com/236x/a3/80/7e/a3807e09afab6d37ff5352a270a467b4.jpg";
             mijnevent.createdby = user;
-            console.log(mijnevent);        console.log(data);
             Events.create(mijnevent, function (err) {
                 if (err) { return next(err); }
                  next(mijnevent);

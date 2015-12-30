@@ -136,7 +136,7 @@
                   ;
                     var button = document.getElementById(params);
 
-                     button.disabled = true;
+                     button.disabled = false;
                      button.className = "btn btn-info btn-responsive active disapprove";
                      button.firstChild.className = "fa fa-remove fa-lg";
                      button.nextSibling.className = "btn btn-info btn-responsive approve";

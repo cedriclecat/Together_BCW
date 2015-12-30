@@ -11,6 +11,7 @@ profilerepo = (function () {
         var grps = data.query.id;
         var user = data.user._id;
         var zoek = "";
+
         if(grps == undefined || grps==user){
             //U eigen profiel
             data.OWN = 1;
@@ -19,17 +20,43 @@ profilerepo = (function () {
             data.OWN=0;
  zoek = grps;
         }
-        User.find({_id:zoek},function(err,even) {
+        if(data.user.local.ADMIN == 1){
+            data.OWN = 1;
+        }
+        var naam ="";
+        User.findOne({_id:zoek},function(err,even) {
             if (err) { return next(err);}else{
                 data.UserData = even;
+                if(even.firstName ==""){
+                    naam = even.email;
+                }else{
+                    naam = even.firstName + " " + even.lastName;
+                }
+                data.naam=naam;
+
                 Events.find({createdby:user},function(err,even) {
                     if (err) { return next(err);}
                     else {
                         even.forEach(function(e){
-                            e.done=1;
+                            var datum  = e.date;
+                            var stukjes = datum.split("/");
+                            var vandaag = new Date();
+console.log(stukjes);
+                            var eventdatum = new Date();
+                            eventdatum.setMonth(stukjes[1] -1);
+                            eventdatum.setDate(stukjes[0]);
+                            eventdatum.setYear(stukjes[2]);
+                            console.log(vandaag);
+                            console.log(eventdatum);
+                            if(eventdatum <= vandaag){
+                                e.done=0;
+                            }else{
+                                e.done=1;
+                            }
+
                         });
                         data.mijnevents = even;
-                        next();
+next();
                     }
                 });
             }

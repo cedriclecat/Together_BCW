@@ -19,8 +19,14 @@ HomeRepo = (function () {
             isadmin=0;
         }
         Events.find({},function(err,even){
-            mijnevents=even;
-            mijnevents.forEach(function(e){
+            mijnevents=[];
+
+
+            even.forEach(function(e){
+                if(mijnevents.length<=5) {
+                    mijnevents.push(e);
+                }
+
                 if(e.promoted==1){
                     promoted=e;
                 }
@@ -32,9 +38,6 @@ HomeRepo = (function () {
                     var dat1 = new Date(mijndatum);
                     var dat2 = new Date(mijndatum2);
                     var now = new Date();
-                    console.log(dat1);
-                    console.log(dat2);
-                    console.log(now);
                     if(dat1<now){
                         if(dat1>dat2){
                             trending=e;

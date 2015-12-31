@@ -9,18 +9,54 @@ block socket
             console.log('hh');
             var socket = io.connect();
             socket.on('nick', function (data) {
-                console.log("h");
                 document.getElementById("clientshere").value = "";
                 data.forEach(function (entry) {
                     console.log(entry);
-                    document.getElementById("clientshere").value = document.getElementById("clientshere").value + entry + '\n';
+                    var container = document.createElement('div');
+                    container.className ="container-fluid";
+                    container.style.marginTop = "10px";
+                    container.style.border="1px solid #d3d3d3";
+                    container.style.background="#00acac";
+                    container.style.paddingLeft="0px";
+                    var row = document.createElement('div');
+                    row.className ="row";
+                    var col1 = document.createElement('div');
+                    col1.className ="col-md-2";
+                    var col2 = document.createElement('div');
+                    col2.className ="col-md-10";
+                    var image = document.createElement('img');
+                    image.src=entry.Foto;
+                    image.style.height="50px";
+                    var h3 = document.createElement("p");
+                    h3.innerText = entry.naam;
+                    h3.style.marginTop = "11px";
+                    var style = document.createElement("style");
+                    style.type="text/css";
+                    var decl = document.createTextNode("p:hover {background-color: #00acac !important}");
+                    if(style.stylesheet){
+                        style.styleSheet.cssText=decl.nodeValue;
+                    }else{
+                        style.appendChild(decl);
+                    }
+                    h3.appendChild(style);
+                    var link = document.createElement("a");
+                    link.href="./profile?id=" + entry.id;
+                    col1.appendChild(image);
+                    col2.appendChild(h3);
+                    row.appendChild(col1);
+                    row.appendChild(col2);
+                    container.appendChild(row);
+                    link.appendChild(container);
+                    document.getElementById("clientshere").appendChild(link);
                 });
             });
             socket.on('rockgroup', function (data) {
                 var msg = data.nick + ': ' + data.message;
                 document.getElementById("Texthere").value = document.getElementById("Texthere").value + msg + '\n';
             });
-            socket.emit('nick', "Testingpurpose"); //this needs to change to your nickname
+            var elements = document.getElementsByTagName("header");
+            console.log(elements[0].id);
+            socket.emit('nick', elements[0].id); //this needs to change to your nickname
             document.getElementById("btnchat").addEventListener("click", function () {
                 socket.emit('rockgroup', {
                     message: document.getElementById("chat-input").value
@@ -28,7 +64,7 @@ block socket
             }, false);
         }, false);
 block groups
-    header
+    header(id='#{user}')
         nav.navbar.navbar-default.navbar-fixed-top
             .container-fluid
                 button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
@@ -90,21 +126,21 @@ block groups
                                         #online-users.list-group
                                             p #{res.description}
                             .col-md-3
-                                .panel.panel-default
+                                .panel.panel-default(style={height:'695px'})
                                     .panel-heading Group Chat
                                     .panel-body
-                                        textarea#Texthere
-                                        .input-group
+                                        .chat(style={overflow:'auto', height:'577px', border:'1px solid #d3d3d3'})
+                                        .input-group(style='margin-top:10px')
                                             input#chat-input.form-control(type='text')
                                             span.input-group-btn
                                                 button#btnchat.btn.sendm.btn-default(type='submit') Send Message
 
                             .col-md-3
-                                .panel.panel-default
+                                .panel.panel-default(style={overflow:'auto', height:'695px'})
                                     .panel-heading Online Users
                                     ul#user-list.list-group
-                                    .panel-body
-                                        textarea#clientshere
+                                    .panel-body#clientshere
+
 
     script(type='text/javascript', src='../dist/js/jquery.min.js')
     script(type='text/javascript', src='../dist/js/bootstrap.min.js')

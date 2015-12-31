@@ -41,7 +41,7 @@ var upload = multer({storage:options});
     router.get('/groups',isLoggedIn, function(req, res) {
 
         GroupsRepo.initGroup(req,function(next){
-            res.render('groups', {data:next.data, mijndat:next.mijndat, path:next.path, mev:next.mev, titel:next.titel});
+            res.render('groups', {data:next.data, user:user, mijndat:next.mijndat, path:next.path, mev:next.mev, titel:next.titel});
         });
     });
     // =====================================

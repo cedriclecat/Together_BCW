@@ -94,12 +94,11 @@ block events
                                             i.fa.fa-map-marker
                                             | {{ ' ' +  something.location}}
                                         p {{something.description}}
-                                        button(ng-click="ikGa($event)" id="{{something.id}}")
-                                            .btn.btn-info.btn-responsive.approve
+                                        button(ng-click="ikGa($event)"   id="{{something.id}}").btn.btn-info.btn-responsive.approve
                                             i.fa.fa-check.fa-lg
                                             |  Ik ga hier naar toe
 
-                                        button.btn.btn-info.btn-responsive.active.disapprove
+                                        button(ng-click="ikGaNiet($event)").btn.btn-info.btn-responsive.active.disapprove
                                             i.fa.fa-remove.fa-lg
                                             |  Ik ga hier niet naar toe
 
@@ -114,6 +113,11 @@ block events
 
     script(type='text/javascript', src='/src/models/Event.js')
     script(type='text/javascript', src='/src/controllers/EventController.js')
+    script.
+         document.addEventListener("DOMContentLoaded", function() {
+             var microappscope = angular.element($("#accordion1")).scope();
+             microappscope.knoppen();
+         });
 
     //script(type='text/javascript', src='/src/services/eventsService.js')
     //script(type='text/javascript', src='/src/controllers/EventController.js')

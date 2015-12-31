@@ -8,6 +8,18 @@
 
     var EventsController = function($scope,$http)
     {
+
+        var xmlUser = new XMLHttpRequest();
+        xmlUser.open("GET","/api/getuserid", false);
+        xmlUser.send(null);
+        var UserId ="";
+        if(xmlUser.status == 200)
+        {
+            UserId = xmlUser.responseText;
+            UserId = UserId.split('"')[1];
+
+        }
+
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("GET","/api/events", false);
         xmlHttp.send(null);
@@ -17,6 +29,8 @@
             var data = JSON.parse(xmlHttp.responseText);
 
             var events = [];
+
+            var GaEvents = [];
 
             for(var i = data.length;i>0;i--)
             {
@@ -39,20 +53,63 @@
                     data[i-1].pictureSlider,
                     data[i-1].createdby);
 
+                   /*  for(var j = data[i-1].members.length;j>1;j--)
+                     {
+
+                         console.log(data[i-1].members[j-1]);
+                         if(data[i-1].members[j-1] == UserId)
+                         {
+
+                             GaEvents.push(event);
+                         }
+                     }*/
+                    if(data[i-1].members.indexOf(UserId)>=0)
+                    {
+                        GaEvents.push(event);
+                    }
 
                 events.push(event);
 
 
             }
-            console.log(events);
+           // console.log(events);
+           // console.log(GaEvents);
+
+           /* for(var i = GaEvents.length;i>0;i--)
+            {
+                var button = document.getElementById(GaEvents[i-1].id);
+
+
+            }*/
+
             $scope.events = events;
+            $scope.GaEvents = GaEvents;
+
+
+            $scope.knoppen = function()
+            {
+
+                for(var i = GaEvents.length;i>0;i--)
+                {
+                    var button = document.getElementById(GaEvents[i-1].id);
+
+                    button.disabled = true;
+                    button.className = "btn btn-info btn-responsive active disapprove";
+                    button.firstChild.className = "fa fa-remove fa-lg";
+                    button.nextSibling.className = "btn btn-info btn-responsive approve";
+                    button.nextSibling.firstChild.className = "fa fa-check fa-lg";
+                    console.log(button);
+                 //   button.nextSibling.classList = "btn btn-info btn-responsive approve";
+
+                }
+            };
 
 
             $scope.ikGa = function($event){
-                //console.log($scope.$id);
-               //var params = ""+$event.currentTarget.parentNode.parentNode.id;
+
+                console.log("ik ga");
                 var params = $event.currentTarget.id;
-                console.log($event.currentTarget.id);
+
 
                 var mijnobjectje = {
                     'id' : params
@@ -63,15 +120,32 @@
 
                 xmlHttp.open("POST","/api/events", true);
                 xmlHttp.setRequestHeader("Content-type", "application/json");
-              //  xmlHttp.setRequestHeader("Content-length",params.length);
+
                 xmlHttp.send(JSON.stringify(mijnobjectje));
             };
-            $scope.ikGaNiet = function(){
+            $scope.ikGaNiet = function($event){
+
+                var params = $event.currentTarget.previousSibling.id;
+                var mijnobjectje = {
+                    'id' : params
+                };
+                xmlHttp.open("POST","/api/events/ikganiet", true);
+                xmlHttp.setRequestHeader("Content-type", "application/json");
+                xmlHttp.send(JSON.stringify(mijnobjectje));
+
+                  ;
+                    var button = document.getElementById(params);
+
+                     button.disabled = false;
+                     button.className = "btn btn-info btn-responsive active disapprove";
+                     button.firstChild.className = "fa fa-remove fa-lg";
+                     button.nextSibling.className = "btn btn-info btn-responsive approve";
+                     button.nextSibling.firstChild.className = "fa fa-check fa-lg";
+                     console.log("gelukt")
+
 
             }
         }
-
-
     }
     var event = angular.module("event",[]);
 

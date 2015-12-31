@@ -10,6 +10,15 @@ var Jobs = require('../data/DataRepositorys/jobsRepo');
 var ProfileRepo = require("../data/DataRepositorys/ProfileRepo");
 var HomeRepo = require("../data/DataRepositorys/HomeRepo");
 var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
+var multer = require('multer');
+var user ="";
+var options = multer.diskStorage({
+    destination : '../public/img/uploads/' ,
+    filename: function(req,file,cb){
+     cb(null,"" +req.user._id + Date.now()  + file.originalname);
+    }
+});
+var upload = multer({storage:options});
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
@@ -40,7 +49,7 @@ var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
     // =====================================
 
     router.get('/profile',isLoggedIn, function (req , res) {
-
+        user = req.user._id;
         ProfileRepo.getevents(req,function(next){
             res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
         });
@@ -49,15 +58,20 @@ var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
         console.log(req.user._id);
     });
 //insert event
-    router.post('/profileevent',function(req,res, next){
-        ProfileRepo.createaevent(req,function(next){
+    router.post('/profileevent',upload.array('pictureUrl',2),function(req,res, next){
 
+        ProfileRepo.createaevent(req,user,function(next){
               res.redirect('/profile');
-
         });
     });
-router.post('/profilegroups',function(req,res, next){
-    GroupsRepo.creategroup(req,function(next){
+router.post('/profilegroups',upload.single('Foto'),function(req,res, next){
+    GroupsRepo.creategroup(req,user,function(next){
+        res.redirect('/profile');
+    });
+});
+
+router.post('/profilepicture',upload.single('PICTURE'),function(req,res, next){
+    ProfileRepo.changepicture(req,user,function(next){
         res.redirect('/profile');
     });
 });

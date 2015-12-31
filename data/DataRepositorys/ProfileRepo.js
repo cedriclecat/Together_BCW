@@ -63,9 +63,7 @@ console.log(stukjes);
                                 return next(err);
                             }
                         data.groups = even;
-
                             Groups.find({},function(err,even) {
-
                                 if (err) {
                                     return next(err);
                                 }
@@ -73,19 +71,41 @@ console.log(stukjes);
                                 next();
                             });
                         });
-
-
                     }
                 });
             }
         });
     };
-    createevent = function(data,next){
+    changepicture = function(data,user,next){
+        var mongoose = require('mongoose');
+        var Usermod = mongoose.model('User');
+        var files = data.file;
+        console.log(files);
+        var spliter = files.path.split("\\");
+        var filenaam1 = "../img/uploads/" + spliter[4];
+        console.log(user);
+        console.log(filenaam1);
+        var options = { multi: true };
+        Usermod.update({_id:user},{picture:filenaam1},options,function(err){
+            if(err){
+                next(err);
+            }
+            next();
+        });
+
+    };
+
+    createevent = function(data,user,next){
         var mongoose = require('mongoose');
         Events = mongoose.model('events');
         Groups = mongoose.model('groups');
-        var user = data.user._id;
-
+        var files = data.files;
+        console.log(files);
+        var spliter = files[0].path.split("\\");
+        console.log(spliter);
+        var filenaam1 = "../img/uploads/" + spliter[4];
+        var spliter2 = files[1].path.split("\\");
+        var filenaam2 = "../img/uploads/" + spliter2[4];
         data = data.body;
         Events.find({},function(err,even) {
             var mijngetal = 1;
@@ -93,6 +113,7 @@ console.log(stukjes);
                 mijngetal = mijngetal +1;
 
             });
+            mijngetal = mijngetal + Date.now();
             data.TIMESTAMP = new Date();
             var mijnevent ={};
             mijnevent.id= ''+mijngetal;
@@ -102,16 +123,19 @@ console.log(stukjes);
             mijnevent.time = data.time;
             mijnevent.maxMember = data.slots;
             var members = {};
+            members.id=user;
             mijnevent.members = members;
             mijnevent.location = data.Location;
             mijnevent.price = data.cost;
-            mijnevent.pictureUrl = "https://s-media-cache-ak0.pinimg.com/236x/a3/80/7e/a3807e09afab6d37ff5352a270a467b4.jpg";
+            mijnevent.pictureUrl = filenaam1;
             mijnevent.tags = '';
             mijnevent.promoted= 0;
             mijnevent.TIMESTAMP = new Date();
-            mijnevent.pictureSlider = "https://s-media-cache-ak0.pinimg.com/236x/a3/80/7e/a3807e09afab6d37ff5352a270a467b4.jpg";
+            mijnevent.pictureSlider = filenaam2;
             mijnevent.createdby = user;
+            console.log(mijnevent);
             Events.create(mijnevent, function (err) {
+                console.log(err);
                 if (err) { return next(err); }
                 Groups.findOne({id:data.Group},function(err,even){
                     if(even.eventids==""){
@@ -120,7 +144,7 @@ console.log(stukjes);
                     }else{
                         even.eventids = even.eventids + "," + mijngetal;
                     }
-var options = { multi: true };
+                    var options = { multi: true };
                     console.log(even);
                     Groups.update({id:data.Group},{eventids:even.eventids},options,function(err){
                         next(mijnevent);
@@ -135,7 +159,8 @@ var options = { multi: true };
     };
     return {
         createaevent: createevent,
-        getevents : getevents
+        getevents : getevents,
+        changepicture:changepicture
     };
 })();
 

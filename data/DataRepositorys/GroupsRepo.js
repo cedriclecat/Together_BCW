@@ -2,12 +2,15 @@
  * Created by wouter on 12/29/2015.
  */
 GroupsRepo = (function () {
-    creategroup = function(data,next){
-
+    creategroup = function(data,user,next){
+        var files = data.file;
+        console.log(files);
+        var spliter = files.path.split("\\");
+        console.log(spliter);
+        var filenaam1 = "../img/uploads/" + spliter[4];
+        data = data.body;
         var mongoose = require('mongoose');
         Groups = mongoose.model('groups');
-        var user = data.user._id;
-        data = data.body;
         Groups.find({},function(err,even) {
             var mijngetal = 1;
             even.forEach(function(e){
@@ -26,7 +29,7 @@ GroupsRepo = (function () {
             mijngroup.interests = "";
             mijngroup.createdby=user;
             mijngroup.eventids="";
-            mijngroup.picture="https://s-media-cache-ak0.pinimg.com/236x/a3/80/7e/a3807e09afab6d37ff5352a270a467b4.jpg";
+            mijngroup.picture= filenaam1;
             mijngroup.chat="";
             Groups.create(mijngroup, function (err) {
                 console.log(err);

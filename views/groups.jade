@@ -32,7 +32,7 @@ block socket
                     h3.style.marginTop = "11px";
                     var style = document.createElement("style");
                     style.type="text/css";
-                    var decl = document.createTextNode("p:hover {background-color: #00acac !important}");
+                    var decl = document.createTextNode("p:hover {background-color: #00acac}");
                     if(style.stylesheet){
                         style.styleSheet.cssText=decl.nodeValue;
                     }else{
@@ -126,17 +126,17 @@ block groups
                                         #online-users.list-group
                                             p #{res.description}
                             .col-md-3
-                                .panel.panel-default(style={height:'695px'})
+                                .panel.panel-default
                                     .panel-heading Group Chat
                                     .panel-body
-                                        .chat(style={overflow:'auto', height:'577px', border:'1px solid #d3d3d3'})
+                                        .chat
                                         .input-group(style='margin-top:10px')
                                             input#chat-input.form-control(type='text')
                                             span.input-group-btn
                                                 button#btnchat.btn.sendm.btn-default(type='submit') Send Message
 
                             .col-md-3
-                                .panel.panel-default(style={overflow:'auto', height:'695px'})
+                                .panel.panel-default
                                     .panel-heading Online Users
                                     ul#user-list.list-group
                                     .panel-body#clientshere

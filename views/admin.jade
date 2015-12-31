@@ -24,28 +24,57 @@ block admin
                             a(href='groups') Groups
                         li.active
                             a(href='admin') Admin
+                        li.dropdown
+                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                img.profile-image.img-circle(src='../img/profile/default-profile-pic.png')
+                                |  Voornaam Familienaam
+                                span.caret
+                            ul.dropdown-menu
+                                li.active
+                                    a(href='profile')
+                                        i.fa.fa-user
+                                        | My Profile
+                                li
+                                    a(href='/help')
+                                        i.fa.fa-commenting
+                                        | Help
+                                li.divider(role='separator')
+                                li
+                                    a(href='#')
+                                        i.fa.fa-cog
+                                        | Logout
                         li
                             a(href='login')
                                 button.btn.btn-default.navbar-btn(type='button') Sign in
     .container-fluid
         .row
-            .col-md-10.col-md-offset-1
+            .col-md-10.col-md-offset-1(ng-app="admin",ng-controller="AdminController")
                 h2 Administrator Page
                 h3 Users
-                .input-group
-                    input.form-control(type='text', placeholder='Search for...')
-                    span.input-group-btn
-                        button.btn.btn-default(type='button') Go!
+                .form-group
+                    input.form-control(type='text', placeholder='Search for...',ng-model="nameFilterU")
+                .admin-u(ng-repeat='user in allUsers | filter: searchFilterU')
+                    img(ng-src="{{user.picture}}")
+                    p(ng-bind-template="{{user.firstName}} {{user.lastName}}")
+                    p(ng-bind="user.country")
+                .cb
                 h3 Events
-                .input-group
-                    input.form-control(type='text', placeholder='Search for...')
-                    span.input-group-btn
-                        button.btn.btn-default(type='button') Go!
+                .form-group
+                    input.form-control(type='text', placeholder='Search for...',ng-model="nameFilterE")
+                .admin-e(ng-repeat='event in allEvents | filter: searchFilterE')
+                    img(ng-src="{{event.pictureUrl}}")
+                    p(ng-bind="event.name")
+                .cb
                 h3 Groups
-                .input-group
-                    input.form-control(type='text', placeholder='Search for...')
-                    span.input-group-btn
-                        button.btn.btn-default(type='button') Go!
-
-    script(type='text/javascript', src='/dist/js/jquery.min.js')
-    script(type='text/javascript', src='/dist/js/bootstrap.min.js')
+                .form-group
+                    input.form-control(type='text', placeholder='Search for...',ng-model="nameFilterG")
+                .admin-g(ng-repeat='group in allGroups | filter: searchFilterG')
+                    img(ng-src="{{group.picture}}")
+                    p(ng-bind="group.name")
+                .cb
+    script(src='/dist/js/angular.min.js')
+    script(src='/src/app.js')
+    script(src='/src/services/userService.js')
+    script(src='/src/services/eventService.js')
+    script(src='/src/services/groupService.js')
+    script(src='/src/controllers/AdminController.js')

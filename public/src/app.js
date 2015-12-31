@@ -5,6 +5,7 @@
 angular.module('event',[]);
 angular.module('profile',['ngMessages']);
 angular.module('auth',['ngMessages']);
+angular.module('admin',[]);
 
 
 

@@ -1,15 +1,30 @@
-var User = require('../data/models/User');
+/*
+    Created by Brecht on 27/10/2015.
+ */
+
+
+// Express & Router + Passport
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+
+// Repos & Models
+var User = require('../data/models/User');
 var Events = require('../data/models/events');
-var Groups = require('../data/models/groups');
+
+var HomeRepo = require("../data/DataRepositorys/HomeRepo");
+var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
+
+// Profile Repos
 var Countries = require('../data/DataRepositorys/countryRepo');
 var Marital = require('../data/DataRepositorys/mStatusRepo');
 var Jobs = require('../data/DataRepositorys/jobsRepo');
 var ProfileRepo = require("../data/DataRepositorys/ProfileRepo");
-var HomeRepo = require("../data/DataRepositorys/HomeRepo");
-var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
+
+// Admin Repos
+var GroupRepo = require("../data/DataRepositorys/groupRepo");
+var EventRepo = require("../data/DataRepositorys/eventsRepo");
+
 var multer = require('multer');
 var user ="";
 var options = multer.diskStorage({
@@ -19,6 +34,7 @@ var options = multer.diskStorage({
     }
 });
 var upload = multer({storage:options});
+
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
@@ -57,24 +73,24 @@ var upload = multer({storage:options});
     router.post('/profile',function(req,res){
         console.log(req.user._id);
     });
-//insert event
+    //insert event
     router.post('/profileevent',upload.array('pictureUrl',2),function(req,res, next){
 
         ProfileRepo.createaevent(req,user,function(next){
               res.redirect('/profile');
         });
     });
-router.post('/profilegroups',upload.single('Foto'),function(req,res, next){
-    GroupsRepo.creategroup(req,user,function(next){
-        res.redirect('/profile');
+    router.post('/profilegroups',upload.single('Foto'),function(req,res, next){
+        GroupsRepo.creategroup(req,user,function(next){
+            res.redirect('/profile');
+        });
     });
-});
 
-router.post('/profilepicture',upload.single('PICTURE'),function(req,res, next){
-    ProfileRepo.changepicture(req,user,function(next){
-        res.redirect('/profile');
+    router.post('/profilepicture',upload.single('PICTURE'),function(req,res, next){
+        ProfileRepo.changepicture(req,user,function(next){
+            res.redirect('/profile');
+        });
     });
-});
     // =====================================
     // ADMIN ===============================
     // =====================================
@@ -208,8 +224,6 @@ router.post('/profilepicture',upload.single('PICTURE'),function(req,res, next){
 
          Events.update({id:bodyz.id},{$addToSet:{members:req.user._id}},function(err){console.log(err);});
 
-
-
         res.send("goed verstuurd");
     });
 
@@ -225,7 +239,7 @@ router.post('/profilepicture',upload.single('PICTURE'),function(req,res, next){
 
 
         res.send("goed verstuurd");
-    })
+    });
 
     router.get('/api/events/:id',function(req,res){
         //console.log(req.params.id);
@@ -257,6 +271,9 @@ router.post('/profilepicture',upload.single('PICTURE'),function(req,res, next){
         })
     });
 
+    router.get('/api/groups',function(req,res){
+        GroupRepo.getGroups(req,res);
+    });
 
     router.get('/api/countries',function(req,res){
         Countries.getCountries(req,res)

@@ -13,12 +13,16 @@ module.exports = function(io){
         socket.broadcast.emit('nick',allClients);
     });*/
     io.sockets.on('connection', function (socket) {
+
+        socket.emit('nick', allClientsclient);
+        console.log("connected");
+
         socket.on('disconnect', function() {
             console.log('Got disconnect!');
             allClients.splice(allClients.indexOf(socket.nick), 1);
             allClientsclient.splice(allClientsclient.indexOf(socket.nick), 1);
-            socket.emit('nick',allClientsclient);
-            socket.broadcast.emit('nick',allClientsclient);
+            socket.emit('deleted',socket.nick);
+            socket.broadcast.emit('deleted',socket.nick);
         });
         // Set the name property for a given client
         socket.on('nick', function(nick) {
@@ -35,8 +39,8 @@ module.exports = function(io){
                 }
                 if(found){}else {
                     allClientsclient.push(next);
-                    socket.emit('nick', allClientsclient);
-                    socket.broadcast.emit('nick', allClientsclient);
+                    socket.emit('caty', next);
+                    socket.broadcast.emit('caty', next);
                 }
                 });
         });

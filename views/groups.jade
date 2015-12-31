@@ -41,6 +41,7 @@ block socket
                     h3.appendChild(style);
                     var link = document.createElement("a");
                     link.href="./profile?id=" + entry.id;
+                    link.id = "LINK"+entry.id;
                     col1.appendChild(image);
                     col2.appendChild(h3);
                     row.appendChild(col1);
@@ -49,6 +50,51 @@ block socket
                     link.appendChild(container);
                     document.getElementById("clientshere").appendChild(link);
                 });
+            });
+            socket.on('deleted', function (data) {
+                console.log(data);
+                document.getElementById("LINK"+data).remove();
+
+            });
+            socket.on('caty', function (entry) {
+                console.log(entry);
+                var container = document.createElement('div');
+                container.className = "container-fluid";
+                container.style.marginTop = "10px";
+                container.style.border = "1px solid #d3d3d3";
+                container.style.background = "#00acac";
+                container.style.paddingLeft = "0px";
+                var row = document.createElement('div');
+                row.className = "row";
+                var col1 = document.createElement('div');
+                col1.className = "col-md-2";
+                var col2 = document.createElement('div');
+                col2.className = "col-md-10";
+                var image = document.createElement('img');
+                image.src = entry.Foto;
+                image.style.height = "50px";
+                var h3 = document.createElement("p");
+                h3.innerText = entry.naam;
+                h3.style.marginTop = "11px";
+                var style = document.createElement("style");
+                style.type = "text/css";
+                var decl = document.createTextNode("p:hover {background-color: #00acac}");
+                if (style.stylesheet) {
+                    style.styleSheet.cssText = decl.nodeValue;
+                } else {
+                    style.appendChild(decl);
+                }
+                h3.appendChild(style);
+                var link = document.createElement("a");
+                link.href = "./profile?id=" + entry.id;
+                link.id = "LINK" + entry.id;
+                col1.appendChild(image);
+                col2.appendChild(h3);
+                row.appendChild(col1);
+                row.appendChild(col2);
+                container.appendChild(row);
+                link.appendChild(container);
+                document.getElementById("clientshere").appendChild(link);
             });
             socket.on('rockgroup', function (data) {
                 var msg = data.nick + ': ' + data.message;

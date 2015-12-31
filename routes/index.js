@@ -57,7 +57,7 @@ var upload = multer({storage:options});
     router.get('/groups',isLoggedIn, function(req, res) {
 
         GroupsRepo.initGroup(req,function(next){
-            res.render('groups', {data:next.data, user:user, mijndat:next.mijndat, path:next.path, mev:next.mev, titel:next.titel});
+            res.render('groups', {data:next.data, user:req.user._id, mijndat:next.mijndat, path:next.path, mev:next.mev, titel:next.titel});
         });
     });
     // =====================================
@@ -75,19 +75,18 @@ var upload = multer({storage:options});
     });
     //insert event
     router.post('/profileevent',upload.array('pictureUrl',2),function(req,res, next){
-
-        ProfileRepo.createaevent(req,user,function(next){
+        ProfileRepo.createaevent(req,req.user._id,function(next){
               res.redirect('/profile');
         });
     });
     router.post('/profilegroups',upload.single('Foto'),function(req,res, next){
-        GroupsRepo.creategroup(req,user,function(next){
+        GroupsRepo.creategroup(req,req.user._id,function(next){
             res.redirect('/profile');
         });
     });
 
     router.post('/profilepicture',upload.single('PICTURE'),function(req,res, next){
-        ProfileRepo.changepicture(req,user,function(next){
+        ProfileRepo.changepicture(req,req.user._id,function(next){
             res.redirect('/profile');
         });
     });

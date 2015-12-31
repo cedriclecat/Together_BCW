@@ -27,7 +27,10 @@ profilerepo = (function () {
         var naam ="";
         User.findOne({_id:zoek},function(err,even) {
             if (err) { return next(err);}else{
+                var dtm = new Date(even.MemberSince);
                 data.UserData = even;
+                var maand = dtm.getMonth()+1;
+                data.MemberSince = dtm.getDay() + "/" + maand+"/"+dtm.getFullYear();
                 if(even.firstName ==""){
                     naam = even.email;
                 }else{

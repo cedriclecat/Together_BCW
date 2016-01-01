@@ -14,7 +14,6 @@ module.exports = function(io){
     });*/
     io.sockets.on('connection', function (socket) {
 
-        socket.emit('nick', allClientsclient);
         console.log("connected");
 
         socket.on('disconnect', function() {
@@ -25,7 +24,12 @@ module.exports = function(io){
             socket.broadcast.emit('deleted',socket.nick);
         });
         // Set the name property for a given client
-        socket.on('nick', function(nick) {
+        socket.on('nick', function(data) {
+            var nick = data.eerst;
+            var room = data.tweedes;
+            socket.room = room;
+            console.log('room ' + socket.room + ' saved');
+            socket.join(room);
             //  socket.set('name', nick);
             socket.nick=nick;
             SocketRepo.gettheuser(nick,function(next){
@@ -39,23 +43,29 @@ module.exports = function(io){
                 }
                 if(found){}else {
                     allClientsclient.push(next);
-                    socket.emit('caty', next);
-                    socket.broadcast.emit('caty', next);
+                    io.sockets.in(room).emit('caty', next);
+                    //socket.broadcast.to(room).emit('caty', next);
                 }
                 });
         });
 
         // This should initiate rock group chat
         socket.on('rockgroup', function(data) {
+            console.log(data);
+            var room = data.a;
+            var data = data.b;
             // socket.get('name', function(err, nick) {
             var nickname =socket.nick ; //normally this won't be possible
+            SocketRepo.gettheuser(nickname,function(next){
+                var payload = {
+                    message: data,
+                    nick: next
+                };
+                io.sockets.in(room).emit('rockgroup', payload);
+                //socket.broadcast.to(room).emit('rockgroup', payload);
 
-            var payload = {
-                message: data.message,
-                nick: nickname
-            };
-            socket.emit('rockgroup',payload); // show it on your own browser
-            socket.broadcast.emit('rockgroup', payload); // broadcast to others
+            });
+
             // });
         });
     });

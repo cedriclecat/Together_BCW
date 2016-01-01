@@ -1,10 +1,10 @@
 /**
- * Created by Brecht on 31/12/2015.
+ * Created by Brecht on 1/01/2016.
  */
 (function(){
-    var userService = function($http) {
+    var certainUserService = function($http) {
 
-        var url = '/api/profile/';
+        var url = '/api/profile/:_id';
         return  $http({
             method: 'GET',
             url: url
@@ -20,5 +20,5 @@
         });
     };
 
-    angular.module('admin').factory('userService',['$http',userService]);
+    angular.module('profile').factory('certainUserService',['$http',certainUserService]);
 })();

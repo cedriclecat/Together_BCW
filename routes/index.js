@@ -72,21 +72,23 @@ var upload = multer({storage:options});
     });
     router.post('/profile',function(req,res){
         console.log(req.user._id);
+        res.redirect('/profile');
     });
     //insert event
     router.post('/profileevent',upload.array('pictureUrl',2),function(req,res, next){
-        ProfileRepo.createaevent(req,req.user._id,function(next){
+
+        ProfileRepo.createaevent(req, req.user._id, function (next) {
               res.redirect('/profile');
         });
     });
     router.post('/profilegroups',upload.single('Foto'),function(req,res, next){
-        GroupsRepo.creategroup(req,req.user._id,function(next){
+        GroupsRepo.creategroup(req, req.user._id, function (next) {
             res.redirect('/profile');
         });
     });
 
     router.post('/profilepicture',upload.single('PICTURE'),function(req,res, next){
-        ProfileRepo.changepicture(req,req.user._id,function(next){
+        ProfileRepo.changepicture(req, req.user._id, function (next) {
             res.redirect('/profile');
         });
     });
@@ -210,9 +212,6 @@ var upload = multer({storage:options});
             res.json("");
         }
     });
-    /*router.get('/api/getuserid',function(req,res){
-
-    });*/
 
     router.post('/api/events',function(req,res)
     {
@@ -251,7 +250,7 @@ var upload = multer({storage:options});
        })
     });
 
-    router.get('/api/profile',function(req,res){
+    router.get('/api/profile/',function(req,res){
         User.find(function(err, user){
             if (err)
                 res.send(err);
@@ -259,15 +258,47 @@ var upload = multer({storage:options});
         })
     });
 
-    router.get('/api/profile/:id',function(req,res){
+    router.get('/api/profile/:_id',function(req,res){
         //console.log(req.params.id);
-        var eid = req.params.id;
+        var eid = req.user._id;
         console.log(eid);
         //"id":1
-        Events.findOne({'id':parseInt(eid)},function(err, event){
+        User.findOne({'_id':req.user._id},function(err, user){
             if(err) res.send(err);
-            res.json(event);
+            res.json(user);
         })
+    });
+
+    router.post('/api/profile/:_id',function(req,res){
+        //var bodyz = req.body;
+        console.log("country: " + req.body.firstName);
+        console.log("country: " + req.body.lastName);
+        console.log("country: " + req.body.email);
+        console.log("country: " + req.body.gender);
+        console.log("work: " + req.body.work);
+        console.log("status: " + req.body.marital);
+        console.log("country: " + req.body.country);
+        console.log("birthday: " + req.body.birthday);
+
+        User.update({_id:req.user._id},{$set:{
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            marital: req.body.marital,
+            work: req.body.work,
+            country: req.body.country,
+            city: req.body.city,
+            interests: req.body.interests,
+            description: req.body.description
+        }},function(err){console.log(err);});
+        res.send("goed verstuurd");
+        res.end();
+    });
+
+    router.delete('/api/profile/:_id',function(req,res){
+        console.log(req.body.query.id);
+        console.log(req.body.id);
+        User.remove({_id: req.body.id})
     });
 
     router.get('/api/groups',function(req,res){

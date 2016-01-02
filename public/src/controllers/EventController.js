@@ -122,6 +122,12 @@
                 xmlHttp.setRequestHeader("Content-type", "application/json");
 
                 xmlHttp.send(JSON.stringify(mijnobjectje));
+
+                var button = document.getElementById(params);
+                button.className = "btn btn-info btn-responsive active disapprove";
+                button.firstChild.className = "fa fa-remove fa-lg";
+                button.nextSibling.className = "btn btn-info btn-responsive approve";
+                button.nextSibling.firstChild.className = "fa fa-check fa-lg";
             };
             $scope.ikGaNiet = function($event){
 
@@ -133,14 +139,14 @@
                 xmlHttp.setRequestHeader("Content-type", "application/json");
                 xmlHttp.send(JSON.stringify(mijnobjectje));
 
-                  ;
+
                     var button = document.getElementById(params);
 
                      button.disabled = false;
-                     button.className = "btn btn-info btn-responsive active disapprove";
-                     button.firstChild.className = "fa fa-remove fa-lg";
-                     button.nextSibling.className = "btn btn-info btn-responsive approve";
-                     button.nextSibling.firstChild.className = "fa fa-check fa-lg";
+                     button.className = "btn btn-info btn-responsive approve";
+                     button.firstChild.className = "fa fa-check fa-lg";
+                     button.nextSibling.className = "btn btn-info btn-responsive active disapprove";
+                     button.nextSibling.firstChild.className = "fa fa-remove fa-lg";
                      console.log("gelukt")
 
 

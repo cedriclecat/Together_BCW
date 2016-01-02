@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f0ebfada-bbf8-42c2-96f8-05ac1692a894" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/DataRepositorys/ProfileRepo.js" afterPath="$PROJECT_DIR$/data/DataRepositorys/ProfileRepo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/profile.jade" afterPath="$PROJECT_DIR$/views/profile.jade" />
     </list>
     <ignored path="Together_BCW.iws" />
@@ -34,8 +35,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="6154" max-vertical-offset="6256">
-              <caret line="364" column="18" selection-start-line="364" selection-start-column="18" selection-end-line="364" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="935" max-vertical-offset="6273">
+              <caret line="70" column="7" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -71,21 +72,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile.jade" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profile.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/profile.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46666667" vertical-offset="8364" max-vertical-offset="10455">
-              <caret line="511" column="70" selection-start-line="511" selection-start-column="70" selection-end-line="511" selection-end-column="70" />
+            <state vertical-scroll-proportion="-8.6603775" vertical-offset="7735" max-vertical-offset="10149">
+              <caret line="482" column="45" selection-start-line="482" selection-start-column="45" selection-end-line="482" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProfileRepo.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProfileRepo.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data/DataRepositorys/ProfileRepo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="7325" max-vertical-offset="8211">
-              <caret line="459" column="41" selection-start-line="459" selection-start-column="41" selection-end-line="459" selection-end-column="41" />
+            <state vertical-scroll-proportion="1.6234719" vertical-offset="1103" max-vertical-offset="8364">
+              <caret line="143" column="21" selection-start-line="143" selection-start-column="21" selection-end-line="143" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -136,6 +137,7 @@
         <option value="$PROJECT_DIR$/public/src/controllers/EventController.js" />
         <option value="$PROJECT_DIR$/data/models/user.js" />
         <option value="$PROJECT_DIR$/data/DataRepositorys/ProfileRepo.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/profile.jade" />
       </list>
     </option>
@@ -829,14 +831,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="364" column="18" selection-start-line="364" selection-start-column="18" selection-end-line="364" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/models/events.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18353577" vertical-offset="0" max-vertical-offset="0">
@@ -878,18 +872,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/DataRepositorys/ProfileRepo.js">
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7325" max-vertical-offset="8211">
-          <caret line="459" column="41" selection-start-line="459" selection-start-column="41" selection-end-line="459" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="935" max-vertical-offset="6273">
+          <caret line="70" column="7" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/profile.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46666667" vertical-offset="8364" max-vertical-offset="10455">
-          <caret line="511" column="70" selection-start-line="511" selection-start-column="70" selection-end-line="511" selection-end-column="70" />
+        <state vertical-scroll-proportion="-8.6603775" vertical-offset="7735" max-vertical-offset="10149">
+          <caret line="482" column="45" selection-start-line="482" selection-start-column="45" selection-end-line="482" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/DataRepositorys/ProfileRepo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.6234719" vertical-offset="1103" max-vertical-offset="8364">
+          <caret line="143" column="21" selection-start-line="143" selection-start-column="21" selection-end-line="143" selection-end-column="21" />
           <folding />
         </state>
       </provider>

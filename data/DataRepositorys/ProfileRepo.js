@@ -134,6 +134,15 @@ console.log(stukjes);
                                     });
                                     data.pending = pend;
                                     data.friends = fri;
+                        var xarr = [];
+                                    for(df = 0; df<fri.length;df++){
+                                        if(i<7){
+                                            xarr.push(fri[df]);
+                                        }
+                                    }
+
+data.friends2 = xarr;
+
                                     console.log(pend);
                                     console.log(fri);
                                     next();

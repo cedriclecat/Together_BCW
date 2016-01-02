@@ -66,7 +66,7 @@ var upload = multer({storage:options});
     router.get('/profile',isLoggedIn, function (req , res) {
 
         ProfileRepo.getevents(req,function(next){
-            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups,pending:req.pending,friends:req.friends});
+            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups,pending:req.pending,friends:req.friends, friends2:req.friends2});
         });
     });
     router.post('/profile',function(req,res){

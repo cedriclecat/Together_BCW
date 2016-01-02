@@ -26,6 +26,7 @@ var GroupRepo = require("../data/DataRepositorys/groupRepo");
 var EventRepo = require("../data/DataRepositorys/eventsRepo");
 
 var multer = require('multer');
+var user ="";
 var options = multer.diskStorage({
     destination : '../public/img/uploads/' ,
     filename: function(req,file,cb){
@@ -64,9 +65,9 @@ var upload = multer({storage:options});
     // =====================================
 
     router.get('/profile',isLoggedIn, function (req , res) {
-
+        user = req.user._id;
         ProfileRepo.getevents(req,function(next){
-            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups,pending:req.pending,friends:req.friends});
+            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
         });
     });
     router.post('/profile',function(req,res){
@@ -88,39 +89,6 @@ var upload = multer({storage:options});
 
     router.post('/profilepicture',upload.single('PICTURE'),function(req,res, next){
         ProfileRepo.changepicture(req, req.user._id, function (next) {
-            res.redirect('/profile');
-        });
-    });
-    //profileaddfriend
-    router.post('/profileaddfriend',function(req,res, next){
-        console.log("hhhhhhhhhhhhhhhhhhhhh");
-        var grps = req.query.id;
-        console.log(grps);
-        ProfileRepo.addpending(req, req.user._id, function (next) {
-            res.redirect('/profile?id=' + grps);
-        });
-    });
-    router.post('/profildeletedfriend',function(req,res, next){
-
-        ProfileRepo.deletefriend(req, req.user._id, function (next) {
-            res.redirect('/profile?id=' + req.usertobeadded);
-        });
-    });
-    router.post('/profildeletedfriendprof',function(req,res, next){
-
-        ProfileRepo.deletefriend(req, req.user._id, function (next) {
-            res.redirect('/profile');
-        });
-    });
-    router.post('/profileacceptfriend',function(req,res, next){
-
-        ProfileRepo.acceptfriend(req, req.user._id, function (next) {
-            res.redirect('/profile');
-        });
-    });
-    router.post('/profiledenyfriend',function(req,res, next){
-
-        ProfileRepo.deletepending(req, req.user._id, function (next) {
             res.redirect('/profile');
         });
     });
@@ -266,8 +234,6 @@ var upload = multer({storage:options});
 
         Events.update({id:bodyz.id},{$pull:{members:req.user._id}},function(err){console.log(err);});
 
-
-
         res.send("goed verstuurd");
     });
 
@@ -327,10 +293,11 @@ var upload = multer({storage:options});
         res.end();
     });
 
-    router.delete('/api/profile/:_id',function(req,res){
-        console.log(req.body.query.id);
-        console.log(req.body.id);
-        User.remove({_id: req.body.id})
+    router.post('/api/profile/delete/:_id',function(req,res){
+        console.log("Test3: "+req.params.id);
+        console.log("test5: " + req.body.id)
+        User.remove({_id: req.body.id});
+        res.end();
     });
 
     router.get('/api/groups',function(req,res){

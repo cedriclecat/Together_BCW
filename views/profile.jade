@@ -550,11 +550,12 @@ block profile
                                                         if eigen==1
                                                             span.menu-info
                                                                 span.menu-action
-                                                                    form(name='deldfete',action='/profileacceptfriend?id=#{fr.id}', method='post',enctype="multipart/form-data")
-                                                                        .form-group
-                                                                            button.btn.btn-save#submit(type='submit')
-                                                                                span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
-                                                                                    i.fa.fa-check
+                                                                    if fr.id == user
+                                                                        form(name='deldfete',action='/profileacceptfriend?id=#{fr.id}', method='post',enctype="multipart/form-data")
+                                                                            .form-group
+                                                                                button.btn.btn-save#submit(type='submit')
+                                                                                    span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                                                        i.fa.fa-check
                                                                     form(name='delssete',action='/profiledenyfriend?id=#{fr.id}', method='post',enctype="multipart/form-data")
                                                                         .form-group
                                                                             button.btn.btn-save#submit(type='submit')

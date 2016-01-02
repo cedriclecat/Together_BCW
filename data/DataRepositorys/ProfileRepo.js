@@ -148,6 +148,9 @@ data.friends2 = xarr;
                                         var friend = 0;
                                         var pending = 0;
                                         var unknown = 0;
+                                        console.log(user);
+                                        console.log(pend);
+                                        console.log(fri);
                                         //friend?
                                         for(dfdf = 0; dfdf<fri.length;dfdf++){
                                             if(fri[dfdf].id==user){
@@ -158,8 +161,8 @@ data.friends2 = xarr;
                                         }
                                         //pending?
                                         if(friend==0) {
-                                            for (dfdf = 0; dfdf < fri.length; dfdf++) {
-                                                if (fri[dfdf].id == user) {
+                                            for (dfdf = 0; dfdf < pend.length; dfdf++) {
+                                                if (pend[dfdf].id == user) {
                                                     friend =0;
                                                     pending = 1;
                                                     unknown =0

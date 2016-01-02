@@ -136,7 +136,7 @@ console.log(stukjes);
                                     data.friends = fri;
                         var xarr = [];
                                     for(df = 0; df<fri.length;df++){
-                                        if(i<7){
+                                        if(df<7){
                                             xarr.push(fri[df]);
                                         }
                                     }

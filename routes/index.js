@@ -1,15 +1,39 @@
-var User = require('../data/models/User');
+/*
+    Created by Brecht on 27/10/2015.
+ */
+
+
+// Express & Router + Passport
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+
+// Repos & Models
+var User = require('../data/models/User');
 var Events = require('../data/models/events');
-var Groups = require('../data/models/groups');
+
+var HomeRepo = require("../data/DataRepositorys/HomeRepo");
+var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
+
+// Profile Repos
 var Countries = require('../data/DataRepositorys/countryRepo');
 var Marital = require('../data/DataRepositorys/mStatusRepo');
 var Jobs = require('../data/DataRepositorys/jobsRepo');
 var ProfileRepo = require("../data/DataRepositorys/ProfileRepo");
-var HomeRepo = require("../data/DataRepositorys/HomeRepo");
-var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
+
+// Admin Repos
+var GroupRepo = require("../data/DataRepositorys/groupRepo");
+var EventRepo = require("../data/DataRepositorys/eventsRepo");
+
+var multer = require('multer');
+var options = multer.diskStorage({
+    destination : '../public/img/uploads/' ,
+    filename: function(req,file,cb){
+     cb(null,"" +req.user._id + Date.now()  + file.originalname);
+    }
+});
+var upload = multer({storage:options});
+
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
@@ -32,7 +56,7 @@ var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
     router.get('/groups',isLoggedIn, function(req, res) {
 
         GroupsRepo.initGroup(req,function(next){
-            res.render('groups', {data:next.data, mijndat:next.mijndat, path:next.path, mev:next.mev, titel:next.titel});
+            res.render('groups', {data:next.data, user:req.user._id, mijndat:next.mijndat, path:next.path, mev:next.mev, titel:next.titel});
         });
     });
     // =====================================
@@ -42,25 +66,64 @@ var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
     router.get('/profile',isLoggedIn, function (req , res) {
 
         ProfileRepo.getevents(req,function(next){
-            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
+            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups,pending:req.pending,friends:req.friends});
         });
     });
     router.post('/profile',function(req,res){
         console.log(req.user._id);
-    });
-//insert event
-    router.post('/profileevent',function(req,res, next){
-        ProfileRepo.createaevent(req,function(next){
-
-              res.redirect('/profile');
-
-        });
-    });
-router.post('/profilegroups',function(req,res, next){
-    GroupsRepo.creategroup(req,function(next){
         res.redirect('/profile');
     });
-});
+    //insert event
+    router.post('/profileevent',upload.array('pictureUrl',2),function(req,res, next){
+
+        ProfileRepo.createaevent(req, req.user._id, function (next) {
+              res.redirect('/profile');
+        });
+    });
+    router.post('/profilegroups',upload.single('Foto'),function(req,res, next){
+        GroupsRepo.creategroup(req, req.user._id, function (next) {
+            res.redirect('/profile');
+        });
+    });
+
+    router.post('/profilepicture',upload.single('PICTURE'),function(req,res, next){
+        ProfileRepo.changepicture(req, req.user._id, function (next) {
+            res.redirect('/profile');
+        });
+    });
+    //profileaddfriend
+    router.post('/profileaddfriend',function(req,res, next){
+        console.log("hhhhhhhhhhhhhhhhhhhhh");
+        var grps = req.query.id;
+        console.log(grps);
+        ProfileRepo.addpending(req, req.user._id, function (next) {
+            res.redirect('/profile?id=' + grps);
+        });
+    });
+    router.post('/profildeletedfriend',function(req,res, next){
+
+        ProfileRepo.deletefriend(req, req.user._id, function (next) {
+            res.redirect('/profile?id=' + req.usertobeadded);
+        });
+    });
+    router.post('/profildeletedfriendprof',function(req,res, next){
+
+        ProfileRepo.deletefriend(req, req.user._id, function (next) {
+            res.redirect('/profile');
+        });
+    });
+    router.post('/profileacceptfriend',function(req,res, next){
+
+        ProfileRepo.acceptfriend(req, req.user._id, function (next) {
+            res.redirect('/profile');
+        });
+    });
+    router.post('/profiledenyfriend',function(req,res, next){
+
+        ProfileRepo.deletepending(req, req.user._id, function (next) {
+            res.redirect('/profile');
+        });
+    });
     // =====================================
     // ADMIN ===============================
     // =====================================
@@ -181,9 +244,6 @@ router.post('/profilegroups',function(req,res, next){
             res.json("");
         }
     });
-    /*router.get('/api/getuserid',function(req,res){
-
-    });*/
 
     router.post('/api/events',function(req,res)
     {
@@ -193,8 +253,6 @@ router.post('/profilegroups',function(req,res, next){
         console.log(req.user._id);
 
          Events.update({id:bodyz.id},{$addToSet:{members:req.user._id}},function(err){console.log(err);});
-
-
 
         res.send("goed verstuurd");
     });
@@ -211,7 +269,7 @@ router.post('/profilegroups',function(req,res, next){
 
 
         res.send("goed verstuurd");
-    })
+    });
 
     router.get('/api/events/:id',function(req,res){
         //console.log(req.params.id);
@@ -224,7 +282,7 @@ router.post('/profilegroups',function(req,res, next){
        })
     });
 
-    router.get('/api/profile',function(req,res){
+    router.get('/api/profile/',function(req,res){
         User.find(function(err, user){
             if (err)
                 res.send(err);
@@ -232,17 +290,52 @@ router.post('/profilegroups',function(req,res, next){
         })
     });
 
-    router.get('/api/profile/:id',function(req,res){
+    router.get('/api/profile/:_id',function(req,res){
         //console.log(req.params.id);
-        var eid = req.params.id;
+        var eid = req.user._id;
         console.log(eid);
         //"id":1
-        Events.findOne({'id':parseInt(eid)},function(err, event){
+        User.findOne({'_id':req.user._id},function(err, user){
             if(err) res.send(err);
-            res.json(event);
+            res.json(user);
         })
     });
 
+    router.post('/api/profile/:_id',function(req,res){
+        //var bodyz = req.body;
+        console.log("country: " + req.body.firstName);
+        console.log("country: " + req.body.lastName);
+        console.log("country: " + req.body.email);
+        console.log("country: " + req.body.gender);
+        console.log("work: " + req.body.work);
+        console.log("status: " + req.body.marital);
+        console.log("country: " + req.body.country);
+        console.log("birthday: " + req.body.birthday);
+
+        User.update({_id:req.user._id},{$set:{
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            marital: req.body.marital,
+            work: req.body.work,
+            country: req.body.country,
+            city: req.body.city,
+            interests: req.body.interests,
+            description: req.body.description
+        }},function(err){console.log(err);});
+        res.send("goed verstuurd");
+        res.end();
+    });
+
+    router.delete('/api/profile/:_id',function(req,res){
+        console.log(req.body.query.id);
+        console.log(req.body.id);
+        User.remove({_id: req.body.id})
+    });
+
+    router.get('/api/groups',function(req,res){
+        GroupRepo.getGroups(req,res);
+    });
 
     router.get('/api/countries',function(req,res){
         Countries.getCountries(req,res)

@@ -22,6 +22,8 @@ block profile
                             a(href='events') Events
                         li
                             a(href='groups') Groups
+                        li
+                            a(href='admin') Admin
                         li.dropdown
                             a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                                 img.profile-image.img-circle(src='../img/profile/default-profile-pic.png')
@@ -58,23 +60,31 @@ block profile
                         .row
                             if eigen == 0
                                 .col-xs-12.friends-dv
-                                    a.btn.btn-xs.btn-block.friends
-                                        i.fa.fa-check-circle.append-icon
-                                        | Add as friend
+                                    form(name='uploadpicture',action='/profileaddfriend?id=#{UD._id}', method='post',enctype="multipart/form-data")
+                                        .form-group
+                                            button.btn.btn-save#submit(type='submit')
+                                                span.menu-icon
+                                                    i.fa.fa-check-circle.append-icon
+                                                |  Add as friend
                             if eigen == 1
                                 .col-xs-12.upload-dv
-                                    a.btn.btn-xs.btn-block.upload
-                                        i.fa.fa-cloud-upload
-                                        | Upload picture
+                                    form(name='uploadpicture',action='/profilepicture', method='post',enctype="multipart/form-data")
+                                        .form-group
+                                            input#input-1.file(type='file',name='PICTURE')
+                                        .form-group
+                                                button.btn.btn-save#submit(type='submit')
+                                                    span.menu-icon
+                                                        i.fa.fa-fw.fa-check
+                                                    |  Save
                         h2 #{naam}
                         p
-                            | #{UD.Description}
+                            | #{UD.description}
                         div
                             table.table.table-striped.table-hover
                                 tbody
                                     tr
                                         td Member Since
-                                        td  #{UD.MemberSince}
+                                        td  #{MS}
                 .panel.widget.light-widget
                     .panel-body-list
                         h3.h-contact
@@ -144,59 +154,44 @@ block profile
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Firstname:
-                                        .col-xs-7.controls(ng-bind="firstname")
+                                        .col-xs-7.controls(ng-bind="profile.firstName")
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Lastname:
-                                        .col-xs-7.controls(ng-bind="lastname")
+                                        .col-xs-7.controls(ng-bind="profile.lastName")
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Email:
-                                        .col-xs-7.controls(ng-bind="email")
-                                .col-sm-6
-                                    .row.mgbt-xs-0
-                                        label.col-xs-5.control-label Work:
-                                        .col-xs-7.controls(ng-bind="work.name")
-                                .col-sm-6
-                                    .row
-                                        label.col-xs-5.control-label Maritial status:
-                                        .col-xs-7.controls(ng-bind="marital.name")
+                                        .col-xs-7.controls(ng-bind="profile.email")
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Gender:
-                                        .col-xs-7.controls(ng-bind="gender")
-                                .col-sm-6
-                                    .row
-                                        label.col-xs-5.control-label City:
-                                        .col-xs-7.controls(ng-bind="city")
-                                .col-sm-6
-                                    .row
-                                        label.col-xs-5.control-label Country:
-                                        .col-xs-7.controls(ng-bind="country.name")
+                                        .col-xs-7.controls(ng-bind="profile.gender")
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Birthday:
-                                        .col-xs-7.controls(ng-bind="parent.birthday")
+                                        .col-xs-7.controls(ng-bind="profile.birthday")
+                                .col-sm-6
+                                    .row
+                                        label.col-xs-5.control-label Maritial status:
+                                        .col-xs-7.controls(ng-bind="profile.marital")
+
+                                .col-sm-6
+                                    .row
+                                        label.col-xs-5.control-label Country:
+                                        .col-xs-7.controls(ng-bind="profile.country")
+                                .col-sm-6
+                                    .row
+                                        label.col-xs-5.control-label City:
+                                        .col-xs-7.controls(ng-bind="profile.city")
+                                .col-sm-6
+                                    .row.mgbt-xs-0
+                                        label.col-xs-5.control-label Work:
+                                        .col-xs-7.controls(ng-bind="profile.work")
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Interests:
-                                        .col-xs-7.controls(ng-bind="interests")
-                                .col-sm-6
-                                    .row.mgbt-xs-0
-                                        label.col-xs-5.control-label Phone:
-                                        .col-xs-7.controls(ng-bind="phone")
-                                .col-sm-6
-                                    .row.mgbt-xs-0
-                                        label.col-xs-5.control-label Facebook:
-                                        .col-xs-7.controls(ng-bind="facebook")
-                                .col-sm-6
-                                    .row.mgbt-xs-0
-                                        label.col-xs-5.control-label Twitter:
-                                        .col-xs-7.controls(ng-bind="twitter")
-                                .col-sm-6
-                                    .row.mgbt-xs-0
-                                        label.col-xs-5.control-label Google+:
-                                        .col-xs-7.controls(ng-bind="google")
+                                        .col-xs-7.controls(ng-bind="profile.interests")
                             if eigen==1
                                 .row.edit-profile
                                     .col-md-12
@@ -209,7 +204,7 @@ block profile
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            input.form-control(type='text', name='firstname', ng-model='firstname', placeholder='Your Firstname', ng-minlength='2', ng-maxlength='15', ng-required='true')
+                                                            input.form-control(type='text', name='firstname', ng-model='firstName', placeholder='Your Firstname', ng-minlength='2', ng-maxlength='15', ng-required='true')
                                                             .help-block(ng-messages='settingsForm.firstname.$error', ng-if='settingsForm.firstname.$touched')
                                                                 p(ng-message='minlength') Your firstname is too short.
                                                                 p(ng-message='maxlength') Your firstname is too long.
@@ -220,7 +215,7 @@ block profile
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            input.form-control(type='text', name='lastname', ng-model='lastname', placeholder='Your Lastname', ng-minlength='2', ng-maxlength='15', ng-required='true')
+                                                            input.form-control(type='text', name='lastname', ng-model='lastName', placeholder='Your Lastname', ng-minlength='2', ng-maxlength='15', ng-required='true')
                                                             .help-block(ng-messages='settingsForm.lastname.$error', ng-if='settingsForm.lastname.$touched')
                                                                 p(ng-message='minlength') Your lastname is too short.
                                                                 p(ng-message='maxlength') Your lastname is too long.
@@ -241,7 +236,7 @@ block profile
                                                     .row
                                                         .col-xs-12
                                                             span.radio-off
-                                                                input#optionsRadios3(checked='checked',value='Male', name='optionsRadios2', type='radio', ng-model='gender')
+                                                                input#optionsRadios3(checked='checked',value='Male', name='optionsRadios2', type='radio', ng-model='profile.gender')
                                                                 label(for='optionsRadios3')  Male
 
                                                             span.radio-off1
@@ -254,29 +249,12 @@ block profile
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            .bfh-datepicker(data-format='y-m-d', data-date='2000-01-01')
-                                                                .input-prepend.bfh-datepicker-toggle(data-toggle='bfh-datepicker')
-                                                                    span.add-on
-                                                                        i.icon-calendar
-                                                                    input.input-medium(type='text',ng-model='parent.birthday')
-                                                                .bfh-datepicker-calendar
-                                                                    table.calendar.table.table-bordered
-                                                                        thead
-                                                                            tr.months-header
-                                                                                th.month(colspan='4')
-                                                                                    a.previous(href='#')
-                                                                                        i.icon-chevron-left
-                                                                                    span
-                                                                                    a.next(href='#')
-                                                                                        i.icon-chevron-right
-                                                                                th.year(colspan='3')
-                                                                                    a.previous(href='#')
-                                                                                        i.icon-chevron-left
-                                                                                    span
-                                                                                    a.next(href='#')
-                                                                                        i.icon-chevron-right
-                                                                            tr.days-header
-                                                                        tbody
+                                                            p.input-group
+                                                                input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='dt', is-open='status.opened', min-date='minDate', max-date='maxDate', datepicker-options='dateOptions', date-disabled='disabled(date, mode)', ng-required='true', close-text='Close')
+                                                                span.input-group-btn
+                                                                    button.btn.btn-default(type='button', ng-click='open($event)')
+                                                                        i.glyphicon.glyphicon-calendar
+
 
                                             .form-group(ng-class="{ 'has-error' : settingsForm.marital.$invalid  && (settingsForm.marital.$touched || submitted)}")
                                                 label.col-sm-2.control-label Marital Status
@@ -334,41 +312,12 @@ block profile
                                                 .col-sm-10.controls
                                                     .row.mgbt-xs-0
                                                         .col-xs-12
-                                                            textarea.form-control(rows='3',name='about', ng-model='about',ng-minlength='20', ng-maxlength='100', ng-required='true')
+                                                            textarea.form-control(rows='3',name='description', ng-model='about',ng-minlength='20', ng-maxlength='100', ng-required='true')
                                                             .help-block(ng-messages='settingsForm.about.$error', ng-if='settingsForm.about.$touched')
                                                                 p(ng-message='minlength') Your description is too short ( 20 ).
                                                                 p(ng-message='maxlength') Your description is too long ( 100 ).
                                                                 p(ng-message='required') Your description is required.
-                                            h3.mgbt-xs-15
-                                                i.fa.fa-cog
-                                                | Contact Setting
-                                            .form-group
-                                                label.col-sm-2.control-label Mobile Phone
-                                                .col-sm-10.controls
-                                                    .row.mgbt-xs-0
-                                                        .col-xs-12
-                                                            input(placeholder='mobile phone', type='text', ng-model='phone')
 
-                                            .form-group
-                                                label.col-sm-2.control-label Facebook
-                                                .col-sm-10.controls
-                                                    .row.mgbt-xs-0
-                                                        .col-xs-12
-                                                            input(placeholder=' facebook', type='text', ng-model='facebook')
-
-                                            .form-group
-                                                label.col-sm-2.control-label Twitter
-                                                .col-sm-10.controls
-                                                    .row.mgbt-xs-0
-                                                        .col-xs-12
-                                                            input(placeholder=' twitter', type='text', ng-model='twitter')
-
-                                            .form-group
-                                                label.col-sm-2.control-label Google+
-                                                .col-sm-10.controls
-                                                    .row.mgbt-xs-0
-                                                        .col-xs-12
-                                                            input(placeholder=' google+', type='text', ng-model='google')
                                             .form-group
                                                 label.col-md-2.control-label
                                                 .col-md-10.controls
@@ -399,7 +348,7 @@ block profile
                                             tr
 
                                                 td
-                                                    img(src='../img/profile/avatar.jpg', alt='example image', height='80')
+                                                    img(src='#{events.pictureUrl}', alt='#{events.pictureUrl}', height='80')
                                                 td #{events.name}
                                                 td.center #{events.date}
                                                 td.center #{events.time}
@@ -422,26 +371,20 @@ block profile
                                         h3
                                             i.fa.fa-cog
                                             | Create Event
-                                        form(name='eventsForm',action='/profileevent', method='post',ng-submit='submitForm()', novalidate='')
+                                        form(name='eventsForm',action='/profileevent', method='post', novalidate='', enctype="multipart/form-data")
                                             .form-group
                                                 label.col-md-3.control-label Picture
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input#input-1.file(type='file',name='pictureUrl',ng-model='event.pictureUrl')
-                                            .form-group
-                                                label.col-md-3.control-label Picture for slider
-                                                .col-md-9.controls
-                                                    .row
-                                                        .col-md-12
-                                                            input#input-1.file(type='file',name='pictureSlider',ng-model='event.pictureSlider')
+                                                            input#input-1.file(type='file',name='pictureUrl',ng-model='event.pictureUrl', multiple)
 
                                             .form-group(ng-class="{ 'has-error' : eventsForm.etitle.$invalid  && (eventsForm.etitle.$touched || submitted)}")
                                                 label.col-md-3.control-label Title
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input.form-control(type='text',name='etitle',ng-model='event.etitle',placeholder='Write title here', ng-minlength='2', ng-maxlength='20', ng-required='true')
+                                                            input.form-control(type='text',name='etitle',ng-model='etitle',placeholder='Write title here', ng-minlength='2', ng-maxlength='20', ng-required='true')
                                                             .help-block(ng-messages='eventsForm.etitle.$error', ng-if='eventsForm.etitle.$touched')
                                                                 p(ng-message='minlength') Event title is too short.
                                                                 p(ng-message='maxlength') Event title is too long.
@@ -451,25 +394,25 @@ block profile
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input.form-control(type='text',name='date',ng-model='event.date',placeholder='Write date here')
+                                                            input.form-control(type='text',name='date',ng-model='date',placeholder='Write date here')
                                             .form-group
                                                 label.col-md-3.control-label Time
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input.form-control(type='text',name='time',ng-model='event.time',placeholder='Write time here')
+                                                            input.form-control(type='text',name='time',ng-model='time',placeholder='Write time here')
                                             .form-group
                                                 label.col-md-3.control-label Location
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input.form-control(type='text',name='Location',ng-model='event.Location',placeholder='Write Location here')
+                                                            input.form-control(type='text',name='Location',ng-model='Location',placeholder='Write Location here')
                                             .form-group
                                                 label.col-md-3.control-label Group
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            select.form-control(name='Group')
+                                                            select.form-control(name='Group',ng-model="group")
                                                                 for gr in allgroups
                                                                     option(value='#{gr.id}') #{gr.name}
                                              // .form-group
@@ -477,60 +420,18 @@ block profile
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            .bfh-datepicker(data-format='y-m-d', data-date='2016-01-01')
-                                                                .input-prepend.bfh-datepicker-toggle(data-toggle='bfh-datepicker')
-                                                                    span.add-on
-                                                                        i.icon-calendar
-                                                                    input.input-medium(type='text', readonly='', name='date',ng-model='event.date')
-                                                                .bfh-datepicker-calendar
-                                                                    table.calendar.table.table-bordered
-                                                                        thead
-                                                                            tr.months-header
-                                                                                th.month(colspan='4')
-                                                                                    a.previous(href='#')
-                                                                                        i.icon-chevron-left
-                                                                                    span
-                                                                                    a.next(href='#')
-                                                                                        i.icon-chevron-right
-                                                                                th.year(colspan='3')
-                                                                                    a.previous(href='#')
-                                                                                        i.icon-chevron-left
-                                                                                    span
-                                                                                    a.next(href='#')
-                                                                                        i.icon-chevron-right
-                                                                            tr.days-header
-                                                                        tbody
+                                                            p.input-group
+                                                                input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='dt', is-open='status.opened', min-date='minDate', max-date='maxDate', datepicker-options='dateOptions', date-disabled='disabled(date, mode)', ng-required='true', close-text='Close')
+                                                                span.input-group-btn
+                                                                  button.btn.btn-default(type='button', ng-click='open($event)')
+                                                                   i.glyphicon.glyphicon-calendar
                                             // .form-group
                                                 label.col-md-3.control-label Time
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            .bfh-timepicker(data-time='08:00')
-                                                                .input-prepend.bfh-timepicker-toggle(data-toggle='bfh-timepicker', name='time',ng-model='event.time')
-                                                                    span.add-on
-                                                                        i.icon-time
-                                                                    input.input-medium(type='text', readonly='')
-                                                                .bfh-timepicker-popover
-                                                                    table.table
-                                                                        tbody
-                                                                            tr
-                                                                                td.hour
-                                                                                    a.next(href='#')
-                                                                                        i.icon-chevron-up
-                                                                                    br
-                                                                                    input.input-mini(type='text', readonly='')
-                                                                                    br
-                                                                                    a.previous(href='#')
-                                                                                        i.icon-chevron-down
-                                                                                td.separator :
-                                                                                td.minute
-                                                                                    a.next(href='#')
-                                                                                        i.icon-chevron-up
-                                                                                    br
-                                                                                    input.input-mini(type='text', readonly='')
-                                                                                    br
-                                                                                    a.previous(href='#')
-                                                                                        i.icon-chevron-down
+                                                            uib-timepicker(ng-model='mytime', ng-change='changed()', hour-step='hstep', minute-step='mstep', show-meridian='ismeridian')
+
                                             .form-group(ng-class="{ 'has-error' : eventsForm.cost.$invalid  && (eventsForm.cost.$touched || submitted)}")
                                                 label.col-md-3.control-label Cost
                                                 .col-md-9.controls
@@ -538,7 +439,7 @@ block profile
                                                         .col-md-12
                                                             .input-group
                                                                 span.input-group-addon $
-                                                                input.form-control(type='number',name='cost' ng-model='event.cost', ng-required='true')
+                                                                input.form-control(type='number',name='cost' ng-model='cost', ng-required='true')
                                                                 .help-block(ng-messages='eventsForm.cost.$error', ng-if='eventsForm.cost.$touched')
                                                                     p(ng-message='required') The cost is required.
                                                                     p(ng-message='number') The cost must be a number.
@@ -548,7 +449,7 @@ block profile
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input(type='number', name='slots', min='1', max='5', ng-model='event.slots',ng-required='true')
+                                                            input(type='number', name='slots', min='1', max='5', ng-model='slots',ng-required='true')
                                                             .help-block(ng-messages='eventsForm.slots.$error', ng-if='eventsForm.slots.$touched')
                                                                 p(ng-message='required') Amount of slots is required.
                                                                 p(ng-message='number') Amount of slots must be a number.
@@ -558,7 +459,7 @@ block profile
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            textarea.form-control(rows='3',name='edescription' ,ng-model='event.edescription',ng-minlength='20', ng-maxlength='100', ng-required='true')
+                                                            textarea.form-control(rows='3',name='edescription' ,ng-model='edescription',ng-minlength='20', ng-maxlength='100', ng-required='true')
                                                             .help-block(ng-messages='eventsForm.edescription.$error', ng-if='eventsForm.edescription.$touched')
                                                                 p(ng-message='minlength') Event description is too short ( 20 ).
                                                                 p(ng-message='maxlength') Event description is too long ( 100 ).
@@ -566,7 +467,7 @@ block profile
                                             .form-group
                                                 label.col-md-3.control-label
                                                 .col-md-9.controls
-                                                    button.btn.btn-save(type='submit', ng-disabled='eventsForm.$invalid')
+                                                    button.btn.btn-save(type='submit',ng-submit='submitFormE()', ng-disabled='eventsForm.$invalid')
                                                         span.menu-icon
                                                             i.fa.fa-fw.fa-check
                                                         |  Save
@@ -580,50 +481,45 @@ block profile
                                 if eigen==1
                                     li
                                         a(href='#', data-toggle='tab') Pending Request
-                                    li
-                                        a(href='#', data-toggle='tab') Blacklisted
                             .content-grid.column-xs-3.column-sm-4.column-md-4.column-lg-6.height-xs-4
                                 div
                                     ul.list-wrapper
-                                        li
-                                            a(href='#')
-                                                span.menu-icon
-                                                    img(src='../img/profile/avatar-1.jpg', alt='example image')
-                                            span.menu-text
-                                                | Gabriella Montagna
-                                                span.menu-info
-                                                    span.menu-date San Diego
-                                                    span.menu-action
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
-                                                            i.fa.fa-check
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
-                                                            i.fa.fa-times
-                                        li.warning
-                                            a(href='#')
-                                                span.menu-icon
-                                                    img(src='../img/profile/avatar-2.jpg', alt='example image')
-                                            span.menu-text
-                                                | Jonathan Fuzzy
-                                                span.menu-info
-                                                    span.menu-date Seattle
-                                                    span.menu-action
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
-                                                            i.fa.fa-check
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
-                                                            i.fa.fa-times
-                                        li
-                                            a(href='#')
-                                                span.menu-icon
-                                                    img(src='../img/profile/avatar-3.jpg', alt='example image')
-                                            span.menu-text
-                                                | Sakura Hinata
-                                                span.menu-info
-                                                    span.menu-date Hawaii
-                                                    span.menu-action
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
-                                                            i.fa.fa-check
-                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
-                                                            i.fa.fa-times
+                                        for fr in friends
+                                            li
+                                                a(href='./profile?id=#{fr.id}')
+                                                    span.menu-icon
+                                                        img(src='#{fr.foto}', alt='#{fr.foto}')
+                                                span.menu-text
+                                                    | #{fr.naam}
+                                                    span.menu-info
+                                                        span.menu-action
+                                                            form(name='delete',action='/profildeletedfriendprof?id=#{fr.id}', method='post',enctype="multipart/form-data")
+                                                                .form-group
+                                                                    button.btn.btn-save#submit(type='submit')
+                                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                                            i.fa.fa-times
+                                div
+                                    ul.list-wrapper
+                                        for fr in pending
+                                            li
+                                                a(href='./profile?id=#{fr.id}')
+                                                    span.menu-icon
+                                                        img(src='#{fr.foto}', alt='#{fr.foto}')
+                                                span.menu-text
+                                                    | #{fr.naam}
+                                                    span.menu-info
+                                                        span.menu-action
+                                                            form(name='deldfete',action='/profileacceptfriend?id=#{fr.id}', method='post',enctype="multipart/form-data")
+                                                                .form-group
+                                                                    button.btn.btn-save#submit(type='submit')
+                                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                                            i.fa.fa-check
+                                                            form(name='delssete',action='/profiledenyfriend?id=#{fr.id}', method='post',enctype="multipart/form-data")
+                                                                .form-group
+                                                                    button.btn.btn-save#submit(type='submit')
+                                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                                            i.fa.fa-times
+
                         #groups-tab.groups-tab.tab-pane(role='tabpanel')
                             h3
                                 i.fa.fa-leaf.mgr-10.profile-icon
@@ -653,13 +549,13 @@ block profile
                                         h3
                                             i.fa.fa-cog
                                             | Create Group
-                                        form(name='groupsForm',action='/profilegroups', method='post',ng-submit='submitForm()', novalidate='')
+                                        form(name='groupsForm',action='/profilegroups', method='post',ng-submit='submitForm()', novalidate='',enctype="multipart/form-data")
                                             .form-group
                                                 label.col-md-3.control-label Picture
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input#input-1.file(type='file',name="Foto")
+                                                            input#input-1.file(type='file',name="Foto",ng-model="group.Foto")
 
                                             .form-group(ng-class="{ 'has-error' : groupsForm.gtitle.$invalid  && (groupsForm.gtitle.$touched || submitted)}")
                                                 label.col-md-3.control-label Title
@@ -694,13 +590,15 @@ block profile
     script(type='text/javascript', src='/dist/js/bootstrap.min.js')
     script(src='/dist/js/angular.min.js')
     script(src='/dist/js/angular-messages.min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js')
+    script(src='//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js')
     script(src='/src/app.js')
     script(src='/src/directives/ngCompare.js')
     script(src='/src/services/mStatusService.js')
     script(src='/src/services/jobService.js')
     script(src='/src/services/countryService.js')
+    script(src='/src/services/certainUserService.js')
     script(src='/src/controllers/ProfileController.js')
-    script(type='text/javascript', src='/dist/js/bootstrap-formhelpers.min.js')
     script(type='text/javascript', src='/dist/js/fileinput.min.js')
 
 

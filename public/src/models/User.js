@@ -1,13 +1,14 @@
 /**
  * Created by CedricLecat on 18/11/15.
  */
-function Event(id,local,facebook,twitter,google,displayName,firstName,lastName,city,birthday,gender,country,interests,picture,phone,contacts,events,groups)
+function User(blacklisted,memberSince,pendingContacts,contacts,firstName,lastName,city,birthday,gender,country,interests,picture,description,email,phone,events,groups)
 {
-    this.id = id;
-    this.local = local;
-    this.facebook = facebook;
-    this.twitter = twitter;
-    this.google = google;
+    this.blacklisted = blacklisted;
+    this.memberSince = memberSince;
+    this.pendingContacts = pendingContacts;
+    this.contacts = contacts;
+    this.email = email;
+    this.description = description;
     this.displayName = displayName;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -19,9 +20,8 @@ function Event(id,local,facebook,twitter,google,displayName,firstName,lastName,c
     this.picture = picture;
     this.phone = phone;
     this.contacts = contacts;
-
-    //nieuw
     this.events = events;
     this.groups = groups;
 
 }
+

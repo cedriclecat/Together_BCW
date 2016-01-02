@@ -13,7 +13,7 @@ var groupSchema = new mongoose.Schema({
     eventids          :{ type:String },
     picture           :{ type:String },
     TIMESTAMP         : {type:Date},
-    chat              :{ type:String }
+    chat              :{ type:Array }
 });
 
 module.exports = mongoose.model('groups',groupSchema,"groups");

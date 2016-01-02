@@ -3,8 +3,9 @@
  */
 
 angular.module('event',[]);
-angular.module('profile',['ngMessages']);
+angular.module('profile',['ngMessages','ngAnimate', 'ui.bootstrap']);
 angular.module('auth',['ngMessages']);
+angular.module('admin',[]);
 
 
 

@@ -326,7 +326,7 @@ block profile
                         #events-tab.event-tab.tab-pane(role='tabpanel')
                             h3
                                 i.fa.fa-bolt.mgr-10.profile-icon
-                                |  Events
+                                |  My events
                             .table-responsive
                                 table.table.table-striped.table-hover
                                     thead
@@ -363,6 +363,46 @@ block profile
                                                             i.fa.fa-pencil
                                                         a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete', id = "#{events.id}")
                                                             i.fa.fa-times
+                            h3
+                                i.fa.fa-bolt.mgr-10.profile-icon
+                                |  events i'm going to
+                            .table-responsive
+                                 table.table.table-striped.table-hover
+                                    thead
+                                        tr
+
+                                            th Logo / Photos
+                                            th Title
+                                            th Date
+                                            th Time
+                                            th Status
+                                            th Cost
+                                            th Slots
+                                            if eigen == 1
+                                                th Action
+                                     tbody
+                                        for events in evs
+                                            tr
+
+                                                td
+                                                    img(src='#{events.pictureUrl}', alt='#{events.pictureUrl}', height='80')
+                                                td #{events.name}
+                                                td.center #{events.date}
+                                                td.center #{events.time}
+                                                td.center
+                                                    if events.done == 1
+                                                        span.label.label-success Finish
+                                                    else
+                                                        span.label.label-info Soon
+                                                td.center #{events.price}
+                                                td.center #{events.maxMember}
+                                                if eigen == 1
+                                                    td.menu-action.rounded-btn
+                                                        a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit', id='#{events.id}')
+                                                            i.fa.fa-pencil
+                                                        a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete', id = "#{events.id}")
+                                                            i.fa.fa-times
+
                             if eigen==1
                                 .row.edit-profile
                                     .col-sm-12

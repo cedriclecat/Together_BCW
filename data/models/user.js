@@ -5,7 +5,6 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = mongoose.Schema({
-    //id               : {type:String},
     local              : {
             email        : String,
             password     : String,
@@ -31,17 +30,18 @@ var userSchema = mongoose.Schema({
     },
     firstName        :{type:String},
     lastName         :{type:String},
-    email        : String,
-    Description        : String,
+    email            :{type:String},
+    description      :{type:String},
+    work             :{type:String},
+    marital          :{type:String},
     city             :{type:String},
     birthday         :{type:Date},
     gender           :{type:String},
     country          :{type:String},
     interests        :{type:String},
     picture          :{type:String},
-    phone            :{type:Number},
     contacts         :{type:String},
-    pendingcontacts  :{type:String},
+    pendingontacts  :{type:String},
     MemberSince      :{type:Date},
     blacklisted      :{type:String}
 

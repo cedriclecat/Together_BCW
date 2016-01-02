@@ -53,28 +53,35 @@ block admin
                 h3 Users
                 .form-group
                     input.form-control(type='text', placeholder='Search for...',ng-model="nameFilterU")
-                a.delete.admin-u(href="#",id="{{ user._id }}",title="Click to delete user",ng-repeat='user in allUsers | filter: searchFilterU',ng-click='deleteUser()')
+                .delete.admin-u(id="{{ user._id }}",ng-repeat='user in allUsers | filter: searchFilterU')
                     img(ng-src="{{user.picture}}")
                     p(ng-bind-template="{{user.firstName}} {{user.lastName}}")
                     p(ng-bind="user.country")
+                    a(href="#")
+                        i.fa.fa-times(title="Click here to Delete user",ng-click='deleteUser(user._id)')
                 .cb
                 h3 Events
                 .form-group
                     input.form-control(type='text', placeholder='Search for...',ng-model="nameFilterE")
-                .admin-e(ng-repeat='event in allEvents | filter: searchFilterE')
-                    //img(ng-src="{{event.pictureUrl}}")
+                .admin-e(id="{{ event._id }}",ng-repeat='event in allEvents | filter: searchFilterE')
+                    img(ng-src="{{event.pictureUrl}}")
                     p(ng-bind="event.name")
+                    a(href="#")
+                        i.fa.fa-times(title="Click here to Delete event",ng-click='deleteEvent(event._id)')
                 .cb
                 h3 Groups
                 .form-group
                     input.form-control(type='text', placeholder='Search for...',ng-model="nameFilterG")
-                .admin-g(ng-repeat='group in allGroups | filter: searchFilterG')
+                .admin-g(id="{{ group._id }}",ng-repeat='group in allGroups | filter: searchFilterG')
                     img(ng-src="{{group.picture}}")
                     p(ng-bind="group.name")
+                    a(href="#")
+                        i.fa.fa-times(title="Click here to Delete group",ng-click='deleteGroup(group._id)')
                 .cb
     script(src='/dist/js/angular.min.js')
     script(src='/src/app.js')
     script(src='/src/services/userService.js')
     script(src='/src/services/eventService.js')
     script(src='/src/services/groupService.js')
+    script(src='/src/services/adminService.js')
     script(src='/src/controllers/AdminController.js')

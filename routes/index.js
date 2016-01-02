@@ -301,7 +301,7 @@ var upload = multer({storage:options});
         })
     });
 
-    router.post('/api/profile/:_id',function(req,res){
+    router.post('/api/profile/:_id', function (req, res) {
         //var bodyz = req.body;
         console.log("country: " + req.body.firstName);
         console.log("country: " + req.body.lastName);
@@ -312,25 +312,59 @@ var upload = multer({storage:options});
         console.log("country: " + req.body.country);
         console.log("birthday: " + req.body.birthday);
 
-        User.update({_id:req.user._id},{$set:{
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            marital: req.body.marital,
-            work: req.body.work,
-            country: req.body.country,
-            city: req.body.city,
-            interests: req.body.interests,
-            description: req.body.description
-        }},function(err){console.log(err);});
-        res.send("goed verstuurd");
-        res.end();
+        User.update({ _id: req.user._id }, {
+            $set: {
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                marital: req.body.marital,
+                work: req.body.work,
+                country: req.body.country,
+                city: req.body.city,
+                interests: req.body.interests,
+                description: req.body.description
+            }
+        }, function (err) { console.log(err); });
+        res.send("Profile Updated");
     });
 
-    router.delete('/api/profile/:_id',function(req,res){
-        console.log(req.body.query.id);
-        console.log(req.body.id);
-        User.remove({_id: req.body.id})
+    router.delete('/api/user/delete/:_id', function (req, res) {
+        console.log("test5: " + req.body.id);
+        User.findByIdAndRemove({ _id: req.body.id }, function (err) {
+            if (!err) {
+                res.send("no error")
+
+            }
+            else {
+                console.log('error' + err)
+            }
+        });
+    });
+
+    router.delete('/api/event/delete/:_id', function (req, res) {
+        console.log("test6: " + req.body.id);
+        Events.findByIdAndRemove({ _id: req.body.id }, function (err) {
+            if (!err) {
+                res.send("no error")
+
+            }
+            else {
+                console.log('error' + err)
+            }
+        });
+    });
+
+    router.delete('/api/group/delete/:_id', function (req, res) {
+        console.log("test7: " + req.body.id);
+        Groups.findByIdAndRemove({ _id: req.body.id }, function (err) {
+            if (!err) {
+                console.log('no error');
+
+            }
+            else {
+                console.log('error' + err)
+            }
+        });
     });
 
     router.get('/api/groups',function(req,res){

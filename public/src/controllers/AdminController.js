@@ -4,7 +4,7 @@
 (function(){
     "use strict";
 
-    var AdminController = function($scope,$http,userService,eventService,groupService)
+    var AdminController = function($scope,userService,eventService,groupService,adminService)
     {
         $scope.nameFilterU = null;
         $scope.nameFilterE = null;
@@ -24,11 +24,9 @@
             return !$scope.nameFilterG || keyword.test(group.name);
         };
 
-
         // Get all users from Service
         userService.then(function(data){
             $scope.allUsers = data;
-            $scope.id = data._id;
         });
 
         // Get all events from Service
@@ -41,23 +39,19 @@
             $scope.allGroups = data;
         });
 
-        //$scope.deleteUser = function(){
-        //    var url = '/api/profile/:_id';
-        //    var params = JSON.stringify({
-        //        "id": $scope.id
-        //    });
-        //    $http.delete(url,params).then(function successCallback(response) {
-        //        // this callback will be called asynchronously
-        //        // when the response is available
-        //        console.log('delete successfully: ' + response.data);
-        //    }, function errorCallback(response) {
-        //        // called asynchronously if an error occurs
-        //        // or server returns response with an error status.
-        //        console.log('an error occurred', response.data)
-        //    });
-        //}
+        $scope.deleteUser = function(id){
+            adminService.deleteU(id);
+        };
+
+        $scope.deleteEvent = function(id){
+            adminService.deleteE(id);
+        };
+
+        $scope.deleteGroup = function(id){
+            adminService.delete(id);
+        };
     };
 
-    angular.module("admin").controller('AdminController',['$scope','$http','userService','eventService','groupService',AdminController]);
+    angular.module("admin").controller('AdminController',['$scope','userService','eventService','groupService','adminService',AdminController]);
 
 })();

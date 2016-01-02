@@ -41,7 +41,7 @@ var userSchema = mongoose.Schema({
     interests        :{type:String},
     picture          :{type:String},
     contacts         :{type:String},
-    pendingontacts  :{type:String},
+    pendingcontacts  :{type:String},
     MemberSince      :{type:Date},
     blacklisted      :{type:String}
 

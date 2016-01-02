@@ -70,7 +70,7 @@ block events
                 .events
                     h3 Events
                     #accordion1.panel-group(ng-controller='EventsController', role='tablist', aria-multiselectable='true')
-                        div(ng-repeat='something in events')
+                        div(ng-repeat='something in events | filter:query')
                             .panel.panel-default
                                 #headingOne.panel-heading(role='tab')
                                     h4.panel-title.accordion-toggle

@@ -25,10 +25,22 @@ profilerepo = (function () {
             data.OWN = 1;
         }
         var naam ="";
+
+        //seeduriek
+        Events.find({members:zoek},function(err,even){
+            if(err)console.log(err);
+            else
+            {
+                //console.log(even);
+                data.myGoingEvents = even;
+            }
+        })
+
         User.findOne({_id:zoek},function(err,even) {
-            if (err) { return next(err);}else{
+            if (err) { return next(err);}
+            else{
                 var dtm = new Date(even.MemberSince);
-                console.log(even);
+                //console.log(even);
                 var friends = even.contacts;
                 var pendings = even.pendingcontacts;
 
@@ -66,6 +78,7 @@ console.log(stukjes);
 
                         });
                         data.mijnevents = even;
+
                         Groups.find({createdby:zoek},function(err,even) {
 
                             if (err) {

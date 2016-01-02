@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0ebfada-bbf8-42c2-96f8-05ac1692a894" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/models/user.js" afterPath="$PROJECT_DIR$/data/models/user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/DataRepositorys/ProfileRepo.js" afterPath="$PROJECT_DIR$/data/DataRepositorys/ProfileRepo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/profile.jade" afterPath="$PROJECT_DIR$/views/profile.jade" />
     </list>
     <ignored path="Together_BCW.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,11 +51,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/models/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5220049" vertical-offset="321" max-vertical-offset="1139">
+            <state vertical-scroll-proportion="0.0" vertical-offset="321" max-vertical-offset="1139">
               <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/login.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="6.12" vertical-offset="153" max-vertical-offset="1020">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.jade" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/profile.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.46666667" vertical-offset="8364" max-vertical-offset="10455">
+              <caret line="511" column="70" selection-start-line="511" selection-start-column="70" selection-end-line="511" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfileRepo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/DataRepositorys/ProfileRepo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="7325" max-vertical-offset="8211">
+              <caret line="459" column="41" selection-start-line="459" selection-start-column="41" selection-end-line="459" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -105,6 +135,8 @@
       <list>
         <option value="$PROJECT_DIR$/public/src/controllers/EventController.js" />
         <option value="$PROJECT_DIR$/data/models/user.js" />
+        <option value="$PROJECT_DIR$/data/DataRepositorys/ProfileRepo.js" />
+        <option value="$PROJECT_DIR$/views/profile.jade" />
       </list>
     </option>
   </component>
@@ -495,13 +527,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/models/events.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/landing.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -596,13 +621,6 @@
     <entry file="file://$PROJECT_DIR$/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/login.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="10.2" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
@@ -803,13 +821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/profile.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.113054" vertical-offset="0" max-vertical-offset="0">
-          <caret line="473" column="62" selection-start-line="473" selection-start-column="62" selection-end-line="473" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -853,8 +864,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/models/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5220049" vertical-offset="321" max-vertical-offset="1139">
+        <state vertical-scroll-proportion="0.0" vertical-offset="321" max-vertical-offset="1139">
           <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/login.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="6.12" vertical-offset="153" max-vertical-offset="1020">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/DataRepositorys/ProfileRepo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="7325" max-vertical-offset="8211">
+          <caret line="459" column="41" selection-start-line="459" selection-start-column="41" selection-end-line="459" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/profile.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46666667" vertical-offset="8364" max-vertical-offset="10455">
+          <caret line="511" column="70" selection-start-line="511" selection-start-column="70" selection-end-line="511" selection-end-column="70" />
           <folding />
         </state>
       </provider>

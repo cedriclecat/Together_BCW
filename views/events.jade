@@ -51,22 +51,10 @@ block events
             .col-md-10.col-md-offset-1
                 h2 Search for Events
                 .input-group
-                    input.form-control(type='text', placeholder='Search for...')
+                    input.form-control(type='text',ng-model="query", placeholder='Search for...')
                     span.input-group-btn
                         button.btn.btn-default(type='button') Go!
-                .keywords
-                    h3 Keywords
-                    .row
-                        .col-md-1
-                            .keyword
-                                a.icon
-                                    i.fa.fa-remove
-                                p Rock
-                        .col-md-1
-                            .keyword
-                                a.icon
-                                    i.fa.fa-remove
-                                p Travel
+
                 .events
                     h3 Events
                     #accordion1.panel-group(ng-controller='EventsController', role='tablist', aria-multiselectable='true')

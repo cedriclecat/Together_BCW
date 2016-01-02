@@ -127,58 +127,66 @@ block socket
                         hoofddiv.appendChild(link);
                     });
                 });
-                socket.on('rockgroup', function (data) {
-                    var elements = document.getElementsByTagName("header");
-                    console.log(elements[0].id);
-                    console.log(data);
-                    //var msg = data.nick + ': ' + data.message;
-                    var container = document.createElement('div');
-                    container.className = "container-fluid";
-                    container.style.marginTop = "10px";
-                    container.style.border = "1px solid #d3d3d3";
-                    container.style.background = "#00acac";
-                    container.style.paddingLeft = "0px";
-                    var row = document.createElement('div');
-                    row.className = "row";
-                    var col1 = document.createElement('div');
-                    col1.className = "col-md-2";
-                    var col2 = document.createElement('div');
-                    col2.className = "col-md-10";
-                    var image = document.createElement('img');
-                    image.src = data.nick.Foto;
-                    image.style.height = "50px";
-                    var h3 = document.createElement("p");
-                    h3.innerText = data.message;
-                    h3.style.marginTop = "11px";
-                    var style = document.createElement("style");
-                    style.type = "text/css";
-                    var decl = document.createTextNode("p:hover {background-color: #00acac}");
-                    if (style.stylesheet) {
-                        style.styleSheet.cssText = decl.nodeValue;
-                    } else {
-                        style.appendChild(decl);
+                socket.on('rockgroup', function (entry) {
+                    var hoofddiv = document.getElementById("chatd");
+                    //Wis alle clients
+                    while(hoofddiv.hasChildNodes()){
+                        hoofddiv.removeChild(hoofddiv.lastChild);
                     }
-                    h3.appendChild(style);
-                    var link = document.createElement("a");
-                    link.href = "./profile?id=" + data.nick.id;
-                    link.id = "CHAT" + data.nick.id;
-                    if (elements[0].id == data.nick.id) {
-                        h3.style.textAlign = "right";
-                        col1.appendChild(image);
-                        link.appendChild(col1);
-                        col2.appendChild(h3);
-                        row.appendChild(col2);
-                        row.appendChild(link);
-                        container.appendChild(row);
-                    } else {
-                        col1.appendChild(image);
-                        link.appendChild(col1);
-                        col2.appendChild(h3);
-                        row.appendChild(link);
-                        row.appendChild(col2);
-                        container.appendChild(row);
-                    }
-                    document.getElementById("chatd").appendChild(container);
+                    //Hervul
+                    entry.forEach(function (data) {
+                        var elements = document.getElementsByTagName("header");
+                        console.log(elements[0].id);
+                        console.log(data);
+                        //var msg = data.nick + ': ' + data.message;
+                        var container = document.createElement('div');
+                        container.className = "container-fluid";
+                        container.style.marginTop = "10px";
+                        container.style.border = "1px solid #d3d3d3";
+                        container.style.background = "#00acac";
+                        container.style.paddingLeft = "0px";
+                        var row = document.createElement('div');
+                        row.className = "row";
+                        var col1 = document.createElement('div');
+                        col1.className = "col-md-2";
+                        var col2 = document.createElement('div');
+                        col2.className = "col-md-10";
+                        var image = document.createElement('img');
+                        image.src = data.nick.Foto;
+                        image.style.height = "50px";
+                        var h3 = document.createElement("p");
+                        h3.innerText = data.message;
+                        h3.style.marginTop = "11px";
+                        var style = document.createElement("style");
+                        style.type = "text/css";
+                        var decl = document.createTextNode("p:hover {background-color: #00acac}");
+                        if (style.stylesheet) {
+                            style.styleSheet.cssText = decl.nodeValue;
+                        } else {
+                            style.appendChild(decl);
+                        }
+                        h3.appendChild(style);
+                        var link = document.createElement("a");
+                        link.href = "./profile?id=" + data.nick.id;
+                        link.id = "CHAT" + data.nick.id;
+                        if (elements[0].id == data.nick.id) {
+                            h3.style.textAlign = "right";
+                            col1.appendChild(image);
+                            link.appendChild(col1);
+                            col2.appendChild(h3);
+                            row.appendChild(col2);
+                            row.appendChild(link);
+                            container.appendChild(row);
+                        } else {
+                            col1.appendChild(image);
+                            link.appendChild(col1);
+                            col2.appendChild(h3);
+                            row.appendChild(link);
+                            row.appendChild(col2);
+                            container.appendChild(row);
+                        }
+                        hoofddiv.appendChild(container);
+                    });
 
                 });
                 var elements = document.getElementsByTagName("header");

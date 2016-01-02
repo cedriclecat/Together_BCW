@@ -50,7 +50,9 @@ module.exports = function(io){
             socket.join(room);
             //  socket.set('name', nick);
             socket.nick=nick;
-
+            SocketRepo.loadchat(room,function(next){
+                io.sockets.in(room).emit('rockgroup', next);
+            });
             SocketRepo.gettheuser(nick,function(next){
                 var currentUser = {};
                 currentUser.nick = next;
@@ -60,23 +62,6 @@ module.exports = function(io){
                 var clients = socket.adapter.sids;
                 var keys = Object.keys(clients); //alle users
                 console.log(keys.length);
-                /*
-                 SocketRepo.gettheuser(nick,function(next){
-                 allClients.push(socket.nick);
-                 var found = false;
-                 for(var i = 0; i < allClientsclient.length; i++) {
-                 if (allClientsclient[i].id == nick) {
-                 found = true;
-                 break;
-                 }
-                 }
-                 if(found){}else {
-                 allClientsclient.push(next);
-                 io.sockets.in(room).emit('caty', next);
-                 //socket.broadcast.to(room).emit('caty', next);
-                 }
-                 });*/
-
                 var doorsturen = [];
                 for(i=0; i<keys.length;i++){
                     var socketvanarray = clients[keys[i]];
@@ -117,21 +102,17 @@ module.exports = function(io){
 
         // This should initiate rock group chat
         socket.on('rockgroup', function(data) {
-            console.log(data);
             var room = data.a;
             var data = data.b;
             // socket.get('name', function(err, nick) {
             var nickname =socket.nick ; //normally this won't be possible
-            SocketRepo.gettheuser(nickname,function(next){
-                var payload = {
-                    message: data,
-                    nick: next
-                };
-                io.sockets.in(room).emit('rockgroup', payload);
-                //socket.broadcast.to(room).emit('rockgroup', payload);
-
+            var stuurdoor = {};
+            stuurdoor.a=room;
+            stuurdoor.b=data;
+            stuurdoor.c=nickname;
+            SocketRepo.checkdb(stuurdoor,function(next){
+                   io.sockets.in(room).emit('rockgroup', next);
             });
-
             // });
         });
     });

@@ -26,7 +26,6 @@ var GroupRepo = require("../data/DataRepositorys/groupRepo");
 var EventRepo = require("../data/DataRepositorys/eventsRepo");
 
 var multer = require('multer');
-var user ="";
 var options = multer.diskStorage({
     destination : '../public/img/uploads/' ,
     filename: function(req,file,cb){
@@ -65,7 +64,7 @@ var upload = multer({storage:options});
     // =====================================
 
     router.get('/profile',isLoggedIn, function (req , res) {
-        user = req.user._id;
+
         ProfileRepo.getevents(req,function(next){
             res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
         });

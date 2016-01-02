@@ -32,7 +32,8 @@ profilerepo = (function () {
                 var maand = dtm.getMonth()+1;
                 data.MemberSince = dtm.getDay() + "/" + maand+"/"+dtm.getFullYear();
                 if(even.firstName ==""){
-                    naam = even.email;
+                    var x = even.email.split("@");
+                    naam = x[0];
                 }else{
                     naam = even.firstName + " " + even.lastName;
                 }
@@ -71,6 +72,7 @@ console.log(stukjes);
                                     return next(err);
                                 }
                                 data.allgroups = even;
+
                                 next();
                             });
                         });
@@ -82,6 +84,7 @@ console.log(stukjes);
     changepicture = function(data,user,next){
         var mongoose = require('mongoose');
         var Usermod = mongoose.model('User');
+        Groups = mongoose.model('groups');
         var files = data.file;
         console.log(files);
         var spliter = files.path.split("\\");
@@ -93,6 +96,31 @@ console.log(stukjes);
             if(err){
                 next(err);
             }
+            /*Groups.find({}, function (err, datanext) {
+                if(err){next(err);}
+                datanext.each(function(group){
+                    var changed =0;
+                    var chat = group.chat;
+                    var NIEUWECHAT = [];
+                    chat.each(function(chatnode){
+                        if(chatnode.nick.id==user){
+                            changed=1;
+                            chatnode.nick.Foto=filenaam1;
+                        }else{
+                            NIEUWECHAT.push(chatnode);
+                        }
+                        if(changed==1){
+                            var options = {multi: true};
+                            Groups.update({id: user}, {chat: NIEUWECHAT}, options, function (err) {
+                                if (err) {
+                                }
+                            });
+                        }
+                    });
+
+                });
+
+            });*/
             next();
         });
 

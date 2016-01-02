@@ -66,7 +66,7 @@ var upload = multer({storage:options});
     router.get('/profile',isLoggedIn, function (req , res) {
 
         ProfileRepo.getevents(req,function(next){
-            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
+            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups,pending:req.pending,friends:req.friends});
         });
     });
     router.post('/profile',function(req,res){
@@ -88,6 +88,39 @@ var upload = multer({storage:options});
 
     router.post('/profilepicture',upload.single('PICTURE'),function(req,res, next){
         ProfileRepo.changepicture(req, req.user._id, function (next) {
+            res.redirect('/profile');
+        });
+    });
+    //profileaddfriend
+    router.post('/profileaddfriend',function(req,res, next){
+        console.log("hhhhhhhhhhhhhhhhhhhhh");
+        var grps = req.query.id;
+        console.log(grps);
+        ProfileRepo.addpending(req, req.user._id, function (next) {
+            res.redirect('/profile?id=' + grps);
+        });
+    });
+    router.post('/profildeletedfriend',function(req,res, next){
+
+        ProfileRepo.deletefriend(req, req.user._id, function (next) {
+            res.redirect('/profile?id=' + req.usertobeadded);
+        });
+    });
+    router.post('/profildeletedfriendprof',function(req,res, next){
+
+        ProfileRepo.deletefriend(req, req.user._id, function (next) {
+            res.redirect('/profile');
+        });
+    });
+    router.post('/profileacceptfriend',function(req,res, next){
+
+        ProfileRepo.acceptfriend(req, req.user._id, function (next) {
+            res.redirect('/profile');
+        });
+    });
+    router.post('/profiledenyfriend',function(req,res, next){
+
+        ProfileRepo.deletepending(req, req.user._id, function (next) {
             res.redirect('/profile');
         });
     });

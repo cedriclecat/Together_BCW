@@ -28,6 +28,10 @@ profilerepo = (function () {
         User.findOne({_id:zoek},function(err,even) {
             if (err) { return next(err);}else{
                 var dtm = new Date(even.MemberSince);
+                var friends = even.contacts;
+                var pendings = even.pendingcontacts;
+
+
                 data.UserData = even;
                 var maand = dtm.getMonth()+1;
                 data.MemberSince = dtm.getDay() + "/" + maand+"/"+dtm.getFullYear();
@@ -72,8 +76,69 @@ console.log(stukjes);
                                     return next(err);
                                 }
                                 data.allgroups = even;
+                                User.find({},function(err,even) {
+                                    var pend = [];
+                                    var fri = [];
+                                    var pendse = [];
+                                    var frise = [];
+                                    var sepe = 0;
+                                    var frie=0;
 
-                                next();
+                                    if(friends===undefined||friends==""){
+
+                                    }else{
+                                        frise=friends.split(";;");
+                                        frie=1;
+                                    }
+                                    if(pendings===undefined||pendings==""){
+
+                                    }else{
+                                        sepe=1;
+                                        pendse=pendings.split(";;");
+                                    }
+                                    even.forEach(function(e){
+                                        var naam ="";
+                                        if(e.firstName ==""){
+                                            var x = e.email.split("@");
+                                            naam = x[0];
+                                        }else{
+                                            naam = e.firstName + " " + e.lastName;
+                                        }
+                                        if(frie==1){
+                                            frise.forEach(function(friend){
+                                                if(e._id==friend){
+                                                    var mijnobject = {};
+                                                    mijnobject.id = e._id;
+                                                    mijnobject.naam = naam;
+                                                    mijnobject.foto = e.picture;
+                                                    fri.push(mijnobject);
+                                                }
+                                            });
+                                        }
+                                        if(sepe==1){
+                                            pendse.forEach(function(friend){
+                                                if(e._id==friend){
+                                                    var mijnobject = {};
+                                                    mijnobject.id = e._id;
+                                                    mijnobject.naam = naam;
+                                                    mijnobject.foto = e.picture;
+                                                    pend.push(mijnobject);
+                                                }
+                                            });
+                                        }
+
+                                    });
+                                    data.pending = pend;
+                                    data.friends = fri;
+                                    console.log(pend);
+                                    console.log(fri);
+                                    next();
+
+                                });
+
+
+
+
                             });
                         });
                     }
@@ -84,7 +149,7 @@ console.log(stukjes);
     changepicture = function(data,user,next){
         var mongoose = require('mongoose');
         var Usermod = mongoose.model('User');
-        Groups = mongoose.model('groups');
+        //Groups = mongoose.model('groups');
         var files = data.file;
         console.log(files);
         var spliter = files.path.split("\\");
@@ -177,6 +242,7 @@ console.log(stukjes);
                     }
                     var options = { multi: true };
                     console.log(even);
+
                     Groups.update({id:data.Group},{eventids:even.eventids},options,function(err){
                         next(mijnevent);
                     });
@@ -188,10 +254,132 @@ console.log(stukjes);
 
 
     };
+    acceptfriend = function(data,user,next){
+        var mongoose = require('mongoose');
+        var Usermod = mongoose.model('User');
+        var grps = data.query.id;
+        //User ophalen
+        Usermod.findOne({_id:grps},function(err,even) {
+            var pendings = even.pendingcontacts;
+            var newpendings = "";
+            var friends = even.contacts;
+            var newfriends ="";
+            //Pending verwijderen
+            var pendingarr = pendings.split(";;");
+            for(i=0;i<pendingarr.length;i++){
+                if(pendingarr[i]==user){}else{
+                    if (newpendings == "") {
+                        newpendings = pendingarr[i];
+                    } else {
+                        newpendings = ";;" + pendingarr[i];
+                    }
+                }
+            }
+            //friend toevoegen
+            if(friends===undefined || friends==""){
+                friends=user;
+            }else{
+                friends = ";;"+user;
+            }
+
+            //usersaven
+            var options = { multi: true };
+            Usermod.update({_id:grps},{pendingcontacts:newpendings,contacts:friends},options,function(err){
+                next();
+            });
+        });
+    };
+    deletefriend = function(data,user,next){
+        var mongoose = require('mongoose');
+        var Usermod = mongoose.model('User');
+        var grps = data.query.id;
+        //User ophalen
+        Usermod.findOne({_id:grps},function(err,even) {
+            var pendings = even.contacts;
+            var newpendings = "";
+
+            //Pending verwijderen
+            var pendingarr = pendings.split(";;");
+            for(i=0;i<pendingarr.length;i++){
+                if(pendingarr[i]==user){}else{
+                    if (newpendings == "") {
+                        newpendings = pendingarr[i];
+                    } else {
+                        newpendings = ";;" + pendingarr[i];
+                    }
+                }
+            }
+
+            //usersaven
+            var options = { multi: true };
+            Usermod.update({_id:grps},{contacts:newpendings},options,function(err){
+                next();
+            });
+        });
+    };
+    deletepending = function(data,user,next){
+        var mongoose = require('mongoose');
+        var Usermod = mongoose.model('User');
+        var grps = data.query.id;
+        //User ophalen
+        Usermod.findOne({_id:grps},function(err,even) {
+            var pendings = even.pendingcontacts;
+            var newpendings = "";
+
+            //Pending verwijderen
+            var pendingarr = pendings.split(";;");
+            for(i=0;i<pendingarr.length;i++){
+                if(pendingarr[i]==user){}else{
+                    if (newpendings == "") {
+                        newpendings = pendingarr[i];
+                    } else {
+                        newpendings = ";;" + pendingarr[i];
+                    }
+                }
+            }
+
+            //usersaven
+            var options = { multi: true };
+            Usermod.update({_id:grps},{pendingcontacts:newpendings},options,function(err){
+                next();
+            });
+        });
+    };
+    addpending = function(data,user,next){
+        console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+        var mongoose = require('mongoose');
+        var Usermod = mongoose.model('User');
+        var grps = data.query.id;
+        console.log(grps);
+
+        //User ophalen
+        Usermod.findOne({_id:grps},function(err,even) {
+            console.log(err);
+            var pendings = even.pendingcontacts;
+            //Pending bijvoegen
+            if(pendings===undefined || pendings==""){
+                pendings=user;
+            }else{
+                pendings = ";;"+user;
+            }
+            //usersaven
+            console.log(err);
+            console.log(pendings);
+            var options = { multi: true };
+            Usermod.update({_id:grps},{pendingcontacts:pendings},options,function(err){
+                console.log(err);
+                next();
+            });
+        });
+    };
     return {
         createaevent: createevent,
         getevents : getevents,
-        changepicture:changepicture
+        changepicture:changepicture,
+        acceptfriend : acceptfriend,
+        deletefriend:deletefriend,
+        addpending:addpending,
+        deletepending:deletepending
     };
 })();
 

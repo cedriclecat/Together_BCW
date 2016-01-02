@@ -154,34 +154,42 @@ console.log(stukjes);
                                         }
                                     }
 
-data.friends2 = xarr;
+                                    data.friends2 = xarr;
+                                    var friend = 0;
+                                    var pending = 0;
+                                    var unknown = 0;
                                     if( data.OWN==0){
                                         //Ander profiel
                                         //user id van current user
-                                        var friend = 0;
-                                        var pending = 0;
-                                        var unknown = 0;
+
                                         console.log(user);
                                         console.log(pend);
                                         console.log(fri);
                                         //friend?
-                                        for(dfdf = 0; dfdf<fri.length;dfdf++){
-                                            if(fri[dfdf].id==user){
+                                        fri.forEach(function(friend){
+                                            var id = "" + friend.id;
+                                            var us = ""+user;
+                                            if(id==us){
                                                 friend =1;
                                                 pending = 0;
                                                 unknown =0;
                                             }
-                                        }
+                                        });
                                         //pending?
                                         if(friend==0) {
-                                            for (dfdf = 0; dfdf < pend.length; dfdf++) {
-                                                if (pend[dfdf].id == user) {
+                                            pend.forEach(function(friend){
+                                                console.log(friend.id);
+                                                console.log(user);
+                                                var id = "" + friend.id;
+                                                var us = ""+user;
+                                                if(id==us){
                                                     friend =0;
                                                     pending = 1;
-                                                    unknown =0
+                                                    unknown =0;
                                                 }
-                                            }
+                                            });
                                         }
+                                        console.log(pending);
                                         //niks?
                                         if(friend==0&&pending==0){
                                             friend =0;

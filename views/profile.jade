@@ -59,13 +59,30 @@ block profile
                             img(alt='example image', src='#{UD.picture}')
                         .row
                             if eigen == 0
-                                .col-xs-12.friends-dv
-                                    form(name='uploadpicture',action='/profileaddfriend?id=#{UD._id}', method='post',enctype="multipart/form-data")
-                                        .form-group
-                                            button.btn.btn-save#submit(type='submit')
-                                                span.menu-icon
-                                                    i.fa.fa-check-circle.append-icon
-                                                |  Add as friend
+                                if izunknown ==1
+                                    .col-xs-12.friends-dv
+                                        form(name='uploadpicture',action='/profileaddfriend?id=#{UD._id}', method='post',enctype="multipart/form-data")
+                                            .form-group
+                                                button.btn.btn-save#submit(type='submit')
+                                                    span.menu-icon
+                                                        i.fa.fa-check-circle.append-icon
+                                                    |  Add as friend
+                                if izfriend==1
+                                    .col-xs-12.friends-dv
+                                        form(name='uploadpicture',action='/profildeletedfriendprof?id=#{UD._id}', method='post',enctype="multipart/form-data")
+                                            .form-group
+                                                button.btn.btn-save#submit(type='submit')
+                                                    span.menu-icon
+                                                        i.fa.fa-check-circle.append-icon
+                                                    | Delete friend
+                                if izpending ==1
+                                    .col-xs-12.friends-dv
+                                        form(name='uploadpicture',action='/profiledenyfriend?id=#{UD._id}', method='post',enctype="multipart/form-data")
+                                            .form-group
+                                                button.btn.btn-save#submit(type='submit')
+                                                    span.menu-icon
+                                                        i.fa.fa-check-circle.append-icon
+                                                    | Delete pending
                             if eigen == 1
                                 .col-xs-12.upload-dv
                                     form(name='uploadpicture',action='/profilepicture', method='post',enctype="multipart/form-data")

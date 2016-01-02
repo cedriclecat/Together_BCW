@@ -252,7 +252,20 @@ var upload = multer({storage:options});
         console.log(bodyz.id);
         console.log(req.user._id);
 
-         Events.update({id:bodyz.id},{$addToSet:{members:req.user._id}},function(err){console.log(err);});
+        Events.findOne({id:bodyz.id},function(err,even){
+            if(err)console.log(err);
+            else
+            {
+                
+
+                if(even.maxMember > even.members.length-1)
+                {
+                    Events.update({id:bodyz.id},{$addToSet:{members:req.user._id}},function(err){console.log(err);});
+                }
+
+            }
+        });
+
 
         res.send("goed verstuurd");
     });

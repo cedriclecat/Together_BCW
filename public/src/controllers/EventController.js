@@ -49,7 +49,7 @@
                         data[i-1].location,
                         data[i-1].price,
                         data[i-1].pictureUrl,
-                        data[i-1].tags,
+                        ""+(data[i-1].members.length-1) + "/" + data[i-1].maxMember,
                         data[i-1].promoted,
                         data[i-1].TIMESTAMP,
                         data[i-1].pictureSlider,

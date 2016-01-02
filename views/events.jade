@@ -81,6 +81,9 @@ block events
                                         p
                                             i.fa.fa-map-marker
                                             | {{ ' ' +  something.location}}
+                                        p
+                                            i.fa.fa-users
+                                            | {{ ' ' +  something.tags}}
                                         p {{something.description}}
                                         button(ng-click="ikGa($event)"   id="{{something.id}}").btn.btn-info.btn-responsive.approve
                                             i.fa.fa-check.fa-lg

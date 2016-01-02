@@ -142,7 +142,40 @@ console.log(stukjes);
                                     }
 
 data.friends2 = xarr;
-
+                                    if( data.OWN==0){
+                                        //Ander profiel
+                                        //user id van current user
+                                        var friend = 0;
+                                        var pending = 0;
+                                        var unknown = 0;
+                                        //friend?
+                                        for(dfdf = 0; dfdf<fri.length;dfdf++){
+                                            if(fri[dfdf].id==user){
+                                                friend =1;
+                                                pending = 0;
+                                                unknown =0;
+                                            }
+                                        }
+                                        //pending?
+                                        if(friend==0) {
+                                            for (dfdf = 0; dfdf < fri.length; dfdf++) {
+                                                if (fri[dfdf].id == user) {
+                                                    friend =0;
+                                                    pending = 1;
+                                                    unknown =0
+                                                }
+                                            }
+                                        }
+                                        //niks?
+                                        if(friend==0&&pending==0){
+                                            friend =0;
+                                            pending = 0;
+                                            unknown =1
+                                        }
+                                    }
+                                    data.izfriend = friend;
+                                    data.izpending = pending;
+                                    data.izunknown = unknown;
                                     console.log(pend);
                                     console.log(fri);
                                     next();

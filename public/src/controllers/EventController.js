@@ -35,44 +35,40 @@
             for(var i = data.length;i>0;i--)
             {
 
-                if(data[i-1].maxMember > data[i-1].members.length)
-                {
-                    var event = new Event(
-                        data[i-1].id,
-                        inWords(i+1),
-                        data[i-1].name,
-                        data[i-1].description,
-                        data[i-1].date,
-                        data[i-1].time,
-                        data[i-1].maxMember,
-                        data[i-1].members,
-                        data[i-1].location,
-                        data[i-1].price,
-                        data[i-1].pictureUrl,
-                        ""+(data[i-1].members.length-1) + "/" + data[i-1].maxMember,
-                        data[i-1].promoted,
-                        data[i-1].TIMESTAMP,
-                        data[i-1].pictureSlider,
-                        data[i-1].createdby);
+                var event = new Event(
+                    data[i-1].id,
+                    inWords(i+1),
+                    data[i-1].name,
+                    data[i-1].description,
+                    data[i-1].date,
+                    data[i-1].time,
+                    data[i-1].maxMember,
+                    data[i-1].members,
+                    data[i-1].location,
+                    data[i-1].price,
+                    data[i-1].pictureUrl,
+                    data[i-1].tags,
+                    data[i-1].promoted,
+                    data[i-1].TIMESTAMP,
+                    data[i-1].pictureSlider,
+                    data[i-1].createdby);
 
-                    /*  for(var j = data[i-1].members.length;j>1;j--)
+                   /*  for(var j = data[i-1].members.length;j>1;j--)
                      {
 
-                     console.log(data[i-1].members[j-1]);
-                     if(data[i-1].members[j-1] == UserId)
-                     {
+                         console.log(data[i-1].members[j-1]);
+                         if(data[i-1].members[j-1] == UserId)
+                         {
 
-                     GaEvents.push(event);
-                     }
+                             GaEvents.push(event);
+                         }
                      }*/
                     if(data[i-1].members.indexOf(UserId)>=0)
                     {
                         GaEvents.push(event);
                     }
 
-                    events.push(event);
-                }
-
+                events.push(event);
 
 
             }

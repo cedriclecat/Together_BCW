@@ -9,8 +9,8 @@ var router = express.Router();
 var passport = require('passport');
 
 // Repos & Models
-var User = require('../data/models/User');
 var Events = require('../data/models/events');
+
 
 var HomeRepo = require("../data/DataRepositorys/HomeRepo");
 var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
@@ -22,10 +22,12 @@ var Jobs = require('../data/DataRepositorys/jobsRepo');
 var ProfileRepo = require("../data/DataRepositorys/ProfileRepo");
 
 // Admin Repos
-var GroupRepo = require("../data/DataRepositorys/groupRepo");
-var EventRepo = require("../data/DataRepositorys/eventsRepo");
+var groupRepo = require("../data/DataRepositorys/groupRepo");
+var eventRepo = require("../data/DataRepositorys/eventsRepo");
+var userRepo = require("../data/DataRepositorys/userRepo");
 
 var multer = require('multer');
+var user ="";
 var options = multer.diskStorage({
     destination : '../public/img/uploads/' ,
     filename: function(req,file,cb){
@@ -64,9 +66,9 @@ var upload = multer({storage:options});
     // =====================================
 
     router.get('/profile',isLoggedIn, function (req , res) {
-
+        user = req.user._id;
         ProfileRepo.getevents(req,function(next){
-            res.render('profile', {data:req.user.local.email, title: 'Profile',mevs:req.myGoingEvents, evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups,pending:req.pending,friends:req.friends, friends2:req.friends2, izfriend:req.izfriend,izpending:req.izpending, izunknown:req.izunknown, user: req.user._id});
+            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
         });
     });
     router.post('/profile',function(req,res){
@@ -88,39 +90,6 @@ var upload = multer({storage:options});
 
     router.post('/profilepicture',upload.single('PICTURE'),function(req,res, next){
         ProfileRepo.changepicture(req, req.user._id, function (next) {
-            res.redirect('/profile');
-        });
-    });
-    //profileaddfriend
-    router.post('/profileaddfriend',function(req,res, next){
-        console.log("hhhhhhhhhhhhhhhhhhhhh");
-        var grps = req.query.id;
-        console.log(grps);
-        ProfileRepo.addpending(req, req.user._id, function (next) {
-            res.redirect('/profile?id=' + grps);
-        });
-    });
-    router.post('/profildeletedfriend',function(req,res, next){
-
-        ProfileRepo.deletefriend(req, req.user._id, function (next) {
-            res.redirect('/profile?id=' + req.usertobeadded);
-        });
-    });
-    router.post('/profildeletedfriendprof',function(req,res, next){
-
-        ProfileRepo.deletefriend(req, req.user._id, function (next) {
-            res.redirect('/profile');
-        });
-    });
-    router.post('/profileacceptfriend',function(req,res, next){
-
-        ProfileRepo.acceptfriend(req, req.user._id, function (next) {
-            res.redirect('/profile');
-        });
-    });
-    router.post('/profiledenyfriend',function(req,res, next){
-
-        ProfileRepo.deletepending(req, req.user._id, function (next) {
             res.redirect('/profile');
         });
     });
@@ -255,20 +224,7 @@ var upload = multer({storage:options});
         console.log(bodyz.id);
         console.log(req.user._id);
 
-        Events.findOne({id:bodyz.id},function(err,even){
-            if(err)console.log(err);
-            else
-            {
-                
-
-                if(even.maxMember > even.members.length-1)
-                {
-                    Events.update({id:bodyz.id},{$addToSet:{members:req.user._id}},function(err){console.log(err);});
-                }
-
-            }
-        });
-
+         Events.update({id:bodyz.id},{$addToSet:{members:req.user._id}},function(err){console.log(err);});
 
         res.send("goed verstuurd");
     });
@@ -281,8 +237,6 @@ var upload = multer({storage:options});
         console.log(req.user._id);
 
         Events.update({id:bodyz.id},{$pull:{members:req.user._id}},function(err){console.log(err);});
-
-
 
         res.send("goed verstuurd");
     });
@@ -299,58 +253,48 @@ var upload = multer({storage:options});
     });
 
     router.get('/api/profile/',function(req,res){
-        User.find(function(err, user){
-            if (err)
-                res.send(err);
-            res.json(user);
-        })
+        userRepo.getUsers(req,res);
     });
 
     router.get('/api/profile/:_id',function(req,res){
-        //console.log(req.params.id);
-        var eid = req.user._id;
-        console.log(eid);
-        //"id":1
-        User.findOne({'_id':req.user._id},function(err, user){
-            if(err) res.send(err);
-            res.json(user);
-        })
+        var id = req.user._id;
+        userRepo.getUserById(req,res,id);
+
     });
 
     router.post('/api/profile/:_id',function(req,res){
-        //var bodyz = req.body;
-        console.log("country: " + req.body.firstName);
-        console.log("country: " + req.body.lastName);
-        console.log("country: " + req.body.email);
-        console.log("country: " + req.body.gender);
-        console.log("work: " + req.body.work);
-        console.log("status: " + req.body.marital);
-        console.log("country: " + req.body.country);
-        console.log("birthday: " + req.body.birthday);
 
-        User.update({_id:req.user._id},{$set:{
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            marital: req.body.marital,
-            work: req.body.work,
-            country: req.body.country,
-            city: req.body.city,
-            interests: req.body.interests,
-            description: req.body.description
-        }},function(err){console.log(err);});
-        res.send("goed verstuurd");
-        res.end();
+        var id = req.user._id,
+            firstName = req.body.firstName,
+            lastName = req.body.lastName,
+            email = req.body.email,
+            marital = req.body.marital,
+            work = req.body.work,
+            country = req.body.country,
+            city = req.body.city,
+            interests = req.body.interests,
+            description = req.body.description;
+
+        userRepo.updateUser(req,res,id,firstName,lastName,email,marital,work,country,city,interests,description);
     });
 
-    router.delete('/api/profile/:_id',function(req,res){
-        console.log(req.body.query.id);
-        console.log(req.body.id);
-        User.remove({_id: req.body.id})
+    router.delete('/api/user/delete/:_id',function(req,res){
+        var id = req.body.id;
+        userRepo.deleteUser(req,res,id);
+    });
+
+    router.delete('/api/event/delete/:_id',function(req,res){
+        var id = req.body.id;
+        eventRepo.deleteEvent(req,res,id);
+    });
+
+    router.delete('/api/group/delete/:_id',function(req,res){
+        var id = req.body.id;
+        groupRepo.deleteGroup(req,res,id);
     });
 
     router.get('/api/groups',function(req,res){
-        GroupRepo.getGroups(req,res);
+        groupRepo.getGroups(req,res)
     });
 
     router.get('/api/countries',function(req,res){

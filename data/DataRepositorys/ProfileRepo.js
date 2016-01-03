@@ -19,28 +19,16 @@ profilerepo = (function () {
             zoek = user;
         }else{
             data.OWN=0;
- zoek = grps;
+            zoek = grps;
         }
         if(data.user.local.ADMIN == 1){
             data.OWN = 1;
         }
         var naam ="";
-
-        //seeduriek
-        Events.find({members:zoek},function(err,even){
-            if(err)console.log(err);
-            else
-            {
-                //console.log(even);
-                data.myGoingEvents = even;
-            }
-        })
-
         User.findOne({_id:zoek},function(err,even) {
-            if (err) { return next(err);}
-            else{
+            if (err) { return next(err);}else{
                 var dtm = new Date(even.MemberSince);
-                //console.log(even);
+                console.log(even);
                 var friends = even.contacts;
                 var pendings = even.pendingcontacts;
 
@@ -63,7 +51,7 @@ profilerepo = (function () {
                             var datum  = e.date;
                             var stukjes = datum.split("/");
                             var vandaag = new Date();
-console.log(stukjes);
+                            console.log(stukjes);
                             var eventdatum = new Date();
                             eventdatum.setMonth(stukjes[1] -1);
                             eventdatum.setDate(stukjes[0]);
@@ -78,13 +66,12 @@ console.log(stukjes);
 
                         });
                         data.mijnevents = even;
-
                         Groups.find({createdby:zoek},function(err,even) {
 
                             if (err) {
                                 return next(err);
                             }
-                        data.groups = even;
+                            data.groups = even;
                             Groups.find({},function(err,even) {
                                 if (err) {
                                     return next(err);
@@ -147,59 +134,15 @@ console.log(stukjes);
                                     });
                                     data.pending = pend;
                                     data.friends = fri;
-                        var xarr = [];
+                                    var xarr = [];
                                     for(df = 0; df<fri.length;df++){
-                                        if(df<7){
+                                        if(i<7){
                                             xarr.push(fri[df]);
                                         }
                                     }
 
                                     data.friends2 = xarr;
-                                    var friend = 0;
-                                    var pending = 0;
-                                    var unknown = 0;
-                                    if( data.OWN==0){
-                                        //Ander profiel
-                                        //user id van current user
 
-                                        console.log(user);
-                                        console.log(pend);
-                                        console.log(fri);
-                                        //friend?
-                                        fri.forEach(function(friend){
-                                            var id = "" + friend.id;
-                                            var us = ""+user;
-                                            if(id==us){
-                                                friend =1;
-                                                pending = 0;
-                                                unknown =0;
-                                            }
-                                        });
-                                        //pending?
-                                        if(friend==0) {
-                                            pend.forEach(function(friend){
-                                                console.log(friend.id);
-                                                console.log(user);
-                                                var id = "" + friend.id;
-                                                var us = ""+user;
-                                                if(id==us){
-                                                    friend =0;
-                                                    pending = 1;
-                                                    unknown =0;
-                                                }
-                                            });
-                                        }
-                                        console.log(pending);
-                                        //niks?
-                                        if(friend==0&&pending==0){
-                                            friend =0;
-                                            pending = 0;
-                                            unknown =1
-                                        }
-                                    }
-                                    data.izfriend = friend;
-                                    data.izpending = pending;
-                                    data.izunknown = unknown;
                                     console.log(pend);
                                     console.log(fri);
                                     next();
@@ -232,30 +175,30 @@ console.log(stukjes);
                 next(err);
             }
             /*Groups.find({}, function (err, datanext) {
-                if(err){next(err);}
-                datanext.each(function(group){
-                    var changed =0;
-                    var chat = group.chat;
-                    var NIEUWECHAT = [];
-                    chat.each(function(chatnode){
-                        if(chatnode.nick.id==user){
-                            changed=1;
-                            chatnode.nick.Foto=filenaam1;
-                        }else{
-                            NIEUWECHAT.push(chatnode);
-                        }
-                        if(changed==1){
-                            var options = {multi: true};
-                            Groups.update({id: user}, {chat: NIEUWECHAT}, options, function (err) {
-                                if (err) {
-                                }
-                            });
-                        }
-                    });
+             if(err){next(err);}
+             datanext.each(function(group){
+             var changed =0;
+             var chat = group.chat;
+             var NIEUWECHAT = [];
+             chat.each(function(chatnode){
+             if(chatnode.nick.id==user){
+             changed=1;
+             chatnode.nick.Foto=filenaam1;
+             }else{
+             NIEUWECHAT.push(chatnode);
+             }
+             if(changed==1){
+             var options = {multi: true};
+             Groups.update({id: user}, {chat: NIEUWECHAT}, options, function (err) {
+             if (err) {
+             }
+             });
+             }
+             });
 
-                });
+             });
 
-            });*/
+             });*/
             next();
         });
 
@@ -383,9 +326,9 @@ console.log(stukjes);
                     Usermod.update({_id:user},{pendingcontacts:newpendings,contacts:friends},options,function(err){
                         next();
                     });
+                });
             });
         });
-    });
     };
     deletefriend = function(data,user,next){
         var mongoose = require('mongoose');

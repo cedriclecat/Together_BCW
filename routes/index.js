@@ -9,9 +9,8 @@ var router = express.Router();
 var passport = require('passport');
 
 // Repos & Models
-//var User = require('../data/models/User');
 var Events = require('../data/models/events');
-//var Groups = require('../data/models/groups');
+
 
 var HomeRepo = require("../data/DataRepositorys/HomeRepo");
 var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");

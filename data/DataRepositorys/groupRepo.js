@@ -4,7 +4,6 @@ var groupSchema = require("../models/groups");
 
 
 groupSchema.getGroups = function(req,res){
-
     groupSchema.find({}).exec(function(err,groups){
       if (err)
             res.send(err);
@@ -16,8 +15,7 @@ groupSchema.getGroups = function(req,res){
 groupSchema.deleteGroup = function(req,res,id){
     groupSchema.findByIdAndRemove({_id: id},function(err){
         if (!err) {
-            res.send("no error")
-
+            res.send("Group deleted")
         }
         else {
             console.log('error' + err)

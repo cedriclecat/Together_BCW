@@ -2,13 +2,6 @@ var mongoose = require("mongoose");
 
 var userSchema = require("../models/user");
 
-
-//UserSchema.getUsers = function(){
-//    UserSchema.find({}).exec(function(err,docs){
-//        //console.log(docs);
-//    })
-//};
-
 userSchema.getUsers = function(req,res){
     userSchema.find(function(err, user){
         if (err)

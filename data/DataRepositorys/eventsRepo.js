@@ -13,7 +13,7 @@ eventSchema.getEvents = function(){
 eventSchema.deleteEvent = function(req,res,id){
     eventSchema.findByIdAndRemove({_id: id},function(err){
         if (!err) {
-            res.send("no error")
+            res.send("Event Deleted")
 
         }
         else {

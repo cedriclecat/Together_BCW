@@ -227,12 +227,15 @@ var upload = multer({storage:options});
     // =====================================
 
     router.get('/api/events', function (req, res) {
-        Events.find(function (err, events) {
-            if (err)
-                res.send(err);
-            res.json(events);//,req.user_id
-        });
-    });
+
+        EventRepo.getAllEvents(function(events)
+        {
+
+            res.json(events);
+        })
+
+
+    })
 
     router.get('/api/getuserid', function (req, res) {
         if(req.user._id !=null)

@@ -1,13 +1,22 @@
+
+
 var mongoose = require("mongoose");
-var Eventschema = require("../models/events");
 
-Eventschema.getEvents = function(){
-    //console.log("lel");
-    EventSchema.find({}).exec(function(err,events){
-        if (err)
-            res.send(err);
-        res.json(events)
-    })
-};
+EventsRepo = (function(){
 
-module.exports = Eventschema;
+    var Event = require("../models/events.js");
+
+    var getAllEvents = function(next){
+        Event.find({}).exec(function(err,docs){
+           if(err)console.log(err);
+            next(docs);
+        });
+    };
+
+    return{
+        model:Event,
+        getAllEvents:getAllEvents
+    };
+})();
+
+module.exports = EventsRepo;

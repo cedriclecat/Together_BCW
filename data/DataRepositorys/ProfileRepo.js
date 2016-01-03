@@ -19,7 +19,7 @@ profilerepo = (function () {
             zoek = user;
         }else{
             data.OWN=0;
- zoek = grps;
+            zoek = grps;
         }
         if(data.user.local.ADMIN == 1){
             data.OWN = 1;
@@ -51,7 +51,7 @@ profilerepo = (function () {
                             var datum  = e.date;
                             var stukjes = datum.split("/");
                             var vandaag = new Date();
-console.log(stukjes);
+                            console.log(stukjes);
                             var eventdatum = new Date();
                             eventdatum.setMonth(stukjes[1] -1);
                             eventdatum.setDate(stukjes[0]);
@@ -71,7 +71,7 @@ console.log(stukjes);
                             if (err) {
                                 return next(err);
                             }
-                        data.groups = even;
+                            data.groups = even;
                             Groups.find({},function(err,even) {
                                 if (err) {
                                     return next(err);
@@ -134,14 +134,14 @@ console.log(stukjes);
                                     });
                                     data.pending = pend;
                                     data.friends = fri;
-                        var xarr = [];
+                                    var xarr = [];
                                     for(df = 0; df<fri.length;df++){
                                         if(i<7){
                                             xarr.push(fri[df]);
                                         }
                                     }
 
-data.friends2 = xarr;
+                                    data.friends2 = xarr;
 
                                     console.log(pend);
                                     console.log(fri);
@@ -175,30 +175,30 @@ data.friends2 = xarr;
                 next(err);
             }
             /*Groups.find({}, function (err, datanext) {
-                if(err){next(err);}
-                datanext.each(function(group){
-                    var changed =0;
-                    var chat = group.chat;
-                    var NIEUWECHAT = [];
-                    chat.each(function(chatnode){
-                        if(chatnode.nick.id==user){
-                            changed=1;
-                            chatnode.nick.Foto=filenaam1;
-                        }else{
-                            NIEUWECHAT.push(chatnode);
-                        }
-                        if(changed==1){
-                            var options = {multi: true};
-                            Groups.update({id: user}, {chat: NIEUWECHAT}, options, function (err) {
-                                if (err) {
-                                }
-                            });
-                        }
-                    });
+             if(err){next(err);}
+             datanext.each(function(group){
+             var changed =0;
+             var chat = group.chat;
+             var NIEUWECHAT = [];
+             chat.each(function(chatnode){
+             if(chatnode.nick.id==user){
+             changed=1;
+             chatnode.nick.Foto=filenaam1;
+             }else{
+             NIEUWECHAT.push(chatnode);
+             }
+             if(changed==1){
+             var options = {multi: true};
+             Groups.update({id: user}, {chat: NIEUWECHAT}, options, function (err) {
+             if (err) {
+             }
+             });
+             }
+             });
 
-                });
+             });
 
-            });*/
+             });*/
             next();
         });
 
@@ -326,9 +326,9 @@ data.friends2 = xarr;
                     Usermod.update({_id:user},{pendingcontacts:newpendings,contacts:friends},options,function(err){
                         next();
                     });
+                });
             });
         });
-    });
     };
     deletefriend = function(data,user,next){
         var mongoose = require('mongoose');

@@ -1,12 +1,11 @@
 var mongoose = require("mongoose");
 
-var GroupSchema = require("../models/groups");
+var groupSchema = require("../models/groups");
 
 
-GroupSchema.getGroups = function(req,res){
+groupSchema.getGroups = function(req,res){
 
-
-    GroupSchema.find({}).exec(function(err,groups){
+    groupSchema.find({}).exec(function(err,groups){
       if (err)
             res.send(err);
       res.json(groups)
@@ -14,4 +13,16 @@ GroupSchema.getGroups = function(req,res){
 
 };
 
-module.exports = GroupSchema;
+groupSchema.deleteGroup = function(req,res,id){
+    groupSchema.findByIdAndRemove({_id: id},function(err){
+        if (!err) {
+            res.send("no error")
+
+        }
+        else {
+            console.log('error' + err)
+        }
+    });
+};
+
+module.exports = groupSchema;

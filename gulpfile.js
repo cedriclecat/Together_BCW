@@ -66,7 +66,9 @@ gulp.task("copy-externals", function(){
         .pipe(gulp.dest("./public/dist/js/"));
     gulp.src("./bower_components/angular-messages/angular-messages.min.js")
         .pipe(gulp.dest("./public/dist/js/"));
-    gulp.src("./bower_components/angular-resource/angular-resource.min.js")
+    gulp.src("./bower_components/angular-mocks/angular-mocks.js")
+        .pipe(gulp.dest("./public/dist/js/"));
+    gulp.src("./bower_components/angular-animate/angular-animate.min.js")
         .pipe(gulp.dest("./public/dist/js/"));
     gulp.src("./bower_components/bootstrap/dist/css/bootstrap.min.css")
         .pipe(gulp.dest("./public/dist/css/"));

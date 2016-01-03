@@ -60,12 +60,9 @@ block profile
                         .row
                             if eigen == 0
                                 .col-xs-12.friends-dv
-                                    form(name='uploadpicture',action='/profileaddfriend?id=#{UD._id}', method='post',enctype="multipart/form-data")
-                                        .form-group
-                                            button.btn.btn-save#submit(type='submit')
-                                                span.menu-icon
-                                                    i.fa.fa-check-circle.append-icon
-                                                |  Add as friend
+                                    a.btn.btn-xs.btn-block.friends
+                                        i.fa.fa-check-circle.append-icon
+                                        | Add as friend
                             if eigen == 1
                                 .col-xs-12.upload-dv
                                     form(name='uploadpicture',action='/profilepicture', method='post',enctype="multipart/form-data")
@@ -93,11 +90,30 @@ block profile
                         .content-grid
                             div
                                 ul.list-wrapper.b-contact
-                                    for fr in friends2
-                                        li
-                                            a(href='./profile?id=#{fr.id}')
-                                                span.menu-icon
-                                                    img(alt='#{fr.foto}', src='#{fr.foto}')
+                                    li
+                                        a(href='#')
+                                            span.menu-icon
+                                                img(alt='example image', src='../img/profile/avatar-1.jpg')
+                                    li
+                                        a(href='#')
+                                            span.menu-icon
+                                                img(alt='example image', src='../img/profile/avatar-2.jpg')
+                                    li
+                                        a(href='#')
+                                            span.menu-icon
+                                                img(alt='example image', src='../img/profile/avatar-3.jpg')
+                                    li
+                                        a(href='#')
+                                            span.menu-icon
+                                                img(alt='example image', src='../img/profile/avatar-4.jpg')
+                                    li
+                                        a(href='#')
+                                            span.menu-icon
+                                                img(alt='example image', src='../img/profile/avatar-5.jpg')
+                                    li
+                                        a(href='#')
+                                            span.menu-icon
+                                                img(alt='example image', src='../img/profile/avatar-6.jpg')
                         .closing(style='')
                             a(href='#friends-tab')
                                 | See All Friends
@@ -458,52 +474,54 @@ block profile
                                 |  FRIENDS
                             ul.nav.nav-pills
                                 li.active
-                                    a(href='#friendstab', data-toggle='tab') Friends
+                                    a(href='#', data-toggle='tab') Friends
                                 if eigen==1
                                     li
-                                        a(href='#pendingstab', data-toggle='tab') Pending Request
+                                        a(href='#', data-toggle='tab') Pending Request
+                                    li
+                                        a(href='#', data-toggle='tab') Blacklisted
                             .content-grid.column-xs-3.column-sm-4.column-md-4.column-lg-6.height-xs-4
-                                #friendstab.event-tab.tab-pane(role='tabpanel')
+                                div
                                     ul.list-wrapper
-                                        for fr in friends
-                                            li
-                                                a(href='./profile?id=#{fr.id}')
-                                                    span.menu-icon
-                                                        img(src='#{fr.foto}', alt='#{fr.foto}')
-                                                span.menu-text
-                                                    | #{fr.naam}
-                                                    if eigen==1
-                                                        span.menu-info
-                                                            span.menu-action
-                                                                form(name='delete',action='/profildeletedfriendprof?id=#{fr.id}', method='post',enctype="multipart/form-data")
-                                                                    .form-group
-                                                                        button.btn.btn-save#submit(type='submit')
-                                                                            span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
-                                                                                i.fa.fa-times
-                                if eigen == 1
-                                    #pendingstab.event-tab.tab-pane(role='tabpanel')
-                                        ul.list-wrapper
-                                            for fr in pending
-                                                li
-                                                    a(href='./profile?id=#{fr.id}')
-                                                        span.menu-icon
-                                                            img(src='#{fr.foto}', alt='#{fr.foto}')
-                                                    span.menu-text
-                                                        | #{fr.naam}
-                                                        if eigen==1
-                                                            span.menu-info
-                                                                span.menu-action
-                                                                    form(name='deldfete',action='/profileacceptfriend?id=#{fr.id}', method='post',enctype="multipart/form-data")
-                                                                        .form-group
-                                                                            button.btn.btn-save#submit(type='submit')
-                                                                                span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
-                                                                                    i.fa.fa-check
-                                                                    form(name='delssete',action='/profiledenyfriend?id=#{fr.id}', method='post',enctype="multipart/form-data")
-                                                                        .form-group
-                                                                            button.btn.btn-save#submit(type='submit')
-                                                                                span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
-                                                                                    i.fa.fa-times
-
+                                        li
+                                            a(href='#')
+                                                span.menu-icon
+                                                    img(src='../img/profile/avatar-1.jpg', alt='example image')
+                                            span.menu-text
+                                                | Gabriella Montagna
+                                                span.menu-info
+                                                    span.menu-date San Diego
+                                                    span.menu-action
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                            i.fa.fa-check
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                            i.fa.fa-times
+                                        li.warning
+                                            a(href='#')
+                                                span.menu-icon
+                                                    img(src='../img/profile/avatar-2.jpg', alt='example image')
+                                            span.menu-text
+                                                | Jonathan Fuzzy
+                                                span.menu-info
+                                                    span.menu-date Seattle
+                                                    span.menu-action
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                            i.fa.fa-check
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                            i.fa.fa-times
+                                        li
+                                            a(href='#')
+                                                span.menu-icon
+                                                    img(src='../img/profile/avatar-3.jpg', alt='example image')
+                                            span.menu-text
+                                                | Sakura Hinata
+                                                span.menu-info
+                                                    span.menu-date Hawaii
+                                                    span.menu-action
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Approve')
+                                                            i.fa.fa-check
+                                                        span.menu-action-icon(data-placement='bottom', data-toggle='tooltip', data-original-title='Reject')
+                                                            i.fa.fa-times
                         #groups-tab.groups-tab.tab-pane(role='tabpanel')
                             h3
                                 i.fa.fa-leaf.mgr-10.profile-icon
@@ -574,7 +592,7 @@ block profile
     script(type='text/javascript', src='/dist/js/bootstrap.min.js')
     script(src='/dist/js/angular.min.js')
     script(src='/dist/js/angular-messages.min.js')
-    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js')
+    script(src='/dist/js/angular-animate.min.js')
     script(src='//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js')
     script(src='/src/app.js')
     script(src='/src/directives/ngCompare.js')

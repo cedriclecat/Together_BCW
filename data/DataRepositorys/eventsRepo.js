@@ -1,13 +1,25 @@
 var mongoose = require("mongoose");
-var Eventschema = require("../models/events");
+var eventSchema = require("../models/events");
 
-Eventschema.getEvents = function(){
+eventSchema.getEvents = function(){
     //console.log("lel");
-    EventSchema.find({}).exec(function(err,events){
+    eventSchema.find({}).exec(function(err,events){
         if (err)
             res.send(err);
         res.json(events)
     })
 };
 
-module.exports = Eventschema;
+eventSchema.deleteEvent = function(req,res,id){
+    eventSchema.findByIdAndRemove({_id: id},function(err){
+        if (!err) {
+            res.send("no error")
+
+        }
+        else {
+            console.log('error' + err)
+        }
+    });
+}
+
+module.exports = eventSchema;

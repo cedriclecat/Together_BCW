@@ -48,35 +48,35 @@ block admin
                                 button.btn.btn-default.navbar-btn(type='button') Sign in
     .container-fluid
         .row
-            .col-md-10.col-md-offset-1(ng-app="admin",ng-controller="AdminController")
+            .col-md-10.col-md-offset-1(data-ng-app="admin",data-ng-controller="AdminController")
                 h2 Administrator Page
                 h3 Users
                 .form-group
-                    input.form-control(type='text', placeholder='Search for...',ng-model="nameFilterU")
-                .delete.admin-u(id="{{ user._id }}",ng-repeat='user in allUsers | filter: searchFilterU')
-                    img(ng-src="{{user.picture}}")
-                    p(ng-bind-template="{{user.firstName}} {{user.lastName}}")
-                    p(ng-bind="user.country")
+                    input.form-control(type='text', placeholder='Search for...',data-ng-model="nameFilterU")
+                .delete.admin-u(id="{{ user._id }}",data-ng-repeat='user in allUsers | filter: searchFilterU')
+                    img(data-ng-src="{{user.picture}}",alt="{{ user.firstname }}")
+                    p(data-ng-bind-template="{{user.firstName}} {{user.lastName}}")
+                    p(data-ng-bind="user.country")
                     a(href="#")
-                        i.fa.fa-times(title="Click here to Delete user",ng-click='deleteUser(user._id)')
+                        i.fa.fa-times(title="Click here to Delete user",data-ng-click='deleteUser(user._id)')
                 .cb
                 h3 Events
                 .form-group
-                    input.form-control(type='text', placeholder='Search for...',ng-model="nameFilterE")
-                .admin-e(id="{{ event._id }}",ng-repeat='event in allEvents | filter: searchFilterE')
-                    img(ng-src="{{event.pictureUrl}}")
-                    p(ng-bind="event.name")
+                    input.form-control(type='text', placeholder='Search for...',data-ng-model="nameFilterE")
+                .admin-e(id="{{ event._id }}",data-ng-repeat="event in allEvents | filter: searchFilterE")
+                    img(data-ng-src="{{event.pictureUrl}}",alt="{{ event.name }}")
+                    p(data-ng-bind="event.name")
                     a(href="#")
-                        i.fa.fa-times(title="Click here to Delete event",ng-click='deleteEvent(event._id)')
+                        i.fa.fa-times(title="Click here to Delete event",data-ng-click='deleteEvent(event._id)')
                 .cb
                 h3 Groups
                 .form-group
-                    input.form-control(type='text', placeholder='Search for...',ng-model="nameFilterG")
-                .admin-g(id="{{ group._id }}",ng-repeat='group in allGroups | filter: searchFilterG')
-                    img(ng-src="{{group.picture}}")
-                    p(ng-bind="group.name")
+                    input.form-control(type='text', placeholder='Search for...',data-ng-model="nameFilterG")
+                .admin-g(id="{{ group._id }}",data-ng-repeat="group in allGroups | filter: searchFilterG")
+                    img(data-ng-src="{{group.picture}}",alt="{{ group.name }}")
+                    p(data-ng-bind="group.name")
                     a(href="#")
-                        i.fa.fa-times(title="Click here to Delete group",ng-click='deleteGroup(group._id)')
+                        i.fa.fa-times(title="Click here to Delete group",data-ng-click='deleteGroup(group._id)')
                 .cb
     script(src='/dist/js/angular.min.js')
     script(src='/src/app.js')

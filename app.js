@@ -9,15 +9,17 @@ var express = require('express'),
     flash = require('connect-flash'),
     routes = require('./routes/index'),
     users = require('./routes/users'),
+    compression = require('compression'),
     app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'jade');
+app.use(compression());
 app.use(express.static(__dirname + '/public'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
 app.use(cookieParser());
 

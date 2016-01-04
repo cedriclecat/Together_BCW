@@ -41,7 +41,7 @@ var upload = multer({storage:options});
     // =====================================
     router.get('/', function(req, res) {
         HomeRepo.inithome(req,function(next){
-            res.render('landing', {data:next.data, path:next.path, name:next.name, admin:next.admin, newe:next.newe, trend:next.trend,prom:next.prom});
+            res.render('landing', {data:next.data, path:next.path, name:next.name, admin:next.admin, newe:next.newe, trend:next.trend,prom:next.prom,title:'Home Page'});
         });
     });
 
@@ -50,7 +50,7 @@ var upload = multer({storage:options});
     // =====================================
     router.get('/events', function(req, res) {
         //img/slider/slider1.jpg
-        res.render('events');
+        res.render('events',{title:'Events Page'});
     });
     // =====================================
     // GROUPS PAGE =========================
@@ -58,7 +58,7 @@ var upload = multer({storage:options});
     router.get('/groups',isLoggedIn, function(req, res) {
 
         GroupsRepo.initGroup(req,function(next){
-            res.render('groups', {data:next.data, user:req.user._id, mijndat:next.mijndat, path:next.path, mev:next.mev, titel:next.titel});
+            res.render('groups', {data:next.data, user:req.user._id, mijndat:next.mijndat, path:next.path, mev:next.mev, titel:next.titel,title:'Group Page'});
         });
     });
     // =====================================
@@ -68,7 +68,7 @@ var upload = multer({storage:options});
     router.get('/profile',isLoggedIn, function (req , res) {
         user = req.user._id;
         ProfileRepo.getevents(req,function(next){
-            res.render('profile', {data:req.user.local.email, title: 'Profile', evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
+            res.render('profile', {data:req.user.local.email, title: 'Profile Page', evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
         });
     });
     router.post('/profile',function(req,res){
@@ -98,7 +98,7 @@ var upload = multer({storage:options});
     // =====================================
 
     router.get('/admin',isLoggedIn, function (req , res) {
-        res.render('admin', { title: 'Admin' });
+        res.render('admin', { title: 'Admin Page' });
     });
 
     // =====================================
@@ -106,7 +106,7 @@ var upload = multer({storage:options});
     // =====================================
 
     router.get('/help', function (req , res) {
-        res.render('help', { title: 'Help' });
+        res.render('help', { title: 'Help Page' });
     });
 
     // =====================================
@@ -116,7 +116,7 @@ var upload = multer({storage:options});
     router.get('/login', function (req, res) {
 
         // render the page and pass in any flash data if it exists
-        res.render('login.jade');/*, { message: req.flash('loginMessage') }*/
+        res.render('login.jade',{ title: 'Login Page'});/*, { message: req.flash('loginMessage') }*/
     });
 
     // process the login form
@@ -133,7 +133,7 @@ var upload = multer({storage:options});
     router.get('/signup', function (req, res) {
 
         // render the page and pass in any flash data if it exists
-        res.render('signup.jade' );/*, { message: req.flash('signupMessage')}*/
+        res.render('signup.jade',{ title: 'Sign Up Page'} );/*, { message: req.flash('signupMessage')}*/
     });
 
 
@@ -197,7 +197,7 @@ var upload = multer({storage:options});
 
     router.get('/api/events', function (req, res) {
 
-        EventRepo.getAllEvents(function(events)
+        eventRepo.getAllEvents(function(events)
         {
 
             res.json(events);

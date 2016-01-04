@@ -49,14 +49,14 @@ block profile
     .title-section.clearfix
         .panel-header.no-subtitle
             h2 User Profile Page
-    .container-fluid(ng-app='profile', ng-controller='ProfileController')
+    .container-fluid(data-ng-app='profile', data-ng-controller='ProfileController')
         .row
             .col-md-3
                 .panel.widget.light-widget.panel-bd-top
                     .panel-heading.no-title
                     .panel-body
                         .text-center.info-parent
-                            img(alt='example image', src='#{UD.picture}')
+                            img(alt='Profile Picture', src='#{UD.picture}')
                         .row
                             if eigen == 0
                                 .col-xs-12.friends-dv
@@ -122,22 +122,22 @@ block profile
                 .tabs.widget
                     ul.nav.nav-tabs.widget
                         li.active
-                            a(data-toggle='tab', href='#profile-tab')
+                            a(data-toggle='tab', href='#profile-tab',title='#profile-tab')
                                 | Profile
                                 span.menu-active
                                     i.fa.fa-caret-up
                         li
-                            a(data-toggle='tab', href='#events-tab')
+                            a(data-toggle='tab', href='#events-tab',title='#events-tab')
                                 | Events
                                 span.menu-active
                                     i.fa.fa-caret-up
                         li
-                            a(data-toggle='tab', href='#contacts-tab')
+                            a(data-toggle='tab', href='#contacts-tab',title='#contacts-tab')
                                 | Contacts
                                 span.menu-active
                                     i.fa.fa-caret-up
                         li
-                            a(data-toggle='tab', href='#groups-tab')
+                            a(data-toggle='tab', href='#groups-tab',title='#groups-tab')
                                 | Groups
                                 span.menu-active
                                     i.fa.fa-caret-up
@@ -151,93 +151,93 @@ block profile
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Firstname:
-                                        .col-xs-7.controls(ng-bind="profile.firstName")
+                                        .col-xs-7.controls(data-ng-bind="profile.firstName")
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Lastname:
-                                        .col-xs-7.controls(ng-bind="profile.lastName")
+                                        .col-xs-7.controls(data-ng-bind="profile.lastName")
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Email:
-                                        .col-xs-7.controls(ng-bind="profile.email")
+                                        .col-xs-7.controls(data-ng-bind="profile.email")
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Gender:
-                                        .col-xs-7.controls(ng-bind="profile.gender")
+                                        .col-xs-7.controls(data-ng-bind="profile.gender")
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Birthday:
-                                        .col-xs-7.controls(ng-bind="profile.birthday")
+                                        .col-xs-7.controls(data-ng-bind="profile.birthday")
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Maritial status:
-                                        .col-xs-7.controls(ng-bind="profile.marital")
+                                        .col-xs-7.controls(data-ng-bind="profile.marital")
 
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label Country:
-                                        .col-xs-7.controls(ng-bind="profile.country")
+                                        .col-xs-7.controls(data-ng-bind="profile.country")
                                 .col-sm-6
                                     .row
                                         label.col-xs-5.control-label City:
-                                        .col-xs-7.controls(ng-bind="profile.city")
+                                        .col-xs-7.controls(data-ng-bind="profile.city")
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Work:
-                                        .col-xs-7.controls(ng-bind="profile.work")
+                                        .col-xs-7.controls(data-ng-bind="profile.work")
                                 .col-sm-6
                                     .row.mgbt-xs-0
                                         label.col-xs-5.control-label Interests:
-                                        .col-xs-7.controls(ng-bind="profile.interests")
+                                        .col-xs-7.controls(data-ng-bind="profile.interests")
                             if eigen==1
                                 .row.edit-profile
                                     .col-md-12
                                         h3
                                             i.fa.fa-cog
                                             | Profile Setting
-                                        form(name='settingsForm',action='/profile', method='post',ng-submit='submitForm()', novalidate='')
-                                            .form-group(ng-class="{ 'has-error' : settingsForm.firstname.$invalid && (settingsForm.firstname.$touched || submitted)}")
+                                        form(name='settingsForm',action='/profile', method='post',data-ng-submit='submitForm()', novalidate='')
+                                            .form-group(data-ng-class="{ 'has-error' : settingsForm.firstname.$invalid && (settingsForm.firstname.$touched || submitted)}")
                                                 label.col-sm-2.control-label Firstname
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            input.form-control(type='text', name='firstname', ng-model='firstName', placeholder='Your Firstname', ng-minlength='2', ng-maxlength='15', ng-required='true')
-                                                            .help-block(ng-messages='settingsForm.firstname.$error', ng-if='settingsForm.firstname.$touched')
-                                                                p(ng-message='minlength') Your firstname is too short.
-                                                                p(ng-message='maxlength') Your firstname is too long.
-                                                                p(ng-message='required') Your firstname is required.
+                                                            input.form-control(type='text', name='firstname', data-ng-model='firstName', placeholder='Your Firstname', ng-minlength='2', ng-maxlength='15', ng-required='true')
+                                                            .help-block(data-ng-messages='settingsForm.firstname.$error', data-ng-if='settingsForm.firstname.$touched')
+                                                                p(data-ng-message='minlength') Your firstname is too short.
+                                                                p(data-ng-message='maxlength') Your firstname is too long.
+                                                                p(data-ng-message='required') Your firstname is required.
 
-                                            .form-group(ng-class="{ 'has-error' : settingsForm.lastname.$invalid && (settingsForm.lastname.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : settingsForm.lastname.$invalid && (settingsForm.lastname.$touched || submitted)}")
                                                 label.col-sm-2.control-label Lastname
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            input.form-control(type='text', name='lastname', ng-model='lastName', placeholder='Your Lastname', ng-minlength='2', ng-maxlength='15', ng-required='true')
-                                                            .help-block(ng-messages='settingsForm.lastname.$error', ng-if='settingsForm.lastname.$touched')
-                                                                p(ng-message='minlength') Your lastname is too short.
-                                                                p(ng-message='maxlength') Your lastname is too long.
-                                                                p(ng-message='required') Your lastname is required.
+                                                            input.form-control(type='text', name='lastname', data-ng-model='lastName', placeholder='Your Lastname', ng-minlength='2', ng-maxlength='15', ng-required='true')
+                                                            .help-block(data-ng-messages='settingsForm.lastname.$error', data-ng-if='settingsForm.lastname.$touched')
+                                                                p(data-ng-message='minlength') Your lastname is too short.
+                                                                p(data-ng-message='maxlength') Your lastname is too long.
+                                                                p(data-ng-message='required') Your lastname is required.
 
-                                            .form-group(ng-class="{ 'has-error' : settingsForm.email.$invalid && (settingsForm.email.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : settingsForm.email.$invalid && (settingsForm.email.$touched || submitted)}")
                                                 label.col-sm-2.control-label Email
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            input.form-control(type='email', name='email', ng-model='email', placeholder='Your Email Address', ng-required='true')
-                                                            .help-block(ng-messages='settingsForm.email.$error', ng-if='settingsForm.email.$touched')
-                                                                p(ng-message='required') Your email is required.
-                                                                p(ng-message='email') Enter a valid email
+                                                            input.form-control(type='email', name='email', data-ng-model='email', placeholder='Your Email Address', ng-required='true')
+                                                            .help-block(data-ng-messages='settingsForm.email.$error', data-ng-if='settingsForm.email.$touched')
+                                                                p(data-ng-message='required') Your email is required.
+                                                                p(data-ng-message='email') Enter a valid email
                                             .form-group
                                                 label.col-sm-2.control-label Gender
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
                                                             span.radio-off
-                                                                input#optionsRadios3(checked='checked',value='Male', name='optionsRadios2', type='radio', ng-model='profile.gender')
+                                                                input#optionsRadios3(checked='checked',value='Male', name='optionsRadios2', type='radio', data-ng-model='profile.gender')
                                                                 label(for='optionsRadios3')  Male
 
                                                             span.radio-off1
-                                                                input#optionsRadios4(value='Female', name='optionsRadios2', type='radio', ng-model='gender')
+                                                                input#optionsRadios4(value='Female', name='optionsRadios2', type='radio', data-ng-model='gender')
                                                                 label(for='optionsRadios4')  Female
 
 
@@ -247,78 +247,78 @@ block profile
                                                     .row
                                                         .col-xs-12
                                                             p.input-group
-                                                                input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='dt', is-open='status.opened', min-date='minDate', max-date='maxDate', datepicker-options='dateOptions', date-disabled='disabled(date, mode)', ng-required='true', close-text='Close')
+                                                                input.form-control(type='text', uib-datepicker-popup='{{format}}', data-ng-model='dt', is-open='status.opened', min-date='minDate', max-date='maxDate', datepicker-options='dateOptions', date-disabled='disabled(date, mode)', ng-required='true', close-text='Close')
                                                                 span.input-group-btn
-                                                                    button.btn.btn-default(type='button', ng-click='open($event)')
+                                                                    button.btn.btn-default(type='button', data-ng-click='open($event)')
                                                                         i.glyphicon.glyphicon-calendar
 
 
-                                            .form-group(ng-class="{ 'has-error' : settingsForm.marital.$invalid  && (settingsForm.marital.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : settingsForm.marital.$invalid  && (settingsForm.marital.$touched || submitted)}")
                                                 label.col-sm-2.control-label Marital Status
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            select.form-control(name='marital', ng-required='true', ng-model='marital',ng-options='marital.name for marital in status')
+                                                            select.form-control(name='marital', data-ng-required='true', data-ng-model='marital',data-ng-options='marital.name for marital in status')
                                                                 option(value='') Select your marital status
 
-                                                            .help-block(ng-messages='settingsForm.marital.$error', ng-if='settingsForm.marital.$touched')
-                                                                p(ng-message='required') Select a marital status
+                                                            .help-block(data-ng-messages='settingsForm.marital.$error', data-ng-if='settingsForm.marital.$touched')
+                                                                p(data-ng-message='required') Select a marital status
 
-                                            .form-group(ng-class="{ 'has-error' : settingsForm.work.$invalid  && (settingsForm.work.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : settingsForm.work.$invalid  && (settingsForm.work.$touched || submitted)}")
                                                 label.col-sm-2.control-label Work
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            select.form-control(name='work', ng-required='true', ng-model='work',ng-options='work.name for work in jobs')
+                                                            select.form-control(name='work', data-ng-required='true', data-ng-model='work',data-ng-options='work.name for work in jobs')
                                                                 option(value='') Select your work
-                                                            .help-block(ng-messages='settingsForm.work.$error', ng-if='settingsForm.work.$touched')
-                                                                p(ng-message='required') Select your job
+                                                            .help-block(data-ng-messages='settingsForm.work.$error', data-ng-if='settingsForm.work.$touched')
+                                                                p(data-ng-message='required') Select your job
 
-                                            .form-group(ng-class="{ 'has-error' : settingsForm.country.$invalid  && (settingsForm.country.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : settingsForm.country.$invalid  && (settingsForm.country.$touched || submitted)}")
                                                 label.col-sm-2.control-label Country
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
                                                             select.form-control(name='country', ng-required='true',ng-model='country', ng-options='country.name for country in countries')
                                                                 option(value='') Select your country
-                                                            .help-block(ng-messages='settingsForm.country.$error', ng-if='settingsForm.country.$touched')
-                                                                p(ng-message='required') Select your country
-                                            .form-group(ng-class="{ 'has-error' : settingsForm.city.$invalid  && (settingsForm.city.$touched || submitted)}")
+                                                            .help-block(data-ng-messages='settingsForm.country.$error', data-ng-if='settingsForm.country.$touched')
+                                                                p(data-ng-message='required') Select your country
+                                            .form-group(data-ng-class="{ 'has-error' : settingsForm.city.$invalid  && (settingsForm.city.$touched || submitted)}")
                                                 label.col-sm-2.control-label City
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            select.form-control(name='city',ng-disabled='!country', ng-required='true', ng-model='city', ng-options='city for city in country.cities')
+                                                            select.form-control(name='city',data-ng-disabled='!country', data-ng-required='true', data-ng-model='city', data-ng-options='city for city in country.cities')
                                                                 option(value='') Select your city
-                                                            .help-block(ng-messages='settingsForm.city.$error', ng-if='settingsForm.city.$touched')
-                                                                p(ng-message='required') Select your city
+                                                            .help-block(data-ng-messages='settingsForm.city.$error', data-ng-if='settingsForm.city.$touched')
+                                                                p(data-ng-message='required') Select your city
 
-                                            .form-group(ng-class="{ 'has-error' : settingsForm.interests.$invalid  && (settingsForm.interests.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : settingsForm.interests.$invalid  && (settingsForm.interests.$touched || submitted)}")
                                                 label.col-sm-2.control-label Interests
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            input.form-control(type='text',name='interests', ng-model='interests',ng-minlength='3', ng-maxlength='50', ng-required='true')
-                                                            .help-block(ng-messages='settingsForm.interests.$error', ng-if='settingsForm.interests.$touched')
-                                                                p(ng-message='minlength') Your interest is too short.
-                                                                p(ng-message='maxlength') Your interest is too long.
-                                                                p(ng-message='required') Your interests are required.
+                                                            input.form-control(type='text',name='interests', data-ng-model='interests',data-ng-minlength='3', data-ng-maxlength='50', data-ng-required='true')
+                                                            .help-block(data-ng-messages='settingsForm.interests.$error', data-ng-if='settingsForm.interests.$touched')
+                                                                p(data-ng-message='minlength') Your interest is too short.
+                                                                p(data-ng-message='maxlength') Your interest is too long.
+                                                                p(data-ng-message='required') Your interests are required.
 
-                                            .form-group(ng-class="{ 'has-error' : settingsForm.about.$invalid  && (settingsForm.about.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : settingsForm.about.$invalid  && (settingsForm.about.$touched || submitted)}")
                                                 label.col-sm-2.control-label About
                                                 .col-sm-10.controls
                                                     .row.mgbt-xs-0
                                                         .col-xs-12
-                                                            textarea.form-control(rows='3',name='description', ng-model='about',ng-minlength='20', ng-maxlength='100', ng-required='true')
-                                                            .help-block(ng-messages='settingsForm.about.$error', ng-if='settingsForm.about.$touched')
-                                                                p(ng-message='minlength') Your description is too short ( 20 ).
-                                                                p(ng-message='maxlength') Your description is too long ( 100 ).
-                                                                p(ng-message='required') Your description is required.
+                                                            textarea.form-control(rows='3',name='description', data-data-ng-model='about',ng-minlength='20', data-ng-maxlength='100', data-ng-required='true')
+                                                            .help-block(data-ng-messages='settingsForm.about.$error', data-ng-if='settingsForm.about.$touched')
+                                                                p(data-ng-message='minlength') Your description is too short ( 20 ).
+                                                                p(data-ng-message='maxlength') Your description is too long ( 100 ).
+                                                                p(data-ng-message='required') Your description is required.
 
                                             .form-group
                                                 label.col-md-2.control-label
                                                 .col-md-10.controls
-                                                    button.btn.btn-save#submit(type='submit', ng-disabled='settingsForm.$invalid')
+                                                    button.btn.btn-save#submit(type='submit', data-ng-disabled='settingsForm.$invalid')
                                                         span.menu-icon
                                                             i.fa.fa-fw.fa-check
                                                         |  Save
@@ -374,42 +374,42 @@ block profile
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input#input-1.file(type='file',name='pictureUrl',ng-model='event.pictureUrl', multiple)
+                                                            input#input-1.file(type='file',name='pictureUrl',data-ng-model='event.pictureUrl', multiple)
 
-                                            .form-group(ng-class="{ 'has-error' : eventsForm.etitle.$invalid  && (eventsForm.etitle.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : eventsForm.etitle.$invalid  && (eventsForm.etitle.$touched || submitted)}")
                                                 label.col-md-3.control-label Title
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input.form-control(type='text',name='etitle',ng-model='etitle',placeholder='Write title here', ng-minlength='2', ng-maxlength='20', ng-required='true')
-                                                            .help-block(ng-messages='eventsForm.etitle.$error', ng-if='eventsForm.etitle.$touched')
-                                                                p(ng-message='minlength') Event title is too short.
-                                                                p(ng-message='maxlength') Event title is too long.
-                                                                p(ng-message='required') Event title is required.
+                                                            input.form-control(type='text',name='etitle',data-ng-model='etitle',placeholder='Write title here', data-ng-minlength='2', data-ng-maxlength='20', data-ng-required='true')
+                                                            .help-block(data-ng-messages='eventsForm.etitle.$error', ng-if='eventsForm.etitle.$touched')
+                                                                p(data-ng-message='minlength') Event title is too short.
+                                                                p(data-ng-message='maxlength') Event title is too long.
+                                                                p(data-ng-message='required') Event title is required.
                                             .form-group
                                                 label.col-md-3.control-label Date
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input.form-control(type='text',name='date',ng-model='date',placeholder='Write date here')
+                                                            input.form-control(type='text',name='date',data-ng-model='date',placeholder='Write date here')
                                             .form-group
                                                 label.col-md-3.control-label Time
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input.form-control(type='text',name='time',ng-model='time',placeholder='Write time here')
+                                                            input.form-control(type='text',name='time',data-ng-model='time',placeholder='Write time here')
                                             .form-group
                                                 label.col-md-3.control-label Location
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input.form-control(type='text',name='Location',ng-model='Location',placeholder='Write Location here')
+                                                            input.form-control(type='text',name='Location',data-ng-model='Location',placeholder='Write Location here')
                                             .form-group
                                                 label.col-md-3.control-label Group
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            select.form-control(name='Group',ng-model="group")
+                                                            select.form-control(name='Group',data-ng-model="group")
                                                                 for gr in allgroups
                                                                     option(value='#{gr.id}') #{gr.name}
                                              // .form-group
@@ -429,42 +429,42 @@ block profile
                                                         .col-md-12
                                                             uib-timepicker(ng-model='mytime', ng-change='changed()', hour-step='hstep', minute-step='mstep', show-meridian='ismeridian')
 
-                                            .form-group(ng-class="{ 'has-error' : eventsForm.cost.$invalid  && (eventsForm.cost.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : eventsForm.cost.$invalid  && (eventsForm.cost.$touched || submitted)}")
                                                 label.col-md-3.control-label Cost
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
                                                             .input-group
                                                                 span.input-group-addon $
-                                                                input.form-control(type='number',name='cost' ng-model='cost', ng-required='true')
-                                                                .help-block(ng-messages='eventsForm.cost.$error', ng-if='eventsForm.cost.$touched')
-                                                                    p(ng-message='required') The cost is required.
-                                                                    p(ng-message='number') The cost must be a number.
+                                                                input.form-control(type='number',name='cost' data-ng-model='cost', data-ng-required='true')
+                                                                .help-block(data-ng-messages='eventsForm.cost.$error', data-ng-if='eventsForm.cost.$touched')
+                                                                    p(data-ng-message='required') The cost is required.
+                                                                    p(data-ng-message='number') The cost must be a number.
 
-                                            .form-group(ng-class="{ 'has-error' : eventsForm.slots.$invalid  && (eventsForm.slots.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : eventsForm.slots.$invalid  && (eventsForm.slots.$touched || submitted)}")
                                                 label.col-md-3.control-label Slots
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input(type='number', name='slots', min='1', max='5', ng-model='slots',ng-required='true')
-                                                            .help-block(ng-messages='eventsForm.slots.$error', ng-if='eventsForm.slots.$touched')
-                                                                p(ng-message='required') Amount of slots is required.
-                                                                p(ng-message='number') Amount of slots must be a number.
+                                                            input(type='number', name='slots', min='1', max='5', data-ng-model='slots',data-ng-required='true')
+                                                            .help-block(data-ng-messages='eventsForm.slots.$error', data-ng-if='eventsForm.slots.$touched')
+                                                                p(data-ng-message='required') Amount of slots is required.
+                                                                p(data-ng-message='number') Amount of slots must be a number.
 
-                                            .form-group(ng-class="{ 'has-error' : eventsForm.edescription.$invalid  && (eventsForm.edescription.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : eventsForm.edescription.$invalid  && (eventsForm.edescription.$touched || submitted)}")
                                                 label.col-md-3.control-label Description
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            textarea.form-control(rows='3',name='edescription' ,ng-model='edescription',ng-minlength='20', ng-maxlength='100', ng-required='true')
-                                                            .help-block(ng-messages='eventsForm.edescription.$error', ng-if='eventsForm.edescription.$touched')
-                                                                p(ng-message='minlength') Event description is too short ( 20 ).
-                                                                p(ng-message='maxlength') Event description is too long ( 100 ).
-                                                                p(ng-message='required') Event description is required.
+                                                            textarea.form-control(rows='3',name='edescription' ,ng-model='edescription',data-ng-minlength='20', data-ng-maxlength='100', data-ng-required='true')
+                                                            .help-block(data-ng-messages='eventsForm.edescription.$error', data-ng-if='eventsForm.edescription.$touched')
+                                                                p(data-ng-message='minlength') Event description is too short ( 20 ).
+                                                                p(data-ng-message='maxlength') Event description is too long ( 100 ).
+                                                                p(data-ng-message='required') Event description is required.
                                             .form-group
                                                 label.col-md-3.control-label
                                                 .col-md-9.controls
-                                                    button.btn.btn-save(type='submit',ng-submit='submitFormE()', ng-disabled='eventsForm.$invalid')
+                                                    button.btn.btn-save(type='submit',data-ng-submit='submitFormE()', data-ng-disabled='eventsForm.$invalid')
                                                         span.menu-icon
                                                             i.fa.fa-fw.fa-check
                                                         |  Save
@@ -551,39 +551,39 @@ block profile
                                         h3
                                             i.fa.fa-cog
                                             | Create Group
-                                        form(name='groupsForm',action='/profilegroups', method='post',ng-submit='submitForm()', novalidate='',enctype="multipart/form-data")
+                                        form(name='groupsForm',action='/profilegroups', method='post',data-ng-submit='submitForm()', novalidate='',enctype="multipart/form-data")
                                             .form-group
                                                 label.col-md-3.control-label Picture
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input#input-1.file(type='file',name="Foto",ng-model="group.Foto")
+                                                            input#input-1.file(type='file',name="Foto",data-ng-model="group.Foto")
 
-                                            .form-group(ng-class="{ 'has-error' : groupsForm.gtitle.$invalid  && (groupsForm.gtitle.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : groupsForm.gtitle.$invalid  && (groupsForm.gtitle.$touched || submitted)}")
                                                 label.col-md-3.control-label Title
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input.form-control(type='text',name='gtitle',ng-model='group.gtitle',placeholder='Write title here',  ng-minlength='2', ng-maxlength='20', ng-required='true')
-                                                            .help-block(ng-messages='groupsForm.gtitle.$error', ng-if='groupsForm.gtitle.$touched')
-                                                                p(ng-message='minlength') Group title is too short.
-                                                                p(ng-message='maxlength') Group title is too long.
-                                                                p(ng-message='required') Group title is required.
+                                                            input.form-control(type='text',name='gtitle',data-ng-model='group.gtitle',placeholder='Write title here',  data-ng-minlength='2', data-ng-maxlength='20', data-ng-required='true')
+                                                            .help-block(data-ng-messages='groupsForm.gtitle.$error', data-ng-if='groupsForm.gtitle.$touched')
+                                                                p(data-ng-message='minlength') Group title is too short.
+                                                                p(data-ng-message='maxlength') Group title is too long.
+                                                                p(data-ng-message='required') Group title is required.
 
-                                            .form-group(ng-class="{ 'has-error' : groupsForm.gdescription.$invalid  && (groupsForm.gdescription.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : groupsForm.gdescription.$invalid  && (groupsForm.gdescription.$touched || submitted)}")
                                                 label.col-md-3.control-label Description
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            textarea.form-control(rows='3',name='gdescription', ng-model='group.gdescription',ng-minlength='20', ng-maxlength='100', ng-required='true')
-                                                            .help-block(ng-messages='groupsForm.gdescription.$error', ng-if='groupsForm.gdescription.$touched')
-                                                                p(ng-message='minlength') Group description is too short ( 20 ).
-                                                                p(ng-message='maxlength') Group description is too long ( 100 ).
-                                                                p(ng-message='required') Group description is required.
+                                                            textarea.form-control(rows='3',name='gdescription', data-ng-model='group.gdescription',data-ng-minlength='20', data-ng-maxlength='100', data-ng-required='true')
+                                                            .help-block(data-ng-messages='groupsForm.gdescription.$error', ng-if='groupsForm.gdescription.$touched')
+                                                                p(data-ng-message='minlength') Group description is too short ( 20 ).
+                                                                p(data-ng-message='maxlength') Group description is too long ( 100 ).
+                                                                p(data-ng-message='required') Group description is required.
                                             .form-group
                                                 label.col-md-3.control-label
                                                 .col-md-9.controls
-                                                    button.btn.btn-save(type='submit', ng-disabled='groupsForm.$invalid')
+                                                    button.btn.btn-save(type='submit', data-ng-disabled='groupsForm.$invalid')
                                                         span.menu-icon
                                                             i.fa.fa-fw.fa-check
                                                         |  Save

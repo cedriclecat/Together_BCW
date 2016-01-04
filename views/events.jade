@@ -46,7 +46,7 @@ block events
                         li
                             a(href='login')
                                 button.btn.btn-default.navbar-btn(type='button') Sign in
-    .container-fluid(ng-app='event')
+    .container-fluid(data-ng-app='event')
         .row
             .col-md-10.col-md-offset-1
                 h2 Search for Events
@@ -57,13 +57,13 @@ block events
 
                 .events
                     h3 Events
-                    #accordion1.panel-group(ng-controller='EventsController', role='tablist', aria-multiselectable='true')
-                        div(ng-repeat='something in events | filter:query')
+                    #accordion1.panel-group(data-ng-controller='EventsController', role='tablist', aria-multiselectable='true')
+                        div(data-ng-repeat='something in events | filter:query')
                             .panel.panel-default
                                 #headingOne.panel-heading(role='tab')
                                     h4.panel-title.accordion-toggle
-                                        a.collapsed(role='button', data-toggle='collapse', data-parent='#accordion1', href='#collapse{{something.collapseId}}', aria-expanded='false', aria-controls='collapse{{something.collapseId}}')
-                                            img(ng-src="{{something.picture}}")
+                                        a.collapsed(role='button', data-toggle='collapse', data-parent='#accordion1', href='#collapse{{something.collapseId}}', aria-expanded='false', aria-controls='collapse{{something.collapseId}}',title='{{ something.name }}')
+                                            img(data-ng-src="{{something.picture}}",alt="{{ something.name }}")
                                             |  {{' ' +  something.name}}
                                 .panel-collapse.collapse(id='collapse{{something.collapseId}}', role='tabpanel', aria-labelledby='heading{{something.collapseId}}')
                                     .panel-body
@@ -106,6 +106,3 @@ block events
              var microappscope = angular.element($("#accordion1")).scope();
              microappscope.knoppen();
          });
-
-    //script(type='text/javascript', src='/src/services/eventsService.js')
-    //script(type='text/javascript', src='/src/controllers/EventController.js')

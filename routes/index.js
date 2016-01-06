@@ -11,7 +11,6 @@ var passport = require('passport');
 // Repos & Models
 var Events = require('../data/models/events');
 
-
 var HomeRepo = require("../data/DataRepositorys/HomeRepo");
 var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
 

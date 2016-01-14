@@ -25,17 +25,17 @@
         };
 
         // Get all users from Service
-        userService.then(function(data){
+        userService.getUsers().then(function(data){
             $scope.allUsers = data;
         });
 
         // Get all events from Service
-        eventService.then(function(data){
+        eventService.getEvents().then(function(data){
             $scope.allEvents = data;
         });
 
         // Get all groups from Service
-        groupService.then(function(data){
+        groupService.getGroup().then(function(data){
             $scope.allGroups = data;
         });
 

@@ -4,20 +4,21 @@
 (function(){
     var mStatusService = function($http) {
 
-                var url = '/api/status';
-        return  $http({
-                    method: 'GET',
-                    url: url
-                }).then(function successCallback(response) {
-                    // this callback will be called asynchronously
-                    // when the response is available
-                    return response.data;
-                    //console.log(" SUCCESS " + response.data);
-                }, function errorCallback(response) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                    console.log(" FAILURE " + response);
-                });
+        var mStatus = function(){
+            var url = '/api/status';
+            return  $http({method: 'GET', url: url}).then(successCallback,errorCallback);
+
+            function successCallback(response){
+                return response.data;
+            }
+            function errorCallback(response){
+                console.log("Failure: " + response);
+            }
+        };
+
+        return{
+            getMStatus: mStatus
+        }
     };
 
     angular.module('profile').factory('mStatusService',['$http',mStatusService]);

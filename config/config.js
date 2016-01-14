@@ -5,9 +5,9 @@
 
 var config = {
     HOST: 'http://localhost',
-    PORT: getEnv('PORT') || 3000,
-    MONGODBURL : process.env.MONGO_URI || 'mongodb://localhost/usersDB',
-    OTHER: 'mongodb://sokol:sokol@ds057234.mongolab.com:57234/togetherdb'
+    //PORT: getEnv('PORT') || 3000,
+    //MONGODBURL : process.env.MONGO_URI || 'mongodb://localhost/togetherDB',
+    MONGODBURL: 'mongodb://sokol:sokol@ds057234.mongolab.com:57234/togetherdb'
 };
 
 function getEnv(variable) {
@@ -19,6 +19,6 @@ function getEnv(variable) {
     }
 
     return process.env[variable]; //of bvb. process.env.WEB_PORT
-};
+}
 
 module.exports = config;

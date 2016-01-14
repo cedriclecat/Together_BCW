@@ -34,7 +34,7 @@ userSchema.updateUser = function(req,res,id,firstName,lastName,email,marital,wor
 userSchema.deleteUser = function(req,res,id){
     userSchema.findByIdAndRemove({_id: id},function(err){
         if (!err) {
-            res.send("User deleted")
+            res.redirect('/admin');
         }
         else {
             console.log('error' + err)

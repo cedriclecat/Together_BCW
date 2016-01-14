@@ -10,19 +10,19 @@
         // GET Marital status, Jobs, Countries & Cities from Services + add them to scope
         // ==============================================================================
 
-        mStatusService.then(function(data){
+        mStatusService.getMStatus().then(function(data){
             $scope.status = data;
         });
 
-        jobService.then(function(data){
+        jobService.getJobs().then(function(data){
             $scope.jobs = data;
         });
 
-        countryService.then(function(data){
+        countryService.getCountries().then(function(data){
             $scope.countries = data;
         });
 
-        certainUserService.then(function(data){
+        certainUserService.getById().then(function(data){
             $scope.profile = data;
         });
 
@@ -45,38 +45,15 @@
                     interests: this.interests,
                     description: this.about
                 });
-            $http.post("/api/profile/:id", $scope.formData).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                console.log('posted successfully: ' + response.data);
-                //return response.data;
-                //console.log(" SUCCESS " + response.data);
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log('an error occurred', response.data)
-            });
+            $http.post("/api/profile/:id", $scope.formData).then(successCallback,errorCallback);
+
+            function successCallback(response){
+                return response.data;
+            }
+            function errorCallback(response){
+                console.log("Failure: " + response);
+            }
         };
-
-        // Submit form create event
-        // ==============================================================================
-
-        //$scope.submitFormE = function(){
-        //    $scope.formDataE = JSON.stringify({
-        //        // picture = this.picture,
-        //        title : this.title,
-        //        date : this.date,
-        //        time : this.time,
-        //        location : this.location,
-        //        group : this.group,
-        //        price: this.cost,
-        //        maxMember: this.slots,
-        //        description: this.description,
-        //        TIMESTAMP: new Date()
-        //
-        //
-        //    })
-        //}
 
         $scope.today = function() {
             $scope.dt = new Date();

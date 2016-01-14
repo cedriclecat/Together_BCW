@@ -19,7 +19,7 @@ app.set('port', process.env.PORT || 3000);
 
 //2.1. (self) executing database connectie
 var DBService = require("../data/connectDBService.js");
-var connectDB =  DBService (config.OTHER,require('mongoose') ); //connected mongoose
+var connectDB =  DBService (config.MONGODBURL,require('mongoose') ); //connected mongoose
 
 //--------- 3. listeners voor server en io --------------------
 server.listen(app.get('port'), function () {

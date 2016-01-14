@@ -16,7 +16,6 @@ EventsRepo = (function(){
     var deleteEvent = function(req,res,id){
         Event.findByIdAndRemove({_id: id},function(err){
             if (!err) {
-                res.send("Event deleted");
                 res.redirect('/admin');
             }
             else {

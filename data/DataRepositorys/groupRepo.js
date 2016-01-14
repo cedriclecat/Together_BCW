@@ -15,7 +15,7 @@ groupSchema.getGroups = function(req,res){
 groupSchema.deleteGroup = function(req,res,id){
     groupSchema.findByIdAndRemove({_id: id},function(err){
         if (!err) {
-            res.send("Group deleted")
+            res.redirect('/admin');
         }
         else {
             console.log('error' + err)

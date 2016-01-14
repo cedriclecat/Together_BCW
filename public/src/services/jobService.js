@@ -3,21 +3,21 @@
  */
 (function(){
     var jobService = function($http) {
+        var jobs = function(){
+            var url = '/api/jobs';
+            return  $http({method: 'GET', url: url}).then(successCallback,errorCallback);
 
-        var url = '/api/jobs';
-        return  $http({
-            method: 'GET',
-            url: url
-        }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-            return response.data;
-            //console.log(" SUCCESS " + response.data);
-        }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            console.log(" FAILURE " + response);
-        });
+            function successCallback(response){
+                return response.data;
+            }
+            function errorCallback(response){
+                console.log("Failure: " + response);
+            }
+        };
+
+        return{
+            getJobs: jobs
+        }
     };
 
     angular.module('profile').factory('jobService',['$http',jobService]);

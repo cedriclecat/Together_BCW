@@ -71,7 +71,6 @@ td
       +height-width(30px,30px)
     +menu-hover
 
-
 // Landing Page
 // Carousel
 // ==========================================================================
@@ -125,10 +124,14 @@ td
 // ==========================================================================
 .trending
   background-color: $white
+  padding-top: 20px
   text-align: center
   >img
     margin: 0 auto
-    width: 100%
+    width: 500px
+    height: 300px
+    @media screen and (max-width : 480px)
+      height: 200px
   >h2
     padding: 15px 0
     width: 100%
@@ -136,9 +139,11 @@ td
     color: #C7C7C7
     text-transform: uppercase
     border-bottom: 1px solid #E1E1E1
+    text-align: center
   p
     color: #C7C7C7
-    padding: 15px 0
+    padding: 15px 20px
+    text-align: justify
   .btn
     margin-bottom: 15px
 .new
@@ -154,16 +159,18 @@ td
     padding: 20px 0
   >img
     margin-top: 40px
+    @media screen and (max-width: 480px)
+      margin-top: 20px
   >.btn
     margin-top: -90px
     margin-left: 10px
   .btn-responsive
     @media screen and (max-width : 480px)
-      .btn-responsive
         padding: 4px 4px
         margin-top: -55px
         margin-left: 5px
         line-height: 1
+        font-size: 10px
         +border-radius($rad)
 
 // Events Page
@@ -196,7 +203,10 @@ td
       >img
         width: 70px
         height: 40px
+    @media screen and (max-width : 480px)
+      font-size: 13px
   .panel-body
+    text-align: justify
     iframe
       float: left
       margin: 0 20px 5px -10px
@@ -214,7 +224,7 @@ td
       text-decoration: underline
     .btn
       +df-border-elem
-      @media screen and (max-width : 440px)
+      @media screen and (max-width : 480px)
         margin-bottom: 5px
     .approve
       background-color: $color-elements
@@ -228,6 +238,8 @@ td
       margin-left: 10px
       &:hover
         +df-bcolor-tcolor
+      @media screen and (max-width : 480px)
+        margin-left: 0
 
 // Groups Page
 // ==========================================================================
@@ -239,7 +251,7 @@ td
   h2
     padding: 15px
   a
-    p
+    >p
       background-color: $color-elements
       padding: 5px
       margin: 5px 15px
@@ -256,10 +268,16 @@ td
 .group-contacts
   @extend .user-groups
   .list-group
+    overflow: auto
+    height: auto // 640px
     p
       padding: 10px
-  #chat-output
-    overflow-y: scroll
+      &:hover
+        background-color: inherit
+  .chat
+    overflow: auto
+    height: auto // 585 px
+
   .panel-heading
     +df-bcolor-tcolor
     +df-border-elem
@@ -268,8 +286,13 @@ td
   .col-md-6
     .sendm
       +df-bcolor-tcolor
+      &:link
+        background-color: $color-elements
       &:hover
         background-color: $color-elements-hover
+      &:link
+        background-color: $color-elements
+
 
 
 // Login & Register
@@ -661,15 +684,6 @@ input[type="file"], input[type="text"], input[type="password"], input[type="date
   label
     margin-bottom: 10px
 
-//
-//
-//input[type="radio"]
-//  margin-bottom: 10px
-//  margin-top: 5px
-//  label
-//    margin-right: 10px
-
-
 
 // Pill tab Event
 // ==========================================================================
@@ -759,7 +773,44 @@ input[type="file"], input[type="text"], input[type="password"], input[type="date
 
 // Admin Page
 // ==========================================================================
+.admin-u
+  float: left
+  width: 125px
+  text-align: center
+  color: black
+  height: 150px
+  margin-bottom: 10px
+  &:hover
+    background-color: inherit
+    color: inherit
+  img
+    height: 100px
+    width: 100px
+    padding: 5px
+  p
+    margin: 0 5px 5px 5px
+    font-size: 12px
+  a
+    color: inherit
+    background-color: inherit
+    i
+      &:hover
+        background: #F85D2C
+        color: #fff
+        padding: 3px
 
+.admin-e
+  @extend .admin-u
+  margin-bottom: 5px
+  img
+    height: 70px
+.admin-g
+  @extend .admin-u
+  width: 110px
+
+.cb
+  clear: both
+  margin-bottom: 20px
 // Help Page
 // ==========================================================================
 .help-section
@@ -826,7 +877,7 @@ input[type="file"], input[type="text"], input[type="password"], input[type="date
 /*animation slide left styled for testimonials*/
 .animation-element.slide-left.testimonial
       float: left
-      width: 47%
+      width: 100%
       margin: 0 1.5% 3% 1.5%
       background: #F5F5F5
       padding: 15px
@@ -840,12 +891,12 @@ input[type="file"], input[type="text"], input[type="password"], input[type="date
 
 
 .animation-element.slide-left.testimonial:nth-of-type(odd)
-      width: 48.5%
+      width: 100%
       margin: 0 1.5% 3.0% 0
 
 
 .animation-element.slide-left.testimonial:nth-of-type(even)
-      width: 48.5%
+      width: 100%
       margin: 0 0 3.0% 1.5%
 
 
@@ -887,6 +938,14 @@ input[type="file"], input[type="text"], input[type="password"], input[type="date
       width: 100%
       margin-bottom: 10px
 
+.animation-element.slide-left.testimonial .content
+  img
+    width: 100%
+    height: 100%
+    box-shadow: none
+    border-radius: inherit
+
+
 .animation-element.slide-left.testimonial
   i
       color: #aaa
@@ -905,8 +964,7 @@ input[type="file"], input[type="text"], input[type="password"], input[type="date
 
 .animation-element.slide-left.testimonial .right,
 .animation-element.slide-left.testimonial .left,
-.animation-element.slide-left.testimonial .content,
-.animation-element.slide-left.testimonial .rating
+.animation-element.slide-left.testimonial .content
   @media screen and (max-width: 678px)
       text-align: center
       float: none

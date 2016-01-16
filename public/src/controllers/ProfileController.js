@@ -33,25 +33,25 @@
         $scope.submitForm = function(){
 
             $scope.formData = JSON.stringify({
-                    firstName: this.firstName,
-                    lastName: this.lastName,
-                    email: this.email,
-                    gender: this.gender,
-                    marital: this.marital.name,
-                    birthday: this.dt,
-                    work: this.work.name,
-                    country: this.country.name,
-                    city: this.city,
-                    interests: this.interests,
-                    description: this.about
-                });
+                firstName: this.firstName,
+                lastName: this.lastName,
+                email: this.email,
+                gender: this.gender,
+                marital: this.marital.name,
+                birthday: this.dt,
+                work: this.work.name,
+                country: this.country.name,
+                city: this.city,
+                interests: this.interests,
+                description: this.description
+            });
             $http.post("/api/profile/:id", $scope.formData).then(successCallback,errorCallback);
 
             function successCallback(response){
                 return response.data;
             }
             function errorCallback(response){
-                console.log("Failure: " + response);
+                console.log("Failure: " + response.data);
             }
         };
 

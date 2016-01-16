@@ -201,7 +201,7 @@ block profile
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            input.form-control(type='text', name='firstname', data-ng-model='firstName', placeholder='Your Firstname', ng-minlength='2', ng-maxlength='15', ng-required='true')
+                                                            input.form-control(type='text', name='firstname', ng-model='firstName', placeholder='Your Firstname', ng-minlength='2', ng-maxlength='15', ng-required='true')
                                                             .help-block(data-ng-messages='settingsForm.firstname.$error', data-ng-if='settingsForm.firstname.$touched')
                                                                 p(data-ng-message='minlength') Your firstname is too short.
                                                                 p(data-ng-message='maxlength') Your firstname is too long.
@@ -212,7 +212,7 @@ block profile
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            input.form-control(type='text', name='lastname', data-ng-model='lastName', placeholder='Your Lastname', ng-minlength='2', ng-maxlength='15', ng-required='true')
+                                                            input.form-control(type='text', name='lastname', ng-model='lastName', placeholder='Your Lastname', ng-minlength='2', ng-maxlength='15', ng-required='true')
                                                             .help-block(data-ng-messages='settingsForm.lastname.$error', data-ng-if='settingsForm.lastname.$touched')
                                                                 p(data-ng-message='minlength') Your lastname is too short.
                                                                 p(data-ng-message='maxlength') Your lastname is too long.
@@ -223,7 +223,7 @@ block profile
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            input.form-control(type='email', name='email', data-ng-model='email', placeholder='Your Email Address', ng-required='true')
+                                                            input.form-control(type='email', name='email', ng-model='email', placeholder='Your Email Address', ng-required='true')
                                                             .help-block(data-ng-messages='settingsForm.email.$error', data-ng-if='settingsForm.email.$touched')
                                                                 p(data-ng-message='required') Your email is required.
                                                                 p(data-ng-message='email') Enter a valid email
@@ -233,7 +233,7 @@ block profile
                                                     .row
                                                         .col-xs-12
                                                             span.radio-off
-                                                                input#optionsRadios3(checked='checked',value='Male', name='optionsRadios2', type='radio', data-ng-model='profile.gender')
+                                                                input#optionsRadios3(checked='checked',value='Male', name='optionsRadios2', type='radio', ng-model='gender')
                                                                 label(for='optionsRadios3')  Male
 
                                                             span.radio-off1
@@ -247,7 +247,7 @@ block profile
                                                     .row
                                                         .col-xs-12
                                                             p.input-group
-                                                                input.form-control(type='text', uib-datepicker-popup='{{format}}', data-ng-model='dt', is-open='status.opened', min-date='minDate', max-date='maxDate', datepicker-options='dateOptions', date-disabled='disabled(date, mode)', ng-required='true', close-text='Close')
+                                                                input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='dt', is-open='status.opened', min-date='minDate', max-date='maxDate', datepicker-options='dateOptions', date-disabled='disabled(date, mode)', ng-required='true', close-text='Close')
                                                                 span.input-group-btn
                                                                     button.btn.btn-default(type='button', data-ng-click='open($event)')
                                                                         i.glyphicon.glyphicon-calendar
@@ -258,7 +258,7 @@ block profile
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            select.form-control(name='marital', data-ng-required='true', data-ng-model='marital',data-ng-options='marital.name for marital in status')
+                                                            select.form-control(name='marital', data-ng-required='true', ng-model='marital',data-ng-options='marital.name for marital in status')
                                                                 option(value='') Select your marital status
 
                                                             .help-block(data-ng-messages='settingsForm.marital.$error', data-ng-if='settingsForm.marital.$touched')
@@ -269,7 +269,7 @@ block profile
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            select.form-control(name='work', data-ng-required='true', data-ng-model='work',data-ng-options='work.name for work in jobs')
+                                                            select.form-control(name='work', data-ng-required='true', ng-model='work',data-ng-options='work.name for work in jobs')
                                                                 option(value='') Select your work
                                                             .help-block(data-ng-messages='settingsForm.work.$error', data-ng-if='settingsForm.work.$touched')
                                                                 p(data-ng-message='required') Select your job
@@ -288,7 +288,7 @@ block profile
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            select.form-control(name='city',data-ng-disabled='!country', data-ng-required='true', data-ng-model='city', data-ng-options='city for city in country.cities')
+                                                            select.form-control(name='city',data-ng-disabled='!country', data-ng-required='true', ng-model='city', data-ng-options='city for city in country.cities')
                                                                 option(value='') Select your city
                                                             .help-block(data-ng-messages='settingsForm.city.$error', data-ng-if='settingsForm.city.$touched')
                                                                 p(data-ng-message='required') Select your city
@@ -298,19 +298,19 @@ block profile
                                                 .col-sm-10.controls
                                                     .row
                                                         .col-xs-12
-                                                            input.form-control(type='text',name='interests', data-ng-model='interests',data-ng-minlength='3', data-ng-maxlength='50', data-ng-required='true')
+                                                            input.form-control(type='text',name='interests', ng-model='interests',data-ng-minlength='3', data-ng-maxlength='50', data-ng-required='true')
                                                             .help-block(data-ng-messages='settingsForm.interests.$error', data-ng-if='settingsForm.interests.$touched')
                                                                 p(data-ng-message='minlength') Your interest is too short.
                                                                 p(data-ng-message='maxlength') Your interest is too long.
                                                                 p(data-ng-message='required') Your interests are required.
 
-                                            .form-group(data-ng-class="{ 'has-error' : settingsForm.about.$invalid  && (settingsForm.about.$touched || submitted)}")
+                                            .form-group(data-ng-class="{ 'has-error' : settingsForm.description.$invalid  && (settingsForm.description.$touched || submitted)}")
                                                 label.col-sm-2.control-label About
                                                 .col-sm-10.controls
                                                     .row.mgbt-xs-0
                                                         .col-xs-12
-                                                            textarea.form-control(rows='3',name='description', data-data-ng-model='about',ng-minlength='20', data-ng-maxlength='100', data-ng-required='true')
-                                                            .help-block(data-ng-messages='settingsForm.about.$error', data-ng-if='settingsForm.about.$touched')
+                                                            textarea.form-control(rows='3',name='description', ng-model='description',ng-minlength='20', data-ng-maxlength='100', data-ng-required='true')
+                                                            .help-block(data-ng-messages='settingsForm.description.$error', data-ng-if='settingsForm.description.$touched')
                                                                 p(data-ng-message='minlength') Your description is too short ( 20 ).
                                                                 p(data-ng-message='maxlength') Your description is too long ( 100 ).
                                                                 p(data-ng-message='required') Your description is required.
@@ -595,7 +595,6 @@ block profile
     script(src='/dist/js/angular-animate.min.js')
     script(src='//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js')
     script(src='/src/app.js')
-    script(src='/src/directives/ngCompare.js')
     script(src='/src/services/mStatusService.js')
     script(src='/src/services/jobService.js')
     script(src='/src/services/countryService.js')

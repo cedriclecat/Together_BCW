@@ -10,6 +10,7 @@ var passport = require('passport');
 
 // Repos & Models
 var Events = require('../data/models/events');
+var User = require('../data/models/user');
 
 var HomeRepo = require("../data/DataRepositorys/HomeRepo");
 var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
@@ -33,6 +34,7 @@ var options = multer.diskStorage({
      cb(null,"" +req.user._id + Date.now()  + file.originalname);
     }
 });
+
 var upload = multer({storage:options});
 
     // =====================================
@@ -121,8 +123,8 @@ var upload = multer({storage:options});
     // process the login form
     router.post('/login', passport.authenticate('local-login', {
         successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/login' // redirect back to the signup page if there is an error
-        //failureFlash : true // allow flash messages
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
     }));
 
     // =====================================
@@ -139,8 +141,8 @@ var upload = multer({storage:options});
     // process the signup form
     router.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/signup' // redirect back to the signup page if there is an error
-        //failureFlash : true // allow flash messages
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
     }));
 
 
@@ -201,9 +203,7 @@ var upload = multer({storage:options});
 
             res.json(events);
         })
-
-
-    })
+    });
 
     router.get('/api/getuserid', function (req, res) {
         if(req.user._id !=null)
@@ -261,7 +261,7 @@ var upload = multer({storage:options});
 
     });
 
-    router.post('/api/profile/:_id',function(req,res){
+    router.post('/api/profile/:id',function(req,res){
 
         var id = req.user._id,
             firstName = req.body.firstName,
@@ -270,11 +270,12 @@ var upload = multer({storage:options});
             marital = req.body.marital,
             work = req.body.work,
             country = req.body.country,
+            birthday = req.body.birthday,
             city = req.body.city,
             interests = req.body.interests,
             description = req.body.description;
 
-        userRepo.updateUser(req,res,id,firstName,lastName,email,marital,work,country,city,interests,description);
+        userRepo.updateUser(req,res,id,firstName,lastName,email,birthday,marital,work,country,city,interests,description);
     });
 
     router.delete('/api/user/delete/:_id',function(req,res){

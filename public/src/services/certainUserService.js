@@ -11,9 +11,9 @@
                 return response.data;
             }
             function errorCallback(response){
-                console.log("Failure: " + response);
+                console.log("Failure: " +response.data);
             }
-        }
+        };
 
         return{
             getById: byId

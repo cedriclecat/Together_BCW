@@ -16,7 +16,7 @@ userSchema.getUserById = function(req,res,id){
     })
 };
 
-userSchema.updateUser = function(req,res,id,firstName,lastName,email,marital,work,country,city,interests,description){
+userSchema.updateUser = function(req,res,id,firstName,lastName,email,birthday,marital,work,country,city,interests,description){
     userSchema.update({_id:id},{$set:{
         firstName: firstName,
         lastName: lastName,
@@ -25,6 +25,7 @@ userSchema.updateUser = function(req,res,id,firstName,lastName,email,marital,wor
         work: work,
         country: country,
         city: city,
+        birthday:birthday,
         interests: interests,
         description: description
     }},function(err){console.log(err);});
@@ -34,7 +35,7 @@ userSchema.updateUser = function(req,res,id,firstName,lastName,email,marital,wor
 userSchema.deleteUser = function(req,res,id){
     userSchema.findByIdAndRemove({_id: id},function(err){
         if (!err) {
-            res.redirect('/admin');
+            res.send('User deleted')
         }
         else {
             console.log('error' + err)

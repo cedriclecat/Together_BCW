@@ -31,7 +31,7 @@
         };
     };
 
-    angular.module('profile').directive('ngCompare',[ngCompare]);
+    angular.module('auth').directive('ngCompare',[ngCompare]);
 
 })();
 

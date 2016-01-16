@@ -33,10 +33,11 @@ block signup
                     form(action='/signup',method='post',name='signupForm',data-ng-submit='submitForm()', novalidate='')
                         .form-group(data-ng-class="{ 'has-error' : signupForm.email.$invalid && (signupForm.email.$touched || submitted)}")
                             label.control-label Email address
-                            input.form-control.input-lg(type='email', name='email', data-ng-model='user.email', placeholder='Your Email Address', data-ng-required='true')
+                            input.form-control.input-lg(type='email', name='email', data-ng-model='user.email',data-ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,12})$/", placeholder='Your Email Address', data-ng-required='true')
                             .help-block(data-ng-messages='signupForm.email.$error', data-ng-if='signupForm.email.$touched')
                                 p(data-ng-message='required') Your email is required.
                                 p(data-ng-message='email') Enter a valid email
+                                p(data-ng-message='pattern') Make sure @ & . are present and no spaces!
                         .form-group(data-ng-class="{ 'has-error' : signupForm.password.$invalid && (signupForm.password.$touched || submitted)}")
                             label.control-label Password
                             input.form-control.input-lg(type='Password', name='password', data-ng-model='user.password', placeholder='Your Password', data-ng-required='true', data-ng-minlength='6')
@@ -48,7 +49,7 @@ block signup
                             input.form-control.input-lg(type='Password', name='confirmPassword', data-ng-model='user.confirmPassword', placeholder='Confirm Your Password', data-ng-compare='password', data-ng-required='true')
                             .help-block(data-ng-messages='signupForm.confirmPassword.$error', data-ng-if='signupForm.confirmPassword.$touched')
                                 p(data-ng-message='required') Your confirm password is required.
-                            p.help-block(data-ng-show='signupForm.confirmPassword.$error.compare  && (signupForm.confirmPassword.$touched || submitted)') Confirm password doesnot match.
+                            p.help-block(data-ng-show='signupForm.confirmPassword.$error.compare  && (signupForm.confirmPassword.$touched || submitted)') Confirm password does not match.
 
                         button.btn.btn-success.btn-block.btn-lg(type='submit', data-ng-disabled='signupForm.$invalid') Sign me Up
                         .m-t-20

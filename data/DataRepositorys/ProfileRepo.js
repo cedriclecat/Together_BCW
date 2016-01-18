@@ -6,10 +6,12 @@ profilerepo = (function () {
 
     updateEvent= function(data,next)
     {
-        Events = mongoose.model('events');
+
+
+        Events = require('../models/events');
 
        // prictureUrl:data.picture
-        console.log(data);
+
         Events.update({id:data.id},{$set:{name:data.title,
             description:data.description,
             date:data.data,
@@ -25,7 +27,7 @@ profilerepo = (function () {
             }
             else
             {
-
+                next();
             }
 
         });

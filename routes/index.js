@@ -279,7 +279,8 @@ var upload = multer({storage:options});
 
         ProfileRepo.updateEvent(req.body,function(next){
             console.log("lalalala");
-            res.render('/profile');
+           // res.render('/profile');
+            res.redirect('/profile');
         });
 
     });

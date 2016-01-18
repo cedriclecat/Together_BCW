@@ -189,6 +189,51 @@ profilerepo = (function () {
                                     }
 
                                     data.friends2 = xarr;
+                                    var friend = 0;
+                                    var pending = 0;
+                                    var unknown = 0;
+                                    if( data.OWN==0){
+                                        //Ander profiel
+                                        //user id van current user
+
+                                        console.log(user);
+                                        console.log(pend);
+                                        console.log(fri);
+                                        //friend?
+                                        fri.forEach(function(friend){
+                                            var id = "" + friend.id;
+                                            var us = ""+user;
+                                            if(id==us){
+                                                friend =1;
+                                                pending = 0;
+                                                unknown =0;
+                                            }
+                                        });
+                                        //pending?
+                                        if(friend==0) {
+                                            pend.forEach(function(friend){
+                                                console.log(friend.id);
+                                                console.log(user);
+                                                var id = "" + friend.id;
+                                                var us = ""+user;
+                                                if(id==us){
+                                                    friend =0;
+                                                    pending = 1;
+                                                    unknown =0;
+                                                }
+                                            });
+                                        }
+                                        console.log(pending);
+                                        //niks?
+                                        if(friend==0&&pending==0){
+                                            friend =0;
+                                            pending = 0;
+                                            unknown =1
+                                        }
+                                    }
+                                    data.izfriend = friend;
+                                    data.izpending = pending;
+                                    data.izunknown = unknown;
 
                                     console.log(pend);
                                     console.log(fri);

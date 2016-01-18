@@ -43,14 +43,28 @@ GroupsRepo = (function () {
         var mongoose = require('mongoose');
         Events = mongoose.model('events');
         Groups = mongoose.model('groups');
-        ////////////////////////////////////////
+        var getnaam = require('./Profielmenu');
+        var ZENDMIJ = {};
+        getnaam.getname(req,function(dfdf){
+            console.log(dfdf);
+            if(dfdf=="N"){
+                ZENDMIJ.TOON = false;
+            }else{
+                ZENDMIJ.TOON = true;
+                console.log("GOOO");
+                ZENDMIJ.FOTO = dfdf.foto;
+                ZENDMIJ.NAAM = dfdf.naam;
+                ZENDMIJ.ADMIN=dfdf.Admin;
+            }
+
+            ////////////////////////////////////////
         var grps = req.query.groupss;
         var evt = req.query.event;
         var mijnevents = "";
         var grtitel ="Groups";
         var username = req.user.local.email;
         var mijndata = "";
-        var ZENDMIJ = {};
+
         if(grps!=undefined){
             Groups.find(function (err, events) {
                 if (err) {
@@ -99,6 +113,7 @@ GroupsRepo = (function () {
             });
         }
         /////////////////////////////////////////
+        });
     };
 
     return{

@@ -14,6 +14,7 @@ var User = require('../data/models/user');
 
 var HomeRepo = require("../data/DataRepositorys/HomeRepo");
 var GroupsRepo = require("../data/DataRepositorys/GroupsRepo");
+var getnaam = require('../data/DataRepositorys/Profielmenu');
 
 // Profile Repos
 var Countries = require('../data/DataRepositorys/countryRepo');
@@ -42,7 +43,7 @@ var upload = multer({storage:options});
     // =====================================
     router.get('/', function(req, res) {
         HomeRepo.inithome(req,function(next){
-            res.render('landing', {data:next.data, path:next.path, name:next.name, admin:next.admin, newe:next.newe, trend:next.trend,prom:next.prom,title:'Home Page'});
+            res.render('landing', {data:next.data, path:next.path,toon:next.TOON, name:next.NAAM,foto:next.FOTO, admin:next.ADMIN, newe:next.newe, trend:next.trend,prom:next.prom,title:'Home Page'});
         });
     });
 
@@ -51,7 +52,16 @@ var upload = multer({storage:options});
     // =====================================
     router.get('/events', function(req, res) {
         //img/slider/slider1.jpg
-        res.render('events',{title:'Events Page'});
+
+        getnaam.getname(req,function(dfdf) {
+            if (dfdf == "N") {
+                res.render('events',{toon:false,title:'Events Page'});
+            } else {
+                res.render('events',{toon:true,admin:dfdf.Admin, name:dfdf.naam,foto:dfdf.foto,title:'Events Page'});
+            }
+
+        });
+
     });
     // =====================================
     // GROUPS PAGE =========================
@@ -59,7 +69,7 @@ var upload = multer({storage:options});
     router.get('/groups',isLoggedIn, function(req, res) {
 
         GroupsRepo.initGroup(req,function(next){
-            res.render('groups', {data:next.data, user:req.user._id, mijndat:next.mijndat, path:next.path, mev:next.mev, titel:next.titel,title:'Group Page'});
+            res.render('groups', {data:next.data,toon:next.TOON,admin:next.ADMIN, name:next.NAAM,foto:next.FOTO, user:req.user._id, mijndat:next.mijndat, path:next.path, mev:next.mev, titel:next.titel,title:'Group Page'});
         });
     });
     // =====================================
@@ -69,7 +79,7 @@ var upload = multer({storage:options});
     router.get('/profile',isLoggedIn, function (req , res) {
         user = req.user._id;
         ProfileRepo.getevents(req,function(next){
-            res.render('profile', {data:req.user.local.email, title: 'Profile Page', evs:req.mijnevents,gevs:req.mijngoingevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
+            res.render('profile', {data:req.user.local.email,admin:req.ADMIN,toon:req.TOON, name:req.NAAM,foto:req.FOTO, title: 'Profile Page', evs:req.mijnevents,gevs:req.mijngoingevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
         });
     });
     router.post('/profile',function(req,res){
@@ -99,7 +109,14 @@ var upload = multer({storage:options});
     // =====================================
 
     router.get('/admin',isLoggedIn, function (req , res) {
-        res.render('admin', { title: 'Admin Page' });
+        getnaam.getname(req,function(dfdf) {
+            if (dfdf == "N" || dfdf.Admin != true) {
+                res.redirect("/");
+            } else {
+                res.render('admin',{toon:true, name:dfdf.naam, admin:dfdf.Admin,foto:dfdf.foto,title:'Admin Page'});
+            }
+
+        });
     });
 
     // =====================================
@@ -107,7 +124,13 @@ var upload = multer({storage:options});
     // =====================================
 
     router.get('/help', function (req , res) {
-        res.render('help', { title: 'Help Page' });
+        getnaam.getname(req,function(dfdf) {
+            if (dfdf == "N") {
+                res.render('help',{toon:false,title:'Help Page'});
+            } else {
+                res.render('help',{toon:true, admin:dfdf.Admin, name:dfdf.naam,foto:dfdf.foto,title:'Help Page'});
+            }
+        });
     });
 
     // =====================================

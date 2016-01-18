@@ -388,6 +388,7 @@ block profile
                                                 td.name #{events.name}
                                                     p(ng-hide="true")=events.description
                                                     p(ng-hide="true")=events.location
+                                                    p(ng-hide="true")=events.id
                                                 td.center.date #{events.date}
                                                 td.center.time #{events.time}
                                                 td.center
@@ -411,7 +412,7 @@ block profile
                                         h3
                                             i.fa.fa-cog
                                             | Create Event
-                                        form(name='eventsForm',action='/profileevent', method='post', novalidate='', enctype="multipart/form-data")
+                                        form(name='eventsForm',action='/profileevent', method='post', novalidate='', enctype="multipart/form-data",id="")
                                             .form-group
                                                 label.col-md-3.control-label Picture
                                                 .col-md-9.controls
@@ -507,10 +508,14 @@ block profile
                                             .form-group
                                                 label.col-md-3.control-label
                                                 .col-md-9.controls
-                                                    button.btn.btn-save(type='submit',data-ng-submit='submitFormE()', data-ng-disabled='eventsForm.$invalid')
+                                                    button.btn.btn-save(type='submit',data-ng-submit='submitFormE()', data-ng-disabled='eventsForm.$invalid',ng-hide="{{updating}}")
                                                         span.menu-icon
                                                             i.fa.fa-fw.fa-check
                                                         |  Save
+                                        button.btn.btn-save(ng-click='saveEdittedEvent()', ng-disabled="{{updating}}",ng-show="true")
+                                            span.menu-icon
+                                                i.fa.fa-fw.fa-check
+                                            |  Update
                         #contacts-tab.contact-tab.tab-pane(role='tabpanel')
                             h3
                                 i.fa.fa-users.mgr-10.profile-icon

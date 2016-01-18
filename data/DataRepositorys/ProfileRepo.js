@@ -3,6 +3,33 @@
  */
 
 profilerepo = (function () {
+
+    updateEvent= function(data,next)
+    {
+        Events = mongoose.model('events');
+
+       // prictureUrl:data.picture
+        console.log(data);
+        Events.update({id:data.id},{$set:{name:data.title,
+            description:data.description,
+            date:data.data,
+            time:data.time,
+            maxMember:data.slots,
+            location:data.location,
+            price:data.cost
+            }},function(err){
+            if(err)
+            {
+                console.log(err);
+                return next(err);
+            }
+            else
+            {
+
+            }
+
+        });
+    };
     getevents = function(data,next){
         var mongoose = require('mongoose');
         User = mongoose.model('User');
@@ -487,7 +514,8 @@ profilerepo = (function () {
         acceptfriend : acceptfriend,
         deletefriend:deletefriend,
         addpending:addpending,
-        deletepending:deletepending
+        deletepending:deletepending,
+        updateEvent: updateEvent
     };
 })();
 

@@ -94,6 +94,7 @@ var upload = multer({storage:options});
             res.redirect('/profile');
         });
     });
+
     // =====================================
     // ADMIN ===============================
     // =====================================
@@ -251,6 +252,14 @@ var upload = multer({storage:options});
        })
     });
 
+    router.post('/api/profile/updateEvent',function(req,res){
+
+        ProfileRepo.updateEvent(req.body,function(next){
+            console.log("lalalala");
+            res.render('/profile');
+        });
+
+    });
     router.get('/api/profile/',function(req,res){
         userRepo.getUsers(req,res);
     });

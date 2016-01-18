@@ -55,6 +55,9 @@
             }
         };
 
+
+
+
         $scope.today = function() {
             $scope.dt = new Date();
         };
@@ -126,6 +129,35 @@
 
             return '';
         };
+        $scope.saveEdittedEvent = function()
+        {
+
+            //event data opslaan
+            var velden = input.getElementsByTagName("input");
+            var desc = input.getElementsByTagName("textarea")[0];
+            var dropdown = input.getElementsByTagName("select")[0];
+            var form = velden[0].closest("form");
+
+            var mijnobjectje = {
+                'id':form.id,
+                'picture':velden["pictureUrl"].value,
+                'title':velden["etitle"].value,
+                'date':velden["date"].value,
+                'time':velden["time"].value,
+                'location':velden["Location"].value,
+                'group':dropdown.value,
+                'cost':velden["cost"].value,
+                'slots':velden["slots"].value,
+                'description':desc.value
+            };
+
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("POST","/api/profile/updateEvent", true);
+            xmlHttp.setRequestHeader("Content-type", "application/json");
+            xmlHttp.send(JSON.stringify(mijnobjectje));
+
+
+        };
 
         $scope.editEvent = function($event)
         {
@@ -137,6 +169,11 @@
             var input = document.getElementById("input");
             var velden = input.getElementsByTagName("input");
             var desc = input.getElementsByTagName("textarea")[0];
+            var form = velden[0].closest("form");
+
+
+
+            $scope.updating = true; //werkt niet bcause angular
 
             for(var i = lengte;i--;)
             {
@@ -155,6 +192,7 @@
                         velden["etitle"].value=elementen[i].innerText;
                         velden["Location"].value = elementen[i].children[1].innerText;
                         desc.value= elementen[i].children[0].innerText;
+                        form.id=elementen[i].children[2].innerText;
 
                         break;
                     case "date":
@@ -175,7 +213,7 @@
                         break;
                 }
 
-                //console.log("______________________________________");
+
             }
         }
 

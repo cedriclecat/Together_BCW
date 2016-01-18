@@ -134,15 +134,48 @@
             var elementen = tr.getElementsByTagName("td");
             var lengte = elementen.length;
 
+            var input = document.getElementById("input");
+            var velden = input.getElementsByTagName("input");
+            var desc = input.getElementsByTagName("textarea")[0];
+
             for(var i = lengte;i--;)
             {
 
                 var classname = elementen[i].className.split(" ");
-                console.log(classname[classname.length-1]);
-                switch(elementen[i].className)
-                {
 
+                var test = classname[classname.length-1];
+               // console.log(test);
+                switch(test)
+                {
+                    case "image":
+                        ///console.log("ima");
+                        break;
+                    case "name":
+
+                        velden["etitle"].value=elementen[i].innerText;
+                        velden["Location"].value = elementen[i].children[1].innerText;
+                        desc.value= elementen[i].children[0].innerText;
+
+                        break;
+                    case "date":
+                        //console.log("date");
+                        velden["date"].value=elementen[i].innerText;
+                        break;
+                    case "time":
+                        //console.log("time");
+                        velden["time"].value=elementen[i].innerText;
+                        break;
+                    case "price":
+                        //console.log("price");
+                        velden["cost"].value=elementen[i].innerText;
+                        break;
+                    case "maxMember":
+                        //console.log("member");
+                        velden["slots"].value=elementen[i].innerText;
+                        break;
                 }
+
+                //console.log("______________________________________");
             }
         }
 

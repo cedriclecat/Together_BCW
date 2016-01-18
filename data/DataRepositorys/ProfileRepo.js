@@ -35,7 +35,18 @@ profilerepo = (function () {
         User = mongoose.model('User');
         Events = mongoose.model('events');
         Groups = mongoose.model('groups');
-
+        var getnaam = require('./Profielmenu');
+        getnaam.getname(data,function(dfdf){
+            console.log(dfdf);
+            if(dfdf=="N"){
+                data.TOON = false;
+            }else{
+                data.TOON = true;
+                console.log("GOOO");
+                data.FOTO = dfdf.foto;
+                data.NAAM = dfdf.naam;
+                data.ADMIN = dfdf.Admin;
+            }
         var grps = data.query.id;
         var user = data.user._id;
         var zoek = "";
@@ -191,6 +202,7 @@ profilerepo = (function () {
                     }
                 });
             }
+        });
         });
     };
     changepicture = function(data,user,next){

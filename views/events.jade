@@ -19,33 +19,36 @@ block events
                         li
                             a(href='/') Home
                         li.active
-                            a(href='events') Events
+                            a(href='/events') Events
                         li
-                            a(href='groups') Groups
-                        li
-                            a(href='admin') Admin
-                        li.dropdown
-                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-                                img.profile-image.img-circle(src='../img/profile/default-profile-pic.png')
-                                |  Voornaam Familienaam
-                                span.caret
-                            ul.dropdown-menu
-                                li
-                                    a(href='/profile')
-                                        span.glyphicon.glyphicon-user(aria-hidden='true')
-                                        |  My Profile
-                                li
-                                    a(href='/help')
-                                        i.fa.fa-commenting
-                                        | Help
-                                li.divider(role='separator')
-                                li
-                                    a(href='/logout')
-                                        span.glyphicon.glyphicon-log-out(aria-hidden='true')
-                                        |  Logout
-                        li
-                            a(href='login')
-                                button.btn.btn-default.navbar-btn(type='button') Sign in
+                            a(href='/groups') Groups
+                        if(admin === true)
+                            li
+                                a(href='/admin') Admin
+                        if(toon === true)
+                            li.dropdown
+                                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                    img.profile-image.img-circle(src='#{foto}')
+                                    |  #{name}
+                                    span.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(href='/profile')
+                                            span.glyphicon.glyphicon-user(aria-hidden='true')
+                                            |  My Profile
+                                    li
+                                        a(href='/help')
+                                            i.fa.fa-commenting
+                                            | Help
+                                    li.divider(role='separator')
+                                    li
+                                        a(href='/logout')
+                                            span.glyphicon.glyphicon-log-out(aria-hidden='true')
+                                            |  Logout
+                        if(toon === false)
+                            li
+                                a(href='/login',title='sign in')
+                                    button.btn.btn-default.navbar-btn(type='button') Sign in
     .container-fluid(data-ng-app='event')
         .row
             .col-md-10.col-md-offset-1

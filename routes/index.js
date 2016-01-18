@@ -79,7 +79,7 @@ var upload = multer({storage:options});
     router.get('/profile',isLoggedIn, function (req , res) {
         user = req.user._id;
         ProfileRepo.getevents(req,function(next){
-            res.render('profile', {data:req.user.local.email,admin:req.ADMIN,toon:req.TOON, name:req.NAAM,foto:req.FOTO, title: 'Profile Page', evs:req.mijnevents,gevs:req.mijngoingevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
+            res.render('profile', {data:req.user.local.email,admin:req.ADMIN,toon:req.TOON, name:req.NAAM,foto:req.FOTO, title: 'Profile Page', evs:req.mijnevents,gevs:req.mijngoingevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups,pending:req.pending,friends:req.friends, friends2:req.friends2, izfriend:req.izfriend,izpending:req.izpending, izunknown:req.izunknown, user: req.user._id});
         });
     });
     router.post('/profile',function(req,res){
@@ -104,6 +104,39 @@ var upload = multer({storage:options});
             res.redirect('/profile');
         });
     });
+//profileaddfriend
+router.post('/profileaddfriend',function(req,res, next){
+    console.log("hhhhhhhhhhhhhhhhhhhhh");
+    var grps = req.query.id;
+    console.log(grps);
+    ProfileRepo.addpending(req, req.user._id, function (next) {
+        res.redirect('/profile?id=' + grps);
+    });
+});
+router.post('/profildeletedfriend',function(req,res, next){
+
+    ProfileRepo.deletefriend(req, req.user._id, function (next) {
+        res.redirect('/profile?id=' + req.usertobeadded);
+    });
+});
+router.post('/profildeletedfriendprof',function(req,res, next){
+
+    ProfileRepo.deletefriend(req, req.user._id, function (next) {
+        res.redirect('/profile');
+    });
+});
+router.post('/profileacceptfriend',function(req,res, next){
+
+    ProfileRepo.acceptfriend(req, req.user._id, function (next) {
+        res.redirect('/profile');
+    });
+});
+router.post('/profiledenyfriend',function(req,res, next){
+
+    ProfileRepo.deletepending(req, req.user._id, function (next) {
+        res.redirect('/profile');
+    });
+});
     // =====================================
     // ADMIN ===============================
     // =====================================

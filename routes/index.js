@@ -104,6 +104,7 @@ var upload = multer({storage:options});
             res.redirect('/profile');
         });
     });
+
 //profileaddfriend
 router.post('/profileaddfriend',function(req,res, next){
     console.log("hhhhhhhhhhhhhhhhhhhhh");
@@ -307,6 +308,14 @@ router.post('/profiledenyfriend',function(req,res, next){
        })
     });
 
+    router.post('/api/profile/updateEvent',function(req,res){
+
+        ProfileRepo.updateEvent(req.body,function(next){
+            console.log("lalalala");
+            res.render('/profile');
+        });
+
+    });
     router.get('/api/profile/',function(req,res){
         userRepo.getUsers(req,res);
     });

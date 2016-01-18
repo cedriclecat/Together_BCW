@@ -69,7 +69,7 @@ var upload = multer({storage:options});
     router.get('/profile',isLoggedIn, function (req , res) {
         user = req.user._id;
         ProfileRepo.getevents(req,function(next){
-            res.render('profile', {data:req.user.local.email, title: 'Profile Page', evs:req.mijnevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
+            res.render('profile', {data:req.user.local.email, title: 'Profile Page', evs:req.mijnevents,gevs:req.mijngoingevents, eigen:req.OWN, MS:req.MemberSince ,UD:req.UserData, naam:req.naam ,groups:req.groups, allgroups:req.allgroups});
         });
     });
     router.post('/profile',function(req,res){

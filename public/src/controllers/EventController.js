@@ -147,7 +147,7 @@
                      button.firstChild.className = "fa fa-check fa-lg";
                      button.nextSibling.className = "btn btn-info btn-responsive active disapprove";
                      button.nextSibling.firstChild.className = "fa fa-remove fa-lg";
-                     console.log("gelukt")
+                     //console.log("gelukt")
 
 
             }

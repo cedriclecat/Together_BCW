@@ -44,6 +44,13 @@ profilerepo = (function () {
                 }
                 data.naam=naam;
 
+
+                Events.find({members:user},function(err,even) {
+                    if (err) { return next(err);}
+                    else {
+                        data.mijngoingevents = even;
+                    }
+                });
                 Events.find({createdby:zoek},function(err,even) {
                     if (err) { return next(err);}
                     else {
@@ -429,11 +436,11 @@ profilerepo = (function () {
         });
     };
     addpending = function(data,user,next){
-        console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+
         var mongoose = require('mongoose');
         var Usermod = mongoose.model('User');
         var grps = data.query.id;
-        console.log(grps);
+        //console.log(grps);
 
         //User ophalen
         Usermod.findOne({_id:grps},function(err,even) {

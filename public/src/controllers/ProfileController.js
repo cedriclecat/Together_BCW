@@ -127,6 +127,25 @@
             return '';
         };
 
+        $scope.editEvent = function($event)
+        {
+
+            var tr = $event.currentTarget.closest('tr');
+            var elementen = tr.getElementsByTagName("td");
+            var lengte = elementen.length;
+
+            for(var i = lengte;i--;)
+            {
+
+                var classname = elementen[i].className.split(" ");
+                console.log(classname[classname.length-1]);
+                switch(elementen[i].className)
+                {
+
+                }
+            }
+        }
+
     };
 
 

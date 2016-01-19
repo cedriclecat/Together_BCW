@@ -98,9 +98,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 col2.className = "col-md-10";
                 var image = document.createElement('img');
                 image.src = entry.Foto;
+                image.style.margin="5px";
                 image.style.height = "50px";
                 var h3 = document.createElement("p");
                 h3.innerText = entry.naam;
+                h3.style.margin="20px 5px 5px 10px";
+                h3.style.color="white";
                 h3.style.marginTop = "11px";
                 var style = document.createElement("style");
                 style.type = "text/css";
@@ -130,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 hoofddiv.removeChild(hoofddiv.lastChild);
             }
             //Hervul
-            console.log(entry);
+            //console.log(entry);
 
             entry.forEach(function (data) {
                 var elements = document.getElementsByTagName("header");

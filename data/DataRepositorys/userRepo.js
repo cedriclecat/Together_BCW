@@ -28,7 +28,9 @@ userSchema.updateUser = function(req,res,id,firstName,lastName,email,birthday,ma
         birthday:birthday,
         interests: interests,
         description: description
-    }},function(err){console.log(err);});
+    }},function(err){
+       // console.log(err);
+    });
     res.send("Profile Updated");
 };
 
@@ -38,7 +40,7 @@ userSchema.deleteUser = function(req,res,id){
             res.send('User deleted')
         }
         else {
-            console.log('error' + err)
+         //   console.log('error' + err)
         }
     });
 };

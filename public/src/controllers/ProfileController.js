@@ -51,7 +51,7 @@
                 return response.data;
             }
             function errorCallback(response){
-                console.log("Failure: " + response.data);
+             //   console.log("Failure: " + response.data);
             }
         };
 
@@ -211,7 +211,7 @@
 
             }
 
-        }
+        };
         $scope.editEvent = function($event)
         {
 
@@ -263,6 +263,8 @@
                     case "maxMember":
                         //console.log("member");
                         velden["slots"].value=elementen[i].innerText;
+                        break;
+                    default:
                         break;
                 }
 

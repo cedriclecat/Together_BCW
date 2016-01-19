@@ -4,7 +4,7 @@
 
 
 (function(){
-    "use strict"
+    "use strict";
 
     var EventsController = function($scope,$http,$sce)
     {
@@ -94,7 +94,7 @@
                     button.firstChild.className = "fa fa-remove fa-lg";
                     button.nextSibling.className = "btn btn-info btn-responsive approve";
                     button.nextSibling.firstChild.className = "fa fa-check fa-lg";
-                    console.log(button);
+                //    console.log(button);
                  //   button.nextSibling.classList = "btn btn-info btn-responsive approve";
 
                 }
@@ -103,7 +103,7 @@
 
             $scope.ikGa = function($event){
 
-                console.log("ik ga");
+               // console.log("ik ga");
                 var params = $event.currentTarget.id;
 
 
@@ -148,7 +148,7 @@
 
             }
         }
-    }
+    };
     var event = angular.module("event",[]);
 
     angular.module("event").controller('EventsController',['$scope','$http','$sce',EventsController]);

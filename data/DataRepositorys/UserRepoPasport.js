@@ -10,7 +10,7 @@ UserRepoPasport = (function () {
 
         User.create(data, function (err) {
             if (err) {
-                console.log(err);
+              //  console.log(err);
                 return next(err); }
             next(data);
         });

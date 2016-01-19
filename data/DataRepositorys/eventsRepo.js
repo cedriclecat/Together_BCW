@@ -8,7 +8,7 @@ EventsRepo = (function(){
 
     var getAllEvents = function(next){
         Event.find({}).exec(function(err,docs){
-           if(err)console.log(err);
+           if(err)next(err);
             next(docs);
         });
     };
@@ -19,7 +19,7 @@ EventsRepo = (function(){
                 res.redirect('/admin');
             }
             else {
-                console.log('error' + err)
+            //    console.log('error' + err)
             }
         });
     };

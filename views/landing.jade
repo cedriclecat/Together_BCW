@@ -93,10 +93,12 @@ block landing
                     img.img.img-responsive(src='#{prom.pictureUrl}', alt='Promoted')
                     button.btn.btn-info.btn-responsive.btn-lg #{prom.name}
 
-    script(type='text/javascript', src='/dist/js/jquery.min.js')
-    script(type='text/javascript', src='/dist/js/bootstrap.min.js')
-    script.
-        $('.carousel').carousel({
-            interval: 3500, // in milliseconds
-            pause: 'none' // set to 'true' to pause slider on mouse hover
-        });
+    footer.footer
+        .container-fluid
+            .row
+                p.text-muted Project Front & Back end Development ( Brecht Tourlousse, Cedric Lecat & Wouter Dumon )
+                a(href='#')
+                    span.glyphicon.glyphicon-menu-up.bck-to-top(aria-hidden='true')
+    script(type='text/javascript', src='/dist/js/jquery.min.js',defer)
+    script(type='text/javascript', src='/dist/js/bootstrap.min.js',defer)
+    script(type='text/javascript', src='/dist/js/together.min.js',defer)

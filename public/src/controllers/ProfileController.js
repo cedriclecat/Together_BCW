@@ -205,9 +205,14 @@
                     'id' : id
                 };
                 var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("POST","/api/profile/deleteEvent", false);
+                xmlHttp.open("POST","/api/profile/deleteEvent", true);
                 xmlHttp.setRequestHeader("Content-type", "application/json");
                 xmlHttp.send(JSON.stringify(mijnobjectje));
+                xmlHttp.onload=function(e)
+                {
+                    document.location.reload(true);
+                }
+
 
             }
 

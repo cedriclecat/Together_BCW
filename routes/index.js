@@ -327,8 +327,17 @@ router.post('/profiledenyfriend',function(req,res, next){
     });
 
     router.get('/api/profile/:_id',function(req,res){
+        var xid;
+        var kiesid = req.query.id;
         var id = req.user._id;
-        userRepo.getUserById(req,res,id);
+        if(kiesid=='undefined'){
+            xid = id;
+
+        }else{
+            xid=kiesid;
+        }
+
+        userRepo.getUserById(req,res,xid);
 
     });
 

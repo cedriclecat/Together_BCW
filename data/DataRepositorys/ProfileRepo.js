@@ -109,7 +109,7 @@ profilerepo = (function () {
                     data.naam = naam;
 
 
-                    Events.find({members: user}, function (err, even) {
+                    Events.find({members: zoek}, function (err, even) {
                         if (err) {
                             return next(err);
                         }

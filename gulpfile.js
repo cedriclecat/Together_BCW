@@ -13,7 +13,16 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     gutil = require('gulp-util'),
     autoprefixer = require('gulp-autoprefixer'),
-    sass = require('gulp-sass');
+    sass = require('gulp-sass'),
+    ngAnnotate = require('gulp-ng-annotate'),
+    imageMin = require('gulp-imagemin'),
+    pngquant = require('imagemin-pngquant');
+
+
+var event = ['./public/src/app.js','./public/src/models/Event.js','./public/src/controllers/EventController.js'];
+var admin = ['./public/src/app.js','./public/src/services/userService.js','./public/src/services/eventService.js', './public/src/services/groupService.js','./public/src/services/adminService.js','./public/src/controllers/AdminController.js'];
+var profile = ['./public/src/app.js','./public/src/services/mStatusService.js','./public/src/services/jobService.js','./public/src/services/countryService.js','./public/src/services/certainUserService.js', './public/src/controllers/ProfileController.js'];
+
 
 gulp.task("default",function(){
     var jsWatcher = gulp.watch('./public/scripts/**/*.js', ['js-build']);
@@ -24,14 +33,67 @@ gulp.task("default",function(){
     sassWatcher.on('change', function(event){
         console.log("File: " + event.path + " was " + event.type);
     });
+    var imageWatcher = gulp.watch('./public/img/**/*.png', ['images']);
+    imageWatcher.on('change', function(event){
+        console.log("File: " + event.path + " was " + event.type);
+    });
 });
 
-gulp.task("js-build", function(){
-    gulp.src("./public/src/**/*.js")
+gulp.task('images', function() {
+    gulp.src('./public/img/**/*.png')
+        .pipe(imageMin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest('./public/dist/images'));
+});
+
+gulp.task("together", function(){
+    gulp.src('./public/dist/js/together.js')
         .pipe(jshint())
         .pipe(jshint.reporter(jsStylish))
         .pipe(sourcemaps.init())
-        .pipe(concat("together.min.js"))
+        .pipe(concat('together.min.js'))
+        .pipe(uglify())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./public/dist/js/'))
+        .pipe(notify({message: 'js built'}));
+});
+
+gulp.task("event-js-build", function(){
+    gulp.src(event)
+        .pipe(jshint())
+        .pipe(jshint.reporter(jsStylish))
+        .pipe(sourcemaps.init())
+        .pipe(concat('event-page.min.js'))
+        .pipe(ngAnnotate())
+        .pipe(uglify())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./public/dist/js/'))
+        .pipe(notify({message: 'js built'}));
+});
+
+gulp.task("admin-js-build", function(){
+    gulp.src(admin)
+        .pipe(jshint())
+        .pipe(jshint.reporter(jsStylish))
+        .pipe(sourcemaps.init())
+        .pipe(concat('admin-page.min.js'))
+        .pipe(ngAnnotate())
+        .pipe(uglify())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./public/dist/js/'))
+        .pipe(notify({message: 'js built'}));
+});
+
+gulp.task("profile-js-build", function(){
+    gulp.src(profile)
+        .pipe(jshint())
+        .pipe(jshint.reporter(jsStylish))
+        .pipe(sourcemaps.init())
+        .pipe(concat('profile-page.min.js'))
+        .pipe(ngAnnotate())
         .pipe(uglify())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./public/dist/js/'))
@@ -46,7 +108,7 @@ gulp.task("sass",function(){
         .pipe(csslint({
             'ids': false
         }))
-        .pipe(csslint.reporter("compact"))
+        .pipe(csslint.reporter('compact'))
         .pipe(autoprefixer('last 2 versions','ie9'))
         .pipe(sourcemaps.init())
         .pipe(cssMinifier({ keepBreaks: false }))

@@ -6,7 +6,7 @@
 (function(){
     "use strict"
 
-    var EventsController = function($scope,$http)
+    var EventsController = function($scope,$http,$sce)
     {
 
         var xmlUser = new XMLHttpRequest();
@@ -34,7 +34,13 @@
 
             for(var i = data.length;i>0;i--)
             {
+                //var lat= data[i-1].location.split("/./")[1];
+                //var lnt= data[i-1].location.split("/./")[2];
+                var adress = data[i-1].location.split("/./")[0];
+                adress = adress.replace(" ","+");
 
+
+                var url="https://www.google.com/maps/embed/v1/place?key=AIzaSyAiapygRLC6a3O-pyXahU2l47I8pMV2Pdw&q="+adress;
                 var event = new Event(
                     data[i-1].id,
                     inWords(i+1),
@@ -44,25 +50,15 @@
                     data[i-1].time,
                     data[i-1].maxMember,
                     data[i-1].members,
-                    data[i-1].location,
+                    data[i-1].location.split("/./")[0],
                     data[i-1].price,
                     data[i-1].pictureUrl,
-                    data[i-1].tags,
+                    $sce.trustAsResourceUrl(url),
                     data[i-1].promoted,
                     data[i-1].TIMESTAMP,
                     data[i-1].pictureSlider,
                     data[i-1].createdby);
-
-                   /*  for(var j = data[i-1].members.length;j>1;j--)
-                     {
-
-                         console.log(data[i-1].members[j-1]);
-                         if(data[i-1].members[j-1] == UserId)
-                         {
-
-                             GaEvents.push(event);
-                         }
-                     }*/
+                
                     if(data[i-1].members.indexOf(UserId)>=0)
                     {
                         GaEvents.push(event);
@@ -155,7 +151,7 @@
     }
     var event = angular.module("event",[]);
 
-    angular.module("event").controller('EventsController',['$scope',EventsController]);
+    angular.module("event").controller('EventsController',['$scope','$http','$sce',EventsController]);
 
 })();
 

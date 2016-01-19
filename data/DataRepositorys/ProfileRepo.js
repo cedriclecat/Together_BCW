@@ -9,12 +9,12 @@ profilerepo = (function () {
 
 
         Events = require('../models/events');
-
+        console.log(data);
        // prictureUrl:data.picture
 
         Events.update({id:data.id},{$set:{name:data.title,
             description:data.description,
-            date:data.data,
+            date:data.date,
             time:data.time,
             maxMember:data.slots,
             location:data.location,

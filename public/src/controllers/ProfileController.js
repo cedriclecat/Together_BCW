@@ -139,23 +139,54 @@
             var dropdown = input.getElementsByTagName("select")[0];
             var form = velden[0].closest("form");
 
-            var mijnobjectje = {
-                'id':form.id,
-                'picture':velden["pictureUrl"].value,
-                'title':velden["etitle"].value,
-                'date':velden["date"].value,
-                'time':velden["time"].value,
-                'location':velden["Location"].value,
-                'group':dropdown.value,
-                'cost':velden["cost"].value,
-                'slots':velden["slots"].value,
-                'description':desc.value
-            };
 
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("POST","/api/profile/updateEvent", true);
-            xmlHttp.setRequestHeader("Content-type", "application/json");
-            xmlHttp.send(JSON.stringify(mijnobjectje));
+
+           /* $http.get("http://maps.googleapis.com/maps/api/geocode/json?address=Meulebeke+krinkelstraat&key=AIzaSyAiapygRLC6a3O-pyXahU2l47I8pMV2Pdw").then(successCallback,errorCallback);
+
+             function successCallback(response){
+                 console.log(response);
+             }
+             function errorCallback(response) {
+                 console.log("Failure: " + response.data)
+             }*/
+            var xmllocation = new XMLHttpRequest();
+            xmllocation.open("GET","https://maps.googleapis.com/maps/api/geocode/json?address=Meulebeke+krinkelstraat&key=AIzaSyAiapygRLC6a3O-pyXahU2l47I8pMV2Pdw", true);
+
+            xmllocation.onload=function(e)
+            {
+               var gegeves = JSON.parse(xmllocation.responseText);
+                var location = gegeves["results"][0]["geometry"]["location"];
+                var lat = location["lat"];
+                var lng = location["lng"];
+
+                var mijnobjectje = {
+                    'id':form.id,
+                    'picture':velden["pictureUrl"].value,
+                    'title':velden["etitle"].value,
+                    'date':velden["date"].value,
+                    'time':velden["time"].value,
+                    'location':velden["Location"].value +"/./"+lat+"/./"+lng,
+                    'group':dropdown.value,
+                    'cost':velden["cost"].value,
+                    'slots':velden["slots"].value,
+                    'description':desc.value
+                };
+                console.log(mijnobjectje);
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("POST","/api/profile/updateEvent", true);
+                xmlHttp.setRequestHeader("Content-type", "application/json");
+                xmlHttp.onload=function(e){
+                    document.location.reload(true);
+                };
+                xmlHttp.send(JSON.stringify(mijnobjectje));
+
+
+
+            };
+            xmllocation.send(null);
+
+
+
 
 
         };

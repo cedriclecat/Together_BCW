@@ -24,6 +24,7 @@
 
         certainUserService.getById().then(function(data){
             $scope.profile = data;
+
         });
 
 

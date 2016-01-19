@@ -384,8 +384,7 @@ block profile
                                             th Status
                                             th Cost
                                             th Slots
-                                            if eigen == 1
-                                                th Action
+
                                     tbody
                                         for events in gevs
                                             tr
@@ -405,12 +404,6 @@ block profile
                                                         span.label.label-info Soon
                                                 td.center.price #{events.price}
                                                 td.center.maxMember #{events.maxMember}
-                                                if eigen == 1
-                                                    td.menu-action.rounded-btn
-                                                        a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit', id='#{events.id}',ng-click="editEvent($event)")
-                                                            i.fa.fa-pencil
-                                                        a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete', id = "#{events.id}",ng-click="deleteEvent($event)")
-                                                            i.fa.fa-times
 
 
                             if eigen==1

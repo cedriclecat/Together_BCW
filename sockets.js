@@ -14,7 +14,7 @@ module.exports = function(io){
     });*/
     io.sockets.on('connection', function (socket) {
 
-      //  console.log("connected");
+        console.log("connected");
         /*SocketRepo.gettheuser(nick,function(next) {
             allClients.push(socket.nick);
         });*/
@@ -36,7 +36,7 @@ module.exports = function(io){
           Object.getPrototypeOf(this).onclose(this,reason);
         };
         socket.on('disconnect', function() {
-         //   console.log('Got disconnect!');
+            console.log('Got disconnect!');
 
             //socket.emit('deleted',socket.nick);
             //socket.broadcast.emit('deleted',socket.nick);
@@ -46,7 +46,7 @@ module.exports = function(io){
             var nick = data.eerst;
             var room = data.tweedes;
             socket.room = room;
-         //   console.log('room ' + socket.room + ' saved');
+            console.log('room ' + socket.room + ' saved');
             socket.join(room);
             //  socket.set('name', nick);
             socket.nick=nick;
@@ -58,28 +58,28 @@ module.exports = function(io){
                 currentUser.nick = next;
                 currentUser.id=socket.id;
                 allClientsclient.push(currentUser);
-              //  console.log(currentUser);
+                console.log(currentUser);
                 var clients = socket.adapter.sids;
                 var keys = Object.keys(clients); //alle users
-              //  console.log(keys.length);
+                console.log(keys.length);
                 var doorsturen = [];
                 for(i=0; i<keys.length;i++){
                     var socketvanarray = clients[keys[i]];
                     var arr = Object.keys(socketvanarray);
 
-                 //   console.log(arr);
+                    console.log(arr);
                     if(arr.length ==2){
                         //zoja will zeggen dat hij in een room zit aka eerste > '4':true
                         var eerstenodekey = arr[0];
                         eerstenodekey = eerstenodekey.replace("'","");
-                    //    console.log("HIERHIERHIER");
-                      //  console.log(eerstenodekey); // zou normaal room moeten zijn
+                        console.log("HIERHIERHIER");
+                        console.log(eerstenodekey); // zou normaal room moeten zijn
                         if(eerstenodekey==room) {
                             //arr[1] => socket.id
                             for (b = 0; b < allClientsclient.length; b++) {
                                 if (allClientsclient[b].id == arr[1]) {
                                     //ZELFDE ID
-                                   // console.log(allClientsclient[b].nick); //id van user
+                                    console.log(allClientsclient[b].nick); //id van user
                                     doorsturen.push(allClientsclient[b]);
                                     //alle users aka emiten :D
                                 }

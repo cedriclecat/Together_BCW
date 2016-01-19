@@ -4,9 +4,9 @@
 GroupsRepo = (function () {
     creategroup = function(data,user,next){
         var files = data.file;
-       // console.log(files);
+        console.log(files);
         var spliter = files.path.split("\\");
-       // console.log(spliter);
+        console.log(spliter);
         var filenaam1 = "../img/uploads/" + spliter[4];
         data = data.body;
         var mongoose = require('mongoose');
@@ -32,7 +32,7 @@ GroupsRepo = (function () {
             mijngroup.picture= filenaam1;
             mijngroup.chat="";
             Groups.create(mijngroup, function (err) {
-              //  console.log(err);
+                console.log(err);
                 if (err) { return next(err); }
                 next(mijngroup);
             });
@@ -46,12 +46,12 @@ GroupsRepo = (function () {
         var getnaam = require('./Profielmenu');
         var ZENDMIJ = {};
         getnaam.getname(req,function(dfdf){
-         //   console.log(dfdf);
+            console.log(dfdf);
             if(dfdf=="N"){
                 ZENDMIJ.TOON = false;
             }else{
                 ZENDMIJ.TOON = true;
-            //    console.log("GOOO");
+                console.log("GOOO");
                 ZENDMIJ.FOTO = dfdf.foto;
                 ZENDMIJ.NAAM = dfdf.naam;
                 ZENDMIJ.ADMIN=dfdf.Admin;
@@ -96,7 +96,7 @@ GroupsRepo = (function () {
             });
             //Code hier dat de events laad en toont
         }else if(evt!=undefined){
-           // console.log(evt);
+            console.log(evt);
             //Code hier dat de chat maakt
         }else {
             Groups.find(function (err, events) {

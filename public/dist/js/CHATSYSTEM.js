@@ -22,14 +22,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return query_string;
     }();
-   // console.log(QueryString.groupss);
+    console.log(QueryString.groupss);
     if(QueryString.groupss === undefined) {}else{
-     //   console.log('hh');
+        console.log('hh');
         var socket = io.connect();
         socket.on('nick', function (data) {
             document.getElementById("clientshere").value = "";
             data.forEach(function (entry) {
-               // console.log(entry);
+                console.log(entry);
                 var container = document.createElement('div');
                 container.className = "container-fluid";
                 container.style.marginTop = "10px";
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
         socket.on('deleted', function (data) {
-          //  console.log(data);
+            console.log(data);
             document.getElementById("LINK" + data).remove();
 
         });
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             //Hervul
             data.forEach(function (entry) {
-              //  console.log(entry);
+                console.log(entry);
                 entry = entry.nick;
                 var container = document.createElement('div');
                 container.className = "container-fluid";
@@ -132,8 +132,8 @@ document.addEventListener("DOMContentLoaded", function () {
             //Hervul
             entry.forEach(function (data) {
                 var elements = document.getElementsByTagName("header");
-               // console.log(elements[0].id);
-              //  console.log(data);
+                console.log(elements[0].id);
+                console.log(data);
                 //var msg = data.nick + ': ' + data.message;
                 var container = document.createElement('div');
                 container.className = "container-fluid";
@@ -186,17 +186,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
         var elements = document.getElementsByTagName("header");
-    //    console.log(elements[0].id);
+        console.log(elements[0].id);
         var zendmij = {};
         zendmij.eerst = elements[0].id;
         zendmij.tweedes = QueryString.groupss;
-    //    console.log(zendmij);
+        console.log(zendmij);
         socket.emit('nick', zendmij); //this needs to change to your nickname
         document.getElementById("btnchat").addEventListener("click", function () {
             var x = {};
             x.a= QueryString.groupss;
             x.b= document.getElementById("chat-input").value;
-         //   console.log(x);
+            console.log(x);
             socket.emit('rockgroup',x);
         }, false);
     }

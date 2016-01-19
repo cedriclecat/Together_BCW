@@ -8,12 +8,12 @@ HomeRepo = (function () {
         var getnaam = require('./Profielmenu');
         var VERZENDMIJ = {};
         getnaam.getname(req,function(dfdf){
-      //  console.log(dfdf);
+        console.log(dfdf);
             if(dfdf=="N"){
                 VERZENDMIJ.TOON = false;
             }else{
                 VERZENDMIJ.TOON = true;
-               // console.log("GOOO");
+                console.log("GOOO");
                 VERZENDMIJ.FOTO = dfdf.foto;
                 VERZENDMIJ.NAAM = dfdf.naam;
                 VERZENDMIJ.ADMIN = dfdf.Admin;

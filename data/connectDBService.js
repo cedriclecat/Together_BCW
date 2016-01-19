@@ -18,15 +18,15 @@ module.exports = (function (configURL, database) {
             msg += collections[property].name + ", ";
         }
 
-      //  console.log(msg);
+        console.log(msg);
     });
 
     database.connection.on("error", function (error) {
-    //    console.log("connection error: " , error.message);
+        console.log("connection error: " , error.message);
     });
 
     database.connection.on("close", function () {
-      //  console.log("connection closed: ", configURL);
+        console.log("connection closed: ", configURL);
     });
 
     return database; // mongoose connected

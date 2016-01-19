@@ -35,9 +35,10 @@ profilerepo = (function () {
     };
     deleteEvent=function(id,next)
     {
+
         Events = require('../models/events');
 
-        Events.remove({id:data.id},function(err) {
+        Events.remove({id:id},function(err) {
             if(err)
             {
                 console.log(err);
@@ -45,11 +46,12 @@ profilerepo = (function () {
             }
             else
             {
+                console.log("test");
                 next();
             }
 
         });
-    }
+    };
     getevents = function(data,next){
         var mongoose = require('mongoose');
         User = mongoose.model('User');

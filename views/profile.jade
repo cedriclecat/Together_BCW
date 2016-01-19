@@ -348,23 +348,26 @@ block profile
                                         for events in evs
                                             tr
 
-                                                td
+                                                td.image
                                                     img(src='#{events.pictureUrl}', alt='#{events.pictureUrl}', height='80')
-                                                td #{events.name}
-                                                td.center #{events.date}
-                                                td.center #{events.time}
+                                                td.name #{events.name}
+                                                    p(ng-hide="true")=events.description
+                                                    p(ng-hide="true")=events.location
+                                                    p(ng-hide="true")=events.id
+                                                td.center.date #{events.date}
+                                                td.center.time #{events.time}
                                                 td.center
                                                     if events.done == 1
                                                         span.label.label-success Finish
                                                     else
                                                         span.label.label-info Soon
-                                                td.center #{events.price}
-                                                td.center #{events.maxMember}
+                                                td.center.price #{events.price}
+                                                td.center.maxMember #{events.maxMember}
                                                 if eigen == 1
                                                     td.menu-action.rounded-btn
-                                                        a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit', id='#{events.id}')
+                                                        a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='edit', id='#{events.id}',ng-click="editEvent($event)")
                                                             i.fa.fa-pencil
-                                                        a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete', id = "#{events.id}")
+                                                        a.menu-icon(data-placement='top', data-toggle='tooltip', data-original-title='delete', id = "#{events.id}",ng-click="deleteEvent($event)")
                                                             i.fa.fa-times
                             h3
                                 i.fa.fa-bolt.mgr-10.profile-icon

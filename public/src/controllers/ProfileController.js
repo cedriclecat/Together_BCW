@@ -165,6 +165,7 @@
             var tr = $event.currentTarget.closest('tr');
             var elementen = tr.getElementsByTagName("td");
             var id = elementen[1].children[2].innerText;
+            //console.log(elementen[1].children[2]);
 
             var deleteEvent = $window.confirm('Are you absolutely sure you want to delete?');
             if(deleteEvent)

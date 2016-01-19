@@ -43,7 +43,6 @@ var upload = multer({storage:options});
     // =====================================
     router.get('/', function(req, res) {
         HomeRepo.inithome(req,function(next){
-            console.log(next);
             res.render('landing', {data:next.data, path:next.path,toon:next.TOON, name:next.NAAM,foto:next.FOTO, admin:next.ADMIN, newe:next.newe, trend:next.trend,prom:next.prom,title:'Home Page'});
         });
     });

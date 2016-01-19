@@ -95,9 +95,6 @@ GroupsRepo = (function () {
                 });
             });
             //Code hier dat de events laad en toont
-        }else if(evt!=undefined){
-          //  console.log(evt);
-            //Code hier dat de chat maakt
         }else {
             Groups.find(function (err, events) {
                 if (err) {

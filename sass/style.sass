@@ -278,9 +278,10 @@ td
       &:hover
         background-color: inherit
   .chat
-    overflow: auto
-    height: auto // 585 px
-
+    overflow-y: scroll
+    height: 585px
+    @media screen and (max-width: 480px)
+      height: 200px
   .panel-heading
     +df-bcolor-tcolor
     +df-border-elem

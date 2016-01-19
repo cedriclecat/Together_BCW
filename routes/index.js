@@ -338,15 +338,16 @@ router.post('/profiledenyfriend',function(req,res, next){
             firstName = req.body.firstName,
             lastName = req.body.lastName,
             email = req.body.email,
+            gender = req.body.gender,
             marital = req.body.marital,
             work = req.body.work,
             country = req.body.country,
-            birthday = req.body.birthday,
             city = req.body.city,
+            birthday = req.body.birthday,
             interests = req.body.interests,
             description = req.body.description;
 
-        userRepo.updateUser(req,res,id,firstName,lastName,email,birthday,marital,work,country,city,interests,description);
+        userRepo.updateUser(req,res,id,firstName,lastName,email,gender,marital,work,country,city,birthday,interests,description);
     });
 
     router.delete('/api/user/delete/:_id',function(req,res){

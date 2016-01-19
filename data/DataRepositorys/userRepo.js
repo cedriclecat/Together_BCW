@@ -16,11 +16,12 @@ userSchema.getUserById = function(req,res,id){
     })
 };
 
-userSchema.updateUser = function(req,res,id,firstName,lastName,email,birthday,marital,work,country,city,interests,description){
+userSchema.updateUser = function(req,res,id,firstName,lastName,email,gender,marital,work,country,city,birthday,interests,description){
     userSchema.update({_id:id},{$set:{
         firstName: firstName,
         lastName: lastName,
         email: email,
+        gender: gender,
         marital: marital,
         work: work,
         country: country,
@@ -29,7 +30,6 @@ userSchema.updateUser = function(req,res,id,firstName,lastName,email,birthday,ma
         interests: interests,
         description: description
     }},function(err){
-       // console.log(err);
     });
     res.send("Profile Updated");
 };

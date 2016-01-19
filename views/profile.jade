@@ -89,8 +89,7 @@ block profile
                             if eigen == 1
                                 .col-xs-12.upload-dv
                                     form(name='uploadpicture',action='/profilepicture', method='post',enctype="multipart/form-data")
-                                        .form-group
-                                            input#input-1.file(type='file',name='PICTURE')
+                                        input#input-1.file(type='file',name="PICTURE")
                                         .form-group
                                             button.btn.btn-save#submit(type='submit')
                                                 span.menu-icon
@@ -237,11 +236,11 @@ block profile
                                                     .row
                                                         .col-xs-12
                                                             span.radio-off
-                                                                input#optionsRadios3(checked='checked',value='Male', name='optionsRadios2', type='radio', ng-model='gender')
+                                                                input#optionsRadios3(type='radio',value='Male', name='optionsRadios2' , ng-model='gender')
                                                                 label(for='optionsRadios3')  Male
 
                                                             span.radio-off1
-                                                                input#optionsRadios4(value='Female', name='optionsRadios2', type='radio', data-ng-model='gender')
+                                                                input#optionsRadios4(type='radio',value='Female', name='optionsRadios2' , ng-model='gender')
                                                                 label(for='optionsRadios4')  Female
 
 
@@ -490,7 +489,7 @@ block profile
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            input(type='number', name='slots', min='1', max='5', data-ng-model='slots',data-ng-required='true')
+                                                            input(type='number', name='slots', min='1', max='100', data-ng-model='slots',data-ng-required='true')
                                                             .help-block(data-ng-messages='eventsForm.slots.$error', data-ng-if='eventsForm.slots.$touched')
                                                                 p(data-ng-message='required') Amount of slots is required.
                                                                 p(data-ng-message='number') Amount of slots must be a number.
@@ -500,10 +499,10 @@ block profile
                                                 .col-md-9.controls
                                                     .row
                                                         .col-md-12
-                                                            textarea.form-control(rows='3',name='edescription' ,ng-model='edescription',data-ng-minlength='20', data-ng-maxlength='100', data-ng-required='true')
+                                                            textarea.form-control(rows='3',name='edescription' ,ng-model='edescription',data-ng-minlength='20', data-ng-maxlength='500', data-ng-required='true')
                                                             .help-block(data-ng-messages='eventsForm.edescription.$error', data-ng-if='eventsForm.edescription.$touched')
                                                                 p(data-ng-message='minlength') Event description is too short ( 20 ).
-                                                                p(data-ng-message='maxlength') Event description is too long ( 100 ).
+                                                                p(data-ng-message='maxlength') Event description is too long ( 500 ).
                                                                 p(data-ng-message='required') Event description is required.
                                             .form-group
                                                 label.col-md-3.control-label
@@ -633,19 +632,20 @@ block profile
                                                             i.fa.fa-fw.fa-check
                                                         |  Save
 
-    script(type='text/javascript', src='/dist/js/jquery.min.js')
-    script(type='text/javascript', src='/dist/js/bootstrap.min.js')
-    script(src='/dist/js/angular.min.js')
-    script(src='/dist/js/angular-messages.min.js')
-    script(src='/dist/js/angular-animate.min.js')
-    script(src='//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js')
-    script(src='/src/app.js')
-    script(src='/src/services/mStatusService.js')
-    script(src='/src/services/jobService.js')
-    script(src='/src/services/countryService.js')
-    script(src='/src/services/certainUserService.js')
-    script(src='/src/controllers/ProfileController.js')
-    script(type='text/javascript', src='/dist/js/fileinput.min.js')
+    footer.footer
+        .container-fluid
+            .row
+                p.text-muted Project Front & Back end Development ( Brecht Tourlousse, Cedric Lecat & Wouter Dumon )
+                a(href='#')
+                    span.glyphicon.glyphicon-menu-up.bck-to-top(aria-hidden='true')
+    script(type='text/javascript', src='/dist/js/jquery.min.js',defer)
+    script(type='text/javascript', src='/dist/js/bootstrap.min.js',defer)
+    script(type='text/javascript', src='/dist/js/fileinput.min.js',defer)
+    script(type='text/javascript', src='/dist/js/angular.min.js',defer)
+    script(type='text/javascript', src='/dist/js/angular-messages.min.js',defer)
+    script(type='text/javascript', src='/dist/js/angular-animate.min.js',defer)
+    script(type='text/javascript', src='/dist/js/ui-bootstrap.js',defer)
+    script(type='text/javascript', src='/dist/js/profile-page.min.js',defer)
 
 
 

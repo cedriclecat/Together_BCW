@@ -109,14 +109,36 @@ profilerepo = (function () {
                     data.naam = naam;
 
 
-                    Events.find({members: zoek}, function (err, even) {
+                    Events.find({}, function (err, even) {
                         if (err) {
+
                             return next(err);
                         }
                         else {
-                            data.mijngoingevents = even;
+                            var goingevents = [];
+                            for(var i = 0;i<even.length;i++)
+                            {
+                               if(even[i].members.indexOf(zoek)>0)
+                               {
+                                   goingevents.push(even[i]);
+                                  
+                               }
+                            }
+                            data.mijngoingevents = goingevents;
                         }
                     });
+                    /*
+                    Events.find({members:zoek}, function (err, even) {
+                        if (err) {
+
+                            return next(err);
+                        }
+                        else {
+                            console.log(zoek,even);
+                            data.mijngoingevents = even;
+                        }
+                    });*/
+
                     Events.find({createdby: zoek}, function (err, even) {
                         if (err) {
                             return next(err);

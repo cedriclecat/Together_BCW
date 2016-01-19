@@ -33,7 +33,7 @@ SocketRepo = (function () {
     checkdb = function (data, nextnextnextnext) {
         var mongoose = require('mongoose');
         Groups = mongoose.model('groups');
-        console.log('**************');
+      //  console.log('**************');
         var room = data.a;
         var message = data.b;
         var nickname = data.c;
@@ -41,9 +41,9 @@ SocketRepo = (function () {
         var NEWCHAT = [];
 
         Groups.findOne({id: room}, function (err, datanext) {
-            console.log(datanext);
+        //    console.log(datanext);
             var CHAT = datanext.chat; //ARRAY;
-            console.log(CHAT);
+            //console.log(CHAT);
             if (CHAT === undefined || CHAT.length == 0) {
                 //empty new room
                 gettheuser(nickname, function (next) {

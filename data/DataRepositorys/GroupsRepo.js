@@ -32,8 +32,9 @@ GroupsRepo = (function () {
             mijngroup.picture= filenaam1;
             mijngroup.chat=[];
             Groups.create(mijngroup, function (err) {
-               // console.log(err);
-                if (err) { return next(err); }
+
+                if (err) {  console.log(err);
+                    return next(err); }
                 next(mijngroup);
             });
         });

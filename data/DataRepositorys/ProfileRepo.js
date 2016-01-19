@@ -27,11 +27,29 @@ profilerepo = (function () {
             }
             else
             {
+                //nog als er een image bij staat
                 next();
             }
 
         });
     };
+    deleteEvent=function(id,next)
+    {
+        Events = require('../models/events');
+
+        Events.remove({id:data.id},function(err) {
+            if(err)
+            {
+                console.log(err);
+                return next(err);
+            }
+            else
+            {
+                next();
+            }
+
+        });
+    }
     getevents = function(data,next){
         var mongoose = require('mongoose');
         User = mongoose.model('User');
@@ -574,7 +592,8 @@ profilerepo = (function () {
         deletefriend:deletefriend,
         addpending:addpending,
         deletepending:deletepending,
-        updateEvent: updateEvent
+        updateEvent: updateEvent,
+        deleteEvent:deleteEvent
     };
 })();
 

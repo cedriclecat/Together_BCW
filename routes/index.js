@@ -317,6 +317,11 @@ router.post('/profiledenyfriend',function(req,res, next){
         });
 
     });
+    router.post('/api/profile/deleteEvent',function(req,res){
+       ProfileRepo.deleteEvent(req.body.id,function(next){
+          res.redirect('/profile');
+       });
+    });
     router.get('/api/profile/',function(req,res){
         userRepo.getUsers(req,res);
     });

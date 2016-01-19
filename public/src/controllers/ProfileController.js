@@ -5,7 +5,7 @@
 (function(){
     "use strict";
 
-    var ProfileController = function($scope,$http,mStatusService,jobService,countryService,certainUserService)
+    var ProfileController = function($scope,$http,$window,mStatusService,jobService,countryService,certainUserService)
     {
         // GET Marital status, Jobs, Countries & Cities from Services + add them to scope
         // ==============================================================================
@@ -129,6 +129,7 @@
 
             return '';
         };
+
         $scope.saveEdittedEvent = function()
         {
 
@@ -159,6 +160,26 @@
 
         };
 
+        $scope.deleteEvent= function($event)
+        {
+            var tr = $event.currentTarget.closest('tr');
+            var elementen = tr.getElementsByTagName("td");
+            var id = elementen[1].children[2].innerText;
+
+            var deleteEvent = $window.confirm('Are you absolutely sure you want to delete?');
+            if(deleteEvent)
+            {
+                var mijnobjectje = {
+                    'id' : id
+                };
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("POST","/api/profile/deleteEvent", false);
+                xmlHttp.setRequestHeader("Content-type", "application/json");
+                xmlHttp.send(JSON.stringify(mijnobjectje));
+
+            }
+
+        }
         $scope.editEvent = function($event)
         {
 
@@ -221,6 +242,6 @@
 
 
 
-    angular.module("profile").controller('ProfileController',['$scope','$http','mStatusService','jobService','countryService','certainUserService',ProfileController]);
+    angular.module("profile").controller('ProfileController',['$scope','$http','$window','mStatusService','jobService','countryService','certainUserService',ProfileController]);
 
 })();

@@ -130,10 +130,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 hoofddiv.removeChild(hoofddiv.lastChild);
             }
             //Hervul
+            console.log(entry);
+
             entry.forEach(function (data) {
                 var elements = document.getElementsByTagName("header");
               //  console.log(elements[0].id);
-             //   console.log(data);
+                //console.log(data);
                 //var msg = data.nick + ': ' + data.message;
                 var container = document.createElement('div');
                 container.className = "container-fluid";

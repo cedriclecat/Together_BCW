@@ -7,6 +7,7 @@ SocketRepo = (function () {
         User = mongoose.model('User');
         User.findOne({_id: data}, function (err, even) {
             if (err) {
+                console.log(err);
                 return next(err);
             }
             else {
@@ -20,6 +21,7 @@ SocketRepo = (function () {
                 VERSTUURMIJ.id = even._id;
                 VERSTUURMIJ.Foto = even.picture;
                 VERSTUURMIJ.naam = naam;
+               // console.log(VERSTUURMIJ);
                 next(VERSTUURMIJ);
             }
         });

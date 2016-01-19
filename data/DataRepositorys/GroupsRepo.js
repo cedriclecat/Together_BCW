@@ -30,7 +30,7 @@ GroupsRepo = (function () {
             mijngroup.createdby=user;
             mijngroup.eventids="";
             mijngroup.picture= filenaam1;
-            mijngroup.chat="";
+            mijngroup.chat=[];
             Groups.create(mijngroup, function (err) {
                // console.log(err);
                 if (err) { return next(err); }

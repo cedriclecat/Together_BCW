@@ -322,9 +322,9 @@ profilerepo = (function () {
         Events = mongoose.model('events');
         Groups = mongoose.model('groups');
         var files = data.files;
-        console.log(files);
+        //console.log(files);
         var spliter = files[0].path.split("\\");
-        console.log(spliter);
+        //console.log(spliter);
         var filenaam1 = "../img/uploads/" + spliter[4];
         var spliter2 = files[1].path.split("\\");
         var filenaam2 = "../img/uploads/" + spliter2[4];
@@ -359,19 +359,29 @@ profilerepo = (function () {
             Events.create(mijnevent, function (err) {
                 console.log(err);
                 if (err) { return next(err); }
+                console.log(data.Group);
                 Groups.findOne({id:data.Group},function(err,even){
-                    if(even.eventids==""){
 
-                        even.eventids = mijngetal;
-                    }else{
-                        even.eventids = even.eventids + "," + mijngetal;
+                    if(even!=null)
+                    {
+
+                        if(even.eventids==""){
+
+                            even.eventids = mijngetal;
+                        }else{
+                            even.eventids = even.eventids + "," + mijngetal;
+                        }
+                        var options = { multi: true };
+                        console.log(even);
+
+                        Groups.update({id:data.Group},{eventids:even.eventids},options,function(err){
+                            next(mijnevent);
+                        });
                     }
-                    var options = { multi: true };
-                    console.log(even);
-
-                    Groups.update({id:data.Group},{eventids:even.eventids},options,function(err){
+                    else
+                    {
                         next(mijnevent);
-                    });
+                    }
                 });
             });
 

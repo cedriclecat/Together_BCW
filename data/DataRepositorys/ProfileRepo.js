@@ -85,7 +85,9 @@ profilerepo = (function () {
             }
             var naam = "";
             User.findOne({_id: zoek}, function (err, even) {
+
                 if (err) {
+                    console.log(err);
                     return next(err);
                 } else {
                     var dtm = new Date(even.MemberSince);
@@ -96,7 +98,9 @@ profilerepo = (function () {
 
                     data.UserData = even;
                     var maand = dtm.getMonth() + 1;
-                    data.MemberSince = dtm.getDay() + "/" + maand + "/" + dtm.getFullYear();
+
+                    data.MemberSince = dtm.getDate() + "/" + maand + "/" + dtm.getFullYear();
+                    console.log(data.MemberSince);
                     if (even.firstName == "") {
                         var x = even.email.split("@");
                         naam = x[0];

@@ -233,6 +233,8 @@
                         //console.log("member");
                         velden["slots"].value=elementen[i].innerText;
                         break;
+                    default:
+                        break;
                 }
 
 

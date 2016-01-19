@@ -22,7 +22,7 @@ profilerepo = (function () {
             }},function(err){
             if(err)
             {
-                console.log(err);
+               // console.log(err);
                 return next(err);
             }
             else
@@ -41,12 +41,12 @@ profilerepo = (function () {
         Events.remove({id:id},function(err) {
             if(err)
             {
-                console.log(err);
+               // console.log(err);
                 return next(err);
             }
             else
             {
-                console.log("test");
+               // console.log("test");
                 next();
             }
 
@@ -59,12 +59,12 @@ profilerepo = (function () {
         Groups = mongoose.model('groups');
         var getnaam = require('./Profielmenu');
         getnaam.getname(data,function(dfdf){
-            console.log(dfdf);
+           // console.log(dfdf);
             if(dfdf=="N"){
                 data.TOON = false;
             }else{
                 data.TOON = true;
-                console.log("GOOO");
+              //  console.log("GOOO");
                 data.FOTO = dfdf.foto;
                 data.NAAM = dfdf.naam;
                 data.ADMIN = dfdf.Admin;
@@ -88,7 +88,7 @@ profilerepo = (function () {
         User.findOne({_id:zoek},function(err,even) {
             if (err) { return next(err);}else{
                 var dtm = new Date(even.MemberSince);
-                console.log(even);
+               // console.log(even);
                 var friends = even.contacts;
                 var pendings = even.pendingcontacts;
 
@@ -118,13 +118,13 @@ profilerepo = (function () {
                             var datum  = e.date;
                             var stukjes = datum.split("/");
                             var vandaag = new Date();
-                            console.log(stukjes);
+                           // console.log(stukjes);
                             var eventdatum = new Date();
                             eventdatum.setMonth(stukjes[1] -1);
                             eventdatum.setDate(stukjes[0]);
                             eventdatum.setYear(stukjes[2]);
-                            console.log(vandaag);
-                            console.log(eventdatum);
+                         //   console.log(vandaag);
+                        //    console.log(eventdatum);
                             if(eventdatum <= vandaag){
                                 e.done=1;
                             }else{
@@ -172,9 +172,9 @@ profilerepo = (function () {
                                         }else{
                                             naam = e.firstName + " " + e.lastName;
                                         }
-                                        console.log(pendings);
-                                        console.log("****************");
-                                        console.log(friends);
+                                      //  console.log(pendings);
+                                     //   console.log("****************");
+                                    //    console.log(friends);
                                         if(frie==1){
                                             frise.forEach(function(friend){
                                                 if(e._id==friend){
@@ -216,9 +216,9 @@ profilerepo = (function () {
                                         //Ander profiel
                                         //user id van current user
 
-                                        console.log(user);
-                                        console.log(pend);
-                                        console.log(fri);
+                                     //   console.log(user);
+                                      //  console.log(pend);
+                                    //    console.log(fri);
                                         //friend?
                                         fri.forEach(function(friend){
                                             var id = "" + friend.id;
@@ -232,8 +232,8 @@ profilerepo = (function () {
                                         //pending?
                                         if(friend==0) {
                                             pend.forEach(function(friend){
-                                                console.log(friend.id);
-                                                console.log(user);
+                                          //      console.log(friend.id);
+                                        //        console.log(user);
                                                 var id = "" + friend.id;
                                                 var us = ""+user;
                                                 if(id==us){
@@ -243,7 +243,7 @@ profilerepo = (function () {
                                                 }
                                             });
                                         }
-                                        console.log(pending);
+                                      //  console.log(pending);
                                         //niks?
                                         if(friend==0&&pending==0){
                                             friend =0;
@@ -255,8 +255,8 @@ profilerepo = (function () {
                                     data.izpending = pending;
                                     data.izunknown = unknown;
 
-                                    console.log(pend);
-                                    console.log(fri);
+                                 //   console.log(pend);
+                                //    console.log(fri);
                                     next();
 
                                 });

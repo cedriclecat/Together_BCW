@@ -18,7 +18,7 @@ groupSchema.deleteGroup = function(req,res,id){
             res.redirect('/admin');
         }
         else {
-            console.log('error' + err)
+          //  console.log('error' + err)
         }
     });
 };

@@ -100,7 +100,6 @@ profilerepo = (function () {
                     var maand = dtm.getMonth() + 1;
 
                     data.MemberSince = dtm.getDate() + "/" + maand + "/" + dtm.getFullYear();
-                    console.log(data.MemberSince);
                     if (even.firstName == "") {
                         var x = even.email.split("@");
                         naam = x[0];

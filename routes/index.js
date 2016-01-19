@@ -83,7 +83,7 @@ var upload = multer({storage:options});
         });
     });
     router.post('/profile',function(req,res){
-        console.log(req.user._id);
+        //console.log(req.user._id);
         res.redirect('/profile');
     });
     //insert event
@@ -107,9 +107,9 @@ var upload = multer({storage:options});
 
 //profileaddfriend
 router.post('/profileaddfriend',function(req,res, next){
-    console.log("hhhhhhhhhhhhhhhhhhhhh");
+   // console.log("hhhhhhhhhhhhhhhhhhhhh");
     var grps = req.query.id;
-    console.log(grps);
+   // console.log(grps);
     ProfileRepo.addpending(req, req.user._id, function (next) {
         res.redirect('/profile?id=' + grps);
     });
@@ -277,8 +277,8 @@ router.post('/profiledenyfriend',function(req,res, next){
     {
        var bodyz = req.body;
 
-        console.log(bodyz.id);
-        console.log(req.user._id);
+     //   console.log(bodyz.id);
+     //   console.log(req.user._id);
 
          Events.update({id:bodyz.id},{$addToSet:{members:req.user._id}},function(err){console.log(err);});
 
@@ -289,8 +289,8 @@ router.post('/profiledenyfriend',function(req,res, next){
     {
         var bodyz = req.body;
 
-        console.log(bodyz.id);
-        console.log(req.user._id);
+      //  console.log(bodyz.id);
+     //   console.log(req.user._id);
 
         Events.update({id:bodyz.id},{$pull:{members:req.user._id}},function(err){console.log(err);});
 
@@ -300,7 +300,7 @@ router.post('/profiledenyfriend',function(req,res, next){
     router.get('/api/events/:id',function(req,res){
         //console.log(req.params.id);
         var eid = req.params.id;
-        console.log(eid);
+     //   console.log(eid);
         //"id":1
        Events.findOne({'id':parseInt(eid)},function(err, event){
             if(err) res.send(err);
@@ -311,7 +311,7 @@ router.post('/profiledenyfriend',function(req,res, next){
     router.post('/api/profile/updateEvent',function(req,res){
 
         ProfileRepo.updateEvent(req.body,function(next){
-            console.log("lalalala");
+         //   console.log("lalalala");
            // res.render('/profile');
             res.redirect('/profile');
         });
